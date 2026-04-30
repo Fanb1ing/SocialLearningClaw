@@ -1,0 +1,13 @@
+[project]
+name = "sociallearningclaw"
+version = "0.0.1"
+description = "Proactive social-evolve agent"
+requires-python = ">=3.11"
+dependencies = [
+  "httpx>=0.27.0",
+  "huggingface_hub>=0.23.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["socialclaw*"]
