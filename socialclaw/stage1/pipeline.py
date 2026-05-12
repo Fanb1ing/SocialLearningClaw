@@ -1,117 +1,303 @@
 from __future__ import annotations
 
 import os
+import shutil
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import Iterable, List, Optional
 
-from .cc_agent.base import CCAgent
-from .dataset_cosmos_reason1 import load_prepared_jsonl as load_cosmos_reason1
-from .dataset_pbench import load_prepared_jsonl as load_pbench
+from .agent.base import Agent, AgentAttempt, ReasoningTrace, Usage
+from .dataset.base import Problem
 from .evaluator import evaluate
-from .human_io import ask_key_points_cli
+from .human_io import HumanIO
 from .logging import write_episode
 from .prompt_builder import build_prompt
-from .skill.gate import should_summarize
-from .skill.retrieve import SkillRetriever
-from .skill.store import SkillStore
-from .skill.summarize import summarize_episode_template
+from .schema.graph import Concept, Relation, SchemaGraph
+from .schema.initializer import SchemaInitializer
+from .schema.retriever import SchemaRetriever
+from .schema.storage import SchemaStorage
 from .stop_policy import StopConfig, should_stop
-from .types import Episode
+from .types import AttemptRecord, Episode
 
 
 @dataclass
-class RunConfig:
-    prepared_dataset_path: str
-    skills_db_dir: str = "skills_db"
-    runs_dir: str = "runs"
+class PipelineConfig:
     max_problems: int = 20
-    top_k_skills: int = 3
+    top_k_concepts: int = 5
+    similarity_threshold: float = 0.6
+    correction_conf_threshold: float = 0.8
     stop: StopConfig = field(default_factory=StopConfig)
+    runs_dir: str = "runs"
+    schema_dir: str = "schema"
+    auto_yes: bool = False
+    reset_schema: bool = False
+    problem_ids: Optional[List[str]] = None
+    dry_run: bool = False
+    show_prompt: bool = False
 
 
-def _load_dataset(path: str):
-    name = os.path.basename(path).lower()
-    # heuristic routing
-    if "pbench" in path.lower():
-        return load_pbench(path)
-    if "cosmos" in path.lower() or "reason" in path.lower():
-        return load_cosmos_reason1(path)
-    # default
-    return load_pbench(path)
+def _ensure_schema_files(cfg: PipelineConfig) -> tuple[str, str, str, str]:
+    os.makedirs(cfg.schema_dir, exist_ok=True)
+    concepts_path = os.path.join(cfg.schema_dir, "concepts.jsonl")
+    relations_path = os.path.join(cfg.schema_dir, "relations.jsonl")
+    embeddings_path = os.path.join(cfg.schema_dir, "concept_embeddings.npy")
+    concept_ids_path = os.path.join(cfg.schema_dir, "concept_ids.json")
+    return concepts_path, relations_path, embeddings_path, concept_ids_path
 
 
-def run_stage1(*, agent: CCAgent, cfg: RunConfig) -> str:
+def _reset_schema_dir(schema_dir: str) -> None:
+    if os.path.exists(schema_dir):
+        shutil.rmtree(schema_dir)
+    os.makedirs(schema_dir, exist_ok=True)
+
+
+def _load_or_init_schema(
+    cfg: PipelineConfig,
+) -> tuple[SchemaGraph, SchemaStorage, dict]:
+    if cfg.reset_schema:
+        _reset_schema_dir(cfg.schema_dir)
+
+    concepts_path, relations_path, embeddings_path, concept_ids_path = _ensure_schema_files(
+        cfg
+    )
+    storage = SchemaStorage(concepts_path, relations_path, embeddings_path, concept_ids_path)
+    graph, embeddings = storage.load()
+    return graph, storage, embeddings
+
+
+def _resolve_relation_names(graph: SchemaGraph, relation: Relation) -> Optional[Relation]:
+    """Convert relation source/target from concept names to concept ids."""
+    src = graph.get_concept_by_name(relation.source)
+    tgt = graph.get_concept_by_name(relation.target)
+    if src and tgt:
+        return Relation(
+            source=src.id,
+            target=tgt.id,
+            relation_type=relation.relation_type,
+            weight=relation.weight,
+            evidence=relation.evidence,
+        )
+    return None
+
+
+def _add_concepts_with_embeddings(graph, embeddings, embedder, concepts):
+    """Add concepts to graph and compute their embeddings."""
+    for c in concepts:
+        graph.add_concept(c)
+        try:
+            emb = embedder.encode(
+                f"{c.name}: {c.description}",
+                convert_to_numpy=True,
+                normalize_embeddings=True,
+            )
+            if emb.ndim == 2:
+                emb = emb[0]
+            embeddings[c.id] = emb
+        except Exception:
+            pass
+
+
+def _add_relations_resolved(graph, relations):
+    """Add relations to graph, resolving concept names to ids."""
+    for r in relations:
+        resolved = _resolve_relation_names(graph, r)
+        if resolved:
+            graph.add_relation(resolved)
+
+
+def _update_schema_from_feedback(graph: SchemaGraph, trace, correct: bool) -> None:
+    """Stage 2: reinforce or correct schema based on evaluation result.
+
+    - Positive feedback (correct): boost confidence of used concepts and weight of used relations.
+    - Negative feedback (wrong): reduce confidence/weight of used concepts and relations.
+    """
+    delta = 0.05 if correct else -0.05
+
+    for cid in trace.concepts:
+        c = graph.get_concept(cid)
+        if not c:
+            c = graph.get_concept_by_name(cid)
+        if c:
+            new_conf = max(0.1, min(0.95, c.confidence + delta))
+            graph.update_concept(c.id, confidence=new_conf)
+
+    for src, tgt, rel_type in trace.relations:
+        r = graph.get_relation(src, tgt, rel_type)
+        if not r:
+            r = graph.find_relation(src, tgt, rel_type)
+        if r:
+            new_weight = max(0.1, min(0.95, r.weight + delta))
+            graph.update_relation(r.source, r.target, r.relation_type, weight=new_weight)
+
+
+def run_stage1(
+    *,
+    agent: Agent,
+    embedder,
+    problems: Iterable[Problem],
+    cfg: PipelineConfig,
+) -> str:
     run_id = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
     run_dir = os.path.join(cfg.runs_dir, run_id)
     os.makedirs(run_dir, exist_ok=True)
 
-    retriever = SkillRetriever(db_dir=cfg.skills_db_dir)
-    store = SkillStore(db_dir=cfg.skills_db_dir)
+    graph, storage, embeddings = _load_or_init_schema(cfg)
+    retriever = SchemaRetriever(graph, embeddings, embedder, agent=agent)
+    initializer = SchemaInitializer(agent)
+    human_io = HumanIO(auto_yes=cfg.auto_yes)
 
     count = 0
-    for problem in _load_dataset(cfg.prepared_dataset_path):
+    for problem in problems:
+        if cfg.problem_ids and problem.id not in cfg.problem_ids:
+            continue
+
         ep = Episode(problem=problem)
-        skills = retriever.retrieve(problem, top_k=cfg.top_k_skills)
+
+        # 1. Schema retrieve + sufficiency check
+        result = retriever.retrieve(
+            problem, top_k=cfg.top_k_concepts, threshold=cfg.similarity_threshold
+        )
+        concepts = result.matched
+        sufficient = retriever.is_sufficient(result)
+
+        if not sufficient:
+            if cfg.auto_yes:
+                # Auto-generate schema from agent when in auto mode
+                print(f"[auto-yes] Schema insufficient for {problem.id}, missing: {result.missing}, auto-generating...")
+                auto_concepts, auto_relations = initializer.generate_schema(problem)
+                _add_concepts_with_embeddings(graph, embeddings, embedder, auto_concepts)
+                _add_relations_resolved(graph, auto_relations)
+                ep.flags.append("agent_auto_init")
+                result = retriever.retrieve(
+                    problem,
+                    top_k=cfg.top_k_concepts,
+                    threshold=cfg.similarity_threshold,
+                )
+                concepts = result.matched
+            else:
+                missing_desc = initializer.describe_missing(problem, concepts, missing=result.missing)
+                human_answer = human_io.ask(
+                    question=missing_desc["question"],
+                    context=missing_desc["context"],
+                    hint=missing_desc["hint"],
+                )
+                if human_answer.strip():
+                    new_concepts, new_relations = initializer.parse_human_answer(human_answer, problem)
+                    _add_concepts_with_embeddings(graph, embeddings, embedder, new_concepts)
+                    _add_relations_resolved(graph, new_relations)
+                    ep.flags.append("human_init_concepts")
+                    result = retriever.retrieve(
+                        problem,
+                        top_k=cfg.top_k_concepts,
+                        threshold=cfg.similarity_threshold,
+                    )
+                    concepts = result.matched
 
         for attempt_index in range(cfg.stop.max_iters):
+            # 2. Agent answers with schema assistance
+            concept_ids = [c.id for c in concepts]
+            subgraph = graph.subgraph(concept_ids, depth=1)
             prompt = build_prompt(
                 problem=problem,
-                skills=skills,
-                knowledge_points=ep.knowledge_points,
+                subgraph=subgraph,
                 attempt_index=attempt_index,
             )
-            result = agent.answer(
-                prompt=prompt,
-                meta={
-                    "problem_id": problem.id,
-                    "attempt": attempt_index,
-                    "problem_meta": problem.meta or {},
-                    "prepared_dataset_path": cfg.prepared_dataset_path,
-                },
-            )
+
+            if cfg.show_prompt:
+                print(f"\n=== Prompt for {problem.id} (attempt {attempt_index}) ===")
+                print(prompt)
+                print("=" * 50)
+
+            if cfg.dry_run:
+                attempt = AgentAttempt(
+                    answer_text="[DRY_RUN]",
+                    reasoning_trace=ReasoningTrace(concepts=[], relations=[], explanation="dry_run"),
+                    usage=Usage(input_tokens=0, output_tokens=0, total_tokens=0),
+                    raw={"dry_run": True},
+                )
+            else:
+                attempt = agent.answer(
+                    prompt=prompt,
+                    meta={
+                        "problem_id": problem.id,
+                        "attempt": attempt_index,
+                        "problem_meta": problem.meta or {},
+                    },
+                )
 
             ep.attempts.append(
-                {
-                    "input_prompt": prompt,
-                    "answer_text": result.answer_text,
-                    "confidence": result.confidence,
-                    "usage": {
-                        "input_tokens": result.usage.input_tokens,
-                        "output_tokens": result.usage.output_tokens,
-                        "total_tokens": result.usage.total_tokens,
+                AttemptRecord(
+                    input_prompt=prompt,
+                    answer_text=attempt.answer_text,
+                    reasoning_trace=attempt.reasoning_trace,
+                    usage={
+                        "input_tokens": attempt.usage.input_tokens,
+                        "output_tokens": attempt.usage.output_tokens,
+                        "total_tokens": attempt.usage.total_tokens,
                     },
-                    "tool_calls": {"count": result.tool_calls.count, "tools": result.tool_calls.tools},
-                    "raw": result.raw,
-                }
+                    raw=attempt.raw,
+                )
             )
 
-            ev = evaluate(problem, result)
+            # 3. Evaluate
+            ev = evaluate(problem, attempt, agent=agent)
             ep.evals.append(ev)
 
-            # Here 调试
-            if ev.correct:
-                break
+            # 4. Compute schema-based reasoning confidence
+            reasoning_confidence = graph.compute_confidence(attempt.reasoning_trace)
+            ep.reasoning_trace = attempt.reasoning_trace
+            ep.reasoning_confidence = reasoning_confidence
 
+            # 4.5 Stage 2: Schema reinforcement / correction
+            if not cfg.dry_run and attempt.reasoning_trace.concepts:
+                _update_schema_from_feedback(graph, attempt.reasoning_trace, ev.correct)
+                if ev.correct:
+                    ep.flags.append("schema_reinforce")
+                else:
+                    ep.flags.append("schema_correct")
+
+            # Stop policy check
             stop, reason = should_stop(ep, cfg.stop)
             if stop:
                 ep.stop_reason = reason
                 break
-
-            kps = ask_key_points_cli(ep)
-            ep.knowledge_points.extend(kps)
 
         if ep.stop_reason is None:
             stop, reason = should_stop(ep, cfg.stop)
             if stop:
                 ep.stop_reason = reason
 
-        if should_summarize(ep):
-        # if True:
-            draft = summarize_episode_template(ep)
-            draft.meta.created_at = datetime.utcnow().isoformat() + "Z"
-            store.write_markdown(meta=draft.meta, markdown_body=draft.body)
-            ep.skill_written = draft.meta.id
+        # 5. High-confidence wrong -> ask human for correction
+        if (
+            not cfg.dry_run
+            and ep.evals
+            and not ep.evals[-1].correct
+            and ep.reasoning_confidence > cfg.correction_conf_threshold
+        ):
+            correction = human_io.ask_correction(
+                problem=problem,
+                attempt=ep.attempts[-1],
+                reasoning_confidence=ep.reasoning_confidence,
+                eval=ep.evals[-1],
+            )
+            if correction.strip():
+                corrected = initializer.parse_correction(correction, problem)
+                for c in corrected.get("add_concepts", []):
+                    _add_concepts_with_embeddings(graph, embeddings, embedder, [c])
+                for r in corrected.get("add_relations", []):
+                    resolved = _resolve_relation_names(graph, r)
+                    if resolved:
+                        graph.add_relation(resolved)
+                for upd in corrected.get("update_concepts", []):
+                    cid = upd.get("id")
+                    if cid:
+                        graph.update_concept(cid, **{k: v for k, v in upd.items() if k != "id"})
+                ep.flags.append("human_correction")
 
+        # Save schema after each problem
+        storage.save(graph, embeddings)
+
+        # 6. Log episode
         write_episode(run_dir, ep)
 
         count += 1

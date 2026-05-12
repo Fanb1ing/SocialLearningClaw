@@ -3,53 +3,25 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
-
-@dataclass
-class MCQProblem:
-    """A multiple-choice (including binary) problem."""
-
-    id: str
-    prompt: str
-    choices: List[str]
-    answer_key: str
-    meta: Dict[str, Any] = field(default_factory=dict)
+from .agent.base import ReasoningTrace
+from .dataset.base import EvalResult, Problem
 
 
 @dataclass
-class Usage:
-    input_tokens: int
-    output_tokens: int
-    total_tokens: int
-
-
-@dataclass
-class ToolCallStats:
-    count: int
-    tools: List[str]
-
-
-@dataclass
-class CCAgentResult:
+class AttemptRecord:
+    input_prompt: str
     answer_text: str
-    confidence: Optional[float]
-    usage: Usage
-    tool_calls: ToolCallStats
+    reasoning_trace: ReasoningTrace
+    usage: Dict[str, int]
     raw: Dict[str, Any]
 
 
 @dataclass
-class EvalResult:
-    correct: bool
-    pred: str
-    gold: str
-    details: str = ""
-
-
-@dataclass
 class Episode:
-    problem: MCQProblem
-    attempts: List[Dict[str, Any]] = field(default_factory=list)
+    problem: Problem
+    attempts: List[AttemptRecord] = field(default_factory=list)
     evals: List[EvalResult] = field(default_factory=list)
-    knowledge_points: List[str] = field(default_factory=list)
+    reasoning_trace: Optional[ReasoningTrace] = None
+    reasoning_confidence: float = 0.0
+    flags: List[str] = field(default_factory=list)
     stop_reason: Optional[str] = None
-    skill_written: Optional[str] = None  # skill_id if written

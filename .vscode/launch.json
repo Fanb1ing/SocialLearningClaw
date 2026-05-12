@@ -24,7 +24,7 @@
                 "--max-problems",
                 "5",
                 "--max-iters",
-                "2"
+                "1"
             ],
             "env": {
                 "PYTHONUNBUFFERED": "1"

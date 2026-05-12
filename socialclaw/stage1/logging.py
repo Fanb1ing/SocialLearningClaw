@@ -15,7 +15,6 @@ def _safe_mkdir(path: str) -> None:
 
 def write_episode(run_dir: str, episode: Episode) -> str:
     """Write episode.json and return file path."""
-
     _safe_mkdir(run_dir)
     ep_dir = os.path.join(run_dir, episode.problem.id)
     _safe_mkdir(ep_dir)
@@ -26,5 +25,5 @@ def write_episode(run_dir: str, episode: Episode) -> str:
         "episode": asdict(episode),
     }
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(payload, f, ensure_ascii=False, indent=2)
+        json.dump(payload, f, ensure_ascii=False, indent=2, default=str)
     return path

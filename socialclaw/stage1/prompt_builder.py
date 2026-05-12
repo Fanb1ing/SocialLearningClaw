@@ -1,80 +1,73 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import List, Sequence
+from typing import List
 
-from .types import MCQProblem
-
-
-@dataclass
-class SkillSnippet:
-    skill_id: str
-    title: str
-    when_to_use: str
-    checklist: List[str]
-    details: str = ""
+from .dataset.base import Problem
+from .schema.graph import SchemaGraph
 
 
 def build_prompt(
     *,
-    problem: MCQProblem,
-    skills: Sequence[SkillSnippet],
-    knowledge_points: Sequence[str],
-    attempt_index: int,
+    problem: Problem,
+    subgraph: SchemaGraph,
+    attempt_index: int = 0,
 ) -> str:
-    """Build a system+user style prompt in a single string.
+    """Build a prompt that injects schema subgraph knowledge and asks for structured reasoning.
 
-    Stage1: keep it provider-agnostic; the adapter decides how to map to chat messages.
-
-    Note: Cosmos-Reason1 items may reference a video. Stage1 currently does NOT pass video bytes/frames.
-    We only include the video path (if any) as metadata so the model is aware of the missing modality.
+    Stage 1 uses "flat list" mode (方式 A) for simplicity.
     """
+    concepts = subgraph.list_concepts()
 
     # Progressive disclosure
-    skill_blocks: List[str] = []
-    for s in skills:
+    concept_blocks: List[str] = []
+    for i, c in enumerate(concepts, start=1):
         if attempt_index <= 0:
-            blk = [f"[Skill {s.skill_id}] {s.title}", f"When to use: {s.when_to_use}", "Checklist:"]
-            blk += [f"- {x}" for x in s.checklist]
+            blk = f"概念 {i}：{c.name}\n  描述：{c.description[:200]}"
         else:
-            blk = [f"[Skill {s.skill_id}] {s.title}", f"When to use: {s.when_to_use}", "Checklist:"]
-            blk += [f"- {x}" for x in s.checklist]
-            if s.details:
-                blk += ["Details:", s.details]
-        skill_blocks.append("\n".join(blk))
+            blk = f"概念 {i}：{c.name}\n  描述：{c.description}\n  类别：{c.category}\n  置信度：{c.confidence:.2f}"
+            # Add related concepts from relations
+            related = []
+            for r in subgraph.list_relations():
+                if r.source == c.id:
+                    tgt = subgraph.get_concept(r.target)
+                    if tgt:
+                        related.append(f"→ {tgt.name}（{r.relation_type}）")
+                elif r.target == c.id:
+                    src = subgraph.get_concept(r.source)
+                    if src:
+                        related.append(f"← {src.name}（{r.relation_type}）")
+            if related:
+                blk += "\n  相关概念：\n    " + "\n    ".join(related)
+        concept_blocks.append(blk)
 
-    kp_block = "\n".join([f"- {x}" for x in knowledge_points]) if knowledge_points else ""
-
-    choices = "\n".join(problem.choices)
-
-    video_hint = ""
-    video = (problem.meta or {}).get("video")
-    if isinstance(video, str) and video:
-        video_hint = (
-            "This question references a video. In this Stage1 run, you will NOT receive the video content. "
-            "Only the video path/id is provided for context.\n"
-            f"video: {video}\n\n"
-        )
-
-    system = (
-        "You are a careful agent solving a multiple-choice question. "
-        "You must output the final answer as a single choice letter (A/B/C/...). "
-        "You must also output confidence as a float in [0,1].\n\n"
-        "Output format (exactly):\n"
-        "choice: <LETTER>\n"
-        "confidence: <FLOAT>\n"
+    schema_text = (
+        "【可用概念网络】\n\n" + "\n\n".join(concept_blocks) + "\n"
+        if concept_blocks
+        else "【可用概念网络】\n（暂无相关概念）\n"
     )
 
-    if skill_blocks:
-        system += "\nReference skills (use if relevant):\n\n" + "\n\n".join(skill_blocks) + "\n"
+    # Include choices if present in meta (for MCQ)
+    choices_text = ""
+    choices = problem.meta.get("choices")
+    if isinstance(choices, list) and choices:
+        choices_text = "\n选项：\n" + "\n".join([f"{chr(65 + i)}. {c}" for i, c in enumerate(choices)]) + "\n"
 
-    user = ""
-    if video_hint:
-        user += video_hint
-    user += f"Question:\n{problem.prompt}\n\nChoices:\n{choices}\n"
-    if kp_block:
-        user += "\nHuman key knowledge points (high priority):\n" + kp_block + "\n"
+    system = (
+        "你是一个严谨的推理助手。请基于下面提供的概念网络进行推理，回答题目。\n\n"
+        "你的回答必须包含以下两部分：\n\n"
+        "[推理过程]\n"
+        "- 使用的概念：{概念名称列表}\n"
+        "- 推理路径：{概念 A -> 关系 -> 概念 B -> ...}\n"
+        "- 解释：{你对推理过程的简要说明}\n\n"
+        "[最终答案]\n"
+        "{你的最终答案}\n\n"
+        "注意：\n"
+        "1. 在[推理过程]中务必列出你使用的概念名称。\n"
+        "2. 若题目是选择题，[最终答案]只输出选项字母（如 A / B / C）。\n"
+    )
 
-    user += "\nNow answer."
+    user = f"题目类型：{problem.problem_type}\n\n题目内容：\n{problem.prompt}\n{choices_text}\n"
+    user += schema_text
+    user += "\n请基于上述概念网络推理并作答。"
 
     return system + "\n---\n" + user

@@ -18,16 +18,14 @@ def should_stop(episode: Episode, cfg: StopConfig) -> Tuple[bool, Optional[str]]
     if iters >= cfg.max_iters:
         return True, "max_iters"
 
-    # confidence gate
     if episode.attempts:
-        conf = episode.attempts[-1].get("confidence")
+        conf = episode.reasoning_confidence
         if isinstance(conf, (int, float)) and conf >= cfg.conf_threshold:
             return True, "confidence"
 
-    # token gate
     total = 0
     for a in episode.attempts:
-        usage = a.get("usage") or {}
+        usage = a.usage or {}
         tok = usage.get("total_tokens")
         if isinstance(tok, int):
             total += tok

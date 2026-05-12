@@ -1,425 +1,588 @@
-# Stage 1 设计与实现计划（SocialLearningClaw）
+# Stage 1 设计与实现计划（Schema 为中心）
 
-> 目标：实现 README 中 Stage 1 的闭环流程：
-> - 给定 Cosmos-Reason1 部分问题 → 交给 **Claude Code Agent (CC Agent)** 回答（返回 answer + confidence + token/tool_calls 统计）
-> - 依据门限停止 → 评估对错
-> - 错误则 **向人类主动提问** 获取关键知识点 → 注入上下文再答
-> - 满足门槛则总结为 **Skill** 并入库，同时保存全量日志/轨迹。
-
-本文包含：模块设计、文件结构、接口定义、CC Agent 接入方式对比（含 Autosota 的方式）、Skill 机制（渐进式披露）、Cosmos-Reason1 数据准备方案与环境配置。
+> 目标：建立 Schema 图基础设施，完成静态 Schema 辅助答题的端到端验证。
+> **原则**：先跑主实验，baseline 后补；Schema 初始化由 Agent 自动生成；CLI 主动提问在 Stage 1 实现。
 
 ---
 
 ## 0. 非目标（Stage 1 不做什么）
 
-- 不做复杂 UI（先 CLI / 可替换的 HumanIO）。
-- 不强依赖 auto-pipeline-ab（只参考风格）。
-- 不追求所有 Cosmos-Reason1 子任务覆盖；先支持 **二元/多选**（你已确认该数据应为二元或多选）。
-- 不在 Stage 1 做训练/优化算法（GEPA 等）。
+- 不做 Schema 动态更新（巩固/纠留给 Stage 2）。
+- 不跑 baseline 对比（Stage 3 补充）。
+- 不自己训练 embedding 模型（先用开源 BGE）。
+- ARC-AGI-3 交互式环境 Stage 1 只做接口抽象，Stage 2 跑通。
 
 ---
 
-## 1. 总体闭环（与 README 1~5 对齐）
+## 1. 总体闭环（与 README 新框图对齐）
 
-### 1.1 状态对象：`Episode`
+### 1.1 核心数据结构
 
-每道题一次运行形成一个 `Episode`（可序列化 JSON）：
+```text
+Concept:
+  id: str
+  name: str
+  description: str          # 给 LLM 看的自然语言描述
+  category: str             # 类别标签（物理/数学/逻辑...）
+  confidence: float         # 0~1，系统对这条 concept 的确信度
+  source: str               # "agent_init" | "human_feedback" | ...
+  created_at: str
 
-- `problem`: `{id, split, domain, prompt, choices?, answer_key?}`
-- `attempts[]`: 每次对 CC Agent 的一次调用
-  - `input_prompt`: 最终给 CC Agent 的 prompt（含 skills/human kp）
-  - `answer`: 结构化答案（对 choice 任务建议规范化为 `{"choice": "A"}`）
-  - `confidence`: `0~1` float（由 **CC Agent 自己输出**；Prompt 里强制其给出置信度；pipeline 侧只做格式校验与缺省回退）
-  - `usage`: `{input_tokens, output_tokens, total_tokens}`（必须有）
-  - `tool_calls`: `{count, tools: [...]}`（必须有；至少统计次数）
-  - `raw`: 原始返回（用于复盘）
-- `evals[]`: 与 attempts 对齐
-  - `correct`: bool
-  - `pred`: 预测（规范化）
-  - `gold`: 标准答案（规范化）
-  - `details`: 误差说明
-- `human_feedback`:
-  - `knowledge_points[]`: 人类输入的关键知识点
-- `stop_reason`: `confidence|max_iters|max_tokens|...`
-- `skill`: 若触发 skill，总结后的 skill 文本 + 元数据
+Relation:
+  source: str               # concept id
+  target: str               # concept id
+  relation_type: str        # "prerequisite" | "causes" | "analogous" | ...
+  weight: float             # 0~1，概率化权重
+  evidence: List[dict]      # [{problem_id, correct: bool}, ...]
 
-所有 episode 都会落盘：`runs/YYYYmmdd_HHMMSS/<problem_id>/episode.json`。
+RetrieveResult:
+  matched: List[Concept]    # 从 schema 中成功匹配到的概念
+  missing: List[str]        # LLM 提取出但未在 schema 中找到匹配的概念名称
+
+SchemaGraph:
+  concepts: Dict[str, Concept]
+  relations: List[Relation]
+  # 方法：add/remove/update, subgraph_extract, probability_propagate
+```
+
+存储：
+- `data/schema/concepts.jsonl` —— 每行一个 Concept（embedding 单独存 `.npy`）
+- `data/schema/relations.jsonl` —— 每行一个 Relation
+- `data/schema/concept_embeddings.npy` + `concept_ids.json` —— 对齐的 embedding 矩阵
 
 ### 1.2 运行流程（伪代码）
 
 ```text
 for problem in dataset:
   episode = init(problem)
-  skills = skill_retriever.retrieve(problem)
 
-  for iter in range(max_iters):
-    prompt = prompt_builder.build(problem, skills, episode.human_feedback)
-    attempt = cc_agent.answer(prompt)
-    episode.attempts.append(attempt)
+  # 1. Schema 检索 + 充足度判断
+  # 1a. LLM 提取问题所需 concept 名称列表
+  # 1b. 逐个与 schema concept 做 embedding 相似度匹配
+  result = schema_retriever.retrieve(problem, top_k=5, threshold=0.6)
+  # sufficient = missing 为空 且 matched 非空（LLM-based，无硬编码阈值）
+  sufficient = schema_retriever.is_sufficient(result)
 
-    eval = evaluator.evaluate(problem, attempt)
-    episode.evals.append(eval)
+  if not sufficient:
+    # CLI 向人类提问，描述缺失的 concept
+    missing_desc = schema_initializer.describe_missing(problem, result.matched, missing=result.missing)
+    human_answer = human_io.ask(
+      question=missing_desc["question"],
+      context=problem.prompt,
+      hint=missing_desc["hint"]
+    )
+    # 将人类回答解析为 concept + relation，写入 schema
+    new_concepts = schema_initializer.parse_human_answer(human_answer, problem)
+    schema_graph.add_concepts(new_concepts)
+    episode.flags.append("human_init_concepts")
+    # 重新检索（现在 schema 已补充）
+    result = schema_retriever.retrieve(problem, top_k=5, threshold=0.6)
 
-    if stop_policy.should_stop(episode):
-      break
+  concepts = result.matched
 
-    if eval.correct:
-      break
+  # 2. Agent 在 Schema 辅助下答题
+  subgraph = schema_graph.subgraph(concepts)
+  prompt = prompt_builder.build(problem, subgraph)
+  attempt = agent.answer(prompt)
+  episode.attempts.append(attempt)
 
-    # wrong -> proactive ask human
-    knowledge_points = human_io.ask_key_points(problem, attempt, eval)
-    episode.human_feedback.knowledge_points.extend(knowledge_points)
+  # 3. 评估（CL-bench 使用 LLM-as-judge）
+  eval = evaluator.evaluate(problem, attempt, agent=agent)
+  episode.evals.append(eval)
 
-  # skill threshold
-  if skill_gate.should_summarize(episode):
-    skill = skill_summarizer.summarize(episode)
-    skill_writer.write(skill)
+  # 4. 计算 schema-based reasoning confidence
+  reasoning_confidence = schema_graph.compute_confidence(attempt.reasoning_trace)
+
+  # 5. Stage 2: Schema 巩固 / 纠错
+  if eval.correct:
+    # 正反馈：提升 used concept confidence 和 used relation weight (+0.05)
+    schema_graph.reinforce(attempt.reasoning_trace)
+    episode.flags.append("schema_reinforce")
+  else:
+    # 负反馈：降低 used concept confidence 和 used relation weight (-0.05)
+    schema_graph.correct(attempt.reasoning_trace)
+    episode.flags.append("schema_correct")
+
+  # 6. 若错误且 reasoning_confidence 很高 → CLI 向人类提问纠错
+  if not eval.correct and reasoning_confidence > 0.8:
+    correction = human_io.ask_correction(
+      problem=problem,
+      attempt=attempt,
+      reasoning_confidence=reasoning_confidence,
+      eval=eval
+    )
+    corrected = schema_initializer.parse_correction(correction, problem)
+    schema_graph.update(corrected)
+    episode.flags.append("human_correction")
+
+  episode.reasoning_trace = attempt.reasoning_trace
+  episode.reasoning_confidence = reasoning_confidence
 
   logger.write(episode)
 ```
 
+### 1.3 Episode 数据结构
+
+每道题一次运行形成一个 `Episode`（可序列化 JSON）：
+
+- `problem`: `{id, split, domain, prompt, choices?, answer_key?}`
+- `attempts[]`: 每次对 Agent 的一次调用
+  - `input_prompt`: 最终给 Agent 的 prompt
+  - `answer`: 结构化答案
+  - `reasoning_trace`: 使用了哪些 concept / relation
+  - `usage`: `{input_tokens, output_tokens, total_tokens}`
+  - `raw`: 原始返回
+- `evals[]`: 与 attempts 对齐
+  - `correct`: bool
+  - `pred`: 预测（规范化）
+  - `gold`: 标准答案（规范化）
+  - `details`: 误差说明
+- `reasoning_trace`: Agent 声明使用的 concept/relation 路径
+- `reasoning_confidence`: 系统基于 schema 计算的推理置信度（见 3.4 节）
+- `flags[]`: 标记，如 `"human_init_concepts"`, `"human_correction"`
+- `stop_reason`: `max_iters|max_tokens|...`
+
+所有 episode 都会落盘：`runs/YYYYmmdd_HHMMSS/<problem_id>/episode.json`。
+
 ---
 
-## 2. 文件结构（建议）
-
-在仓库根目录新增一个独立包，避免和 `auto-pipeline-ab/` 混杂：
+## 2. 文件结构
 
 ```text
-SocialLearningClaw/
-  socialclaw/
-    __init__.py
-    stage1/
-      run_stage1.py
-      config_schema.py
-      types.py
-      pipeline.py
-      prompt_builder.py
-      stop_policy.py
-      evaluator.py
-      human_io.py
-      logging.py
-      skill/
-        store.py
-        retrieve.py
-        gate.py
-        summarize.py
-      cc_agent/
-        base.py
-        adapters/
-          claude_code_cli.py
-          claude_code_sdk.py
-          anthropic_api.py
-  scripts/
-    stage1_download_cosmos_reason1.py
-    stage1_prepare_cosmos_reason1.py
-  data/
-    cosmos_reason1/
-      raw/        # huggingface 下载原始
-      prepared/   # 处理后 jsonl
-  skills_db/
-    index.jsonl
-    skills/
-      <skill_id>.md
-  runs/
-    ...
-  docs/
-    stage1_design.md
-    stage1_env.md
+socialclaw/
+  stage1/
+    run_stage1.py            # CLI 入口（含 --reset-schema / --problem-id / --dry-run / --auto-yes 等调试参数）
+    types.py                 # Problem 基类、Episode、EvalResult
+    pipeline.py
+    prompt_builder.py
+    stop_policy.py
+    evaluator.py
+    human_io.py              # CLI 主动提问
+    schema/
+      __init__.py
+      graph.py               # SchemaGraph、Concept、Relation
+      retriever.py           # Embedding 检索 + 充足度判断
+      initializer.py         # Agent 自动生成初始化 concept
+      storage.py             # JSONL + npy 读写
+    agent/
+      __init__.py
+      base.py                # Agent 基类
+      openai_compatible.py   # 可插拔 LLM provider
+    dataset/                 # 数据集加载器
+      base.py
+      pbench.py              # MCQ
+      clbench.py             # 长上下文阅读理解
+      arc.py                 # ARC 网格（静态 + 交互式接口）
+    logging.py
 ```
-
-说明：
-- `socialclaw/`：核心代码。
-- `scripts/`：一次性数据准备脚本。
-- `data/`：数据落盘位置（可通过 config 覆盖）。
-- `skills_db/`：skill 库（与 autosota 的 `Skills/` 目录概念一致，但我们实现更结构化的索引）。
 
 ---
 
-## 3. 模块接口定义（关键类/函数）
+## 3. 模块接口定义
 
-### 3.1 CC Agent 接口（必须返回 token/tool_calls）
+### 3.1 SchemaGraph
 
-`socialclaw/stage1/cc_agent/base.py`
+`socialclaw/stage1/schema/graph.py`
 
 ```python
-from dataclasses import dataclass
-from typing import Any, Dict, List, Optional
+@dataclass
+class Concept:
+    id: str
+    name: str
+    description: str
+    category: str = "general"
+    confidence: float = 0.5
+    source: str = "agent_init"
+    created_at: str = ""
 
 @dataclass
-class Usage:
-    input_tokens: int
-    output_tokens: int
-    total_tokens: int
+class Relation:
+    source: str
+    target: str
+    relation_type: str = "related"
+    weight: float = 0.5
+    evidence: List[dict] = field(default_factory=list)
 
+class SchemaGraph:
+    def __init__(self, concepts_path, relations_path):
+        ...
+    def add_concept(self, c: Concept) -> None: ...
+    def add_relation(self, r: Relation) -> None: ...
+    def get_concept(self, cid: str) -> Optional[Concept]: ...
+    def subgraph(self, concept_ids: List[str], depth: int = 1) -> "SchemaGraph": ...
+    def compute_confidence(self, trace: ReasoningTrace) -> float:
+        """
+        根据 reasoning_trace 中使用的 concept 和 relation，
+        计算 schema-based reasoning confidence。
+        见 3.4 节详细说明。
+        """
+        ...
+    def save(self) -> None: ...
+```
+
+### 3.2 SchemaRetriever
+
+`socialclaw/stage1/schema/retriever.py`
+
+```python
 @dataclass
-class ToolCallStats:
-    count: int
-    tools: List[str]  # tool names
+class RetrieveResult:
+    matched: List[Concept]   # 成功匹配到的 schema 概念
+    missing: List[str]       # 未匹配到的概念名称（需补充）
 
-@dataclass
-class CCAgentResult:
-    answer_text: str
-    confidence: Optional[float]
-    usage: Usage
-    tool_calls: ToolCallStats
-    raw: Dict[str, Any]
+class SchemaRetriever:
+    def __init__(self, graph: SchemaGraph, embedder, agent: Optional[Agent] = None):
+        ...
 
-class CCAgent:
-    def answer(self, *, prompt: str, meta: Dict[str, Any]) -> CCAgentResult:
+    def retrieve(self, problem: Problem, top_k=5, threshold=0.6) -> RetrieveResult:
+        """
+        两步检索：
+        1. 调用 LLM 提取问题所需 concept 名称列表。
+        2. 对每个提取出的 concept，计算其 name 的 embedding，
+           与 schema 中所有 concept embedding 做相似度匹配，取 top-1。
+        3. 相似度 >= threshold 则放入 matched，否则放入 missing。
+        """
+        ...
+
+    def is_sufficient(self, result: RetrieveResult) -> bool:
+        """
+        充足度判断：missing 为空 且 matched 非空 即 sufficient。
+        无需硬编码阈值，因为 missing 列表本身由 LLM 提取产生。
+        """
         ...
 ```
 
-**硬性约束（你提出的 #4）：** `usage` 与 `tool_calls` 不能为空（至少能统计 `count`，tokens 至少 `total_tokens`）。
+**关键变化**：不再直接把 `problem.prompt` 编码为 query embedding，而是先让 LLM 提取所需 concept，再逐个匹配。这样检索结果更精准，且 missing 列表可直接用于主动提问。
 
-### 3.2 DatasetProvider
+### 3.3 SchemaInitializer
 
-`socialclaw/stage1/types.py`
+`socialclaw/stage1/schema/initializer.py`
+
+```python
+class SchemaInitializer:
+    def __init__(self, agent: Agent):
+        ...
+    def generate_concepts(self, problem: Problem) -> List[Concept]:
+        """
+        让 Agent 读题，判断回答该问题需要哪些 concept，
+        并输出结构化 concept + relation。
+        """
+        ...
+    def describe_missing(self, problem: Problem, concepts: List[Concept], missing: List[str] = None) -> dict:
+        """生成向人类提问的描述（问题 + 提示）。若传入 missing，会在问题中明确指出缺少哪些概念。"""
+        ...
+    def parse_human_answer(self, answer: str, problem: Problem) -> List[Concept]:
+        """将人类自由文本回答解析为结构化 Concept/Relation。"""
+        ...
+    def parse_correction(self, correction: str, problem: Problem) -> dict:
+        """将人类纠错建议解析为 schema 更新操作。"""
+        ...
+```
+
+### 3.4 Agent 接口与 Reasoning Confidence
+
+`socialclaw/stage1/agent/base.py`
 
 ```python
 @dataclass
-class MCQProblem:
-    id: str
-    prompt: str
-    choices: List[str]  # e.g. ["A. ...", "B. ..."]
-    answer_key: str     # "A"/"B"/"C"/...
-    meta: Dict[str, Any]
+class ReasoningTrace:
+    concepts: List[str]       # 使用的 concept id 列表
+    relations: List[tuple]    # [(source, target, relation_type), ...]
+    explanation: str          # Agent 对推理过程的自然语言解释
+
+@dataclass
+class AgentAttempt:
+    answer_text: str
+    reasoning_trace: ReasoningTrace   # Agent 声明使用了哪些 concept / relation
+    usage: Usage
+    raw: Dict[str, Any]
+
+class Agent:
+    def answer(self, *, prompt: str, meta: Dict[str, Any]) -> AgentAttempt:
+        ...
 ```
 
-`socialclaw/stage1/dataset_cosmos_reason1.py`（后续实现）
+**关键：reasoning_confidence 不是 LLM 输出，是系统基于 Schema 计算**
 
-- `load_prepared_jsonl(path) -> Iterable[MCQProblem]`
+`SchemaGraph.compute_confidence(trace: ReasoningTrace) -> float` 的实现：
 
-### 3.3 PromptBuilder（含 Skill 渐进式披露）
+```python
+def compute_confidence(self, trace: ReasoningTrace) -> float:
+    """
+    Schema-based reasoning confidence 计算逻辑：
 
-核心职责：把 `problem + retrieved skills + human knowledge points` 组装成对 CC Agent 友好的提示词。
+    1. 收集 trace 中使用的所有 concept 的 confidence
+    2. 收集 trace 中使用的所有 relation 的 weight
+    3. 综合计算：
+       - concept_conf = 所有 concept.confidence 的几何平均
+       - relation_conf = 所有 relation.weight 的几何平均
+       - overall_confidence = concept_conf * relation_conf
 
-`socialclaw/stage1/prompt_builder.py`
+    几何平均比算术平均更能体现"链式依赖"：
+    只要路径上有一个低置信度节点/边，整体 confidence 就会显著下降。
 
-- 输入：`problem, skills, knowledge_points, attempt_index`
-- 输出：最终 prompt 字符串
+    边界情况：
+    - 如果 trace 为空（Agent 没有声明使用任何 concept），返回 0.0
+    - 如果 trace 中引用了不存在的 concept/relation，忽略并打 warning
+    """
+    import math
 
-渐进式披露（你提出的 #5）：
-- `attempt=0`：只注入 topK skills 的 **标题 + 适用范围 + checklist（短）**
-- `attempt>=1` 且仍错误：升级披露更多细节（例如“反例/注意事项/更长解释”）
-- 如果 token 压力大：只保留最短 checklist，丢弃长解释
+    concept_scores = []
+    for cid in trace.concepts:
+        c = self.get_concept(cid)
+        if c:
+            concept_scores.append(c.confidence)
 
-### 3.4 StopPolicy
+    relation_scores = []
+    for src, tgt, rel_type in trace.relations:
+        r = self.get_relation(src, tgt, rel_type)
+        if r:
+            relation_scores.append(r.weight)
 
-`socialclaw/stage1/stop_policy.py`
+    if not concept_scores:
+        return 0.0
 
-- `should_stop(episode) -> (bool, reason)`
-- 按：conf / iters / token 三个门限
+    concept_geom = math.prod(concept_scores) ** (1 / len(concept_scores))
+    relation_geom = math.prod(relation_scores) ** (1 / len(relation_scores)) if relation_scores else 1.0
 
-### 3.5 Evaluator（Choice/二元）
+    return concept_geom * relation_geom
+```
 
-`socialclaw/stage1/evaluator.py`
+**Relation Type 模糊匹配**：
+- LLM 在 reasoning_trace 中可能"发明" relation type（如 `continuously_run_along`、`of`）。
+- `SchemaGraph.get_relation` 和 `find_relation` 支持三层回退匹配：
+  1. **精确匹配**（大小写不敏感）
+  2. **预定义别名映射**：如 `continuously_run_along` → `located_at`，`of` → `part_of`
+  3. **字符串相似度**：`difflib.SequenceMatcher` ratio ≥ 0.75，或子串互相包含
+- 这确保了即使 LLM 使用了 schema 中不存在的 relation type 变体，confidence 计算仍能尽可能匹配到已有 relation。
 
-- `normalize_choice(text) -> "A"|"B"|...`
-- `evaluate(problem, result) -> EvalResult(correct, pred, gold, details)`
+**为什么这样设计**：
+- confidence 反映的是"当前 schema 对这条推理路径有多确信"
+- 高 confidence + 错误结果 = schema 结构本身可能有问题（concept 定义错误或 relation 方向/类型错误）
+- 这恰好触发向人类提问纠错的条件
 
-Stage1 只做 **严格 choice**（并具备一定鲁棒性：支持 “答案：A” / “I choose B”）。
+#### 可插拔 LLM Provider
 
-### 3.6 HumanIO（主动提问）
+Stage 1 主路径为**自研 Agent + 可插拔 LLM Provider（Multi-Provider）**：
+- 统一通过 `Agent` 抽象封装不同厂商 API（OpenAI-compatible / Anthropic / 其它）
+- **tokens**：从各厂商 API 的 usage 字段读取（适配层做归一化，保证 `input/output/total`）
+- Agent 只负责生成 `answer_text` 和 `reasoning_trace`（概念使用声明），不负责输出 confidence
+
+### 3.5 HumanIO（CLI 主动提问）
 
 `socialclaw/stage1/human_io.py`
 
-- `ask_key_points(problem, attempt, eval) -> List[str]`
+```python
+class HumanIO:
+    def ask(self, question: str, context: str, hint: str) -> str:
+        """
+        终端交互式提问。
+        示例输出：
+          ────────────────────────────────
+          [主动提问] 当前问题缺少必要的概念：
+          问题：{question}
+          上下文：{context[:200]}...
+          提示：{hint}
+          请输入你的回答（多行，Ctrl+D 结束）：
+          ────────────────────────────────
+        """
+        ...
 
-Stage1 默认实现：CLI 交互；后续可加 Webhook/IM。
+    def ask_correction(self, problem: Problem, attempt: AgentAttempt,
+                       reasoning_confidence: float, eval: EvalResult) -> str:
+        """
+        高自信错误时向人类提问，请求纠正 schema。
+        展示 Agent 的推理路径和 schema confidence，询问哪里错了。
+        """
+        ...
+```
 
-### 3.7 Skill 子系统
+**关键设计**：
+- 用 `rich` 库美化 CLI 输出（问题高亮、推理路径树状展示）。
+- 支持 `--auto-yes` 模式（测试时自动跳过提问，记录为 skipped）。
+- 人类回答的文本交给 `schema_initializer.parse_human_answer()` 解析为结构化 Concept/Relation。
 
-#### Skill 数据模型
+### 3.6 PromptBuilder：LLM 如何利用 Schema 信息
 
-`socialclaw/stage1/skill/store.py`
+`socialclaw/stage1/prompt_builder.py`
 
-- Skill 文件：`skills_db/skills/<skill_id>.md`
-- index：`skills_db/index.jsonl` 每行一个 skill 元数据
+#### 输入
+- `problem: Problem`
+- `subgraph: SchemaGraph`（检索到的 concept + 它们之间的 relation 构成的子图）
+- `attempt_index: int`（第几次尝试，用于渐进式披露）
 
-Skill Markdown 建议格式：
+#### 输出
+- 一个完整 prompt 字符串，包含：系统指令 + Schema 知识网络 + 题目 + 输出格式要求
 
-```markdown
----
-id: skill_2026xxxx_xxxx
-created_at: ...
-tags: ["cosmos", "mcq", "physics"]
-trigger: ["wrong_then_human_help", "tool_calls_gt_3", "self_fix"]
----
+#### Schema 文本化格式（给 LLM 看）
 
-# <Skill Title>
+**方式 A：扁平列表（简单直接，Stage 1 默认）**
 
-## When to use
+```text
+【可用概念网络】
+
+概念 1：摩擦力方向判断
+  描述：摩擦力的方向总是与相对运动（或相对运动趋势）的方向相反。
+  相关概念：→ 相对运动（prerequisite）、→ 受力分析（causes）
+
+概念 2：受力分析
+  描述：分析物体受到的所有外力，包括重力、支持力、摩擦力等。
+  相关概念：→ 牛顿第二定律（causes）
+
 ...
 
-## Checklist
-- ...
+请基于上述概念网络推理本题，并在回答中说明：
+1. 你使用了哪些概念（列出概念名称或编号）
+2. 概念之间的推理路径（如：概念A → 关系 → 概念B）
+```
 
-## Common pitfalls
-- ...
+**方式 B：Think-on-Graph 逐步探索（进阶，Stage 2 接入）**
 
-## Minimal example
+不一次性塞入全部子图，而是让 LLM 逐步选择探索方向：
+
+```text
+当前已知概念：摩擦力方向判断
+可选下一步：
+  A. 探索 "相对运动"（prerequisite）
+  B. 探索 "受力分析"（causes）
+  C. 直接基于现有信息作答
+
+请选择：A
+
+[系统返回 "相对运动" 的描述]
 ...
 ```
 
-#### Skill 检索（RAG-lite）
+Stage 1 先用 **方式 A**，实现成本低；Stage 2 再升级为 **方式 B**。
 
-Stage1 为了简单可靠，先做两种策略：
-1) **关键词/标签规则检索**（基于 metadata + prompt 的关键词）
-2) 可选：本地 embedding（后续再加）
+#### 输出格式约束（强制 LLM 结构化返回）
 
-接口：`retrieve(problem) -> List[SkillDoc]`
+```text
+你的回答必须包含以下两部分：
 
-#### SkillGate（门槛）
+[推理过程]
+- 使用的概念：{概念名称列表}
+- 推理路径：{概念 A -> 关系 -> 概念 B -> ...}
+- 解释：{你对推理过程的简要说明}
 
-`socialclaw/stage1/skill/gate.py`
+[最终答案]
+{你的答案}
+```
 
-- `should_summarize(episode) -> bool`
-  - wrong_then_human_help（必须实现）
-  - tool_calls > 3（依赖 CC Agent trace，必须实现）
-  - self_fix（定义：某次 attempt eval 从错→对，且 attempts 中出现 “error/fix” 标记；Stage1 可先用启发式正则）
+**注意**：LLM 不输出 confidence。confidence 由系统在收到 `reasoning_trace` 后，根据 schema 中 concept/relation 的权重计算得出。
 
-#### SkillSummarizer
+- `prompt_builder` 负责把这个格式约束拼接进 system prompt。
+- `agent/openai_compatible.py` 负责用 regex/json 解析 LLM 的返回，提取 `reasoning_trace`（concepts + relations）和 `answer_text`。
 
-`socialclaw/stage1/skill/summarize.py`
+#### 渐进式披露（按 attempt_index）
 
-Stage1 可先用模板总结（不用 LLM），保证可离线；也支持用 CC Agent 做总结（可控开关）。
+- `attempt=0`：只注入 concept 名称 + 简短描述（省 token）。
+- `attempt>=1` 且错误：注入完整 description + relation 细节。
+- Token 压力大时：只保留与问题 embedding 相似度最高的 topK concept，截断长 description。
 
----
+### 3.7 Problem 基类与 Evaluator
 
-## 4. Cosmos-Reason1 数据：下载与预处理
+`socialclaw/stage1/dataset/base.py`
 
-你要求从：`https://huggingface.co/datasets/nvidia/Cosmos-Reason1-Benchmark` 下载。
+```python
+@dataclass
+class Problem:
+    id: str
+    prompt: str                # 给 LLM 答题的完整 prompt
+    problem_type: str          # "mcq" | "long_context" | "arc_grid"
+    meta: Dict[str, Any]
+    retrieval_query: str = ""  # 用于 embedding 检索的精简文本（如 CL-bench 取 question 前 2000 字）
 
-### 4.1 下载方式（建议用 huggingface_hub）
+@dataclass
+class EvalResult:
+    correct: bool
+    pred: Any
+    gold: Any
+    details: str = ""
 
-实现脚本：`scripts/stage1_download_cosmos_reason1.py`
+class Evaluator:
+    def evaluate(self, problem: Problem, attempt: AgentAttempt, agent: Optional[Agent] = None) -> EvalResult:
+        """
+        评估逻辑：
+        - MCQ：提取选项字母，exact match。
+        - long_context：若 agent 提供且 gold 非空，使用 LLM-as-judge
+          （让 LLM 判断 pred 是否语义等价于 gold）；否则 fallback 到 exact match。
+        - arc_grid：exact match。
+        """
+        ...
+```
 
-- 使用 `huggingface_hub.snapshot_download(repo_id=...)`
-- 下载到：`data/cosmos_reason1/raw/`
-
-### 4.2 预处理为统一格式
-
-实现脚本：`scripts/stage1_prepare_cosmos_reason1.py`
-
-职责：
-- 遍历 raw 内的 json/jsonl/parquet（以实际文件为准）
-- 抽取字段：`id, prompt, choices, answer_key`
-- 输出：`data/cosmos_reason1/prepared/<split>.jsonl`
-
-**假设与约束：**
-- 任务为二元或多选；我们统一成 choices = ["A. ...", ...]。
-- 标准答案统一成 `"A"|"B"|...`。
-
-> 具体字段名需要在 Stage1 开工时读取数据文件确认；预处理脚本会做 schema 探测并打印统计。
-
----
-
-## 5. CC Agent 接入方法对比（含 Autosota 用的是什么）
-
-你要求：
-- **必须拿到 token/tool_calls**
-- 目前你没有 CC Agent 入口，需要分析几种介入方式优缺点
-- 问：Autosota 用的是什么方法？
-
-### 5.1 方法 A：直接驱动 Claude Code CLI（推荐“最像 CC Agent”的方式）
-
-**思路**：使用 `claude`（或 Claude Code 的官方 CLI）在一个受控工作目录运行，开启输出 JSON/日志，把 tool use 过程解析出来。
-
-- 优点：
-  - 真实 Claude Code，会产生 tool calls（读写文件、运行命令等）
-  - 更符合你 README 中“CC Agent 自行回答 + 工具调用统计”的设定
-- 缺点：
-  - 依赖你本机安装 Claude Code + 登录态
-  - 获取 tokens 不一定稳定：需要 CLI 支持 usage 输出或从 session log 推断
-  - 需要处理会话文件/缓存路径
-
-**tokens/tool_calls 获取**：
-- tool_calls：可从 Claude Code session transcript（通常是 JSON event stream）统计
-- tokens：若 transcript 包含 usage 字段则直接取；否则只能估算（你要求必须保证拿到 token，因此需要确认 CLI 是否提供 usage）
-
-### 5.2 方法 B：使用 Anthropic API（最稳拿 token；tool_calls 需要“定义成工具调用”）
-
-**思路**：用 Anthropic Messages API 直接调用模型。
-
-- 优点：
-  - usage tokens 官方返回，稳定
-  - 可控性强，易部署
-- 缺点：
-  - 严格意义上不是“Claude Code Agent”（不自带代码执行/文件工具）
-  - 要想有 tool_calls，需要我们自己实现 tool calling：例如定义 `run_shell`, `read_file`, `write_file` 等工具，并在 agent loop 中执行——这会把你项目变成“自研 agent”，而不是 Claude Code
-
-**是否符合你 #4？**
-- 可以保证 token
-- tool_calls 可以保证（因为是我们自己定义的工具调用并统计），但不等同于 Claude Code 内置工具
-
-### 5.3 方法 C：通过 OpenRouter 等代理（快，但不推荐作为主路径）
-
-- 优点：接入快
-- 缺点：usage/tool_calls 字段各家不一致；长期稳定性差
-
-### 5.4 方法 D：复用 Autosota/Repo2Run 的“agent 框架”
-
-从你仓库内的 `auto-pipeline-ab/Autosota/Repo2Run/build_agent/main.py` 可见：
-- 它们用的是一个自研的 agent 框架（`build_agent/agents/*`），运行在 Docker sandbox 里
-- CLI 参数 `--llm anthropic/claude-sonnet-4.6`
-- 其 agent 通过 `Configuration(...).run(...)` 与 sandbox 交互，产生轨迹 `track.json`
-
-**结论：Autosota 并不是直接用 Claude Code 客户端，而是“自研 Agent + 选用 Claude 模型”**。
-- 优点：可以严格控制工具执行（docker sandbox），并能记录工具调用
-- tokens：取决于他们的 LLM client 是否保存 usage（需要进一步读 `build_agent/agents/*` 才能确认）
-- 缺点：与 Claude Code 行为不完全一致
-
-> 由于 `SocialLearningClaw/.gitignore` 把 `auto-pipeline-ab/` 忽略掉，主工程不应依赖它的代码；但可以借鉴其“sandbox + agent loop + track.json”的日志形态。
-
-### 5.5 我建议的落地选择（Stage1）
-
-由于你当前**没有 Claude/Anthropic 账号**，且希望“下载 agent 框架后调用不同厂家的 API”，Stage1 主路径调整为：
-
-- **主路径：自研 Agent + 可插拔 LLM Provider（Multi-Provider）**
-  - 统一通过 `CCAgent` 抽象封装不同厂商 API（OpenAI-compatible / Anthropic / 其它）
-  - **tokens**：从各厂商 API 的 usage 字段读取（适配层做归一化，保证 `input/output/total`）
-  - **tool_calls**：来自“自研工具调用框架”的执行轨迹（即模型触发 tool call → 我们执行 → 记录），从而稳定满足门槛统计
-  - **confidence**：要求模型在最终回答中显式输出 `confidence: 0~1`（Prompt 强制），pipeline 只做格式校验/缺省回退
-  - **skills**：以 system prompt 为主注入，配合渐进式披露与 token 裁剪
-
-- **可选适配器：Claude Code CLI**（非 Stage1 必需项）
-  - 作为“对齐 Claude Code 行为”的后续工作，等你未来具备账号/授权后再接入
-
-> 备注：这里的“tool_calls”语义是“Agent 框架内的工具调用”，不等同于 Claude Code 内置工具事件；但对 Stage1 的 stop/skill 门槛、日志与可复现性更稳定。
-
-### 5.6 Autosota 的方法（结论仍然成立）
-
-Autosota 更接近“自研 Agent + 选用 Claude 模型 + sandbox + track.json”。我们会借鉴其日志形态（轨迹可回放、可统计 tool calls），但不依赖其代码。
+**CL-bench LLM-as-judge**：
+- CL-bench 为开放式长文本问答，gold 答案往往是数百字的文档，exact match 不现实。
+- `evaluate()` 在 `problem_type == "long_context"` 且 `agent` 非空时，构造评估 prompt：
+  `题目 + 标准答案 + 模型回答 → LLM 输出 correct/wrong`。
+- 这避免了因摘要/改写导致的假阴性，同时不引入外部评估框架。
 
 ---
 
-## 6. 环境配置（你要求“写完代码告诉你怎么配环境”）
+## 4. 环境配置
 
-我会单独写 `docs/stage1_env.md`，包含：
-- Python 版本（建议 3.11/3.12）
-- venv 创建
-- 依赖安装（huggingface_hub、datasets、pyyaml、rich、pydantic 等）
-- Anthropic key / HuggingFace token 环境变量
-- 运行命令示例（从下载数据到跑 Stage1）
+- Python 版本：建议 3.11/3.12
+- venv 已创建在项目根目录 `.venv/`
+- 使用 `.venv/bin/python` 运行脚本
+- 主要依赖：`datasets`, `sentence-transformers`, `rich`, `pydantic`, `numpy`
 
 ---
 
-## 7. 下一步（我建议按这个顺序实现）
+## 5. 实现顺序建议
 
-1) 建好 `socialclaw/` 包骨架 + types + logger（可先无外部依赖）
-2) 写 Cosmos 下载/预处理脚本（先下载并统计 schema）
-3) 写 evaluator（MCQ）
-4) 写 HumanIO（CLI）
-5) 写 Skill store/retrieve（先关键词）
-6) 写 **自研 Agent 框架**（最小工具集 + tool call 轨迹 + usage 归一化）
-7) 拼 pipeline + stage1_run 入口
+1. `schema/graph.py` + `schema/storage.py` —— Schema 数据建模与持久化
+2. `schema/retriever.py` —— Embedding 检索（接入 BGE）
+3. `schema/initializer.py` —— Agent 自动生成 concept
+4. `agent/openai_compatible.py` —— 可插拔 LLM Agent
+5. `dataset/clbench.py` + `dataset/arc.py` —— 数据集接口
+6. `prompt_builder.py` —— Schema 注入式 prompt 组装
+7. `pipeline.py` + `run_stage1.py` —— 拼主链路
+8. 跑主实验，记录指标
 
 ---
 
-## 8. 需要你确认的最小信息（开始敲代码前）
+## 6. Stage 2 已实现内容（补充）
 
-1) CC Agent 主路径：已确定为 **自研 Agent + 可插拔 LLM Provider**。
+### 6.1 Schema 巩固 / 纠错
 
-2) Skill 注入位置：默认 **system prompt**。
+`pipeline.py` 中每道题评估后自动执行：
 
-3) 人类交互形态：默认 **终端输入（CLI）**。
+```python
+def _update_schema_from_feedback(graph, trace, correct):
+    delta = 0.05 if correct else -0.05
+    # 更新 trace 中使用的所有 concept 的 confidence
+    for cid in trace.concepts:
+        c = graph.get_concept(cid) or graph.get_concept_by_name(cid)
+        if c:
+            new_conf = max(0.1, min(0.95, c.confidence + delta))
+            graph.update_concept(c.id, confidence=new_conf)
+    # 更新 trace 中使用的所有 relation 的 weight
+    for src, tgt, rel_type in trace.relations:
+        r = graph.get_relation(src, tgt, rel_type) or graph.find_relation(src, tgt, rel_type)
+        if r:
+            new_weight = max(0.1, min(0.95, r.weight + delta))
+            graph.update_relation(r.source, r.target, r.relation_type, weight=new_weight)
+```
+
+- 正反馈（答对）：`+0.05`（上限 0.95）
+- 负反馈（答错）：`-0.05`（下限 0.1）
+- Episode flags：`schema_reinforce` / `schema_correct`
+
+### 6.2 高自信错误 → 人类提问纠错
+
+当 `reasoning_confidence > 0.8` 但结果错误时，触发 `human_io.ask_correction()`：
+- CLI 展示推理路径 + confidence 值
+- 人类输入纠正建议，由 `initializer.parse_correction()` 解析为 schema 更新操作
+- 支持添加 concept、添加 relation、修改 concept description
+
+### 6.3 CLI 主动提问（缺失 concept）
+
+`auto-yes` 模式：自动调用 `initializer.generate_schema()` 生成 concept + relation，跳过人类。
+非 `auto-yes` 模式：CLI 向人类提问，传入 `missing` 列表，人类回答后解析入库。
+
+### 6.4 关键设计不变
+
+- **Confidence 仍由 SchemaGraph 计算**，不交给 LLM 输出。
+- **Relation source/target 存储的是 concept id**，不是 name（pipeline 负责 name → id 解析）。
+- **几何平均**体现链式依赖的"短板效应"。
