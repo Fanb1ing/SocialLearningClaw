@@ -27,6 +27,7 @@ Concept:
   confidence: float         # 0~1，系统对这条 concept 的确信度
   source: str               # "agent_init" | "human_feedback" | ...
   created_at: str
+  neighbors: List[str]      # 邻居 concept id 列表（动态计算，存储时写入 JSONL）
 
 Relation:
   source: str               # concept id
@@ -46,9 +47,9 @@ SchemaGraph:
 ```
 
 存储：
-- `data/schema/concepts.jsonl` —— 每行一个 Concept（embedding 单独存 `.npy`）
-- `data/schema/relations.jsonl` —— 每行一个 Relation
-- `data/schema/concept_embeddings.npy` + `concept_ids.json` —— 对齐的 embedding 矩阵
+- `schema/concepts.jsonl` —— 每行一个 Concept（含 `neighbors` 字段，embedding 单独存 `.npy`）
+- `schema/relations.jsonl` —— 每行一个 Relation
+- `schema/concept_embeddings.npy` + `concept_ids.json` —— 对齐的 embedding 矩阵
 
 ### 1.2 运行流程（伪代码）
 
@@ -59,7 +60,7 @@ for problem in dataset:
   # 1. Schema 检索 + 充足度判断
   # 1a. LLM 提取问题所需 concept 名称列表
   # 1b. 逐个与 schema concept 做 embedding 相似度匹配
-  result = schema_retriever.retrieve(problem, top_k=5, threshold=0.6)
+  result = schema_retriever.retrieve(problem, top_k=5, threshold=0.75)
   # sufficient = missing 为空 且 matched 非空（LLM-based，无硬编码阈值）
   sufficient = schema_retriever.is_sufficient(result)
 
@@ -76,7 +77,7 @@ for problem in dataset:
     schema_graph.add_concepts(new_concepts)
     episode.flags.append("human_init_concepts")
     # 重新检索（现在 schema 已补充）
-    result = schema_retriever.retrieve(problem, top_k=5, threshold=0.6)
+    result = schema_retriever.retrieve(problem, top_k=5, threshold=0.75)
 
   concepts = result.matched
 
@@ -103,8 +104,8 @@ for problem in dataset:
     schema_graph.correct(attempt.reasoning_trace)
     episode.flags.append("schema_correct")
 
-  # 6. 若错误且 reasoning_confidence 很高 → CLI 向人类提问纠错
-  if not eval.correct and reasoning_confidence > 0.8:
+  # 6. 若错误且 reasoning_confidence 很高（或开启调试模式）→ CLI 向人类提问纠错
+  if not eval.correct and (reasoning_confidence > 0.6 or cfg.always_ask_correction):
     correction = human_io.ask_correction(
       problem=problem,
       attempt=attempt,
@@ -151,7 +152,8 @@ for problem in dataset:
 ```text
 socialclaw/
   stage1/
-    run_stage1.py            # CLI 入口（含 --reset-schema / --problem-id / --dry-run / --auto-yes 等调试参数）
+    run_stage1.py            # CLI 入口（含 --reset-schema / --problem-id / --context-id / --dry-run / --auto-yes 等调试参数）
+    run_arc_agi3.py          # ARC-AGI-3 交互式运行入口（多轮 action/observation + schema rule 学习）
     types.py                 # Problem 基类、Episode、EvalResult
     pipeline.py
     prompt_builder.py
@@ -164,6 +166,7 @@ socialclaw/
       retriever.py           # Embedding 检索 + 充足度判断
       initializer.py         # Agent 自动生成初始化 concept
       storage.py             # JSONL + npy 读写
+      arc_agi3_parser.py     # ARC-AGI-3 Grid -> Object -> Concept/Relation 解析器
     agent/
       __init__.py
       base.py                # Agent 基类
@@ -172,7 +175,8 @@ socialclaw/
       base.py
       pbench.py              # MCQ
       clbench.py             # 长上下文阅读理解
-      arc.py                 # ARC 网格（静态 + 交互式接口）
+      arc.py                 # ARC 网格（静态接口）
+      arc_agi3.py            # ARC-AGI-3 交互式环境包装器
     logging.py
 ```
 
@@ -194,6 +198,7 @@ class Concept:
     confidence: float = 0.5
     source: str = "agent_init"
     created_at: str = ""
+    neighbors: List[str] = field(default_factory=list)
 
 @dataclass
 class Relation:
@@ -209,6 +214,10 @@ class SchemaGraph:
     def add_concept(self, c: Concept) -> None: ...
     def add_relation(self, r: Relation) -> None: ...
     def get_concept(self, cid: str) -> Optional[Concept]: ...
+    def get_concept_by_name(self, name: str) -> Optional[Concept]:
+        """支持精确匹配、大小写不敏感、子串包含、difflib 模糊匹配。"""
+    def get_neighbors(self, cid: str) -> List[str]:
+        """从 relations 中动态计算邻居 concept id 列表。"""
     def subgraph(self, concept_ids: List[str], depth: int = 1) -> "SchemaGraph": ...
     def compute_confidence(self, trace: ReasoningTrace) -> float:
         """
@@ -234,7 +243,7 @@ class SchemaRetriever:
     def __init__(self, graph: SchemaGraph, embedder, agent: Optional[Agent] = None):
         ...
 
-    def retrieve(self, problem: Problem, top_k=5, threshold=0.6) -> RetrieveResult:
+    def retrieve(self, problem: Problem, top_k=5, threshold=0.75) -> RetrieveResult:
         """
         两步检索：
         1. 调用 LLM 提取问题所需 concept 名称列表。
@@ -457,16 +466,25 @@ Stage 1 先用 **方式 A**，实现成本低；Stage 2 再升级为 **方式 B*
 
 #### 输出格式约束（强制 LLM 结构化返回）
 
+System prompt 根据 schema 是否为空给出不同约束：
+
+**Schema 非空时**：
 ```text
-你的回答必须包含以下两部分：
+注意：
+1. 必须使用上方【可用概念网络】中的精确概念名称（如 'Sales Enablement'），
+   不要添加解释或创造新名称。
+2. 推理路径节点必须是概念名称，格式为：概念A -> 关系类型 -> 概念B。
+   不要使用描述性句子作为节点。
+3. 若题目是选择题，[最终答案]只输出选项字母（如 A / B / C）。
+```
 
-[推理过程]
-- 使用的概念：{概念名称列表}
-- 推理路径：{概念 A -> 关系 -> 概念 B -> ...}
-- 解释：{你对推理过程的简要说明}
-
-[最终答案]
-{你的答案}
+**Schema 为空时**：
+```text
+注意：
+1. 当前概念网络为空，请在[推理过程]中直接列出你从题目中识别出的关键术语名称。
+   名称应简洁（不超过10个字），不要输出解释性句子或括号备注。
+2. 推理路径可省略，或仅使用你列出的术语名称。
+3. 若题目是选择题，[最终答案]只输出选项字母（如 A / B / C）。
 ```
 
 **注意**：LLM 不输出 confidence。confidence 由系统在收到 `reasoning_trace` 后，根据 schema 中 concept/relation 的权重计算得出。
@@ -553,16 +571,20 @@ def _update_schema_from_feedback(graph, trace, correct):
     delta = 0.05 if correct else -0.05
     # 更新 trace 中使用的所有 concept 的 confidence
     for cid in trace.concepts:
-        c = graph.get_concept(cid) or graph.get_concept_by_name(cid)
+        c = graph.get_concept(cid) or graph.get_concept_by_name(cid)  # 支持模糊匹配
         if c:
             new_conf = max(0.1, min(0.95, c.confidence + delta))
             graph.update_concept(c.id, confidence=new_conf)
     # 更新 trace 中使用的所有 relation 的 weight
+    # 先用模糊匹配将自由文本的 src/tgt 解析为 schema 中的 concept
     for src, tgt, rel_type in trace.relations:
-        r = graph.get_relation(src, tgt, rel_type) or graph.find_relation(src, tgt, rel_type)
-        if r:
-            new_weight = max(0.1, min(0.95, r.weight + delta))
-            graph.update_relation(r.source, r.target, r.relation_type, weight=new_weight)
+        src_c = graph.get_concept(src) or graph.get_concept_by_name(src)
+        tgt_c = graph.get_concept(tgt) or graph.get_concept_by_name(tgt)
+        if src_c and tgt_c:
+            r = graph.get_relation(src_c.id, tgt_c.id, rel_type) or graph.find_relation(src_c.name, tgt_c.name, rel_type)
+            if r:
+                new_weight = max(0.1, min(0.95, r.weight + delta))
+                graph.update_relation(r.source, r.target, r.relation_type, weight=new_weight)
 ```
 
 - 正反馈（答对）：`+0.05`（上限 0.95）
@@ -571,10 +593,11 @@ def _update_schema_from_feedback(graph, trace, correct):
 
 ### 6.2 高自信错误 → 人类提问纠错
 
-当 `reasoning_confidence > 0.8` 但结果错误时，触发 `human_io.ask_correction()`：
-- CLI 展示推理路径 + confidence 值
+当 `reasoning_confidence > 0.6`（或开启 `--always-ask-correction` 调试模式）但结果错误时，触发 `human_io.ask_correction()`：
+- CLI 展示原题、LLM 回答、标准答案、推理路径 + confidence 值
 - 人类输入纠正建议，由 `initializer.parse_correction()` 解析为 schema 更新操作
 - 支持添加 concept、添加 relation、修改 concept description
+- 新增 `--always-ask-correction`：调试模式下只要判错就提问，无视 confidence 阈值
 
 ### 6.3 CLI 主动提问（缺失 concept）
 

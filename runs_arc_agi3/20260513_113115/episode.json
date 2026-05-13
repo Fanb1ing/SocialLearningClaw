@@ -1,0 +1,246 @@
+{
+  "game_id": "sk48-d8078629",
+  "levels": [
+    {
+      "level": 1,
+      "steps": [
+        {
+          "step": 1,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 2,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 3,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        }
+      ],
+      "result": "TIMEOUT"
+    },
+    {
+      "level": 2,
+      "steps": [
+        {
+          "step": 1,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 2,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 3,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        }
+      ],
+      "result": "TIMEOUT"
+    },
+    {
+      "level": 3,
+      "steps": [
+        {
+          "step": 1,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 2,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 3,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        }
+      ],
+      "result": "TIMEOUT"
+    },
+    {
+      "level": 4,
+      "steps": [
+        {
+          "step": 1,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 2,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 3,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        }
+      ],
+      "result": "TIMEOUT"
+    },
+    {
+      "level": 5,
+      "steps": [
+        {
+          "step": 1,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 2,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 3,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        }
+      ],
+      "result": "TIMEOUT"
+    },
+    {
+      "level": 6,
+      "steps": [
+        {
+          "step": 1,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 2,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 3,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        }
+      ],
+      "result": "TIMEOUT"
+    },
+    {
+      "level": 7,
+      "steps": [
+        {
+          "step": 1,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 2,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 3,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        }
+      ],
+      "result": "TIMEOUT"
+    },
+    {
+      "level": 8,
+      "steps": [
+        {
+          "step": 1,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 2,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        },
+        {
+          "step": 3,
+          "action": "ACTION1",
+          "action_data": {},
+          "reasoning": "mock",
+          "answer_text": "{\"action\": \"ACTION1\", \"reasoning\": \"mock\"}",
+          "state": "GameState.NOT_FINISHED"
+        }
+      ],
+      "result": "TIMEOUT"
+    }
+  ],
+  "created_at": "2026-05-13T11:31:15.361511Z"
+}

@@ -24,8 +24,9 @@ from .types import AttemptRecord, Episode
 class PipelineConfig:
     max_problems: int = 20
     top_k_concepts: int = 5
-    similarity_threshold: float = 0.6
-    correction_conf_threshold: float = 0.8
+    similarity_threshold: float = 0.75
+    correction_conf_threshold: float = 0.6
+    always_ask_correction: bool = False
     stop: StopConfig = field(default_factory=StopConfig)
     runs_dir: str = "runs"
     schema_dir: str = "schema"
@@ -122,12 +123,16 @@ def _update_schema_from_feedback(graph: SchemaGraph, trace, correct: bool) -> No
             graph.update_concept(c.id, confidence=new_conf)
 
     for src, tgt, rel_type in trace.relations:
-        r = graph.get_relation(src, tgt, rel_type)
-        if not r:
-            r = graph.find_relation(src, tgt, rel_type)
-        if r:
-            new_weight = max(0.1, min(0.95, r.weight + delta))
-            graph.update_relation(r.source, r.target, r.relation_type, weight=new_weight)
+        # Resolve free-text src/tgt to concept ids via fuzzy name matching
+        src_c = graph.get_concept(src) or graph.get_concept_by_name(src)
+        tgt_c = graph.get_concept(tgt) or graph.get_concept_by_name(tgt)
+        if src_c and tgt_c:
+            r = graph.get_relation(src_c.id, tgt_c.id, rel_type)
+            if not r:
+                r = graph.find_relation(src_c.name, tgt_c.name, rel_type)
+            if r:
+                new_weight = max(0.1, min(0.95, r.weight + delta))
+                graph.update_relation(r.source, r.target, r.relation_type, weight=new_weight)
 
 
 def run_stage1(
@@ -141,7 +146,21 @@ def run_stage1(
     run_dir = os.path.join(cfg.runs_dir, run_id)
     os.makedirs(run_dir, exist_ok=True)
 
+    # Schema is scoped to the run directory by default (like episode logs).
+    # If user explicitly set schema_dir, respect it; otherwise use run_dir/schema.
+    schema_dir = cfg.schema_dir
+    if schema_dir == "schema" and not cfg.reset_schema:
+        schema_dir = os.path.join(run_dir, "schema")
+    # If reset_schema is used with default "schema", keep the old global behavior
+    # so that --reset-schema still works as a manual clear of the global schema.
+
+    # Temporarily override cfg.schema_dir for this run
+    original_schema_dir = cfg.schema_dir
+    cfg.schema_dir = schema_dir
+
     graph, storage, embeddings = _load_or_init_schema(cfg)
+    cfg.schema_dir = original_schema_dir
+
     retriever = SchemaRetriever(graph, embeddings, embedder, agent=agent)
     initializer = SchemaInitializer(agent)
     human_io = HumanIO(auto_yes=cfg.auto_yes)
@@ -272,7 +291,10 @@ def run_stage1(
             not cfg.dry_run
             and ep.evals
             and not ep.evals[-1].correct
-            and ep.reasoning_confidence > cfg.correction_conf_threshold
+            and (
+                ep.reasoning_confidence > cfg.correction_conf_threshold
+                or cfg.always_ask_correction
+            )
         ):
             correction = human_io.ask_correction(
                 problem=problem,

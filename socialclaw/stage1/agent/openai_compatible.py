@@ -13,15 +13,15 @@ from .base import AgentAttempt, ReasoningTrace, Usage
 
 # Regex patterns for parsing reasoning trace
 _CONCEPTS_RE = re.compile(
-    r"(?:使用的概念|概念|concepts)[：:]\s*(.+?)(?=\n\s*(?:推理路径|路径|relations|解释|explanation)|\n\s*\[最终答案\]|$)",
+    r"(?:Concepts used|Concepts|concepts)[::]\s*(.+?)(?=\n\s*(?:Reasoning path|Path|relations|Explanation|explanation)|\n\s*\[Final Answer\]|$)",
     re.IGNORECASE | re.DOTALL,
 )
 _RELATIONS_RE = re.compile(
-    r"(?:推理路径|路径|relations)[：:]\s*(.+?)(?=\n\s*(?:解释|explanation)|\n\s*\[最终答案\]|$)",
+    r"(?:Reasoning path|Path|relations)[::]\s*(.+?)(?=\n\s*(?:Explanation|explanation)|\n\s*\[Final Answer\]|$)",
     re.IGNORECASE | re.DOTALL,
 )
 _EXPLANATION_RE = re.compile(
-    r"(?:解释|explanation)[：:]\s*(.+?)(?=\n\s*\[最终答案\]|$)",
+    r"(?:Explanation|explanation)[::]\s*(.+?)(?=\n\s*\[Final Answer\]|$)",
     re.IGNORECASE | re.DOTALL,
 )
 
@@ -70,9 +70,9 @@ def _parse_concepts(text: str) -> List[str]:
             if "," in line:
                 for part in line.split(","):
                     part = _clean_braces(part)
-                    if part and len(part) < 80:
+                    if part and len(part) < 60:
                         concepts.append(part)
-            elif len(line) < 120:
+            elif len(line) < 60:
                 concepts.append(line)
     return concepts
 
@@ -117,7 +117,7 @@ def _parse_explanation(text: str) -> str:
 
 
 def _parse_reasoning_trace(content: str) -> ReasoningTrace:
-    reasoning_block = _extract_block(content, "[推理过程]", "[最终答案]")
+    reasoning_block = _extract_block(content, "[Reasoning Process]", "[Final Answer]")
     if not reasoning_block:
         # Fallback: try to find any section that looks like reasoning
         reasoning_block = content
@@ -130,7 +130,7 @@ def _parse_reasoning_trace(content: str) -> ReasoningTrace:
 
 
 def _parse_answer_text(content: str) -> str:
-    ans = _extract_block(content, "[最终答案]")
+    ans = _extract_block(content, "[Final Answer]")
     if ans:
         return ans
 

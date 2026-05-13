@@ -28,23 +28,23 @@ class HumanIO:
             self.console.print()
             self.console.print(
                 Panel.fit(
-                    f"[bold yellow]主动提问[/bold yellow]\n"
-                    f"[bold]问题：[/bold]{question}\n\n"
-                    f"[bold]上下文：[/bold]{context[:300]}...\n\n"
-                    f"[bold cyan]提示：[/bold cyan]{hint}",
-                    title="Schema 初始化",
+                    f"[bold yellow]Proactive Question[/bold yellow]\n"
+                    f"[bold]Question:[/bold]{question}\n\n"
+                    f"[bold]Context:[/bold]{context[:300]}...\n\n"
+                    f"[bold cyan]Hint:[/bold cyan]{hint}",
+                    title="Schema Initialization",
                     border_style="yellow",
                 )
             )
         else:
             print("\n" + "─" * 50)
-            print("[主动提问] 当前问题缺少必要的概念：")
-            print(f"问题：{question}")
-            print(f"上下文：{context[:300]}...")
-            print(f"提示：{hint}")
+            print("[Proactive Question] The current problem is missing necessary concepts:")
+            print(f"Question: {question}")
+            print(f"Context: {context[:300]}...")
+            print(f"Hint: {hint}")
             print("─" * 50)
 
-        print("请输入你的回答（多行，空行结束）：")
+        print("Please enter your answer (multiple lines, empty line to finish):")
         lines: List[str] = []
         while True:
             try:
@@ -67,45 +67,59 @@ class HumanIO:
             return ""
 
         trace = attempt.reasoning_trace
+        problem_preview = problem.prompt[:800] + "..." if len(problem.prompt) > 800 else problem.prompt
+        answer_preview = attempt.answer_text[:600] + "..." if len(attempt.answer_text) > 600 else attempt.answer_text
+
         if self.console:
             self.console.print()
-            tree = Tree("[bold red]高自信错误 — 需要纠错[/bold red]")
-            tree.add(f"题目：{problem.id} ({problem.problem_type})")
-            tree.add(f"预测：{eval.pred}")
-            tree.add(f"标准答案：{eval.gold}")
-            tree.add(f"Schema reasoning confidence：{reasoning_confidence:.3f}")
+            tree = Tree("[bold red]High-Confidence Error — Correction Needed[/bold red]")
+            tree.add(f"Problem ID: {problem.id} ({problem.problem_type})")
+            tree.add(f"Evaluation: {eval.details or ('Correct' if eval.correct else 'Wrong')}")
+            tree.add(f"Schema reasoning confidence: {reasoning_confidence:.3f}")
+
+            prob_node = tree.add("[bold]Original Problem (first 800 chars)[/bold]")
+            prob_node.add(problem_preview)
+
+            ans_node = tree.add("[bold]LLM Answer (first 600 chars)[/bold]")
+            ans_node.add(answer_preview)
+
+            gold_node = tree.add("[bold]Ground Truth (first 600 chars)[/bold]")
+            gold_node.add(eval.gold[:600] + ("..." if len(eval.gold) > 600 else ""))
 
             if trace.concepts:
-                concepts_node = tree.add("使用的概念")
+                concepts_node = tree.add("[bold]Concepts Used[/bold]")
                 for c in trace.concepts:
                     concepts_node.add(c)
             if trace.relations:
-                rels_node = tree.add("推理路径")
+                rels_node = tree.add("[bold]Reasoning Path[/bold]")
                 for src, tgt, rel_type in trace.relations:
-                    rels_node.add(f"{src} → [{rel_type}] → {tgt}")
+                    rels_node.add(f"{src} -> [{rel_type}] -> {tgt}")
             if trace.explanation:
-                tree.add(f"解释：{trace.explanation}")
+                tree.add(f"[bold]Explanation:[/bold]{trace.explanation}")
 
             self.console.print(
                 Panel.fit(
                     tree,
-                    title="Schema 纠错",
+                    title="Schema Correction",
                     border_style="red",
                 )
             )
         else:
             print("\n" + "─" * 50)
-            print("[高自信错误] Schema 推理置信度很高，但答案错误。")
-            print(f"题目：{problem.id}")
-            print(f"预测：{eval.pred}, 标准答案：{eval.gold}")
-            print(f"Confidence：{reasoning_confidence:.3f}")
-            print(f"使用的概念：{trace.concepts}")
-            print(f"推理路径：{trace.relations}")
+            print("[High-Confidence Error] Schema reasoning confidence is high, but the answer is wrong.")
+            print(f"Problem ID: {problem.id}")
+            print(f"Evaluation: {eval.details or ('Correct' if eval.correct else 'Wrong')}")
+            print(f"Confidence: {reasoning_confidence:.3f}")
+            print(f"\nOriginal Problem (first 800 chars):\n{problem_preview}")
+            print(f"\nLLM Answer (first 600 chars):\n{answer_preview}")
+            print(f"\nGround Truth (first 600 chars):\n{eval.gold[:600] + ('...' if len(eval.gold) > 600 else '')}")
+            print(f"\nConcepts Used: {trace.concepts}")
+            print(f"Reasoning Path: {trace.relations}")
             print("─" * 50)
 
         print(
-            "\n请指出 schema 中的问题（如概念定义错误、关系方向错误、缺少概念等）：\n"
-            "（多行输入，空行结束）"
+            "\nPlease point out problems in the schema (e.g. incorrect concept definitions, wrong relation direction, missing concepts):\n"
+            "(Multiple lines, empty line to finish)"
         )
         lines: List[str] = []
         while True:

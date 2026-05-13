@@ -25,24 +25,25 @@ class SchemaInitializer:
         concept_names = [c.name for c in concepts]
         missing_part = ""
         if missing:
-            missing_part = f"系统判断缺少以下关键概念：{', '.join(missing)}。"
+            missing_part = f"The system determined the following key concepts are missing: {', '.join(missing)}."
         question = (
-            f"为了回答这道{problem.problem_type}题目，系统检索到了以下概念："
-            f"{', '.join(concept_names) if concept_names else '（无）'}。"
+            f"To answer this {problem.problem_type} problem, the system retrieved the following concepts: "
+            f"{', '.join(concept_names) if concept_names else '(none)'}.
+"
             f"{missing_part}"
-            "但判断认为这些概念及它们之间的关系不足以支撑答题。"
-            "请你补充描述：\n"
-            "1. 解题所需要的关键概念（名称+简要描述）；\n"
-            "2. 这些概念之间的关系（如：概念A -> 关系类型 -> 概念B）。"
+            "However, these concepts and their relationships are insufficient to answer the question."
+            "Please supplement:\n"
+            "1. Key concepts needed to solve the problem (name + brief description);\n"
+            "2. Relationships between these concepts (e.g. ConceptA -> relation_type -> ConceptB)."
         )
         hint = (
-            "格式示例：\n"
-            "概念：\n"
-            "1. 双黄线：道路中央用于分隔对向车流的黄色实线。\n"
-            "2. 自车：搭载摄像头的主体车辆。\n"
-            "关系：\n"
-            "双黄线 -> 位于左侧 -> 自车\n"
-            "双黄线 -> 属于 -> 交通标识"
+            "Format example:\n"
+            "Concepts:\n"
+            "1. Double yellow line: A solid yellow line in the center of the road used to separate opposing traffic flows.\n"
+            "2. Ego vehicle: The subject vehicle equipped with a camera.\n"
+            "Relations:\n"
+            "Double yellow line -> located_at_left -> Ego vehicle\n"
+            "Double yellow line -> is_a -> Traffic sign"
         )
         return {"question": question, "context": problem.prompt[:500], "hint": hint}
 
@@ -63,7 +64,7 @@ class SchemaInitializer:
 
             # Detect relation section headers
             lower = line.lower()
-            if any(k in lower for k in ("关系", "relations", "边", "edges")):
+            if any(k in lower for k in ("relations", "edges", "relation")):
                 if current_name and current_desc:
                     concepts.append(_new_concept(current_name, current_desc))
                     current_name = ""
@@ -129,13 +130,13 @@ class SchemaInitializer:
                 continue
 
             # Update concept
-            if any(k in lower for k in ("修改", "update", "修正")):
+            if any(k in lower for k in ("update", "correct", "fix")):
                 if ":" in stripped:
                     parts = stripped.split(":", 1)
                     name_part = parts[0]
                     desc = parts[1].strip()
                     name = name_part
-                    for kw in ("修改概念", "update concept", "修正概念"):
+                    for kw in ("update concept", "correct concept", "fix concept"):
                         if kw in name.lower():
                             name = name.split(kw, 1)[-1].strip()
                             break
@@ -143,11 +144,11 @@ class SchemaInitializer:
                 continue
 
             # Add concept
-            if any(k in lower for k in ("添加", "add", "新增")):
+            if any(k in lower for k in ("add", "new")):
                 if ":" in stripped:
                     parts = stripped.split(":", 1)
                     name = parts[0]
-                    for kw in ("添加概念", "add concept", "新增概念"):
+                    for kw in ("add concept", "new concept"):
                         if kw in name.lower():
                             name = name.split(kw, 1)[-1].strip()
                             break
@@ -165,23 +166,23 @@ class SchemaInitializer:
 
 def _build_generate_prompt(problem: Problem) -> str:
     return (
-        "你是一个知识图谱构建助手。请阅读下面的题目，输出回答该题所需要的核心概念（concept）列表，"
-        "以及概念之间的关系（relation）。\n\n"
-        f"题目类型：{problem.problem_type}\n"
-        f"题目内容：\n{problem.prompt}\n\n"
-        "请以 JSON 格式输出，必须包含 concepts 和 relations 两个字段：\n"
+        "You are a knowledge graph construction assistant. Please read the problem below and output the core concepts "
+        "needed to answer it, and the relationships between those concepts.\n\n"
+        f"Problem type: {problem.problem_type}\n"
+        f"Problem content:\n{problem.prompt}\n\n"
+        "Please output in JSON format, must include concepts and relations fields:\n"
         "{\n"
         '  "concepts": [\n'
-        '    {"name": "概念名称", "description": "简要描述", "category": "类别"}\n'
+        '    {"name": "Concept name", "description": "Brief description", "category": "Category"}\n'
         "  ],\n"
         '  "relations": [\n'
-        '    {"source": "源概念名称", "target": "目标概念名称", "relation_type": "关系类型"}\n'
+        '    {"source": "Source concept name", "target": "Target concept name", "relation_type": "Relation type"}\n'
         "  ]\n"
         "}\n"
-        "注意：\n"
-        "1. concepts 中的 name 必须简洁，后续会被 LLM 在推理过程中直接引用。\n"
-        "2. relations 中的 source/target 必须是 concepts 中已有的 name。\n"
-        "3. 关系类型可选：prerequisite / causes / part_of / located_at / analogous / related。"
+        "Notes:\n"
+        "1. The name in concepts must be concise; it will be directly referenced by the LLM during reasoning.\n"
+        "2. The source/target in relations must be names that already exist in concepts.\n"
+        "3. Relation types optional: prerequisite / causes / part_of / located_at / analogous / related."
     )
 
 

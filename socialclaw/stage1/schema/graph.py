@@ -69,6 +69,7 @@ class Concept:
     confidence: float = 0.5
     source: str = "agent_init"
     created_at: str = ""
+    neighbors: List[str] = field(default_factory=list)
 
 
 @dataclass
@@ -108,8 +109,26 @@ class SchemaGraph:
         return self.concepts.get(cid)
 
     def get_concept_by_name(self, name: str) -> Optional[Concept]:
+        name = name.strip()
+        if not name:
+            return None
+        # Exact match first
         for c in self.concepts.values():
             if c.name == name:
+                return c
+        # Case-insensitive match
+        name_lower = name.lower()
+        for c in self.concepts.values():
+            if c.name.lower() == name_lower:
+                return c
+        # Substring containment (if one is significantly shorter, the longer may contain the shorter)
+        for c in self.concepts.values():
+            c_lower = c.name.lower()
+            if c_lower in name_lower or name_lower in c_lower:
+                return c
+        # Fuzzy similarity fallback
+        for c in self.concepts.values():
+            if difflib.SequenceMatcher(None, c.name.lower(), name_lower).ratio() >= _SIMILARITY_THRESHOLD:
                 return c
         return None
 
@@ -218,6 +237,16 @@ class SchemaGraph:
         )
 
         return concept_geom * relation_geom
+
+    def get_neighbors(self, cid: str) -> List[str]:
+        """Return neighbor concept ids for a given concept id (dynamic from relations)."""
+        nbrs: set = set()
+        for r in self.relations:
+            if r.source == cid:
+                nbrs.add(r.target)
+            if r.target == cid:
+                nbrs.add(r.source)
+        return sorted(nbrs)
 
     def list_concepts(self) -> List[Concept]:
         return list(self.concepts.values())

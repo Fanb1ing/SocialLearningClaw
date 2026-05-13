@@ -16,13 +16,13 @@ def normalize_choice(text: str) -> str:
 
     Accepts formats like:
     - "A"
-    - "答案：B"
+    - "Answer: B"
     - "I choose C."
     """
     t = (text or "").strip().upper()
 
     for pat in [
-        r"答案\s*[:：]\s*([A-Z])",
+        r"ANSWER\s*[:：]\s*([A-Z])",
         r"CHOICE\s*[:：]\s*([A-Z])",
         r"OPTION\s*[:：]\s*([A-Z])",
     ]:
@@ -49,15 +49,15 @@ def _llm_judge(problem: Problem, pred: str, gold: str, agent: Agent) -> bool:
     prompt_pred = pred[:1200]
 
     prompt = (
-        "你是一个公正的评估助手。请判断下面的模型回答是否正确、合理地回应了题目要求。\n\n"
-        f"题目（前1200字）：\n{prompt_problem}\n\n"
-        f"标准答案（前1200字）：\n{prompt_gold}\n\n"
-        f"模型回答（前1200字）：\n{prompt_pred}\n\n"
-        "评估标准：\n"
-        "- 模型回答只要核心语义与标准答案一致即可，不需要逐字相同。\n"
-        "- 如果模型回答正确或合理，输出：correct\n"
-        "- 如果模型回答错误、偏离主题或遗漏关键信息，输出：wrong\n\n"
-        "请只输出一个字（correct 或 wrong）："
+        "You are a fair evaluation assistant. Please judge whether the model's response correctly and reasonably answers the problem.\n\n"
+        f"Problem (first 1200 chars):\n{prompt_problem}\n\n"
+        f"Ground truth (first 1200 chars):\n{prompt_gold}\n\n"
+        f"Model response (first 1200 chars):\n{prompt_pred}\n\n"
+        "Evaluation criteria:\n"
+        "- The model response is considered correct if its core meaning matches the ground truth; exact wording is not required.\n"
+        "- If the model response is correct or reasonable, output: correct\n"
+        "- If the model response is wrong, off-topic, or misses key information, output: wrong\n\n"
+        "Please output only one word (correct or wrong):"
     )
 
     try:
@@ -68,7 +68,7 @@ def _llm_judge(problem: Problem, pred: str, gold: str, agent: Agent) -> bool:
         answer = attempt.answer_text.strip().lower()
         if "correct" in answer and "wrong" not in answer and "incorrect" not in answer:
             return True
-        if "wrong" in answer or "incorrect" in answer or "错误" in answer:
+        if "wrong" in answer or "incorrect" in answer:
             return False
         # Default to False on ambiguity
         return False

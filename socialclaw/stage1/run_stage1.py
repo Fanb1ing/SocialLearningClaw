@@ -75,12 +75,17 @@ def main() -> None:
     p.add_argument("--max-problems", type=int, default=5)
     p.add_argument("--max-iters", type=int, default=2)
     p.add_argument("--top-k", type=int, default=5, help="Top-K concepts to retrieve")
-    p.add_argument("--threshold", type=float, default=0.6, help="Similarity threshold for concept retrieval")
+    p.add_argument("--threshold", type=float, default=0.75, help="Similarity threshold for concept retrieval")
     p.add_argument("--auto-yes", action="store_true", help="Skip human interaction prompts")
+    p.add_argument(
+        "--always-ask-correction",
+        action="store_true",
+        help="Always ask human for correction on wrong answers (debug mode, overrides confidence threshold)",
+    )
     p.add_argument("--runs-dir", default="runs")
-    p.add_argument("--schema-dir", default="schema")
+    p.add_argument("--schema-dir", default="schema", help="Schema directory. By default schema is saved inside run_dir/schema for per-run isolation. Set explicitly to reuse a previous schema.")
     # Debug flags
-    p.add_argument("--reset-schema", action="store_true", help="Clear existing schema before run")
+    p.add_argument("--reset-schema", action="store_true", help="Clear existing schema before run (useful when reusing a schema-dir)")
     p.add_argument(
         "--problem-id",
         dest="problem_ids",
@@ -90,6 +95,7 @@ def main() -> None:
     )
     p.add_argument("--dry-run", action="store_true", help="Build prompts only; do not call LLM")
     p.add_argument("--show-prompt", action="store_true", help="Print prompt before sending to LLM")
+    p.add_argument("--context-id", default=None, help="Run all tasks under a specific CL-bench context_id (schema iterates across tasks)")
     args = p.parse_args()
 
     api_key = (args.api_key or "").strip()
@@ -114,7 +120,17 @@ def main() -> None:
         model=args.model,
     )
 
-    problems = _load_dataset(args.prepared)
+    problems = list(_load_dataset(args.prepared))
+
+    # Filter by context-id for CL-bench iterative schema usage
+    if args.context_id:
+        problems = [p for p in problems if p.meta.get("context_id") == args.context_id]
+        if not problems:
+            raise SystemExit(f"No tasks found for context_id={args.context_id}")
+        problems.sort(key=lambda p: p.id)
+        # When running a single context, always start from empty schema and iterate
+        args.reset_schema = True
+        print(f"[context-mode] Found {len(problems)} tasks for context={args.context_id}. Schema will iterate across tasks.")
 
     from .stop_policy import StopConfig
 
@@ -122,6 +138,7 @@ def main() -> None:
         max_problems=args.max_problems,
         top_k_concepts=args.top_k,
         similarity_threshold=args.threshold,
+        always_ask_correction=args.always_ask_correction,
         stop=StopConfig(max_iters=args.max_iters),
         runs_dir=args.runs_dir,
         schema_dir=args.schema_dir,

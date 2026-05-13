@@ -25,10 +25,12 @@ class SchemaStorage:
     def save(self, graph: SchemaGraph, embeddings: Optional[Dict[str, np.ndarray]] = None) -> None:
         os.makedirs(os.path.dirname(self.concepts_path), exist_ok=True)
 
-        # Concepts
+        # Concepts (with dynamic neighbor info from relations)
         with open(self.concepts_path, "w", encoding="utf-8") as f:
             for c in graph.list_concepts():
-                f.write(json.dumps(_concept_to_dict(c), ensure_ascii=False) + "\n")
+                d = _concept_to_dict(c)
+                d["neighbors"] = graph.get_neighbors(c.id)
+                f.write(json.dumps(d, ensure_ascii=False) + "\n")
 
         # Relations
         with open(self.relations_path, "w", encoding="utf-8") as f:
@@ -87,6 +89,7 @@ def _concept_to_dict(c: Concept) -> dict:
         "confidence": c.confidence,
         "source": c.source,
         "created_at": c.created_at,
+        "neighbors": c.neighbors,
     }
 
 
@@ -99,6 +102,7 @@ def _dict_to_concept(d: dict) -> Concept:
         confidence=d.get("confidence", 0.5),
         source=d.get("source", "agent_init"),
         created_at=d.get("created_at", ""),
+        neighbors=d.get("neighbors", []),
     )
 
 

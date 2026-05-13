@@ -19,9 +19,10 @@
 |------|------|
 | `docs/stage1_design.md` | **唯一的设计文档**。包含：Schema 数据结构、运行流程、所有模块接口定义、PromptBuilder 设计、confidence 计算方式、实现顺序 |
 | `docs/datasets.md` | 所有数据集的来源、原始结构、处理流程、最终格式、使用方法 |
-| `docs/related_work_notes.md` | 8 项可迁移相关工作，用户认为 4(Think-on-Graph)、5(RAPTOR)、7(Neural-Symbolic) 最相关 |
-| `README.md` | 项目定位、评测问题、技术框图、Stage 1/2/3 开发阶段 |
+| `docs/related_work_notes.md` | 8 项可迁移相关工作 |
+| `README.md` | 项目定位、评测问题、技术框图、Stage 1/2/3 开发阶段（已更新到最新实现状态） |
 | `socialclaw/stage1/README.md` | Stage 1 模块说明、使用示例、调试指南 |
+| **本文件** | `docs/handoff.md` |
 
 ### 2.2 数据集（全部就绪）
 
@@ -40,30 +41,30 @@ data/
     raw/arc3/agents/         # ARC-AGI-3 官方仓库，已配置 API key
 ```
 
-### 2.3 Stage 1 代码（全部实现并真实运行验证）
+### 2.3 Stage 1 + Stage 2 代码（全部实现并真实运行验证）
 
 ```
 socialclaw/stage1/
   run_stage1.py            # CLI 入口（含调试参数）
-  pipeline.py              # 主闭环逻辑
+  pipeline.py              # 主闭环逻辑（含 Stage 2 动态更新）
   types.py                 # Episode、AttemptRecord
   prompt_builder.py        # Schema 子图注入 Prompt
   stop_policy.py           # 停止策略
-  evaluator.py             # 答案评估
+  evaluator.py             # 答案评估（含 CL-bench LLM-as-judge）
   human_io.py              # CLI 主动提问（Rich 美化）
   logging.py               # Episode JSON 落盘
   schema/
-    graph.py               # SchemaGraph、Concept、Relation + confidence 计算
-    retriever.py           # BGE embedding 语义检索 + 充足度判断
+    graph.py               # SchemaGraph、Concept、Relation + confidence 计算 + relation type 模糊匹配
+    retriever.py           # LLM 提取 concept → 逐个 embedding 匹配 + 充足度判断
     initializer.py         # Agent 自动生成 Concept+Relation / 解析人类回答
     storage.py             # JSONL + npy 持久化
   agent/
     base.py                # Agent Protocol、AgentAttempt、ReasoningTrace
     openai_compatible.py   # OpenAI-compatible Provider，解析 reasoning_trace
   dataset/
-    base.py                # Problem、EvalResult
+    base.py                # Problem（含 retrieval_query）、EvalResult
     pbench.py              # MCQ 加载器
-    clbench.py             # 长上下文加载器
+    clbench.py             # 长上下文加载器（context + question 拼接）
     arc.py                 # ARC 网格加载器
 ```
 
@@ -73,12 +74,28 @@ socialclaw/stage1/
 - 已安装：`sentence-transformers`, `rich`, `numpy`, `httpx`, `huggingface_hub`
 - Embedding 模型：`BAAI/bge-small-en-v1.5`（默认，可换）
 - LLM Provider：OpenRouter（默认模型 `moonshotai/kimi-k2.6`）
+- API key 保存在项目根目录 `.env` 文件中
 
 ---
 
 ## 3. 关键设计决策（必须遵守）
 
-### 3.1 confidence 不是 LLM 输出，是 Schema-based 计算
+### 3.1 Embedding 检索：先提取 concept，再逐个匹配
+
+**不是**直接把 question 文本编码为 embedding 去匹配 schema。
+
+正确流程：
+1. LLM 读取题目，提取所需 concept 名称列表
+2. 对每个提取出的 concept，单独编码其名称，与 schema 中所有 concept embedding 匹配（取 top-1）
+3. 相似度 ≥ threshold 则放入 `matched`，否则放入 `missing`
+4. `is_sufficient` = `missing` 为空 且 `matched` 非空
+
+这样做的好处：
+- 检索更精准（避免长文本稀释语义）
+- `missing` 列表可直接用于主动提问
+- 充足度判断天然是 LLM-based，无硬编码阈值
+
+### 3.2 confidence 不是 LLM 输出，是 Schema-based 计算
 
 - LLM 只输出：使用了哪些 concept（名称）、推理路径、最终答案
 - `SchemaGraph.compute_confidence(trace)` 实现：
@@ -88,25 +105,46 @@ socialclaw/stage1/
   - overall = concept_geom * relation_geom
 - 高 confidence（>0.8）+ 错误结果 → 触发向人类提问纠错
 
-### 3.2 Schema 初始化由 Agent 自动生成
+### 3.3 Relation type 模糊匹配
+
+LLM 在 reasoning_trace 中会"发明" relation type（如 `continuously_run_along`、`of`）。
+`SchemaGraph.get_relation` / `find_relation` 支持三层回退：
+1. **精确匹配**（大小写不敏感）
+2. **预定义别名映射**：如 `continuously_run_along` → `located_at`，`of` → `part_of`
+3. **字符串相似度**：`difflib.SequenceMatcher` ratio ≥ 0.75，或子串互相包含
+
+### 3.4 Schema 初始化由 Agent 自动生成
 
 - `--auto-yes` 模式下，schema 不足时自动调用 `initializer.generate_schema(problem)`
 - LLM 输出 JSON `{concepts: [...], relations: [...]}`
 - relation 的 source/target 在存储前由 **name 解析为 concept id**
 - source 标注：`agent_init` = LLM 生成，`human_feedback` = 人类输入
 
-### 3.3 CLI 主动提问在 Stage 1 实现
+### 3.5 Stage 2 动态更新（已实现）
+
+每道题评估后自动执行：
+- 正反馈（答对）：相关 concept confidence +0.05，relation weight +0.05（上限 0.95）
+- 负反馈（答错）：相关 concept confidence -0.05，relation weight -0.05（下限 0.1）
+- Episode flags：`schema_reinforce` / `schema_correct`
+
+### 3.6 CLI 主动提问在 Stage 1 已实现
 
 - 缺失 concept 时：CLI 问人 → 解析为 concept + relation → 写入 schema → 重新检索
 - 高自信错误时：CLI 展示推理路径 + confidence → 问人哪里错了 → 解析为 schema 更新
 - 支持 `--auto-yes` 模式（测试时自动跳过提问，改用 Agent 自动生成）
 
-### 3.4 调试入口
+### 3.7 CL-bench LLM-as-judge
+
+- CL-bench 为开放式长文本问答，exact match 不现实
+- `evaluator.evaluate()` 在 `problem_type == "long_context"` 且 agent 非空时，调用 LLM 判断回答质量
+- prompt：题目 + 标准答案 + 模型回答 → LLM 输出 correct/wrong
+
+### 3.8 调试入口
 
 ```bash
 --reset-schema          # 清空已有 schema
 --problem-id ID         # 只跑指定题目（可多次使用）
---dry-run               # 只构建 prompt，不调用 LLM
+--dry-run               # 只构建 prompt，不调用 LLM（注意：retrieve 仍会调 LLM 提取 concept）
 --show-prompt           # 打印 prompt 内容
 --auto-yes              # 跳过人类提问，自动用 Agent 生成 schema
 ```
@@ -117,40 +155,42 @@ socialclaw/stage1/
 
 已真实调用 OpenRouter API 跑通：
 
-1. **av_000_0**（schema 为空）：触发 auto-generate，LLM 生成 **9 concepts + 8 relations**，answer=A correct
-2. **av_000_0**（schema 已存在）：Embedding 召回 9 个 concept 注入 prompt，answer=A correct，confidence=0.5
-3. **av_000_1**（同视频新问题）：Embedding 召回 8 个 concept（double_yellow_lines 被过滤），answer=A correct，confidence=0.5
+1. **CL-bench 第 1 题**（schema 为空）：LLM 提取 concept → 无匹配 → auto-generate 生成概念 → 重新匹配成功 → Agent 答题 → schema_correct（answer 为空判错，confidence 降低）
+2. **CL-bench 第 2 题**（schema 已存在）：LLM 提取 concept → embedding 匹配已有 schema → sufficient → Agent 答题 → schema_correct（LLM-as-judge 判 wrong）
+3. **av_000_0 / av_000_1**（PBench）：历史验证通过
 
 Schema 存储位置：`schema/`（项目根目录）
 Episode 存储位置：`runs/YYYYMMDD_HHMMSS/<problem_id>/episode.json`
 
 ---
 
-## 5. 下一步工作（三个已知问题，用户会在下一 session 解决）
+## 5. 遗留问题与下一步工作
 
-### 5.1 Relation type 对齐
+### 5.1 Schema 跨 benchmark 污染（测试阶段可控）
 
-**现状**：LLM 在 reasoning_trace 中"发明" relation type（如 `continuously_run_along`、`of`），但 schema 中定义的是 `located_at`、`part_of`，导致 relation confidence 无法计算。
+**现状**：`schema/` 是全局目录，pbench 的驾驶概念和 CL-bench 的游戏概念混在一起。
 
-**修复方向**：
-- 方案 A：Prompt 中明确要求 LLM 只能使用 schema 中已有的 relation type
-- 方案 B：Agent 输出 reasoning_trace 时，relation type 做模糊匹配/映射
+**缓解**：测试时用 `--reset-schema` 清空后再跑。
 
-### 5.2 Concept confidence 初始值偏低
+**长期**：用户说"测试阶段可以把 schema 清空来简单操作"，不着急隔离。
 
-**现状**：所有 concept confidence 默认 0.5，relation weight 默认 0.5。
+### 5.2 概念重复
 
-**修复方向**：
-- 根据 concept 的"通用性"或"证据强度"分配不同的初始 confidence
-- 或者让人类/Agent 在生成时评估并输出 confidence
+**现状**：Auto-generate 产生重复概念（如 `Sighting Card` 和 `Sighting Cards`、`Dusk Phase` 出现两次）。
 
-### 5.3 is_sufficient 阈值粗糙
+**计划**：用户说后面会有去重/遗忘机制，当前不阻塞。
 
-**现状**：`is_sufficient` 用 `>=3 个 concept` 或 `>=2 个 category` 作为阈值，对于简单题可能过高。
+### 5.3 ARC-AGI-3 交互式环境
 
-**修复方向**：
-- 升级为 LLM 二分类判断（输入 problem + retrieved concepts，输出 sufficient/not）
-- 或根据 problem 类型动态调整阈值
+**现状**：Stage 1 已完成接口抽象，Stage 2 计划跑通多轮 action/observation 循环。
+
+**计划**：待实现。
+
+### 5.4 CL-bench 部分 answer 为空
+
+**现状**：数据集中部分题目 answer 字段为空，此时 evaluator 返回 correct=False。
+
+**计划**：数据集本身问题，不影响主链路。
 
 ---
 
@@ -161,6 +201,7 @@ Episode 存储位置：`runs/YYYYMMDD_HHMMSS/<problem_id>/episode.json`
 - **ARC-AGI-3 是交互式环境**：Stage 1 只做接口抽象，不要试图本地评测
 - **几何平均 vs 算术平均**：confidence 计算用几何平均，体现链式依赖的"短板效应"
 - **relation 存储的是 concept id，不是 name**：graph.py 中的 relation source/target 始终是 id，pipeline 负责 name -> id 的解析
+- **dry-run 不会跳过 retrieve**：因为 retrieve 中的 concept 提取是核心逻辑，即使 `--dry-run` 也会调 LLM 提取 concept（只是答题环节跳过）
 
 ---
 
@@ -171,19 +212,23 @@ Episode 存储位置：`runs/YYYYMMDD_HHMMSS/<problem_id>/episode.json`
 .venv/bin/pip install -e .
 
 # 单题调试（自动模式，打印 prompt）
-OPENROUTER_API_KEY=xxx .venv/bin/python -m socialclaw.stage1.run_stage1 \
+.venv/bin/python -m socialclaw.stage1.run_stage1 \
   --prepared data/pbench/prepared/all.jsonl \
   --base-url https://openrouter.ai/api/v1 \
   --model moonshotai/kimi-k2.6 \
   --problem-id av_000_0 \
   --auto-yes --show-prompt --max-iters 1
 
-# 清空 schema 从头跑
+# 跑 CL-bench（清空 schema，跑 2 题）
 .venv/bin/python -m socialclaw.stage1.run_stage1 \
-  --prepared data/pbench/prepared/all.jsonl \
+  --prepared data/clbench/prepared/clbench.jsonl \
   --base-url https://openrouter.ai/api/v1 \
   --model moonshotai/kimi-k2.6 \
-  --reset-schema --auto-yes --max-problems 5
+  --reset-schema --auto-yes --max-problems 2
+
+# 查看 episode
+ls runs/
+cat runs/YYYYMMDD_HHMMSS/<problem_id>/episode.json
 ```
 
 ---

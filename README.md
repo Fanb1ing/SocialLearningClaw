@@ -66,10 +66,10 @@ Social交互更高效更有前景：对比baseline/人类/our method学习曲线
 目标：把旧版「文本 Skill」循环替换为「结构化 Schema 网络」循环，验证静态 Schema 就能带来答题提升。**已实现并跑通。**
 
 1. **Schema 数据建模与存储**
-   - 定义 `Concept`（id, name, description, category, embedding, confidence, source）
+   - 定义 `Concept`（id, name, description, category, embedding, confidence, source, **neighbors**）
    - 定义 `Relation`（source, target, type, weight, evidence）
-   - 实现 `SchemaGraph`：增删查改、子图提取、confidence 计算
-   - 轻量存储：JSONL + npy embedding 缓存
+   - 实现 `SchemaGraph`：增删查改、子图提取、confidence 计算、**邻居动态计算**
+   - **Schema 按 run 隔离**：不再使用全局共享目录，而是像 episode 一样作为日志保存在 `runs/<run_id>/schema/` 下，不同 context / 游戏天然隔离
 
 2. **Embedding 检索与「Concept 充足度」判断**
    - 接入开源 Embedding 模型（`BAAI/bge-small-en-v1.5`，可替换）
@@ -103,14 +103,18 @@ Social交互更高效更有前景：对比baseline/人类/our method学习曲线
 1. **Schema 巩固/纠错 ✅**
    - 正反馈（答对）：相关 concept confidence +0.05，relation weight +0.05（上限 0.95）
    - 负反馈（答错）：相关 concept confidence -0.05，relation weight -0.05（下限 0.1）
+   - **trace 中的 concept/relation 名称支持模糊匹配**（精确 → 大小写不敏感 → 子串包含 → difflib 相似度），解决 LLM 输出自由文本的匹配问题
    - 高自信错误（confidence > 0.8 但答错）：触发 CLI 向人类提问纠错
 
 2. **主动提问 UI ✅**
    - 缺失 concept 时：CLI 展示 missing concepts，向人类提问，解析回答写入 Schema
    - 高自信错误时：CLI 展示推理路径 + confidence，向人类确认 concept / relation 是否正确
 
-3. **ARC-AGI-3 交互式环境**
-   - 待实现
+3. **ARC-AGI-3 交互式环境 ✅（接口已实现）**
+   - `dataset/arc_agi3.py`：封装 `arc_agi.Arcade`，管理多 level 游戏循环
+   - `schema/arc_agi3_parser.py`：Grid -> Object 提取（连通区域）-> Schema Concept/Relation
+   - `run_arc_agi3.py`：多轮 action/observation 循环，每关通关后强化/修正 schema rules
+   - Schema 表示：Object（颜色块/形状）+ Spatial Relation（above/below/left_of/right_of）+ Transformation Rule（action 触发的 object 变化）
 
 ### Stage 3：全量评测与迁移
 

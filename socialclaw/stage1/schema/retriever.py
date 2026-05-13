@@ -83,13 +83,13 @@ class SchemaRetriever:
         """Ask LLM to extract the key concepts required to answer this problem."""
         query_text = problem.retrieval_query if problem.retrieval_query else problem.prompt
         prompt = (
-            "你是一个概念提取助手。请阅读下面的题目，列出回答这道题所需要的关键概念名称。\n"
-            "只需要输出概念名称列表，每行一个，不要输出解释。\n\n"
-            f"题目类型：{problem.problem_type}\n"
-            f"题目内容（前800字）：\n{query_text[:800]}...\n\n"
-            "输出格式（每行一个）：\n"
-            "- 概念名称1\n"
-            "- 概念名称2\n"
+            "You are a concept extraction assistant. Please read the problem below and list the key concept names needed to answer it.\n"
+            "Output only a list of concept names, one per line, no explanations.\n\n"
+            f"Problem type: {problem.problem_type}\n"
+            f"Problem content (first 800 chars):\n{query_text[:800]}...\n\n"
+            "Output format (one per line):\n"
+            "- Concept name 1\n"
+            "- Concept name 2\n"
             "..."
         )
 
@@ -163,14 +163,14 @@ class SchemaRetriever:
         Only used when no missing concepts exist, for second validation."""
         concept_text = "\n".join(
             [f"- {c.name} ({c.category}): {c.description[:120]}" for c in concepts]
-        ) if concepts else "（无概念被检索到）"
+        ) if concepts else "(No concepts retrieved)"
 
         prompt = (
-            "你是一个概念充足度判断助手。请判断下面检索到的概念是否足够回答给定题目。\n\n"
-            f"检索到的概念：\n{concept_text}\n\n"
-            "请只输出一个字：\n"
-            "- 如果概念足够答题，输出：sufficient\n"
-            "- 如果概念不足或缺失关键概念，输出：insufficient"
+            "You are a concept sufficiency judge. Please judge whether the retrieved concepts below are sufficient to answer the given problem.\n\n"
+            f"Retrieved concepts:\n{concept_text}\n\n"
+            "Please output only one word:\n"
+            "- If concepts are sufficient, output: sufficient\n"
+            "- If concepts are insufficient or missing key concepts, output: insufficient"
         )
 
         try:
@@ -181,7 +181,7 @@ class SchemaRetriever:
             answer = attempt.answer_text.strip().lower()
             if "sufficient" in answer and "insufficient" not in answer:
                 return True
-            if "insufficient" in answer or "不足" in answer or "不够" in answer:
+            if "insufficient" in answer:
                 return False
             return False
         except Exception:
