@@ -36,7 +36,7 @@ def download():
 
 
 def prepare():
-    """预处理为统一 JSONL 格式。"""
+    """预处理为统一 JSONL 格式，保留多轮对话的完整上下文。"""
     from datasets import load_from_disk
     PREPARED_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -50,31 +50,58 @@ def prepare():
         split = list(ds.keys())[0]
         records = []
         for item in ds[split]:
-            # CL-bench 使用 messages 对话格式
             messages = item.get("messages", [])
+            meta = item.get("metadata", {})
+            rubrics = item.get("rubrics", [])
+
+            # Find the last user and last assistant message indices.
+            # These become the question and gold answer respectively.
+            # All other messages (including earlier turns) go into context.
+            last_user_idx = -1
+            last_asst_idx = -1
+            for i, msg in enumerate(messages):
+                role = msg.get("role", "")
+                if role == "user":
+                    last_user_idx = i
+                elif role == "assistant":
+                    last_asst_idx = i
+
             context_parts = []
             question = ""
             answer = ""
-            for msg in messages:
+            for i, msg in enumerate(messages):
                 role = msg.get("role", "")
                 content = msg.get("content", "")
-                if role == "system":
-                    context_parts.append(content)
-                elif role == "user":
+                if i == last_user_idx:
                     question = content
-                elif role == "assistant":
+                elif i == last_asst_idx:
                     answer = content
+                else:
+                    # Include in context with role label for clarity
+                    context_parts.append(f"[{role}]: {content}")
 
-            meta = item.get("metadata", {})
-            rubrics = item.get("rubrics", [])
             records.append({
                 "id": meta.get("task_id") or meta.get("context_id") or f"{name}_{len(records)}",
-                "context": "\n".join(context_parts),
+                "context": "\n\n".join(context_parts),
                 "question": question,
                 "answer": answer,
                 "rubrics": rubrics,
-                "meta": meta,
+                "meta": {
+                    **meta,
+                    "msg_count": len(messages),
+                },
             })
+
+        # Sort records within each context by message count (turn order).
+        # Group by context_id, sort each group, then flatten.
+        context_order: dict[str, list] = {}
+        for r in records:
+            cid = r["meta"].get("context_id", "")
+            context_order.setdefault(cid, []).append(r)
+        records = []
+        for cid, group in context_order.items():
+            group.sort(key=lambda r: r["meta"]["msg_count"])
+            records.extend(group)
 
         out_path = PREPARED_DIR / f"{name}.jsonl"
         with open(out_path, "w", encoding="utf-8") as f:

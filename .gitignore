@@ -7,3 +7,6 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+runs/
+runs_*/
+runs_arc_agi3/

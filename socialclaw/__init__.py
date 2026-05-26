@@ -1,1 +1,1 @@
-"""SocialLearningClaw core package."""
+"""SocialLearningClaw — Proactive Social-evolve Agent."""

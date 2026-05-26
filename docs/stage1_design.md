@@ -129,10 +129,10 @@ for problem in dataset:
 - `problem`: `{id, split, domain, prompt, choices?, answer_key?}`
 - `attempts[]`: 每次对 Agent 的一次调用
   - `input_prompt`: 最终给 Agent 的 prompt
-  - `answer`: 结构化答案
+  - `answer_text`: 答案文本（已解析）
   - `reasoning_trace`: 使用了哪些 concept / relation
   - `usage`: `{input_tokens, output_tokens, total_tokens}`
-  - `raw`: 原始返回
+  - （`raw` 字段已删除，不再持久化原始 LLM 响应以节省磁盘）
 - `evals[]`: 与 attempts 对齐
   - `correct`: bool
   - `pred`: 预测（规范化）
@@ -142,42 +142,46 @@ for problem in dataset:
 - `reasoning_confidence`: 系统基于 schema 计算的推理置信度（见 3.4 节）
 - `flags[]`: 标记，如 `"human_init_concepts"`, `"human_correction"`
 - `stop_reason`: `max_iters|max_tokens|...`
+- `model`: 本次运行使用的 LLM 模型名称（如 `"qwen/qwen2.5-vl-72b-instruct"`）
 
-所有 episode 都会落盘：`runs/YYYYmmdd_HHMMSS/<problem_id>/episode.json`。
+所有 episode 都会落盘：`runs/{benchmark}/{model_sanitized}/{YYYYMMDD_HHMMSS}/{problem_id}/episode.json`（时间戳为东八区 CST）。
 
 ---
 
 ## 2. 文件结构
 
+> **注**：2026-05-26 重构，`socialclaw/stage1/` 已扁平化为 `socialclaw/`，`run_stage1.py` 改名为 `run_clbench.py`，新增 `utils.py` 和 `arc_runner.py`。
+
 ```text
 socialclaw/
-  stage1/
-    run_stage1.py            # CLI 入口（含 --reset-schema / --problem-id / --context-id / --dry-run / --auto-yes 等调试参数）
-    run_arc_agi3.py          # ARC-AGI-3 交互式运行入口（多轮 action/observation + schema rule 学习）
-    types.py                 # Problem 基类、Episode、EvalResult
-    pipeline.py
-    prompt_builder.py
-    stop_policy.py
-    evaluator.py
-    human_io.py              # CLI 主动提问
-    schema/
-      __init__.py
-      graph.py               # SchemaGraph、Concept、Relation
-      retriever.py           # Embedding 检索 + 充足度判断
-      initializer.py         # Agent 自动生成初始化 concept
-      storage.py             # JSONL + npy 读写
-      arc_agi3_parser.py     # ARC-AGI-3 Grid -> Object -> Concept/Relation 解析器
-    agent/
-      __init__.py
-      base.py                # Agent 基类
-      openai_compatible.py   # 可插拔 LLM provider
-    dataset/                 # 数据集加载器
-      base.py
-      pbench.py              # MCQ
-      clbench.py             # 长上下文阅读理解
-      arc.py                 # ARC 网格（静态接口）
-      arc_agi3.py            # ARC-AGI-3 交互式环境包装器
-    logging.py
+  run_clbench.py             # CLI 入口：CL-bench / PBench / ARC（含 --reset-schema / --problem-id / --context-id / --dry-run / --auto-yes 等参数）
+  run_arc_agi3.py            # ARC-AGI-3 CLI 入口（main()，调用 arc_runner.run_arc_agi3()）
+  arc_runner.py              # ARC-AGI-3 核心逻辑：多关卡循环、prompt 构建、action 解析、schema 更新
+  pipeline.py                # CL-bench / PBench 核心 pipeline
+  utils.py                   # 共享工具：load_dotenv / make_run_dir（CST 时间戳）/ add_concepts_with_embeddings / resolve_relation_names / add_relations_resolved
+  types.py                   # Episode、AttemptRecord 数据类
+  prompt_builder.py
+  stop_policy.py
+  evaluator.py               # evaluate() 函数（含 LLM-as-judge）
+  human_io.py                # CLI 主动提问（rich 美化）
+  schema/
+    __init__.py
+    graph.py                 # SchemaGraph、Concept、Relation
+    retriever.py             # Embedding 检索 + 充足度判断
+    initializer.py           # Agent 自动生成初始化 concept；解析人类回答/纠错
+    storage.py               # JSONL + npy 读写（与 SchemaGraph 解耦）
+    arc_agi3_parser.py       # ARC-AGI-3 Grid -> Object -> Concept/Relation；compute_grid_diff；build_action_effect_concepts_and_relations
+  agent/
+    __init__.py
+    base.py                  # Agent Protocol、ReasoningTrace、AgentAttempt、Usage
+    openai_compatible.py     # OpenAI 兼容 API 客户端（含重试/fallback）
+  dataset/
+    base.py                  # Problem、EvalResult
+    pbench.py                # MCQ 数据集
+    clbench.py               # 长上下文阅读理解
+    arc.py                   # ARC-1/2 网格（静态接口）
+    arc_agi3.py              # ARC-AGI-3 交互式环境包装器
+  logging.py                 # write_episode / write_step / write_trajectory
 ```
 
 ---
@@ -186,7 +190,9 @@ socialclaw/
 
 ### 3.1 SchemaGraph
 
-`socialclaw/stage1/schema/graph.py`
+`socialclaw/schema/graph.py`
+
+> **注**：`SchemaGraph` 本身不管理持久化，读写由独立的 `SchemaStorage` 负责。
 
 ```python
 @dataclass
@@ -209,8 +215,7 @@ class Relation:
     evidence: List[dict] = field(default_factory=list)
 
 class SchemaGraph:
-    def __init__(self, concepts_path, relations_path):
-        ...
+    def __init__(self): ...           # 无路径参数，持久化由 SchemaStorage 负责
     def add_concept(self, c: Concept) -> None: ...
     def add_relation(self, r: Relation) -> None: ...
     def get_concept(self, cid: str) -> Optional[Concept]: ...
@@ -226,12 +231,17 @@ class SchemaGraph:
         见 3.4 节详细说明。
         """
         ...
-    def save(self) -> None: ...
+
+# 持久化由独立类负责
+class SchemaStorage:
+    def __init__(self, concepts_path, relations_path, embeddings_path, concept_ids_path): ...
+    def save(self, graph: SchemaGraph, embeddings: Dict) -> None: ...
+    def load(self) -> Tuple[SchemaGraph, Dict]: ...
 ```
 
 ### 3.2 SchemaRetriever
 
-`socialclaw/stage1/schema/retriever.py`
+`socialclaw/schema/retriever.py`
 
 ```python
 @dataclass
@@ -240,7 +250,8 @@ class RetrieveResult:
     missing: List[str]       # 未匹配到的概念名称（需补充）
 
 class SchemaRetriever:
-    def __init__(self, graph: SchemaGraph, embedder, agent: Optional[Agent] = None):
+    def __init__(self, graph: SchemaGraph, embeddings: Dict[str, np.ndarray],
+                 embedder, agent: Optional[Agent] = None):
         ...
 
     def retrieve(self, problem: Problem, top_k=5, threshold=0.75) -> RetrieveResult:
@@ -263,34 +274,33 @@ class SchemaRetriever:
 
 **关键变化**：不再直接把 `problem.prompt` 编码为 query embedding，而是先让 LLM 提取所需 concept，再逐个匹配。这样检索结果更精准，且 missing 列表可直接用于主动提问。
 
+**Prompt 全英文化**：所有 LLM-facing prompt（概念提取、充足度判断、LLM-as-judge、schema 初始化）和 UI 文本均已改为英文。解析标记从 `[推理过程]` / `[最终答案]` 统一为 `[Reasoning Process]` / `[Final Answer]`。
+
 ### 3.3 SchemaInitializer
 
-`socialclaw/stage1/schema/initializer.py`
+`socialclaw/schema/initializer.py`
 
 ```python
 class SchemaInitializer:
     def __init__(self, agent: Agent):
         ...
-    def generate_concepts(self, problem: Problem) -> List[Concept]:
-        """
-        让 Agent 读题，判断回答该问题需要哪些 concept，
-        并输出结构化 concept + relation。
-        """
+    def generate_schema(self, problem: Problem) -> Tuple[List[Concept], List[Relation]]:
+        """让 Agent 读题，输出结构化 concept + relation（JSON 格式）。"""
         ...
     def describe_missing(self, problem: Problem, concepts: List[Concept], missing: List[str] = None) -> dict:
-        """生成向人类提问的描述（问题 + 提示）。若传入 missing，会在问题中明确指出缺少哪些概念。"""
+        """生成向人类提问的描述（question / context / hint 三字段）。"""
         ...
-    def parse_human_answer(self, answer: str, problem: Problem) -> List[Concept]:
-        """将人类自由文本回答解析为结构化 Concept/Relation。"""
+    def parse_human_answer(self, answer: str, problem: Problem) -> Tuple[List[Concept], List[Relation]]:
+        """将人类自由文本回答解析为结构化 Concept + Relation 列表。"""
         ...
     def parse_correction(self, correction: str, problem: Problem) -> dict:
-        """将人类纠错建议解析为 schema 更新操作。"""
+        """将人类纠错建议解析为 schema 更新操作，返回 {add_concepts, add_relations, update_concepts}。"""
         ...
 ```
 
 ### 3.4 Agent 接口与 Reasoning Confidence
 
-`socialclaw/stage1/agent/base.py`
+`socialclaw/agent/base.py`
 
 ```python
 @dataclass
@@ -379,21 +389,22 @@ Stage 1 主路径为**自研 Agent + 可插拔 LLM Provider（Multi-Provider）*
 
 ### 3.5 HumanIO（CLI 主动提问）
 
-`socialclaw/stage1/human_io.py`
+`socialclaw/human_io.py`
+
+> **注**：所有 UI 文字均已英文化（如 `[Proactive Question]`、`Schema Initialization`、`Schema Correction`）。
 
 ```python
 class HumanIO:
     def ask(self, question: str, context: str, hint: str) -> str:
         """
-        终端交互式提问。
-        示例输出：
-          ────────────────────────────────
-          [主动提问] 当前问题缺少必要的概念：
-          问题：{question}
-          上下文：{context[:200]}...
-          提示：{hint}
-          请输入你的回答（多行，Ctrl+D 结束）：
-          ────────────────────────────────
+        终端交互式提问（rich Panel 美化）。
+        示例：
+          [Schema Initialization]
+          Proactive Question
+          Question: ...
+          Context: ...
+          Hint: ...
+          Please enter your answer (multiple lines, empty line to finish):
         """
         ...
 
@@ -413,7 +424,7 @@ class HumanIO:
 
 ### 3.6 PromptBuilder：LLM 如何利用 Schema 信息
 
-`socialclaw/stage1/prompt_builder.py`
+`socialclaw/prompt_builder.py`
 
 #### 输入
 - `problem: Problem`
@@ -425,24 +436,22 @@ class HumanIO:
 
 #### Schema 文本化格式（给 LLM 看）
 
-**方式 A：扁平列表（简单直接，Stage 1 默认）**
+**方式 A：扁平列表（简单直接，当前默认）**
+
+> 所有 prompt 文本已英文化。
 
 ```text
-【可用概念网络】
+[Available Concept Network]
 
-概念 1：摩擦力方向判断
-  描述：摩擦力的方向总是与相对运动（或相对运动趋势）的方向相反。
-  相关概念：→ 相对运动（prerequisite）、→ 受力分析（causes）
+Concept 1: Friction Direction
+  Description: Friction always opposes the direction of relative motion (or tendency of motion).
+  Related concepts: → Relative Motion (prerequisite), → Force Analysis (causes)
 
-概念 2：受力分析
-  描述：分析物体受到的所有外力，包括重力、支持力、摩擦力等。
-  相关概念：→ 牛顿第二定律（causes）
+Concept 2: Force Analysis
+  Description: Analyzes all external forces on an object: gravity, normal force, friction, etc.
+  Related concepts: → Newton's Second Law (causes)
 
 ...
-
-请基于上述概念网络推理本题，并在回答中说明：
-1. 你使用了哪些概念（列出概念名称或编号）
-2. 概念之间的推理路径（如：概念A → 关系 → 概念B）
 ```
 
 **方式 B：Think-on-Graph 逐步探索（进阶，Stage 2 接入）**
@@ -468,23 +477,22 @@ Stage 1 先用 **方式 A**，实现成本低；Stage 2 再升级为 **方式 B*
 
 System prompt 根据 schema 是否为空给出不同约束：
 
-**Schema 非空时**：
+**Schema 非空时**（英文输出约束）：
 ```text
-注意：
-1. 必须使用上方【可用概念网络】中的精确概念名称（如 'Sales Enablement'），
-   不要添加解释或创造新名称。
-2. 推理路径节点必须是概念名称，格式为：概念A -> 关系类型 -> 概念B。
-   不要使用描述性句子作为节点。
-3. 若题目是选择题，[最终答案]只输出选项字母（如 A / B / C）。
+Notes:
+1. In [Reasoning Process], you MUST list the concept names you used.
+   Use EXACT concept names from [Available Concept Network] (e.g. 'Sales Enablement').
+2. Each node in the reasoning path MUST be a concept name; format: ConceptA -> relation_type -> ConceptB.
+3. If the question is multiple choice, [Final Answer] should output only the option letter (e.g. A / B / C).
 ```
 
-**Schema 为空时**：
+**Schema 为空时**（英文输出约束）：
 ```text
-注意：
-1. 当前概念网络为空，请在[推理过程]中直接列出你从题目中识别出的关键术语名称。
-   名称应简洁（不超过10个字），不要输出解释性句子或括号备注。
-2. 推理路径可省略，或仅使用你列出的术语名称。
-3. 若题目是选择题，[最终答案]只输出选项字母（如 A / B / C）。
+Notes:
+1. The concept network is currently empty. In [Reasoning Process], list key term names you identify.
+   Names should be concise (≤10 words); no explanatory sentences.
+2. The reasoning path may be omitted, or use only the term names you listed.
+3. If the question is multiple choice, [Final Answer] should output only the option letter.
 ```
 
 **注意**：LLM 不输出 confidence。confidence 由系统在收到 `reasoning_trace` 后，根据 schema 中 concept/relation 的权重计算得出。
@@ -500,7 +508,7 @@ System prompt 根据 schema 是否为空给出不同约束：
 
 ### 3.7 Problem 基类与 Evaluator
 
-`socialclaw/stage1/dataset/base.py`
+`socialclaw/dataset/base.py`（数据类）、`socialclaw/evaluator.py`（评估函数）
 
 ```python
 @dataclass
@@ -508,8 +516,8 @@ class Problem:
     id: str
     prompt: str                # 给 LLM 答题的完整 prompt
     problem_type: str          # "mcq" | "long_context" | "arc_grid"
-    meta: Dict[str, Any]
-    retrieval_query: str = ""  # 用于 embedding 检索的精简文本（如 CL-bench 取 question 前 2000 字）
+    meta: Dict[str, Any]       # 含 answer_key / choices / rubrics / context_id / msg_count 等
+    retrieval_query: str = ""  # 用于 embedding 检索的精简文本（CL-bench 取 question 前 2000 字）
 
 @dataclass
 class EvalResult:
@@ -518,23 +526,31 @@ class EvalResult:
     gold: Any
     details: str = ""
 
-class Evaluator:
-    def evaluate(self, problem: Problem, attempt: AgentAttempt, agent: Optional[Agent] = None) -> EvalResult:
-        """
-        评估逻辑：
-        - MCQ：提取选项字母，exact match。
-        - long_context：若 agent 提供且 gold 非空，使用 LLM-as-judge
-          （让 LLM 判断 pred 是否语义等价于 gold）；否则 fallback 到 exact match。
-        - arc_grid：exact match。
-        """
-        ...
+# evaluator.py — 独立函数，非 Evaluator 类
+def evaluate(
+    problem: Problem,
+    attempt: AgentAttempt,
+    agent: Optional[Agent] = None,
+) -> EvalResult:
+    """
+    - MCQ：提取选项字母，exact match。
+    - long_context：有 agent 且有 gold 或 rubrics → LLM-as-judge；否则 exact match。
+    - arc_grid：exact match。
+    """
+    ...
 ```
 
 **CL-bench LLM-as-judge**：
 - CL-bench 为开放式长文本问答，gold 答案往往是数百字的文档，exact match 不现实。
 - `evaluate()` 在 `problem_type == "long_context"` 且 `agent` 非空时，构造评估 prompt：
   `题目 + 标准答案 + 模型回答 → LLM 输出 correct/wrong`。
+- 同时支持 rubrics-only 评估：当 gold 为空但有 rubrics 时，LLM judge 根据 rubrics 评判模型回答是否满足标准。
 - 这避免了因摘要/改写导致的假阴性，同时不引入外部评估框架。
+
+**CL-bench 多轮对话数据格式**：
+- CL-bench 原始数据为多轮 messages 格式 `[system, user, assistant, user, assistant, ...]`。
+- 预处理脚本 `scripts/download_clbench.py` 将非最后轮次的所有消息以 `[role]: content` 格式拼接为 context，最后一条 user 作为 question，最后一条 assistant 作为 gold answer。
+- `meta.msg_count` 记录消息总数，用于 pipeline 中按对话轮次正确排序（消息数少 = 早期轮次）。
 
 ---
 
@@ -543,7 +559,7 @@ class Evaluator:
 - Python 版本：建议 3.11/3.12
 - venv 已创建在项目根目录 `.venv/`
 - 使用 `.venv/bin/python` 运行脚本
-- 主要依赖：`datasets`, `sentence-transformers`, `rich`, `pydantic`, `numpy`
+- 主要依赖（见 `pyproject.toml`）：`httpx`, `sentence-transformers`, `rich`, `numpy`, `pillow`
 
 ---
 
@@ -555,7 +571,7 @@ class Evaluator:
 4. `agent/openai_compatible.py` —— 可插拔 LLM Agent
 5. `dataset/clbench.py` + `dataset/arc.py` —— 数据集接口
 6. `prompt_builder.py` —— Schema 注入式 prompt 组装
-7. `pipeline.py` + `run_stage1.py` —— 拼主链路
+7. `pipeline.py` + `run_clbench.py` —— 拼主链路
 8. 跑主实验，记录指标
 
 ---

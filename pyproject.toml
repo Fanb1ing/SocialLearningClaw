@@ -1,6 +1,6 @@
 [project]
 name = "sociallearningclaw"
-version = "0.0.1"
+version = "0.1.0"
 description = "Proactive social-evolve agent"
 requires-python = ">=3.11"
 dependencies = [
@@ -9,7 +9,12 @@ dependencies = [
   "sentence-transformers>=3.0.0",
   "rich>=13.0.0",
   "numpy>=1.24.0",
+  "pillow>=10.0.0",
 ]
+
+[project.scripts]
+sc-clbench = "socialclaw.run_clbench:main"
+sc-arc-agi3 = "socialclaw.run_arc_agi3:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
