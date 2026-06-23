@@ -1,0 +1,310 @@
+{
+  "aime_2024_sg": {
+    "accuracy": 60.0,
+    "n_correct": 6,
+    "n_total": 10,
+    "records": [
+      {
+        "id": 60,
+        "gold": "204",
+        "predicted": "204",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem.\n\n**1. Define Variables and Formulate Equations**\n\nLet:\n*   `d` be the total distance of the route, which is 9 km.\n*   `v` be the initial average speed of the truck in km/h.\n*   `t_s` be the fixed time for loading, unloading, and rest break in hours.\n* "
+      },
+      {
+        "id": 61,
+        "gold": "113",
+        "predicted": "113",
+        "correct": true,
+        "output_snippet": "This is a fascinating geometry problem that combines several powerful theorems. Let's break it down step-by-step.\n\n**1. Define the Geometry**\n\nLet the Butterfly Pavilion be point B, the Rose Fountain be point R, and the Zen Arch be point Z. These three points lie on a circle, forming an inscribed tr"
+      },
+      {
+        "id": 62,
+        "gold": "371",
+        "predicted": "403",
+        "correct": false,
+        "output_snippet": "This is a problem in combinatorial probability. Let's break it down step by step.\n\n### 1. Understanding the Setup\n*   There are 8 food stalls in a circle.\n*   Each stall's sign can be either Red (R) or Blue (B).\n*   Each of the 8 signs is set randomly and independently, with P(R) = P(B) = 1/2.\n*   T"
+      },
+      {
+        "id": 63,
+        "gold": "385",
+        "predicted": "769",
+        "correct": false,
+        "output_snippet": "Here is a step-by-step solution to the problem.\n\n### Step 1: Define the mathematical functions for pitch and brightness\n\nLet `x` be the number of laps for the first visitor on the Sound Spiral, and `y` be the number of laps for the second visitor on the Light Grid.\n\n**The Sound Spiral (Visitor 1):**"
+      },
+      {
+        "id": 64,
+        "gold": "110",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 65,
+        "gold": "104",
+        "predicted": "104",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem:\n\n**1. Identify the Geometric Shape and its Properties**\n\nThe four weather stations Aspen (A), Birch (B), Cedar (C), and Driftwood (D) form the vertices of a tetrahedron in 3D space. We are given the lengths of the six edges:\n- AB = CD = √41 km\n- AC = B"
+      },
+      {
+        "id": 66,
+        "gold": "721",
+        "predicted": "2",
+        "correct": false,
+        "output_snippet": "Here is a step-by-step solution:\n\n### 1. Understanding the Goal\nThe problem asks for the radius `R` of the smallest spherical shell that can enclose *any* container `K` satisfying two conditions:\n1.  The container's outer surface area is `A = 54` square meters.\n2.  The container's internal volume is"
+      },
+      {
+        "id": 67,
+        "gold": "025",
+        "predicted": "25",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem:\n\n**1. Define Variables and Translate the Problem into Equations**\n\nLet `c` be the calibration constant and `p` be the power output.\nFrom the problem statement, we know that `c > 1` and `p > 1`.\n\n*   **Lin's Furnace:** The feedback reading is the logari"
+      },
+      {
+        "id": 68,
+        "gold": "809",
+        "predicted": "809",
+        "correct": true,
+        "output_snippet": "This problem describes a two-player impartial game. To solve it, we can determine the winning and losing positions.\n\nLet *N* be the number of sections in the workload.\nA position is a **Losing Position (L)** if every move from it leads to a Winning Position for the opponent.\nA position is a **Winnin"
+      },
+      {
+        "id": 69,
+        "gold": "116",
+        "predicted": "116",
+        "correct": true,
+        "output_snippet": "This is a conditional probability problem. Let's define the events first.\n\nLet $A$ be the event that Jen receives recognition. This means that at least 2 of the components she selected are also selected by the quality team.\nLet $B$ be the event that Jen receives special recognition. This means that "
+      }
+    ]
+  },
+  "aime_2024_cs": {
+    "accuracy": 90.0,
+    "n_correct": 9,
+    "n_total": 10,
+    "records": [
+      {
+        "id": 60,
+        "gold": "204",
+        "predicted": "204",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem:\n\n**Step 1: Determine the standard mission time.**\nThe problem states the standard mission time in hours is \"the smallest count of distinct items whose arrangements are evenly divisible by eight.\" The number of arrangements of *n* distinct items is *n*!"
+      },
+      {
+        "id": 61,
+        "gold": "113",
+        "predicted": "113",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem:\n\n**Step 1: Define the geometric setup and landmarks.**\nLet the Circular Reflecting Pool be a circle in the plane. The landmarks are points on the circumference of this circle.\n*   C: Chrysalis Conservatory\n*   B: Blooming Serenity Hub\n*   Z: Tranquil Z"
+      },
+      {
+        "id": 62,
+        "gold": "371",
+        "predicted": "371",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem.\n\n### 1. Deconstruct the Problem\nThe Octopus Lumina has 8 light towers arranged in a circle. Each light can be either ruby red (R) or sapphire blue (B), with equal probability. We need to find the probability that for a given configuration of lights, a "
+      },
+      {
+        "id": 63,
+        "gold": "385",
+        "predicted": "366",
+        "correct": false,
+        "output_snippet": "Here is a step-by-step solution to the problem.\n\n### Step 1: Define the Signals and Transformations\n\nLet the angular position of the Sound Spiral visitor be `θ_s` and the Light Grid visitor be `θ_l`. Both angles are in the range `[0, 2π)`.\n\n*   **Core Rhythm Signal (Sound Spiral):** A sinusoidal wav"
+      },
+      {
+        "id": 64,
+        "gold": "110",
+        "predicted": "110",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem:\n\n**Step 1: Determine the mathematical relationship**\n\nLet `x` be the number of rod spins and `y` be the number of sculpture rotations. The problem states the relationship is \"a power of the rod's spins plus a constant offset.\" We can write this as a fu"
+      },
+      {
+        "id": 65,
+        "gold": "104",
+        "predicted": "104",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem:\n\n**1. Determine the Edge Lengths of the Tetrahedron**\n\nThe problem defines four stations: Aspen (A), Birch (B), Cedar (C), and Driftwood (D). The distances between them are based on three baseline measurements.\n\n*   **Baseline 1:** The hypotenuse of a "
+      },
+      {
+        "id": 66,
+        "gold": "721",
+        "predicted": "721",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem.\n\n**Step 1: Define the mathematical properties of the box**\n\nLet the dimensions of the rectangular shipping box be $l$, $w$, and $h$. The problem provides two key geometric constraints:\n\n1.  **Volume:** The internal volume, $V = lwh$, is the smallest pr"
+      },
+      {
+        "id": 67,
+        "gold": "025",
+        "predicted": "25",
+        "correct": true,
+        "output_snippet": "Here is the step-by-step solution to the problem:\n\n**Step 1: Define variables and identify the core equations.**\n\nLet `s` be the system's shared scaling factor.\nLet `r` be the material's reflectivity.\nWe are given that `s > 1` and `r > 1`.\nThe goal is to find the product `rs`.\n\nLin's spectrometer is"
+      },
+      {
+        "id": 68,
+        "gold": "809",
+        "predicted": "809",
+        "correct": true,
+        "output_snippet": "This problem describes a game theory scenario, specifically an impartial game, where the available moves depend only on the state of the game, not on which player is moving. Let's analyze the game to determine the winning and losing positions.\n\n### Step 1: Define the Game\n*   **Players:** Alex (Play"
+      },
+      {
+        "id": 69,
+        "gold": "116",
+        "predicted": "116",
+        "correct": true,
+        "output_snippet": "This is a conditional probability problem. Let's break it down step-by-step.\n\n**Step 1: Determine the parameters of the lottery.**\n\n*   **Pool of Numbers (N):** The problem states the pool consists of:\n    *   Unique single-digit prime numbers: {2, 3, 5, 7}. There are 4 of these.\n    *   Unique sing"
+      }
+    ]
+  },
+  "aime_2025_sg": {
+    "accuracy": 70.0,
+    "n_correct": 7,
+    "n_total": 10,
+    "records": [
+      {
+        "id": 0,
+        "gold": "70",
+        "predicted": "70",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem.\n\n**Step 1: Translate the problem into mathematical expressions.**\n\nLet the machine mode setting be represented by the base `b`.\nThe configuration of Component X is given by the number \"17\" in base `b`. We can convert this to a base-10 value:\nValue of X"
+      },
+      {
+        "id": 1,
+        "gold": "588",
+        "predicted": "588",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem.\n\n**Step 1: Define a coordinate system and list the positions of the markers.**\n\nLet's place Marker Alpha (A) at the origin (0, 0) of a 2D Cartesian coordinate system. Let the first boundary line (containing markers D, E, B) lie along the x-axis. Let th"
+      },
+      {
+        "id": 2,
+        "gold": "16",
+        "predicted": "16",
+        "correct": true,
+        "output_snippet": "This problem requires us to find the number of ways to partition a set of 9 distinct engineers into three distinct groups, subject to certain size constraints. Let's break down the problem into clear steps.\n\n**Step 1: Define the variables and constraints**\n\nLet `s` be the number of engineers assigne"
+      },
+      {
+        "id": 3,
+        "gold": "117",
+        "predicted": "117",
+        "correct": true,
+        "output_snippet": "The problem asks for the number of integer pairs $(x, y)$ that satisfy the equation $12x^2 - xy - 6y^2 = 0$, subject to the constraints $-100 \\le x \\le 100$ and $-100 \\le y \\le 100$.\n\n**Step 1: Factor the given equation.**\nThe equation is a quadratic form in terms of $x$ and $y$. We can factor it as"
+      },
+      {
+        "id": 4,
+        "gold": "279",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 5,
+        "gold": "504",
+        "predicted": "504",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to determine the sum of the squares of the lengths of the two parallel walls.\n\n**Step 1: Understand the Geometry and Extract Key Information**\n\nThe problem describes a greenhouse plot shaped like an isosceles trapezoid. Let's define the variables:\n*   Let `a` and `b` "
+      },
+      {
+        "id": 6,
+        "gold": "821",
+        "predicted": "12",
+        "correct": false,
+        "output_snippet": "Here is a step-by-step solution to the problem:\n\n**Step 1: Understand the Setup**\n\n*   There are 12 distinct components, ordered by size: A < B < C < D < E < F < G < H < I < J < K < L.\n*   These 12 components are randomly paired to form 6 modules. Each module consists of two components.\n*   The 6 mo"
+      },
+      {
+        "id": 7,
+        "gold": "77",
+        "predicted": "78",
+        "correct": false,
+        "output_snippet": "This problem requires us to find the specific avenue number $k$ that results in exactly one possible location for a new radio tower. Let's break down the problem step-by-step.\n\n**Step 1: Set up a coordinate system**\nLet's model the city grid as a Cartesian coordinate plane. We can assign Avenues to "
+      },
+      {
+        "id": 8,
+        "gold": "62",
+        "predicted": "62",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem.\n\n### Step 1: Define the equation of the original track\nLet the central support pillar be at the origin (0, 0) in a Cartesian coordinate system. The horizontal distance from the pillar is `x`, and the height above ground is `y`.\nThe problem states that "
+      },
+      {
+        "id": 9,
+        "gold": "81",
+        "predicted": "81",
+        "correct": true,
+        "output_snippet": "This problem asks for the number of ways to arrange nine different types of machines in a 3x9 grid, subject to specific constraints. This is a combinatorial problem that can be broken down into steps.\n\n### Step 1: Understanding the Factory Layout and Constraints\n\nThe factory floor is a 3x9 grid, rep"
+      }
+    ]
+  },
+  "aime_2025_cs": {
+    "accuracy": 70.0,
+    "n_correct": 7,
+    "n_total": 10,
+    "records": [
+      {
+        "id": 0,
+        "gold": "70",
+        "predicted": "70",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem:\n\n**Step 1: Define the gear setting `n` and its constraints.**\n\nLet `n` be the gear setting, which is the number of seconds it takes for the gear to complete one full turn. The problem states that `n` is a tunable integer value.\n\nThe gear's speed is `1`"
+      },
+      {
+        "id": 1,
+        "gold": "588",
+        "predicted": "588",
+        "correct": true,
+        "output_snippet": "This problem can be solved by representing the locations as vectors originating from Base Camp Alpha and using vector properties to calculate areas.\n\n### Step 1: Define the points as vectors\nLet Base Camp Alpha (A) be the origin (0,0). The two paths are straight lines, so we can define them by two u"
+      },
+      {
+        "id": 2,
+        "gold": "16",
+        "predicted": "16",
+        "correct": true,
+        "output_snippet": "This problem requires a two-step approach. First, we must determine the possible ways to allocate the total number of time slots into three positive, strictly decreasing integer values. Second, for each valid allocation, we must calculate the number of ways to assign the uniquely labeled time slots "
+      },
+      {
+        "id": 3,
+        "gold": "117",
+        "predicted": "117",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem:\n\n**1. Define Variables and Formulate the Equation**\n\nLet `t` be the time delay in hours and `d` be the lateral distance in meters. According to the problem statement, `t` and `d` are integers.\n\nThe constraints on these variables are:\n*   `-100 ≤ t ≤ 10"
+      },
+      {
+        "id": 4,
+        "gold": "279",
+        "predicted": "279",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem.\n\n### Step 1: Deconstruct the Problem and Define the Conditions\n\nThe problem asks us to count the number of timer values, let's call them `T`, that are recorded by a monitor. A value `T` is recorded if it satisfies a set of conditions simultaneously. Le"
+      },
+      {
+        "id": 5,
+        "gold": "504",
+        "predicted": "504",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem:\n\n**Step 1: Analyze the Physics of the Lens System**\n\nThe problem describes a classic optics setup. For a convex lens, the relationship between the object distance (`u`), image distance (`v`), and focal length (`f`) is given by the thin lens equation:\n$"
+      },
+      {
+        "id": 6,
+        "gold": "821",
+        "predicted": "701",
+        "correct": false,
+        "output_snippet": "Here is a step-by-step solution to the problem.\n\n**1. Understand the Setup**\n\n*   We have 12 parcels with distinct weights. Let's label them $P_1, P_2, \\dots, P_{12}$ in ascending order of weight, where $P_1$ is the lightest and $P_{12}$ is the heaviest.\n*   These 12 parcels are grouped into 6 boxes"
+      },
+      {
+        "id": 7,
+        "gold": "77",
+        "predicted": "77",
+        "correct": true,
+        "output_snippet": "Here is a step-by-step solution to the problem.\n\n**1. Set up a Coordinate System**\n\nLet's place your starting position at the origin (0, 0) of a 2D Cartesian plane.\n*   \"Directly to your right\" corresponds to the positive x-axis.\n*   \"Directly above you\" corresponds to the positive y-axis.\n\n**2. Def"
+      },
+      {
+        "id": 8,
+        "gold": "62",
+        "predicted": "60",
+        "correct": false,
+        "output_snippet": "Here is a step-by-step solution to the problem.\n\n### Step 1: Define the Initial Path ($P_1$)\nLet the starting point be the origin (0, 0). The ball is launched horizontally, so the initial velocity is $(v_x, v_y) = (\\sqrt{g/2}, 0)$.\nThe position of the ball at time $t$ is given by:\n- Horizontal posit"
+      },
+      {
+        "id": 9,
+        "gold": "81",
+        "predicted": "126",
+        "correct": false,
+        "output_snippet": "Here is a step-by-step solution to the problem.\n\n### Step 1: Deconstruct the Problem and Formulate a Strategy\n\nThe problem asks for the total number of ways to arrange 27 participants (from 9 distinct squads of 3) into a 9x3 grid, subject to two rules.\n\n1.  **Column Rule:** No two individuals from t"
+      }
+    ]
+  }
+}

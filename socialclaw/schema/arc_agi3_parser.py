@@ -335,12 +335,13 @@ def build_action_effect_concepts_and_relations(
         f"Before: {pre_str}. After: {post_str}"
     )
 
+    level_category = f"level_{level}"
     action_cid = f"action_l{level}_s{step}_{action_name}"
     action_concept = Concept(
         id=action_cid,
         name=f"Action_{action_name}{coord_str.replace(' ', '_').replace('=', '')}",
         description=description,
-        category="action",
+        category=level_category,
         confidence=0.7,
         source="action_effect",
         created_at="",
@@ -353,7 +354,7 @@ def build_action_effect_concepts_and_relations(
             id=no_effect_cid,
             name="NoEffect",
             description=f"Action {action_name}{coord_str} caused no visible grid change",
-            category="action_effect",
+            category=level_category,
             confidence=0.9,
             source="action_effect",
             created_at="",

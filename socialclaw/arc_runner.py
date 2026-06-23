@@ -714,7 +714,8 @@ def run_arc_agi3(
                         graph.add_relation(r)
             add_concepts_with_embeddings(graph, embeddings, embedder, ae_concepts_new)
             for r in ae_relations_new:
-                graph.add_relation(r)
+                if not graph.get_relation(r.source, r.target, r.relation_type):
+                    graph.add_relation(r)
 
             storage.save(graph, embeddings)
 
@@ -823,7 +824,10 @@ def run_arc_agi3(
                         for upd in corrected.get("update_concepts", []):
                             cid = upd.get("id")
                             if cid:
-                                graph.update_concept(cid, **{k: v for k, v in upd.items() if k != "id"})
+                                # parse_correction uses the concept name as id; resolve by name
+                                existing = graph.get_concept(cid) or graph.get_concept_by_name(cid)
+                                if existing:
+                                    graph.update_concept(existing.id, **{k: v for k, v in upd.items() if k != "id"})
                         flags.append("human_correction")
                         storage.save(graph, embeddings)
                         print(f"[ARC] Applied human correction, schema saved.")

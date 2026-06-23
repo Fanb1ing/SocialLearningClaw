@@ -1,0 +1,195 @@
+{
+  "accuracy": 88.88888888888889,
+  "n_correct": 16,
+  "n_total": 18,
+  "records": [
+    {
+      "id": "SEM_GPT5_Mini_D1_000",
+      "task_type": "SemanticRule",
+      "dim": 1,
+      "gold": "H^He_!Li_ O^B_Mg_Mg_P_, Fe^Fe_. Si^Sc_Al_He_B_Ar_: 42",
+      "predicted": "H^He_!Li_ O^B_Mg_Mg_P_, Fe^Fe_. Si^Sc_Al_He_B_Ar_: 42",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Process each character. 'A'->p1->H^, 'b'->p2->He_, '!'->!, 'c'->p3->Li_, ' '->space. 'H'->p8->O^, 'e'->p5->B_, 'l'->p12->Mg_, 'l'->Mg_, 'o'->p15->P_, ','->',', ' '->space. 'Z'->p26->Fe^, 'z'->p26->Fe_, '.'->'.', ' '->space. 'N'->p14->Si^, 'u'->p21->Sc_, 'm'->p13->Al_, 'b'->p2->He_, 'e'->p5->B_, 'r'->p18->Ar_, ':'->':', ' '->space, '4'->4, '2'->2. Concatenate all.\", \"final_answer\": \""
+    },
+    {
+      "id": "SEM_O4_mini_D1_000",
+      "task_type": "SemanticRule",
+      "dim": 1,
+      "gold": "[\"HeHLiNa\",\"LiHNB\"]",
+      "predicted": "[\"HeHLiNa\",\"LiHNB\"]",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Map each letter to alphabet position, then find element with that atomic number. BACK: B=2→Helium→He, A=1→Hydrogen→H, C=3→Lithium→Li, K=11→Sodium→Na → 'HeHLiNa'. CAGE: C=3→Lithium→Li, A=1→Hydrogen→H, G=7→Nitrogen→N, E=5→Boron→B → 'LiHNB'. Note the examples use the position-to-element mapping (e.g., CAT: C=3→Li, A=1→H, T=20→Ca → 'LiHCa').\", \"final_answer\": [\"HeHLiNa\", \"LiHNB\"]}"
+    },
+    {
+      "id": "SEM_Gemini_Flash_D1_000",
+      "task_type": "SemanticRule",
+      "dim": 1,
+      "gold": "GSV JFRXP YILDM ULC QFNKH LEVI GSV OZAB WLT.",
+      "predicted": "GSV JFRXP YILDM ULC QFNKH LEVI GSV OZAB WLT.",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Apply atbash to each uppercase letter (A<->Z, etc.). T->G, H->S, E->V => GSV. Q->J, U->F, I->R, C->X, K->P => JFRXP. B->Y, R->I, O->L, W->D, N->M => YILDM. F->U, O->L, X->C => ULC. J->Q, U->F, M->N, P->K, S->H => QFNKH. O->L, V->E, E->V, R->I => LEVI. T->G, H->S, E->V => GSV. L->O, A->Z, Z->A, Y->B => OZAB. D->W, O->L, G->T => WLT. Period stays.\", \"final_answer\": \"GSV JFRXP YILDM UL"
+    },
+    {
+      "id": "SEM_GPT5_Mini_D2_000",
+      "task_type": "SemanticRule",
+      "dim": 2,
+      "gold": "[\"010010\",\"000000\",\"010100\",\"010001\",\"000000\",\"111010\"]",
+      "predicted": "[\"010010\",\"000000\",\"010100\",\"010001\",\"000000\",\"111010\"]",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Each character maps to a 3x3 block of bits b7..b0 in row-major order, with p8 = even parity bit making total '1' count even. Compute for each:\\n\\nA = 65 = 0b01000001, bits b7..b0 = 0,1,0,0,0,0,0,1. Sum=2 even, P=0. Block rows: row0=b7b6b5='010', row1=b4b3b2='000', row2=b1b0P='010'. So A: ['010','000','010'].\\n\\nB = 66 = 0b01000010, bits=0,1,0,0,0,0,1,0. Sum=2 even, P=0. row0='010', "
+    },
+    {
+      "id": "SEM_O4_mini_D2_000",
+      "task_type": "SemanticRule",
+      "dim": 2,
+      "gold": "[\"?!<>{}[]()\",\"0123-45678\",\"9ABC678XYZ\"]",
+      "predicted": "[\"?!<>{}[]()\",\"0123-45678\",\"9ABC678XYZ\"]",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Step 1: Rotate 180°. Reverse row order: row order becomes ['()[]{}<>!?', '12345-6789', 'ABC123XYZ0']. Then reverse each row's characters.\\nRow '()[]{}<>!?' reversed = '?!><}{][)('\\nRow '12345-6789' reversed = '9876-54321'\\nRow 'ABC123XYZ0' reversed = '0ZYX321CBA'\\nStep 2: Apply mirror mappings to each character.\\n\\nRow1: '?!><}{][)('\\n? -> ?\\n! -> !\\n> -> <\\n< -> >\\n} -> {\\n{ -> }\\n"
+    },
+    {
+      "id": "SEM_Gemini_Flash_D2_000",
+      "task_type": "SemanticRule",
+      "dim": 2,
+      "gold": "[\"J69~-)5;3~<,/'0~8/&~4)1.+~/(9,~*69~2=$%~:/7p\",\"]K[UU~,=079d~w~w~vklu~*/~w w~vmlhup\",\"K.9;5=2~;6=,+d~}^{zy@xtvu?sqaCA#!\\\"cwd|rpob`_>\",\"P/0q.,50*=<29d~\\n\\t\\r\\u0000\"]",
+      "predicted": "[\"J69~-)5;3~<,/'0~8/&~4)1.+~/(9,~*69~2=$%~:/7p\",\"]K[UU~,=079d~w~w~vkluu~*/~w w~vmlhup\",\"K.9;5=2~;6=,+d~}^{zy@xtvu?sqaCA#!\\\"cwd|rpob`_>\",\"P/0q.,50*=<29d~\\n\\t\\r\\u0000\"]",
+      "correct": false,
+      "output_snippet": "{\"reasoning\": \"Apply v_prime = 158 - v for each char in [32,126]; leave others unchanged.\\n\\nLine 1: 'The quick brown fox jumps over the lazy dog.'\\nT(84)->158-84=74='J'\\nh(104)->54='6'\\ne(101)->57='9'\\nspace(32)->126='~'\\nq(113)->45='-'\\nu(117)->41=')'\\ni(105)->53='5'\\nc(99)->59=';'\\nk(107)->51='3'\\nspace->'~'\\nb(98)->60='<'\\nr(114)->44=','\\no(111)->47='/'\\nw(119)->39=\\\"'\\\"\\nn(110)->48='0'\\nspace"
+    },
+    {
+      "id": "SEM_GPT5_Mini_D3_000",
+      "task_type": "SemanticRule",
+      "dim": 3,
+      "gold": "[[\"Svool, Dliow! 87654 \",\"Vevm ild gvcg 0123  \"],[\"ZYXwvu876\\\\/ \",\")(][}{><  !!\",\"9876543210  \"],[]]",
+      "predicted": "[[\"Svool, Dliow! 87654 \",\"Vevm ild gvcg 0123  \"],[\"ZYXwvu876\\\\/ \",\")(][}{><  !!\",\"9876543210  \"],[]]",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Apply character substitutions to each string. Layer1 Row1: 'Hello, World! 12345 ' -> H->S,e->v,l->o,l->o,o->l,','->',',' '->' ',W->D,o->l,r->i,l->o,d->w,'!'->'!',' '->' ',1->8,2->7,3->6,4->5,5->4,' '->' ' = 'Svool, Dliow! 87654 '. Row2: 'Even row text 9876  ' -> E->V,v->e,e->v,n->m,' ',r->i,o->l,w->d,' ',t->g,e->v,x->c,t->g,' ',9->0,8->1,7->2,6->3,' ',' ' = 'Vevm ild gvcg 0123  '. L"
+    },
+    {
+      "id": "SEM_O4_mini_D3_000",
+      "task_type": "SemanticRule",
+      "dim": 3,
+      "gold": "[[[\"c\",\"Z\"],[\"A\",\"X\"]],[[\"!\",\"y\"],[\"a\",\"1\"]]]",
+      "predicted": "[[[\"c\",\"Z\"],[\"A\",\"X\"]],[[\"!\",\"y\"],[\"a\",\"1\"]]]",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Input is 2x2x2 cube C[i][j][k]. N=2. Apply rotation: C'[i'][j'][k'] = C[i][j][k] where i'=k, j'=j, k'=N-1-i=1-i. So C'[k][j][1-i]=C[i][j][k]. Let me list input elements: C[0][0][0]='A', C[0][0][1]='b', C[0][1][0]='C', C[0][1][1]='1', C[1][0][0]='x', C[1][0][1]='!', C[1][1][0]='Z', C[1][1][1]='z'. Now map each to C'[k][j][1-i]: C[0][0][0]='A'->C'[0][0][1]; C[0][0][1]='b'->C'[1][0][1]"
+    },
+    {
+      "id": "SEM_Gemini_Flash_D3_000",
+      "task_type": "SemanticRule",
+      "dim": 3,
+      "gold": "[[[\"V\",\":\",\"4\",\"5\",\"3\",\"w\"],[\" \",\"I\",\"2\",\"0\",\"7\",\"@\"],[\" \",\"\\\"\",\"R\",\"*\",\"0\",\"=\"]],[[\"0\",\"2\",\"\\\"\",\"9\",\"0\",\"%\"],[\":\",\",\",\"4\",\"u\",\"%\",\"&\"],[\"V\",\"=\",\">\",\"4\",\"&\",\"C\"]],[[\"1\",\"=\",\"9\",\"5\",\"=\",\"%\"],[\"\\\"\",\"#\",\"$\",\"%\",\"&\",\"'\"],[\"]\",\"5\",\"@\",\"w\",\"'\",\"(\"]]]",
+      "predicted": "",
+      "correct": false,
+      "output_snippet": "{\"reasoning\": \"For each char at (x,y,z): p=ord(C)-32, p_atbash=94-p, S=(x+y+z)%95, p_transformed=(p_atbash+S)%95, C_out=chr(p_transformed+32). Note z is column index, y is row, x is depth(outer). Wait - need to determine coordinate mapping. The cube is indexed [x][y][z] in examples. Let me treat outer index as x, middle as y, inner as z. Actually let me just compute using the position indices: out"
+    },
+    {
+      "id": "SYM_GPT5_Mini_D1_000",
+      "task_type": "SymbolicRule",
+      "dim": 1,
+      "gold": "smjxfnobkiqeTpu o wr cu h",
+      "predicted": "smjxfnobkiqeTpu o wr cu h",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Input: 'The quick brown fox jumps'. Let me index each character.\\nIndex: char\\n0:T\\n1:h\\n2:e\\n3:(space)\\n4:q\\n5:u\\n6:i\\n7:c\\n8:k\\n9:(space)\\n10:b\\n11:r\\n12:o\\n13:w\\n14:n\\n15:(space)\\n16:f\\n17:o\\n18:x\\n19:(space)\\n20:j\\n21:u\\n22:m\\n23:p\\n24:s\\nLength = 25.\\nEven indices (0,2,4,...,24): T,e,q,i,k,b,o,n,f,x,j,m,s => E = 'Teqikbonfxjms' (13 chars).\\nOdd indices (1,3,5,...,23): h,(space)"
+    },
+    {
+      "id": "SYM_O4_mini_D1_000",
+      "task_type": "SymbolicRule",
+      "dim": 1,
+      "gold": "[\"o\",\"p\",\"n\",\"y\",\"3\",\"t\",\"h\"]",
+      "predicted": "[\"o\",\"p\",\"n\",\"y\",\"3\",\"t\",\"h\"]",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"N=7, k=ceil(7/2)=4. A=S[0..3]=['p','y','t','h'], B=S[4..6]=['o','n','3']. For i from 0 to |B|-1=2: i=0: B[0]='o', A[0]='p'; i=1: B[1]='n', A[1]='y'; i=2: B[2]='3', A[2]='t'. Since |A|=4 > |B|=3 (N odd), append A[3]='h'. Result: ['o','p','n','y','3','t','h'].\", \"final_answer\": [\"o\", \"p\", \"n\", \"y\", \"3\", \"t\", \"h\"]}"
+    },
+    {
+      "id": "SYM_Gemini_Flash_D1_000",
+      "task_type": "SymbolicRule",
+      "dim": 1,
+      "gold": "TCNMRZHIKWFUPETAYEUBOOJSVHLDGQRXOEO",
+      "predicted": "TCNMRZHIKWFUPETAYEUBOOJSVHLDGQRXOEO",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Input length = 35. R = (35 % 3) + 2 = (2) + 2 = 4 rails. Zig-zag pattern for R=4: rails cycle 0,1,2,3,2,1,0,1,2,3,2,1,... with period 6. Let me index each character. String: T(0)H(1)E(2)Q(3)U(4)I(5)C(6)K(7)B(8)R(9)O(10)W(11)N(12)F(13)O(14)X(15)J(16)U(17)M(18)P(19)S(20)O(21)V(22)E(23)R(24)T(25)H(26)E(27)L(28)A(29)Z(30)Y(31)D(32)O(33)G(34). Rail assignment by position p: pattern repea"
+    },
+    {
+      "id": "SYM_GPT5_Mini_D2_000",
+      "task_type": "SymbolicRule",
+      "dim": 2,
+      "gold": "[\"THIST\",\"ISANI\",\"EXAME\",\"THIST\"]",
+      "predicted": "[\"THIST\",\"ISANI\",\"EXAME\",\"THIST\"]",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Input has H=3 rows, W=4 cols. Output is 4 rows by 5 cols. Copy original cells, append bottom row equal to first row's columns, append right column equal to first column's rows, corner = input(0,0)='T'. Row0: 'THIS' + input(0,0)='T' => 'THIST'. Row1: 'ISAN' + input(1,0)='I' => 'ISANI'. Row2: 'EXAM' + input(2,0)='E' => 'EXAME'. Bottom row: first row 'THIS' + corner 'T' => 'THIST'.\", \""
+    },
+    {
+      "id": "SYM_O4_mini_D2_000",
+      "task_type": "SymbolicRule",
+      "dim": 2,
+      "gold": "[[\"!\",\"@\",\"1\",\"6\"],[\"3\",\"4\",\"5\",\"0\"],[\"7\",\"8\",\"9\",\"2\"]]",
+      "predicted": "[[\"!\",\"@\",\"1\",\"6\"],[\"3\",\"4\",\"5\",\"0\"],[\"7\",\"8\",\"9\",\"2\"]]",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Grid is 3x4 (N=3, M=4). ASCII: '1'=49,'2'=50,'3'=51,'4'=52,'5'=53,'6'=54,'7'=55,'8'=56,'9'=57,'0'=48,'!'=33,'@'=64.\\n\\nStep 1: Row rotations right by s_i = (sum) mod 4.\\nRow0: 49+50+51+52=202, 202 mod 4 = 2. Rotate right by 2: ['1','2','3','4'] -> ['3','4','1','2'].\\nRow1: 53+54+55+56=218, 218 mod 4 = 2. Rotate right by 2: ['5','6','7','8'] -> ['7','8','5','6'].\\nRow2: 57+48+33+64=2"
+    },
+    {
+      "id": "SYM_Gemini_Pro_D2_000",
+      "task_type": "SymbolicRule",
+      "dim": 2,
+      "gold": "[[\"P\",\"C\",\"U\",\"F\",\"O\",\"S\"],[\"S\",\"F\",\"L\",\"R\",\"R\",\"N\"],[\"D\",\"L\",\"P\",\"E\",\"O\",\"I\"],[\"A\",\"A\",\"M\",\"H\",\"L\",\"N\"],[\"R\",\"M\",\"T\",\"O\",\"A\",\"R\"],[\"!\",\"Y\",\"O\",\"N\",\"O\",\"G\"]]",
+      "predicted": "[[\"P\",\"C\",\"U\",\"F\",\"O\",\"S\"],[\"S\",\"F\",\"L\",\"R\",\"R\",\"N\"],[\"D\",\"L\",\"P\",\"E\",\"O\",\"I\"],[\"A\",\"A\",\"M\",\"H\",\"L\",\"N\"],[\"R\",\"M\",\"T\",\"O\",\"A\",\"R\"],[\"!\",\"Y\",\"O\",\"N\",\"O\",\"G\"]]",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Grid is 6x6. Step 1: Row shift left by r.\\nRow0 (shift 0): P Y T H O N\\nRow1 (shift 1): S C O O L I\\nRow2 (shift 2): D F U N A N\\nRow3 (shift 3): A L L F O R\\nRow4 (shift 4): R A P R O G\\nRow5 (shift 5): ! M M E R S\\n\\nIntermediate grid:\\nr0: P Y T H O N\\nr1: S C O O L I\\nr2: D F U N A N\\nr3: A L L F O R\\nr4: R A P R O G\\nr5: ! M M E R S\\n\\nStep 2: Column shift up by c.\\nColumn 0 (s"
+    },
+    {
+      "id": "SYM_GPT5_Mini_D3_000",
+      "task_type": "SymbolicRule",
+      "dim": 3,
+      "gold": "[[\"aei\",\"umq\"],[\"jbf\",\"rvn\"],[\"gkc\",\"osw\"],[\"dhl\",\"xpt\"]]",
+      "predicted": "[[\"aei\",\"umq\"],[\"jbf\",\"rvn\"],[\"gkc\",\"osw\"],[\"dhl\",\"xpt\"]]",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Input dimensions: D=2, H=3, W=4. Output dimensions: W=4 (depth) × D=2 (rows) × H=3 (cols). Step 1: intermediate[x][z][y] = input[z][y][x]. Build intermediate cuboid of size 4×2×3. For each z' in 0..3, y' in 0..1, x' in 0..2: char = input[y'][x'][z']. z'=0: row y'=0: input[0][x'][0] for x'=0,1,2 = a,e,i -> 'aei'; row y'=1: input[1][x'][0] = m,q,u -> 'mqu'. z'=1: y'=0: input[0][x'][1]"
+    },
+    {
+      "id": "SYM_O4_mini_D3_000",
+      "task_type": "SymbolicRule",
+      "dim": 3,
+      "gold": "[[[2,0],[6,4]],[[1,3],[5,7]]]",
+      "predicted": "[[[2,0],[6,4]],[[1,3],[5,7]]]",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Same input as the example, so output is the same: [[[2, 0], [6, 4]], [[1, 3], [5, 7]]].\", \"final_answer\": [[[2, 0], [6, 4]], [[1, 3], [5, 7]]]}"
+    },
+    {
+      "id": "SYM_Gemini_Flash_D3_000",
+      "task_type": "SymbolicRule",
+      "dim": 3,
+      "gold": "[[[\"L\",\"K\",\"S\",\"I\"],[\"N\",\"T\",\"L\",\"E\"],[\"W\",\"Y\",\"N\",\"O\"]],[[\"T\",\"R\",\"U\",\"C\"],[\"O\",\"N\",\"S\",\"I\"],[\"N\",\"T\",\"H\",\"I\"]],[[\"C\",\"S\",\"P\",\"E\"],[\"A\",\"L\",\"N\",\"I\"],[\"T\",\"I\",\"N\",\"S\"]]]",
+      "predicted": "[[[\"L\",\"K\",\"S\",\"I\"],[\"N\",\"T\",\"L\",\"E\"],[\"W\",\"Y\",\"N\",\"O\"]],[[\"T\",\"R\",\"U\",\"C\"],[\"O\",\"N\",\"S\",\"I\"],[\"N\",\"T\",\"H\",\"I\"]],[[\"C\",\"S\",\"P\",\"E\"],[\"A\",\"L\",\"N\",\"I\"],[\"T\",\"I\",\"N\",\"S\"]]]",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"Apply zig-zag shift per layer: even rows shift right, odd rows shift left.\\n\\nLayer 0:\\nRow0 (even, right): SPEC -> CSPE\\nRow1 (odd, left): IALN -> ALNI\\nRow2 (even, right): INST -> TINS\\n\\nLayer 1:\\nRow0 (even, right): RUCT -> TRUC\\nRow1 (odd, left): IONS -> ONSI\\nRow2 (even, right): THIN -> NTHI\\n\\nLayer 2:\\nRow0 (even, right): KSIL -> LKSI\\nRow1 (odd, left): ENTL -> NTLE\\nRow2 (e"
+    }
+  ],
+  "by_category": {
+    "Sem-D1": {
+      "accuracy": 100.0,
+      "n": 3
+    },
+    "Sem-D2": {
+      "accuracy": 66.66666666666667,
+      "n": 3
+    },
+    "Sem-D3": {
+      "accuracy": 66.66666666666667,
+      "n": 3
+    },
+    "Sym-D1": {
+      "accuracy": 100.0,
+      "n": 3
+    },
+    "Sym-D2": {
+      "accuracy": 100.0,
+      "n": 3
+    },
+    "Sym-D3": {
+      "accuracy": 100.0,
+      "n": 3
+    }
+  }
+}

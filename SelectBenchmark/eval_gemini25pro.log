@@ -1,0 +1,73 @@
+
+============================================================
+Model: gemini-2.5-pro  (google/gemini-2.5-pro)
+============================================================
+
+  [aime_2024_sg] 10 samples
+    [01/10] ✓  pred='204'  gold='204'
+    [02/10] ✓  pred='113'  gold='113'
+    [03/10] ✗  pred='403'  gold='371'
+    [04/10] ✗  pred='769'  gold='385'
+    [05/10] ✗  pred=None  gold='110'
+    [06/10] ✓  pred='104'  gold='104'
+    API error (attempt 1): Expecting value: line 785 column 1 (char 4312)
+    API error (attempt 2): Request timed out.
+    [07/10] ✗  pred='2'  gold='721'
+    [08/10] ✓  pred='25'  gold='025'
+    [09/10] ✓  pred='809'  gold='809'
+    [10/10] ✓  pred='116'  gold='116'
+  => Accuracy: 60.0%  (6/10)
+
+  [aime_2024_cs] 10 samples
+    [01/10] ✓  pred='204'  gold='204'
+    [02/10] ✓  pred='113'  gold='113'
+    [03/10] ✓  pred='371'  gold='371'
+    [04/10] ✗  pred='366'  gold='385'
+    [05/10] ✓  pred='110'  gold='110'
+    [06/10] ✓  pred='104'  gold='104'
+    [07/10] ✓  pred='721'  gold='721'
+    [08/10] ✓  pred='25'  gold='025'
+    [09/10] ✓  pred='809'  gold='809'
+    [10/10] ✓  pred='116'  gold='116'
+  => Accuracy: 90.0%  (9/10)
+
+  [aime_2025_sg] 10 samples
+    [01/10] ✓  pred='70'  gold='70'
+    [02/10] ✓  pred='588'  gold='588'
+    [03/10] ✓  pred='16'  gold='16'
+    [04/10] ✓  pred='117'  gold='117'
+    [05/10] ✗  pred=None  gold='279'
+    [06/10] ✓  pred='504'  gold='504'
+    API error (attempt 1): Expecting value: line 433 column 1 (char 2376)
+    API error (attempt 2): Expecting value: line 371 column 1 (char 2035)
+    [07/10] ✗  pred='12'  gold='821'
+    [08/10] ✗  pred='78'  gold='77'
+    [09/10] ✓  pred='62'  gold='62'
+    [10/10] ✓  pred='81'  gold='81'
+  => Accuracy: 70.0%  (7/10)
+
+  [aime_2025_cs] 10 samples
+    [01/10] ✓  pred='70'  gold='70'
+    [02/10] ✓  pred='588'  gold='588'
+    [03/10] ✓  pred='16'  gold='16'
+    [04/10] ✓  pred='117'  gold='117'
+    [05/10] ✓  pred='279'  gold='279'
+    [06/10] ✓  pred='504'  gold='504'
+    [07/10] ✗  pred='701'  gold='821'
+    [08/10] ✓  pred='77'  gold='77'
+    [09/10] ✗  pred='60'  gold='62'
+    [10/10] ✗  pred='126'  gold='81'
+  => Accuracy: 70.0%  (7/10)
+
+
+========================================================================
+RESULTS SUMMARY vs PAPER
+========================================================================
+Split                    DeepSeek-R1(paper)    DeepSeek-R1(ours)    Claude-Opus-4.7
+------------------------------------------------------------------------
+aime_2024_sg                          73.3%                60.0%              80.0%
+aime_2024_cs                          76.7%                90.0%              60.0%
+aime_2025_sg                          56.7%                70.0%              90.0%
+aime_2025_cs                          50.0%                70.0%              60.0%
+
+Results saved to /data5/fanbingbing/SocialLearningClaw/SelectBenchmark/results/contextmath/

@@ -18,6 +18,15 @@ def main() -> None:
     if os.environ.get("ARC_AGI_API_KEY") and not os.environ.get("ARC_API_KEY"):
         os.environ["ARC_API_KEY"] = os.environ["ARC_AGI_API_KEY"]
 
+    # arc_agi SDK (three.arcprize.org) fails with SSL errors through the system proxy,
+    # but OpenRouter requires the proxy for regional access.
+    # Solution: only bypass proxy for arcprize.org; keep proxy active for everything else.
+    _arc_no_proxy = "three.arcprize.org,arcprize.org"
+    existing = os.environ.get("no_proxy") or os.environ.get("NO_PROXY") or ""
+    combined = f"{_arc_no_proxy},{existing}" if existing else _arc_no_proxy
+    os.environ["no_proxy"] = combined
+    os.environ["NO_PROXY"] = combined
+
     p = argparse.ArgumentParser(description="Run ARC-AGI-3 with schema-based reasoning")
     p.add_argument("--game-id", required=True, help="ARC-AGI-3 game ID (e.g. sk48-d8078629)")
     p.add_argument("--base-url", default="https://openrouter.ai/api/v1", help="OpenAI-compatible base URL")

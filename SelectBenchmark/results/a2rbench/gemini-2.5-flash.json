@@ -1,0 +1,195 @@
+{
+  "accuracy": 50.0,
+  "n_correct": 9,
+  "n_total": 18,
+  "records": [
+    {
+      "id": "SEM_GPT5_Mini_D1_000",
+      "task_type": "SemanticRule",
+      "dim": 1,
+      "gold": "H^He_!Li_ O^B_Mg_Mg_P_, Fe^Fe_. Si^Sc_Al_He_B_Ar_: 42",
+      "predicted": "H^He_!Li_ O^B_Mg_Mg_P_, Fe^Fe_. Si^Sc_Al_He_B_Ar_: 42",
+      "correct": true,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"The rule states that for each character in the input string:\\n1. If it's an English letter, find its position in the alphabet (case-insensitive). Replace it with the chemical element symbol corresponding to that atomic number. Append '^' if the original letter was uppercase, '_' if lowercase.\\n2. If it's not an English letter, leave it unchanged.\\n\\nLet's apply this to 'A"
+    },
+    {
+      "id": "SEM_O4_mini_D1_000",
+      "task_type": "SemanticRule",
+      "dim": 1,
+      "gold": "[\"HeHLiNa\",\"LiHNB\"]",
+      "predicted": "[\"HeHLiNa\",\"LiHNB\"]",
+      "correct": true,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"The rule states that for each letter in the input string, we find its alphabetical position (A=1, B=2, ..., Z=26). Then, we find the chemical element corresponding to that atomic number and replace the letter with the element's symbol. Let's apply this to the given examples first to confirm the rule and then to the question.\\n\\nExample 1: 'CAT'\\n- C: 3rd letter. Element w"
+    },
+    {
+      "id": "SEM_Gemini_Flash_D1_000",
+      "task_type": "SemanticRule",
+      "dim": 1,
+      "gold": "GSV JFRXP YILDM ULC QFNKH LEVI GSV OZAB WLT.",
+      "predicted": "GSV JFRPX YILDM ULC QFNKH LEVI GSV OAZB WLT.",
+      "correct": false,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"The rule states that uppercase English letters are transformed into their symmetrical counterparts in the alphabet. This means 'A' (1st letter) becomes 'Z' (26th letter), 'B' (2nd) becomes 'Y' (25th), and so on, such that the sum of their 1-based ordinal positions is 27. All other characters (lowercase letters, numbers, symbols, spaces) remain unchanged. I will iterate th"
+    },
+    {
+      "id": "SEM_GPT5_Mini_D2_000",
+      "task_type": "SemanticRule",
+      "dim": 2,
+      "gold": "[\"010010\",\"000000\",\"010100\",\"010001\",\"000000\",\"111010\"]",
+      "predicted": "[\"010010\",\"000000\",\"010100\",\"010001\",\"000000\",\"111010\"]",
+      "correct": true,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"The rule describes a transformation where each input character is converted into a 3x3 meta-block of '0's and '1's. The first 8 cells of the 3x3 block represent the 8 bits of the character's ASCII value (MSB first), and the 9th cell (bottom-right) is an even-parity bit for the entire 3x3 block. The output grid is formed by concatenating these 3x3 blocks.\\n\\nLet's break do"
+    },
+    {
+      "id": "SEM_O4_mini_D2_000",
+      "task_type": "SemanticRule",
+      "dim": 2,
+      "gold": "[\"?!<>{}[]()\",\"0123-45678\",\"9ABC678XYZ\"]",
+      "predicted": "[\"!?<>{}[]()\",\"012-45678\",\"9ABC678XYZ\"]",
+      "correct": false,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"The rule involves two main steps: 1. Rotate the grid 180 degrees. 2. Replace characters based on mirror mappings. Let's apply these steps to the given input: `[\\\"ABC123XYZ0\\\", \\\"12345-6789\\\", \\\"()[]{}<>!?\\\"]`.\\n\\n**Step 1: Rotate the grid 180 degrees.**\\nThis means reversing the order of rows and then reversing the characters within each row.\\n\\nOriginal grid:\\n```\\nABC12"
+    },
+    {
+      "id": "SEM_Gemini_Flash_D2_000",
+      "task_type": "SemanticRule",
+      "dim": 2,
+      "gold": "[\"J69~-)5;3~<,/'0~8/&~4)1.+~/(9,~*69~2=$%~:/7p\",\"]K[UU~,=079d~w~w~vklu~*/~w w~vmlhup\",\"K.9;5=2~;6=,+d~}^{zy@xtvu?sqaCA#!\\\"cwd|rpob`_>\",\"P/0q.,50*=<29d~\\n\\t\\r\\u0000\"]",
+      "predicted": "",
+      "correct": false,
+      "output_snippet": "```json\n{\"reasoning\": \"The rule states that for each character 'c' in the input grid, we obtain its ASCII value 'v'. If 'v' is within the range [32, 126], the transformed ASCII value 'v_prime' is calculated as (32 + 126) - v. Otherwise, the character remains unchanged. I will apply this rule character by character to each string in the input list.\\n\\nLet's break down the transformation for the fir"
+    },
+    {
+      "id": "SEM_GPT5_Mini_D3_000",
+      "task_type": "SemanticRule",
+      "dim": 3,
+      "gold": "[[\"Svool, Dliow! 87654 \",\"Vevm ild gvcg 0123  \"],[\"ZYXwvu876\\\\/ \",\")(][}{><  !!\",\"9876543210  \"],[]]",
+      "predicted": "[[\"Svolo, Dliow! 87654 \",\"Vevm ilw gvcg 0123  \"],[\"ZYXwvu876\\\\/ \",\")(][}{><  !!\",\"9876543210  \"],[]]",
+      "correct": false,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"The task is to apply a character-by-character transformation to a 3D cube of strings. The transformation rules are clearly defined for uppercase letters (Atbash), lowercase letters (Atbash), digits (9's complement), specific paired punctuation (swaps), space (identity), and all other characters (identity).\\n\\nI will process each character in the input cube according to th"
+    },
+    {
+      "id": "SEM_O4_mini_D3_000",
+      "task_type": "SemanticRule",
+      "dim": 3,
+      "gold": "[[[\"c\",\"Z\"],[\"A\",\"X\"]],[[\"!\",\"y\"],[\"a\",\"1\"]]]",
+      "predicted": "[[[\"c\",\"Z\"],[\"A\",\"X\"]],[[\"!\",\"y\"],[\"a\",\"1\"]]]",
+      "correct": true,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"The problem asks us to apply a given transformation rule to a 2x2x2 cube. The rule consists of two main steps: a 90-degree clockwise rotation about the vertical (Y) axis, followed by an Atbash cipher on each character.\\n\\nLet's break down the process for the given input: [[['A', 'b'], ['C', '1']], [['x', '!'], ['Z', 'z']]].\\n\\nFirst, let's identify the dimensions of the i"
+    },
+    {
+      "id": "SEM_Gemini_Flash_D3_000",
+      "task_type": "SemanticRule",
+      "dim": 3,
+      "gold": "[[[\"V\",\":\",\"4\",\"5\",\"3\",\"w\"],[\" \",\"I\",\"2\",\"0\",\"7\",\"@\"],[\" \",\"\\\"\",\"R\",\"*\",\"0\",\"=\"]],[[\"0\",\"2\",\"\\\"\",\"9\",\"0\",\"%\"],[\":\",\",\",\"4\",\"u\",\"%\",\"&\"],[\"V\",\"=\",\">\",\"4\",\"&\",\"C\"]],[[\"1\",\"=\",\"9\",\"5\",\"=\",\"%\"],[\"\\\"\",\"#\",\"$\",\"%\",\"&\",\"'\"],[\"]\",\"5\",\"@\",\"w\",\"'\",\"(\"]]]",
+      "predicted": "",
+      "correct": false,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"The rule describes a character transformation based on its ASCII value and its 3D coordinates (x, y, z). Let's break down the process for a single character and then apply it to the entire input cube.\\n\\n**Rule Breakdown:**\\n1.  `min_val = 32`, `N = 95`.\\n2.  `p = ord(C) - min_val` (0-indexed position in the character set).\\n3.  `p_atbash = (N - 1 - p)` (Atbash transforma"
+    },
+    {
+      "id": "SYM_GPT5_Mini_D1_000",
+      "task_type": "SymbolicRule",
+      "dim": 1,
+      "gold": "smjxfnobkiqeTpu o wr cu h",
+      "predicted": "pjxfnobkiqeTsu o wr cu h",
+      "correct": false,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"Let's break down the transformation for the input 'The quick brown fox jumps'.\\n\\n1. **Input String A:** 'The quick brown fox jumps'\\n   Length n = 24\\n\\n2. **Form sequence E (even indices):**\\n   Indices: 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22\\n   Characters: T, e, q, i, k, b, o, n, f, x, j, p\\n   E = 'Teqikbonfxjp'\\n\\n3. **Form sequence O (odd indices):**\\n   Indices"
+    },
+    {
+      "id": "SYM_O4_mini_D1_000",
+      "task_type": "SymbolicRule",
+      "dim": 1,
+      "gold": "[\"o\",\"p\",\"n\",\"y\",\"3\",\"t\",\"h\"]",
+      "predicted": "[\"o\",\"p\",\"n\",\"y\",\"3\",\"t\",\"h\"]",
+      "correct": true,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"Let's apply the given rule to the input S = ['p', 'y', 't', 'h', 'o', 'n', '3'].\\n\\n1. **Input string S:** ['p', 'y', 't', 'h', 'o', 'n', '3'].\\n2. **Length N:** N = 7.\\n3. **Compute k:** k = ceiling(N/2) = ceiling(7/2) = ceiling(3.5) = 4.\\n4. **Split S into A and B:**\\n   - A = S[0..k-1] = S[0..3] = ['p', 'y', 't', 'h']\\n   - B = S[k..N-1] = S[4..6] = ['o', 'n', '3']\\n5."
+    },
+    {
+      "id": "SYM_Gemini_Flash_D1_000",
+      "task_type": "SymbolicRule",
+      "dim": 1,
+      "gold": "TCNMRZHIKWFUPETAYEUBOOJSVHLDGQRXOEO",
+      "predicted": "TUBNS RLDHQIKRWFXUPOETAYOECOOMVHZG",
+      "correct": false,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"The rule is 'Dynamic Rail Fence' encoding. I need to calculate the number of rails (R) based on the input string's length modulo 3, then place characters in a zig-zag pattern across these rails, and finally read the rails sequentially. \\n\\nFor the input 'THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG':\\n1. **Calculate R:** The length of the input string is 34. `R = (34 % 3) + 2 = 1 "
+    },
+    {
+      "id": "SYM_GPT5_Mini_D2_000",
+      "task_type": "SymbolicRule",
+      "dim": 2,
+      "gold": "[\"THIST\",\"ISANI\",\"EXAME\",\"THIST\"]",
+      "predicted": "[\"THIST\",\"ISANI\",\"EXAME\",\"THIST\"]",
+      "correct": true,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"The rule states that we need to create a new grid with dimensions (H+1) x (W+1). The original content is copied to the top-left HxW portion. Then, a new bottom row is added, which is a copy of the input's first row. A new rightmost column is added, which is a copy of the input's first column. Finally, the new bottom-right corner cell is set to the input's top-left cell.\\n"
+    },
+    {
+      "id": "SYM_O4_mini_D2_000",
+      "task_type": "SymbolicRule",
+      "dim": 2,
+      "gold": "[[\"!\",\"@\",\"1\",\"6\"],[\"3\",\"4\",\"5\",\"0\"],[\"7\",\"8\",\"9\",\"2\"]]",
+      "predicted": "[[\"!\",\"@\",\"1\",\"6\"],[\"3\",\"4\",\"5\",\"0\"],[\"7\",\"8\",\"9\",\"2\"]]",
+      "correct": true,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"The rule involves two main steps: row rotation and column rotation. Let's break down the application for the given input grid.\\n\\nInput Grid (N=3, M=4):\\n[[\\\"1\\\", \\\"2\\\", \\\"3\\\", \\\"4\\\"],\\n [\\\"5\\\", \\\"6\\\", \\\"7\\\", \\\"8\\\"],\\n [\\\"9\\\", \\\"0\\\", \\\"!\\\", \\\"@\\\"]]\\n\\nStep 1: Row Rotations\\n\\nRow 0: [\\\"1\\\", \\\"2\\\", \\\"3\\\", \\\"4\\\"]\\nASCII values: 49, 50, 51, 52\\nSum = 49 + 50 + 51 + 52 = 202\\"
+    },
+    {
+      "id": "SYM_Gemini_Pro_D2_000",
+      "task_type": "SymbolicRule",
+      "dim": 2,
+      "gold": "[[\"P\",\"C\",\"U\",\"F\",\"O\",\"S\"],[\"S\",\"F\",\"L\",\"R\",\"R\",\"N\"],[\"D\",\"L\",\"P\",\"E\",\"O\",\"I\"],[\"A\",\"A\",\"M\",\"H\",\"L\",\"N\"],[\"R\",\"M\",\"T\",\"O\",\"A\",\"R\"],[\"!\",\"Y\",\"O\",\"N\",\"O\",\"G\"]]",
+      "predicted": "[[\"P\",\"C\",\"U\",\"F\",\"O\",\"R\"],[\"S\",\"F\",\"P\",\"R\",\"O\",\"G\"],[\"D\",\"L\",\"M\",\"M\",\"E\",\"N\"],[\"A\",\"A\",\"T\",\"H\",\"L\",\"I\"],[\"R\",\"!\",\"O\",\"O\",\"A\",\"N\"],[\"S\",\"Y\",\"L\",\"N\",\"G\",\"R\"]]",
+      "correct": false,
+      "output_snippet": "```json\n{\"reasoning\": \"The transformation involves two steps: row shift and column shift. I will apply these steps sequentially to the input grid.\\n\\nInput Grid (H=6, W=6):\\n[[\\\"P\\\", \\\"Y\\\", \\\"T\\\", \\\"H\\\", \\\"O\\\", \\\"N\\\"],\\n [\\\"I\\\", \\\"S\\\", \\\"C\\\", \\\"O\\\", \\\"O\\\", \\\"L\\\"],\\n [\\\"A\\\", \\\"N\\\", \\\"D\\\", \\\"F\\\", \\\"U\\\", \\\"N\\\"],\\n [\\\"F\\\", \\\"O\\\", \\\"R\\\", \\\"A\\\", \\\"L\\\", \\\"L\\\"],\\n [\\\"P\\\", \\\"R\\\", \\\"O\\\", \\\"G\\\", \\\"R\\\", \\\"A\\\""
+    },
+    {
+      "id": "SYM_GPT5_Mini_D3_000",
+      "task_type": "SymbolicRule",
+      "dim": 3,
+      "gold": "[[\"aei\",\"umq\"],[\"jbf\",\"rvn\"],[\"gkc\",\"osw\"],[\"dhl\",\"xpt\"]]",
+      "predicted": "",
+      "correct": false,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"The problem asks us to apply a two-step transformation to a given 3D cuboid of characters. Let's break down the input and then apply each step.\\n\\nInput: `input = [[\\\"abcd\\\", \\\"efgh\\\", \\\"ijkl\\\"], [\\\"mnop\\\", \\\"qrst\\\", \\\"uvwx\\\"]]`\\n\\nDimensions of the input:\\nDepth (D) = 2 (number of layers)\\nHeight (H) = 3 (number of rows per layer)\\nWidth (W) = 4 (length of each string/ro"
+    },
+    {
+      "id": "SYM_O4_mini_D3_000",
+      "task_type": "SymbolicRule",
+      "dim": 3,
+      "gold": "[[[2,0],[6,4]],[[1,3],[5,7]]]",
+      "predicted": "[[[2,0],[6,4]],[[1,3],[5,7]]]",
+      "correct": true,
+      "output_snippet": "{\"reasoning\": \"The problem describes a two-step transformation from an input cube `Input` to an output cube `Output`. The input is a 2x2x2 cube. Let's denote N=2.\\n\\n**Step 1: Axis permutation**\\nWe build an intermediate cube `M` of size N×N×N using the rule `M[x][z][N−1−y] = Input[z][y][x]`.\\nGiven `Input = [[[0, 1], [2, 3]], [[4, 5], [6, 7]]]`. Let's list the elements and their coordinates:\\nInp"
+    },
+    {
+      "id": "SYM_Gemini_Flash_D3_000",
+      "task_type": "SymbolicRule",
+      "dim": 3,
+      "gold": "[[[\"L\",\"K\",\"S\",\"I\"],[\"N\",\"T\",\"L\",\"E\"],[\"W\",\"Y\",\"N\",\"O\"]],[[\"T\",\"R\",\"U\",\"C\"],[\"O\",\"N\",\"S\",\"I\"],[\"N\",\"T\",\"H\",\"I\"]],[[\"C\",\"S\",\"P\",\"E\"],[\"A\",\"L\",\"N\",\"I\"],[\"T\",\"I\",\"N\",\"S\"]]]",
+      "predicted": "[[[\"L\",\"K\",\"S\",\"I\"],[\"N\",\"T\",\"L\",\"E\"],[\"W\",\"Y\",\"N\",\"O\"]],[[\"T\",\"R\",\"U\",\"C\"],[\"O\",\"N\",\"S\",\"I\"],[\"N\",\"T\",\"H\",\"I\"]],[[\"C\",\"S\",\"P\",\"E\"],[\"A\",\"L\",\"N\",\"I\"],[\"T\",\"I\",\"N\",\"S\"]]]",
+      "correct": true,
+      "output_snippet": "```json\n{\n  \"reasoning\": \"The transformation rule consists of two sequential steps: Zig-Zag Row Shift (X-axis) and Depth Inversion (Z-axis).\\n\\nLet's apply these steps to the given input: [[[\\\"S\\\", \\\"P\\\", \\\"E\\\", \\\"C\\\"], [\\\"I\\\", \\\"A\\\", \\\"L\\\", \\\"N\\\"], [\\\"I\\\", \\\"N\\\", \\\"S\\\", \\\"T\\\"]], [[\\\"R\\\", \\\"U\\\", \\\"C\\\", \\\"T\\\"], [\\\"I\\\", \\\"O\\\", \\\"N\\\", \\\"S\\\"], [\\\"T\\\", \\\"H\\\", \\\"I\\\", \\\"N\\\"]], [[\\\"K\\\", \\\"S\\\", \\\"I\\\", \\\"L\\"
+    }
+  ],
+  "by_category": {
+    "Sem-D1": {
+      "accuracy": 66.66666666666667,
+      "n": 3
+    },
+    "Sem-D2": {
+      "accuracy": 33.333333333333336,
+      "n": 3
+    },
+    "Sem-D3": {
+      "accuracy": 33.333333333333336,
+      "n": 3
+    },
+    "Sym-D1": {
+      "accuracy": 33.333333333333336,
+      "n": 3
+    },
+    "Sym-D2": {
+      "accuracy": 66.66666666666667,
+      "n": 3
+    },
+    "Sym-D3": {
+      "accuracy": 66.66666666666667,
+      "n": 3
+    }
+  }
+}

@@ -1,0 +1,85 @@
+Loaded 18 samples from /data5/fanbingbing/SocialLearningClaw/SelectBenchmark/data/A2RBench/validated_questions.jsonl
+  Sem-D1: 3
+  Sem-D2: 3
+  Sem-D3: 3
+  Sym-D1: 3
+  Sym-D2: 3
+  Sym-D3: 3
+
+============================================================
+Model: claude-opus-4.8  (anthropic/claude-opus-4.8)
+============================================================
+
+  [claude-opus-4.8] 18 samples
+    [01/18] ✓  type=Sem  dim=1  pred='H^He_!Li_ O^B_Mg_Mg_P_, Fe^Fe_'  gold='H^He_!Li_ O^B_Mg_Mg_P_, Fe^Fe_'
+    [02/18] ✓  type=Sem  dim=1  pred='["HeHLiNa","LiHNB"]'  gold='["HeHLiNa","LiHNB"]'
+    [03/18] ✓  type=Sem  dim=1  pred='GSV JFRXP YILDM ULC QFNKH LEVI'  gold='GSV JFRXP YILDM ULC QFNKH LEVI'
+    [04/18] ✓  type=Sem  dim=2  pred='["010010","000000","010100","0'  gold='["010010","000000","010100","0'
+    [05/18] ✓  type=Sem  dim=2  pred='["?!<>{}[]()","0123-45678","9A'  gold='["?!<>{}[]()","0123-45678","9A'
+    [06/18] ✗  type=Sem  dim=2  pred='["J69~-)5;3~<,/\'0~8/&~4)1.+~/('  gold='["J69~-)5;3~<,/\'0~8/&~4)1.+~/('
+    [07/18] ✓  type=Sem  dim=3  pred='[["Svool, Dliow! 87654 ","Vevm'  gold='[["Svool, Dliow! 87654 ","Vevm'
+    [08/18] ✓  type=Sem  dim=3  pred='[[["c","Z"],["A","X"]],[["!","'  gold='[[["c","Z"],["A","X"]],[["!","'
+    [09/18] ✗  type=Sem  dim=3  pred=''  gold='[[["V",":","4","5","3","w"],["'
+    [10/18] ✓  type=Sym  dim=1  pred='smjxfnobkiqeTpu o wr cu h'  gold='smjxfnobkiqeTpu o wr cu h'
+    [11/18] ✓  type=Sym  dim=1  pred='["o","p","n","y","3","t","h"]'  gold='["o","p","n","y","3","t","h"]'
+    [12/18] ✓  type=Sym  dim=1  pred='TCNMRZHIKWFUPETAYEUBOOJSVHLDGQ'  gold='TCNMRZHIKWFUPETAYEUBOOJSVHLDGQ'
+    [13/18] ✓  type=Sym  dim=2  pred='["THIST","ISANI","EXAME","THIS'  gold='["THIST","ISANI","EXAME","THIS'
+    [14/18] ✓  type=Sym  dim=2  pred='[["!","@","1","6"],["3","4","5'  gold='[["!","@","1","6"],["3","4","5'
+    [15/18] ✓  type=Sym  dim=2  pred='[["P","C","U","F","O","S"],["S'  gold='[["P","C","U","F","O","S"],["S'
+    [16/18] ✓  type=Sym  dim=3  pred='[["aei","umq"],["jbf","rvn"],['  gold='[["aei","umq"],["jbf","rvn"],['
+    [17/18] ✓  type=Sym  dim=3  pred='[[[2,0],[6,4]],[[1,3],[5,7]]]'  gold='[[[2,0],[6,4]],[[1,3],[5,7]]]'
+    [18/18] ✓  type=Sym  dim=3  pred='[[["L","K","S","I"],["N","T","'  gold='[[["L","K","S","I"],["N","T","'
+  => Accuracy: 88.9%  (16/18)
+  Breakdown:
+    Sem-D1: 100% (n=3)
+    Sem-D2: 67% (n=3)
+    Sem-D3: 67% (n=3)
+    Sym-D1: 100% (n=3)
+    Sym-D2: 100% (n=3)
+    Sym-D3: 100% (n=3)
+
+============================================================
+Model: gemini-2.5-flash  (google/gemini-2.5-flash)
+============================================================
+
+  [gemini-2.5-flash] 18 samples
+    [01/18] ✓  type=Sem  dim=1  pred='H^He_!Li_ O^B_Mg_Mg_P_, Fe^Fe_'  gold='H^He_!Li_ O^B_Mg_Mg_P_, Fe^Fe_'
+    [02/18] ✓  type=Sem  dim=1  pred='["HeHLiNa","LiHNB"]'  gold='["HeHLiNa","LiHNB"]'
+    [03/18] ✗  type=Sem  dim=1  pred='GSV JFRPX YILDM ULC QFNKH LEVI'  gold='GSV JFRXP YILDM ULC QFNKH LEVI'
+    [04/18] ✓  type=Sem  dim=2  pred='["010010","000000","010100","0'  gold='["010010","000000","010100","0'
+    [05/18] ✗  type=Sem  dim=2  pred='["!?<>{}[]()","012-45678","9AB'  gold='["?!<>{}[]()","0123-45678","9A'
+    [06/18] ✗  type=Sem  dim=2  pred=''  gold='["J69~-)5;3~<,/\'0~8/&~4)1.+~/('
+    [07/18] ✗  type=Sem  dim=3  pred='[["Svolo, Dliow! 87654 ","Vevm'  gold='[["Svool, Dliow! 87654 ","Vevm'
+    [08/18] ✓  type=Sem  dim=3  pred='[[["c","Z"],["A","X"]],[["!","'  gold='[[["c","Z"],["A","X"]],[["!","'
+    [09/18] ✗  type=Sem  dim=3  pred=''  gold='[[["V",":","4","5","3","w"],["'
+    [10/18] ✗  type=Sym  dim=1  pred='pjxfnobkiqeTsu o wr cu h'  gold='smjxfnobkiqeTpu o wr cu h'
+    [11/18] ✓  type=Sym  dim=1  pred='["o","p","n","y","3","t","h"]'  gold='["o","p","n","y","3","t","h"]'
+    [12/18] ✗  type=Sym  dim=1  pred='TUBNS RLDHQIKRWFXUPOETAYOECOOM'  gold='TCNMRZHIKWFUPETAYEUBOOJSVHLDGQ'
+    [13/18] ✓  type=Sym  dim=2  pred='["THIST","ISANI","EXAME","THIS'  gold='["THIST","ISANI","EXAME","THIS'
+    [14/18] ✓  type=Sym  dim=2  pred='[["!","@","1","6"],["3","4","5'  gold='[["!","@","1","6"],["3","4","5'
+    [15/18] ✗  type=Sym  dim=2  pred='[["P","C","U","F","O","R"],["S'  gold='[["P","C","U","F","O","S"],["S'
+    [16/18] ✗  type=Sym  dim=3  pred=''  gold='[["aei","umq"],["jbf","rvn"],['
+    [17/18] ✓  type=Sym  dim=3  pred='[[[2,0],[6,4]],[[1,3],[5,7]]]'  gold='[[[2,0],[6,4]],[[1,3],[5,7]]]'
+    [18/18] ✓  type=Sym  dim=3  pred='[[["L","K","S","I"],["N","T","'  gold='[[["L","K","S","I"],["N","T","'
+  => Accuracy: 50.0%  (9/18)
+  Breakdown:
+    Sem-D1: 67% (n=3)
+    Sem-D2: 33% (n=3)
+    Sem-D3: 33% (n=3)
+    Sym-D1: 33% (n=3)
+    Sym-D2: 67% (n=3)
+    Sym-D3: 67% (n=3)
+
+
+=================================================================
+RESULTS vs PAPER  (metric: Exact Match Accuracy %)
+  Paper: top models ~39.8%, humans ~68.5%
+=================================================================
+Model                       Accuracy                 Note
+-------------------------------------------------------
+claude-opus-4.8                88.9%         NOT in paper
+gemini-2.5-flash               50.0% in paper (Answerer_Gemini_Flash)
+Human (paper)                 ~68.5%
+Top model (paper)             ~39.8%
+
+Results saved to /data5/fanbingbing/SocialLearningClaw/SelectBenchmark/results/a2rbench/

@@ -1,0 +1,21 @@
+{
+  "paper_scores_deepseek_r1": {
+    "aime_2024_sg": 70.0,
+    "aime_2024_cs": 66.7,
+    "aime_2025_sg": 73.3,
+    "aime_2025_cs": 53.3
+  },
+  "claude_47_scores": {
+    "aime_2024_sg": 80.0,
+    "aime_2024_cs": 60.0,
+    "aime_2025_sg": 90.0,
+    "aime_2025_cs": 60.0
+  },
+  "claude_48_scores": {
+    "aime_2024_sg": 80.0,
+    "aime_2024_cs": 60.0,
+    "aime_2025_sg": 70.0,
+    "aime_2025_cs": 70.0
+  },
+  "note": "claude-opus-4.8 is current strongest Claude. 10/30 samples per split."
+}

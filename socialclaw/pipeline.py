@@ -186,12 +186,10 @@ def run_stage1(
                     add_concepts_with_embeddings(graph, embeddings, embedder, new_concepts)
                     add_relations_resolved(graph, new_relations)
                     ep.flags.append("human_init_concepts")
-                    result = retriever.retrieve(
-                        problem,
-                        top_k=cfg.top_k_concepts,
-                        threshold=cfg.similarity_threshold,
-                    )
-                    concepts = result.matched
+                    # Merge human-provided concepts directly; skip re-retrieval that may
+                    # miss them due to poor embedding recall for newly added concepts.
+                    existing_ids = {c.id for c in concepts}
+                    concepts = concepts + [c for c in new_concepts if c.id not in existing_ids]
 
         for attempt_index in range(cfg.stop.max_iters):
             # 2. Agent answers with schema assistance
@@ -289,7 +287,10 @@ def run_stage1(
                 for upd in corrected.get("update_concepts", []):
                     cid = upd.get("id")
                     if cid:
-                        graph.update_concept(cid, **{k: v for k, v in upd.items() if k != "id"})
+                        # parse_correction uses the concept name as id; resolve by name
+                        existing = graph.get_concept(cid) or graph.get_concept_by_name(cid)
+                        if existing:
+                            graph.update_concept(existing.id, **{k: v for k, v in upd.items() if k != "id"})
                 ep.flags.append("human_correction")
 
         # Save schema after each problem

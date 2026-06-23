@@ -1,0 +1,310 @@
+{
+  "aime_2024_sg": {
+    "accuracy": 0.0,
+    "n_correct": 0,
+    "n_total": 10,
+    "records": [
+      {
+        "id": 60,
+        "gold": "204",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 61,
+        "gold": "113",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 62,
+        "gold": "371",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 63,
+        "gold": "385",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 64,
+        "gold": "110",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 65,
+        "gold": "104",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 66,
+        "gold": "721",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 67,
+        "gold": "025",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 68,
+        "gold": "809",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 69,
+        "gold": "116",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      }
+    ]
+  },
+  "aime_2024_cs": {
+    "accuracy": 0.0,
+    "n_correct": 0,
+    "n_total": 10,
+    "records": [
+      {
+        "id": 60,
+        "gold": "204",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 61,
+        "gold": "113",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 62,
+        "gold": "371",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 63,
+        "gold": "385",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 64,
+        "gold": "110",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 65,
+        "gold": "104",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 66,
+        "gold": "721",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 67,
+        "gold": "025",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 68,
+        "gold": "809",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 69,
+        "gold": "116",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      }
+    ]
+  },
+  "aime_2025_sg": {
+    "accuracy": 0.0,
+    "n_correct": 0,
+    "n_total": 10,
+    "records": [
+      {
+        "id": 0,
+        "gold": "70",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 1,
+        "gold": "588",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 2,
+        "gold": "16",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 3,
+        "gold": "117",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 4,
+        "gold": "279",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 5,
+        "gold": "504",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 6,
+        "gold": "821",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 7,
+        "gold": "77",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 8,
+        "gold": "62",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 9,
+        "gold": "81",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      }
+    ]
+  },
+  "aime_2025_cs": {
+    "accuracy": 0.0,
+    "n_correct": 0,
+    "n_total": 10,
+    "records": [
+      {
+        "id": 0,
+        "gold": "70",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 1,
+        "gold": "588",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 2,
+        "gold": "16",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 3,
+        "gold": "117",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 4,
+        "gold": "279",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 5,
+        "gold": "504",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 6,
+        "gold": "821",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 7,
+        "gold": "77",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 8,
+        "gold": "62",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      },
+      {
+        "id": 9,
+        "gold": "81",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": ""
+      }
+    ]
+  }
+}
