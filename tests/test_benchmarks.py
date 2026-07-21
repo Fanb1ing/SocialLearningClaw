@@ -29,7 +29,23 @@ class IntPhysParsingTests(unittest.TestCase):
         self.assertTrue(benchmark.evaluate("1", sample).correct)
         self.assertFalse(benchmark.evaluate("0", sample).correct)
 
+    def test_schema_query_excludes_label_metadata(self) -> None:
+        benchmark = IntPhys2Benchmark("unused")
+        sample = BenchmarkSample(
+            id="x",
+            prompt="judge",
+            gold=1,
+            metadata={
+                "condition": "solidity",
+                "camera": "cam1",
+                "game": "blocks",
+                "type": "Possible",
+            },
+        )
+        query = benchmark.schema_query(sample)
+        self.assertIn("solidity", query)
+        self.assertNotIn("Possible", query)
+
 
 if __name__ == "__main__":
     unittest.main()
-

@@ -28,7 +28,32 @@ Primary guide: `docs/schema_architecture.md`.
 Verification at completion: `.venv/bin/python -m unittest discover -s tests -v`
 passed all 25 tests. No live model/API call was made.
 
-Likely next step, only when requested: migrate the ARC schema runner/parser to
-write `MemoryRecord` episodes and consume `SchemaManager` retrieval. The old
-runner is intentionally not silently switched because experimental behavior
-and stored artifact formats would change.
+The runner migration identified here was later explicitly requested and is
+recorded as completed in the next entry.
+
+## 2026-07-21 — Schema integration and runner migration
+
+Completed the requested migration after the user explicitly authorized it:
+
+- `schema` is accepted by `run_static` for ContextMATH and IntPhys2.
+- Static tasks use `SchemaMethodController`; only task input, model response,
+  and binary correctness enter memory/schema updates. IntPhys2 retrieval adds
+  condition/camera/scene metadata but excludes label-bearing `type` and gold.
+- The ARC schema runner was replaced with the layered implementation. Every
+  observation/action/environment-result transition becomes a `MemoryRecord`,
+  online Schema IDs are injected into prompts, and terminal outcomes update
+  schemas actually claimed/used during the level.
+- ARC artifacts now record source memory IDs and injected/learned Schema IDs;
+  run-local state remains under `schema/memory.json` and `schema/schema.json`.
+- Static summarization now includes the `schema` method.
+- README now explains the responsibilities of `methods/`, `archive/`, and
+  `tests/`; active architecture/baseline/result docs were updated.
+
+Verification: compileall, CLI `--help` smoke checks, `git diff --check`, and
+`.venv/bin/python -m unittest discover -s tests -v` passed all 32 tests. The
+ARC runner has an offline end-to-end fake-environment test. No real API or ARC
+server call was made.
+
+Potential experiment follow-up: run small live smoke experiments on one sample
+per benchmark to validate provider-specific structured output and measure the
+unaccounted auxiliary Schema induction token cost before full benchmark runs.

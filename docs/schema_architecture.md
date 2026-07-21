@@ -23,9 +23,20 @@ Memory is the source of truth. A schema contains references to memory IDs,
 not copied trajectories. This makes every generated, reinforced, weakened, or
 merged rule auditable against its original evidence.
 
-The legacy `Concept`/`Relation` schema remains in place for existing ARC
-runners. The new implementation uses distinct `LayeredSchema*` names so the
-runner can be migrated deliberately instead of mixing two data models.
+The legacy `Concept`/`Relation` modules remain importable for historical
+artifact compatibility, but no current `schema` runner uses them.
+
+## Benchmark integration
+
+- ContextMATH stores the full problem, model response, and binary evaluation.
+- IntPhys2 retrieves by the task plus non-label condition/camera/scene metadata;
+  neither `gold` nor label-bearing `type` metadata enters Schema.
+- ARC-AGI-3 stores every observation/action/environment-result transition and
+  learns action-effect rules online. Terminal environment outcomes reinforce or
+  weaken the schemas injected during that level.
+
+All three write `schema/memory.json` and `schema/schema.json` inside the run
+directory. Auxiliary induction calls are separate from answer-call token usage.
 
 ## Data models
 
@@ -129,3 +140,5 @@ learned_state/
 - `socialclaw/schema/induction.py`: structured LLM generation/fusion.
 - `socialclaw/schema/manager.py`: learning, feedback, masking, decay, merge.
 - `socialclaw/schema/system.py`: complete stack factory.
+- `socialclaw/methods/schema.py`: benchmark-neutral binary-feedback lifecycle.
+- `socialclaw/arc_runner.py`: migrated online ARC transition loop.

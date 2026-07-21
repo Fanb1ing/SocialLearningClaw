@@ -10,7 +10,7 @@
 | `expel` | Experience pool with periodic generalizable insight extraction | Experiences + insights |
 | `amem` | Structured, linked, embedding-retrieved notes | Notes + links + embeddings |
 | `tgm` | Query/path/meta-cognition graph with reward-weighted retrieval | Graph nodes and edges |
-| `schema` | Current structured object/action-effect schema method | Schema graph |
+| `schema` | Memory-grounded multi-level world-rule induction and retrieval | Episode memory + layered Schema graph |
 
 ## Naming
 
@@ -33,4 +33,6 @@
 
 ## Schema availability
 
-当前 `schema` 只支持 ARC-AGI-3。ContextMATH/IntPhys2 的 Schema 接入留到分层 Schema 架构重写，避免把旧 CL-bench/PBench pipeline 误当成正式实现。
+`schema` 支持 ARC-AGI-3、ContextMATH 和 IntPhys2。Static benchmark 使用
+binary correctness 更新；ARC 使用直接环境 transition 和关卡结果更新。三者都不向
+Schema update 传递 gold answer 或 ground-truth schema。

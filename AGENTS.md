@@ -17,5 +17,6 @@ memory is a handoff aid, not a replacement for code inspection.
 - Preserve user changes and untracked input files such as `temp.md`.
 - The new layered schema is grounded in `socialclaw.memory`; a schema node
   must cite durable memory IDs as evidence.
-- The legacy `Concept`/`Relation` graph remains available for existing ARC
-  runners until migration is explicitly requested.
+- The active `schema` method on all benchmarks uses the layered MemoryRecord ->
+  SchemaNode architecture. Legacy `Concept`/`Relation` modules are historical
+  compatibility code and must not be reintroduced into current runners.

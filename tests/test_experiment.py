@@ -16,6 +16,8 @@ from socialclaw.experiment import (
     write_results,
 )
 from socialclaw.methods.controller import MethodController
+from socialclaw.memory import MemoryBank, MemoryStore
+from socialclaw.schema import SchemaManager
 
 
 class ExperimentProtocolTests(unittest.TestCase):
@@ -39,6 +41,53 @@ class ExperimentProtocolTests(unittest.TestCase):
     def test_memory_update_interface_has_no_gold_argument(self) -> None:
         signature = inspect.signature(MethodController.after_sample)
         self.assertNotIn("gold", signature.parameters)
+
+    def test_schema_method_uses_shared_binary_feedback_lifecycle(self) -> None:
+        manager = SchemaManager(memory=MemoryBank(MemoryStore()))
+        controller = MethodController(
+            method="schema",
+            openai_client=None,
+            model="test",
+            schema_manager=manager,
+        )
+        controller.after_sample(
+            task="If a lever is visible, choose ACTION1",
+            response="ACTION1",
+            correct=True,
+            domain="arc_agi3",
+        )
+        self.assertEqual(len(manager.memory.store.list()), 1)
+        self.assertEqual(len(manager.graph.list()), 1)
+        self.assertIn("Retrieved world schemas", controller.context("lever"))
+
+    def test_schema_keeps_memory_when_auxiliary_induction_fails(self) -> None:
+        class BrokenGenerator:
+            def propose(self, memory, candidates):
+                raise RuntimeError("provider unavailable")
+
+            def merge_description(self, left, right):
+                raise RuntimeError("provider unavailable")
+
+        manager = SchemaManager(
+            memory=MemoryBank(MemoryStore()),
+            generator=BrokenGenerator(),
+        )
+        controller = MethodController(
+            method="schema",
+            openai_client=None,
+            model="test",
+            schema_manager=manager,
+        )
+        controller.after_sample(
+            task="task",
+            response="response",
+            correct=False,
+            domain="contextmath",
+        )
+        records = manager.memory.store.list()
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0].metadata["induction_error"], "RuntimeError")
+        self.assertEqual(manager.graph.list(), [])
 
     def test_results_report_first_and_final_accuracy(self) -> None:
         results = [
@@ -65,4 +114,3 @@ class ExperimentProtocolTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

@@ -8,7 +8,7 @@ import json
 import sys
 from pathlib import Path
 
-from socialclaw.experiment import BASELINES
+from socialclaw.experiment import METHODS
 
 
 def comparison_signature(manifest: dict) -> str:
@@ -46,7 +46,7 @@ def main() -> None:
 
     root = Path(args.output_root) / args.benchmark
     rows = []
-    for method in BASELINES:
+    for method in METHODS:
         candidates = []
         for path in sorted(root.glob(f"{method}/*/*/*/results.json")):
             manifest_path = path.parent / "manifest.json"

@@ -6,6 +6,8 @@ from typing import Any, Dict, List, Optional
 import numpy as np
 
 from ..memory_agents import AMemory, ExPeLMemory, ReflexionMemory, TrainableGraphMemory
+from ..schema import SchemaManager
+from .schema import SchemaMethodController
 
 
 @dataclass
@@ -58,7 +60,7 @@ class ExperienceRAG:
 
 
 class MethodController:
-    """Shared lifecycle for non-schema baselines.
+    """Shared lifecycle for baselines and the layered schema method.
 
     Only binary correctness is passed to learning methods. Ground-truth answers
     are deliberately absent from this interface.
@@ -72,6 +74,7 @@ class MethodController:
         model: str,
         embedder=None,
         retrieve_k: int = 5,
+        schema_manager: Optional[SchemaManager] = None,
     ) -> None:
         self.method = method
         self.memory: Any = None
@@ -93,6 +96,12 @@ class MethodController:
             self.memory = TrainableGraphMemory(
                 openai_client, model, embedder, max_meta=30, retrieve_k=min(3, retrieve_k)
             )
+        elif method == "schema":
+            if schema_manager is None:
+                raise ValueError("Schema method requires a SchemaManager")
+            self.memory = SchemaMethodController(
+                schema_manager, retrieve_k=retrieve_k
+            )
 
     def context(self, query: str) -> str:
         if self.method == "rag":
@@ -101,6 +110,8 @@ class MethodController:
             return self.memory.get_memory_block()
         if self.method in {"amem", "tgm"}:
             return self.memory.get_memory_block(query)
+        if self.method == "schema":
+            return self.memory.context(query)
         return ""
 
     def after_failed_attempt(self, *, task: str, response: str) -> None:
@@ -144,4 +155,10 @@ class MethodController:
                 context=f"domain={domain}; binary_outcome={outcome}",
                 domain=domain,
             )
-
+        elif self.method == "schema":
+            self.memory.after_sample(
+                task=task,
+                response=response,
+                correct=correct,
+                domain=domain,
+            )

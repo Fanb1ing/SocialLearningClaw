@@ -45,6 +45,10 @@ class BenchmarkAdapter(ABC):
     def rule_context(self) -> str:
         return ""
 
+    def schema_query(self, sample: BenchmarkSample) -> str:
+        """Gold-free text used for schema retrieval and episode memory."""
+        return self.user_prompt(sample)
+
     def format_demonstrations(self, samples: Sequence[BenchmarkSample]) -> str:
         if not samples:
             return ""
@@ -67,4 +71,3 @@ class BenchmarkAdapter(ABC):
 
     def source_files(self, split: str) -> List[str]:
         return []
-

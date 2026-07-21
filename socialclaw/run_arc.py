@@ -9,6 +9,7 @@ from sentence_transformers import SentenceTransformer
 from .agent.openai_compatible import OpenAICompatibleAgent
 from .arc_runner import run_arc_agi3
 from .experiment import METHODS, ExperimentBudget, ExperimentConfig, write_manifest
+from .llm import OpenAIChatClient
 from .utils import load_dotenv
 
 
@@ -47,7 +48,11 @@ def main() -> None:
     parser.add_argument("--embed-model", default="BAAI/bge-small-en-v1.5")
     parser.add_argument("--memory-update-interval", type=int, default=10)
     parser.add_argument("--render", action="store_true")
-    parser.add_argument("--use-llm-concepts", action="store_true")
+    parser.add_argument(
+        "--use-llm-concepts",
+        action="store_true",
+        help="Deprecated compatibility flag; layered Schema learns from transition memory",
+    )
     args = parser.parse_args()
 
     if args.max_attempts != 1 and args.method != "schema":
@@ -123,10 +128,16 @@ def main() -> None:
         )
     else:
         embedder = SentenceTransformer(args.embed_model)
+        schema_llm = OpenAIChatClient(
+            base_url=args.base_url,
+            api_key=api_key,
+            model=args.model,
+        )
         run_dir = run_arc_agi3(
             game_id=args.game_id,
             agent=agent,
             embedder=embedder,
+            schema_llm=schema_llm,
             max_steps_per_level=args.max_steps,
             max_retries_per_level=args.max_attempts,
             schema_dir="schema_arc_agi3",

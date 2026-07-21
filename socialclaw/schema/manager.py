@@ -127,7 +127,11 @@ class SchemaManager:
 
     def context_block(self, query: str, *, top_k: int = 5) -> str:
         """Render retrieved rules for injection into an agent/LLM prompt."""
-        matches = self.retrieve(query, top_k=top_k)
+        return self.format_context(self.retrieve(query, top_k=top_k))
+
+    @staticmethod
+    def format_context(matches: Sequence[SchemaMatch]) -> str:
+        """Render already-retrieved matches without performing a second lookup."""
         if not matches:
             return ""
         lines = ["=== Retrieved world schemas ==="]
@@ -299,7 +303,13 @@ class SchemaManager:
 
     def _merge_nodes(self, survivor: SchemaNode, duplicate: SchemaNode) -> None:
         if self.generator is not None:
-            survivor.description = self.generator.merge_description(survivor, duplicate)
+            try:
+                survivor.description = self.generator.merge_description(
+                    survivor, duplicate
+                )
+            except Exception:
+                if len(duplicate.description) > len(survivor.description):
+                    survivor.description = duplicate.description
         elif len(duplicate.description) > len(survivor.description):
             survivor.description = duplicate.description
         left_evidence = max(1, len(survivor.memory_index.all()))

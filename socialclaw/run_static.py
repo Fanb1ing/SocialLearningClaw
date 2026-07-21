@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Sequence
 
 from .benchmarks import BenchmarkAdapter, BenchmarkSample, ContextMathBenchmark, IntPhys2Benchmark
 from .experiment import (
-    BASELINES,
+    METHODS,
     AttemptResult,
     ExperimentBudget,
     ExperimentConfig,
@@ -18,6 +18,7 @@ from .experiment import (
 )
 from .llm import OpenAIChatClient
 from .methods import MethodController
+from .schema import build_schema_system
 from .utils import load_dotenv
 
 
@@ -92,12 +93,6 @@ def run_static_experiment(
     api_key: str,
     embed_model: str,
 ) -> Path:
-    if config.method == "schema":
-        raise ValueError(
-            "The current schema implementation is ARC-AGI-3-specific. "
-            "ContextMATH/IntPhys2 schema support will be added with the planned schema redesign."
-        )
-
     output_dir = make_output_dir(config)
     write_manifest(
         output_dir,
@@ -111,23 +106,36 @@ def run_static_experiment(
         base_url=config.base_url, api_key=api_key, model=config.model
     )
     embedder = None
-    if config.method in {"rag", "amem", "tgm"}:
+    if config.method in {"rag", "amem", "tgm", "schema"}:
         from sentence_transformers import SentenceTransformer
 
         embedder = SentenceTransformer(embed_model)
+    schema_manager = None
+    if config.method == "schema":
+        schema_manager = build_schema_system(
+            output_dir / "schema",
+            llm=llm,
+            embedder=embedder,
+        )
     controller = MethodController(
         method=config.method,
         openai_client=llm.client,
         model=config.model,
         embedder=embedder,
+        schema_manager=schema_manager,
     )
 
     results: List[SampleResult] = []
     for index, sample in enumerate(samples, 1):
         attempts: List[AttemptResult] = []
         retry_feedback = ""
+        method_query = (
+            benchmark.schema_query(sample)
+            if config.method == "schema"
+            else sample.prompt
+        )
         for attempt_index in range(config.budget.max_attempts):
-            context = controller.context(sample.prompt)
+            context = controller.context(method_query)
             messages = _messages(
                 benchmark=benchmark,
                 sample=sample,
@@ -163,7 +171,7 @@ def run_static_experiment(
         final = attempts[-1]
         if config.feedback == "binary":
             controller.after_sample(
-                task=sample.prompt,
+                task=method_query,
                 response=final.response,
                 correct=final.correct,
                 domain=benchmark.name,
@@ -194,7 +202,7 @@ def main() -> None:
         description="Run a unified static benchmark experiment (ContextMATH or IntPhys2)"
     )
     parser.add_argument("--benchmark", required=True, choices=["contextmath", "intphys2"])
-    parser.add_argument("--method", required=True, choices=BASELINES)
+    parser.add_argument("--method", required=True, choices=METHODS)
     parser.add_argument("--model", required=True)
     parser.add_argument("--split", default="")
     parser.add_argument("--data-dir", default="")
@@ -271,7 +279,7 @@ def main() -> None:
             "num_demos": args.num_demos if args.method == "icl" else 0,
             "demonstration_fingerprint": demonstration_fingerprint,
             "reserved_demo_ids": reserved_demo_ids,
-            "embed_model": args.embed_model if args.method in {"rag", "amem", "tgm"} else "",
+            "embed_model": args.embed_model if args.method in {"rag", "amem", "tgm", "schema"} else "",
             "seconds_per_frame": args.seconds_per_frame if args.benchmark == "intphys2" else None,
             "max_frames": args.max_frames if args.benchmark == "intphys2" else None,
         },

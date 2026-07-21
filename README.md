@@ -10,22 +10,22 @@ SocialLearningClaw 是一个研究 Agent Schema Learning 的实验仓库。当�
 
 `naive`、`icl`、`rag`、`withrule`、`reflexion`、`expel`、`amem`、`tgm`、`schema`。
 
-`schema` 当前只接入 ARC-AGI-3，其 runner 仍使用早期的单层
-Concept/Relation 实现以保持实验兼容。新的 memory-grounded 分层 Schema
-基础设施已经落地，见 [Schema architecture](docs/schema_architecture.md)；runner
-迁移将作为独立步骤进行。
+`schema` 已接入全部三个 benchmark，并统一使用 memory-grounded 分层
+Schema：具体任务轨迹先写入 Memory，再自动归纳、融合和更新 SchemaNode。
+ARC runner 也已经迁移，不再使用早期的单层 Concept/Relation 图。
 
 ## 项目结构
 
 ```text
 socialclaw/
   agent/                 OpenAI-compatible ARC agent
+  arc_methods/           ARC 交互环境专用的 prompt/memory baseline loops
   benchmarks/            ContextMATH / IntPhys2 adapters
   dataset/               ARC-AGI-3 environment wrapper and shared types
   memory_agents/         Reflexion / ExPeL / A-MEM / TGM
   memory/                新架构的 episode/knowledge/skill 记忆与持久化
-  methods/               Unified baseline lifecycle
-  schema/                Legacy graph + new layered Schema implementation
+  methods/               静态 benchmark 的方法生命周期控制器
+  schema/                分层 Schema、自动归纳、检索、反馈和维护
   experiment.py          Protocol, budget, manifest, result types
   run_static.py          ContextMATH / IntPhys2 entry point
   run_arc.py             ARC-AGI-3 entry point
@@ -40,6 +40,22 @@ outputs/                 Generated experiments; ignored by Git
 ```
 
 旧的 CL-bench、PBench、Cosmos-Reason1、ARC-1/2 数据和历史运行均保存在 `data/legacy/` 与 `outputs/legacy/`，不会进入新实验汇总。
+
+### `methods/`、`archive/`、`tests/` 分别做什么
+
+- `socialclaw/methods/` 是静态实验的“方法生命周期层”。`run_static` 把当前任务
+  交给这里的 controller，统一完成上下文检索和 binary feedback 更新。它不负责
+  加载数据、判分或直接操作 ARC 环境。ARC 因为是多步交互环境，baseline loop
+  放在 `arc_methods/`，layered Schema loop 放在 `arc_runner.py`，但遵守相同的
+  feedback 与 artifact 协议。
+  Reflexion、ExPeL、A-MEM、TGM 的具体数据结构在 `memory_agents/`，新的 Schema
+  数据结构在 `memory/` 与 `schema/`，`methods/` 只协调它们的生命周期。
+- `archive/` 只保存历史 benchmark-selection 结果和来源说明；`docs/archive/`
+  保存旧设计、旧 CLI 和 handoff 文档。它们用于追溯，不会被当前 runner 导入，
+  也不能和当前统一协议的结果自动合并。
+- `tests/` 是不调用真实 API 的离线回归测试，覆盖 benchmark 解析、实验协议、
+  Memory/Schema 数据结构、持久化、反馈、遗忘、合并和 ARC runner 的关键转换。
+  修改代码后用它确认没有破坏现有行为。
 
 ## 安装
 
@@ -78,7 +94,8 @@ python -m socialclaw.run_static \
   --max-samples 17
 ```
 
-把 `--method` 替换为任一 baseline 即可。默认每题一次 attempt；如果研究 retry，所有对比方法必须显式使用相同的 `--max-attempts`。
+把 `--method` 替换为任一 baseline 或 `schema` 即可。Schema 状态会写入当前
+run 的 `schema/memory.json` 与 `schema/schema.json`。默认每题一次 attempt；如果研究 retry，所有对比方法必须显式使用相同的 `--max-attempts`。
 IntPhys2 默认预留开头 3 个视频给 ICL，因此当前 20 个本地视频最多评测其余 17 个；所有方法都会排除同一保留集。
 
 ## 运行 ARC-AGI-3

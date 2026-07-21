@@ -117,6 +117,15 @@ class IntPhys2Benchmark(BenchmarkAdapter):
             "interpenetration. Do not classify a scene as impossible merely because it is unusual."
         )
 
+    def schema_query(self, sample: BenchmarkSample) -> str:
+        """Include non-label scene metadata; never expose ``type`` or gold."""
+        condition = sample.metadata.get("condition", "unknown")
+        camera = sample.metadata.get("camera", "unknown")
+        game = sample.metadata.get("game", "unknown")
+        return (
+            f"{sample.prompt}\nPhysical condition: {condition}. "
+            f"Camera: {camera}. Scene family: {game}."
+        )
+
     def source_files(self, split: str) -> List[str]:
         return [str(self._metadata_path(split))]
-

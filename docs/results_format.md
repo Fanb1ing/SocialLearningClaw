@@ -24,7 +24,7 @@ Static benchmarks 写入：
 
 ## ARC artifacts
 
-ARC 继续保存每关 `episode.json`、`trajectory.json`、step JSON/PNG，以及 method-specific `memory.json` 或 `schema/`。统一 `manifest.json` 用于识别 method 与协议；`scripts/eval_arc_summary.py` 从这些文件汇总。
+ARC 继续保存每关 `episode.json`、`trajectory.json`、step JSON/PNG，以及 method-specific `memory.json` 或 `schema/`。Layered Schema 的 `schema/` 内包含 `memory.json` 和 `schema.json`；step artifact 记录注入/新学到的 Schema ID 与来源 memory ID。统一 `manifest.json` 用于识别 method 与协议；`scripts/eval_arc_summary.py` 从这些文件汇总。
 
 两个汇总脚本默认校验 model、预算、feedback、dataset fingerprint 和 evaluated sample IDs；
 static 汇总还校验帧采样。不一致的运行不会被静默放进同一比较表。
