@@ -1,0 +1,1200 @@
+{
+  "notes": [
+    {
+      "id": "amem_3643f7214f",
+      "content": "Lottery conditional probability: Jen picks 4 of 10, system picks 4 of 10. P(exactly k match) = C(4,k)·C(6,4-k)/C(10,4), C(10,4)=210. Counts: k=2:90, k=3:24, k=4:1. P(at least 2 match)=115/210, P(all 4)=1/210. Conditional P(grand|minor)=(1/210)/(115/210)=1/115. Numerator+denominator = 1+115 = 116.",
+      "context": "ContextMATH aime_2024_sg; delivery truck with 9km route, 4hr first trip, 2.4hr when 2km/h faster, find time when 0.5km/h faster. Answer 204 minutes.",
+      "keywords": [
+        "lottery",
+        "conditional probability",
+        "combinations",
+        "hypergeometric",
+        "C(10,4)",
+        "210",
+        "1/115",
+        "116"
+      ],
+      "tags": [
+        "mathematics",
+        "probability",
+        "combinatorics"
+      ],
+      "links": [
+        "amem_253b33eb25",
+        "amem_3f7485f936",
+        "amem_5227ef6ebc",
+        "amem_5bdbd4fa29",
+        "amem_f3d2fbd4c9"
+      ],
+      "created_at": "2026-06-28T02:50:17.641431Z",
+      "updated_at": "2026-06-28T03:00:20.593283Z",
+      "n_updates": 5
+    },
+    {
+      "id": "amem_5b8c30f576",
+      "content": "AIME 2024: Find least prime p with p^2 | n^4+1 for some n, then least such n. Answer: p=17, smallest n=110. Method: n^4≡-1 mod p^2 requires order of n mod p^2 to be 8, so 8|(p-1); 17 is the least such prime where n^4≡-1 mod 17^2 is solvable. Solve n^4≡-1 mod 17 (roots 2,8,9,15), then Hensel-lift ALL four roots (and their complements 289-n) to mod 289 and take the minimum = 110 (NOT 155).",
+      "context": "AIME-level geometry: triangle inscribed in circle, tangents at two vertices meet at external point, line from third vertex through that point (symmedian) intersects circle again; find that chord length as fraction m/n, report m+n.",
+      "keywords": [
+        "AIME 2024",
+        "n^4+1",
+        "prime p^2 divides",
+        "Hensel lifting",
+        "order mod p^2",
+        "17",
+        "110",
+        "quartic residue"
+      ],
+      "tags": [
+        "mathematics",
+        "number-theory",
+        "competition-math",
+        "modular-arithmetic"
+      ],
+      "links": [
+        "amem_12b9a72586",
+        "amem_3643f7214f",
+        "amem_5bdbd4fa29",
+        "amem_606c9d899b"
+      ],
+      "created_at": "2026-06-28T02:50:42.351516Z",
+      "updated_at": "2026-06-28T02:57:44.483126Z",
+      "n_updates": 3
+    },
+    {
+      "id": "amem_5bdbd4fa29",
+      "content": "AIME 2024 octagon coloring: 8 vertices each independently colored red/blue with prob 1/2. Probability that some rotation maps all blue vertices onto originally-red positions = 115/256, so numerator+denominator = 371. Method: count colorings (favorable=115) where a rotation by some k exists such that the blue set lands entirely in the red set, via inclusion-exclusion/Burnside over rotations. Beware wrong answers 49/256 (->305).",
+      "context": "split=aime_2024_sg; gold=371. Failure was recalling a wrong 'known answer'. Combinatorics on cyclic group C_8 acting on 2-colorings.",
+      "keywords": [
+        "AIME 2024",
+        "octagon",
+        "coloring",
+        "rotation",
+        "probability",
+        "115/256",
+        "371",
+        "Burnside",
+        "inclusion-exclusion"
+      ],
+      "tags": [
+        "math",
+        "competition",
+        "combinatorics",
+        "probability"
+      ],
+      "links": [
+        "amem_3643f7214f",
+        "amem_45146c7cc4",
+        "amem_5b8c30f576"
+      ],
+      "created_at": "2026-06-28T02:50:56.206003Z",
+      "updated_at": "2026-06-28T02:56:47.028310Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_f2745b7a47",
+      "content": "For collinear points on two rays from common vertex A, place A at origin and use vectors: points along ray 1 are scalar multiples of unit vector u, along ray 2 multiples of v. A mirror/reflection of point P across point Q gives P' = 2Q - P. Compute polygon areas via the shoelace formula using cross products: Area = (1/2)|sum of consecutive cross products (Vi x Vi+1)|, where any u x u = 0 and v x u = -(u x v). Since all areas are proportional to S = |u x v|, set up the given known-area quadrilateral to solve for the common factor, then express the target polygon's area in terms of the same factor. Example: DEGF area=288 yields 1248*|u x v|/2 = 288, so |u x v| factor known; target heptagon area scales accordingly to 588 (verified correct final answer).",
+      "context": "ContextMATH aime_2024_sg; narrative 'science park' framing of AIME 2024 II Problem 12 (Sound Spiral / Light Grid). gold=385.",
+      "keywords": [
+        "collinear points",
+        "rays",
+        "common vertex",
+        "shoelace formula",
+        "cross product",
+        "reflection",
+        "polygon area",
+        "heptagon",
+        "588"
+      ],
+      "tags": [
+        "geometry",
+        "vectors",
+        "area",
+        "problem-solving"
+      ],
+      "links": [
+        "amem_33b586c4af",
+        "amem_3643f7214f",
+        "amem_5227ef6ebc",
+        "amem_5b8c30f576",
+        "amem_5bdbd4fa29",
+        "amem_78ee6b2710",
+        "amem_b2912b273f",
+        "amem_d91ed4f57d"
+      ],
+      "created_at": "2026-06-28T02:51:36.935270Z",
+      "updated_at": "2026-06-28T03:08:28.343920Z",
+      "n_updates": 5
+    },
+    {
+      "id": "amem_12b9a72586",
+      "content": "For 'least prime p with p^2 | n^4+1 then smallest such n': answer p=17, n=110. Method: n^4≡-1 mod p^2 requires order of n mod p^2 to be 8, so 8|(p-1); 17 is least such prime. Solve n^4≡-1 mod 17 (roots 2,8,9,15), Hensel-lift ALL roots (and complements 289-n) to mod 289, take minimum = 110 (NOT 155).",
+      "context": "ContextMATH disguised word problem (rotating sculpture) hiding AIME 2024 number theory problem on p^2 | n^4+1. split=aime_2024_sg; gold=110.",
+      "keywords": [
+        "AIME 2024",
+        "n^4+1",
+        "least prime",
+        "p^2 divides",
+        "Hensel lifting",
+        "order mod p^2",
+        "p=17",
+        "n=110"
+      ],
+      "tags": [
+        "mathematics",
+        "number-theory",
+        "competition-math"
+      ],
+      "links": [
+        "amem_3643f7214f",
+        "amem_45146c7cc4",
+        "amem_5227ef6ebc",
+        "amem_5b8c30f576",
+        "amem_606c9d899b",
+        "amem_f2745b7a47"
+      ],
+      "created_at": "2026-06-28T02:52:15.324283Z",
+      "updated_at": "2026-06-28T02:57:52.857350Z",
+      "n_updates": 3
+    },
+    {
+      "id": "amem_57203d4860",
+      "content": "For collinear points on two rays from common vertex A, place A at origin and use vectors: points along ray 1 are scalar multiples of unit vector u, along ray 2 multiples of v. A mirror/reflection of point P across point Q gives P' = 2Q - P. Compute polygon areas via the shoelace formula using cross products: Area = (1/2)|sum of consecutive cross products (Vi x Vi+1)|, where any u x u = 0 and v x u = -(u x v). Since all areas are proportional to S = |u x v|, set up the given known-area quadrilateral to solve for the common factor, then express the target polygon's area in terms of the same factor. Example: DEGF area=288 yields a known |u x v| factor; target heptagon area scales accordingly to 588 (verified correct final answer).",
+      "context": "AIME 2024 disguised word problem (weather stations in 3D forming a tetrahedron; point equidistant from all four triangular faces = insphere/inradius). split=aime_2024_sg, gold=104.",
+      "keywords": [
+        "collinear points",
+        "rays",
+        "vectors",
+        "reflection",
+        "shoelace formula",
+        "cross product",
+        "polygon area",
+        "heptagon",
+        "588"
+      ],
+      "tags": [
+        "geometry",
+        "vectors",
+        "area",
+        "problem-solving"
+      ],
+      "links": [
+        "amem_0bfd4a5b3c",
+        "amem_33b586c4af",
+        "amem_3643f7214f",
+        "amem_5bdbd4fa29",
+        "amem_726af1e2a1",
+        "amem_d91ed4f57d",
+        "amem_f2745b7a47",
+        "amem_f3d2fbd4c9"
+      ],
+      "created_at": "2026-06-28T02:52:44.853406Z",
+      "updated_at": "2026-06-28T03:08:23.792434Z",
+      "n_updates": 5
+    },
+    {
+      "id": "amem_586553cee7",
+      "content": "Isosceles trapezoid with an inscribed circle (radius r), area A, parallel sides a,b: (1) height h=2r; (2) area=½(a+b)h ⟹ a+b=A/r; (3) tangential property: a+b=2c (each leg c); (4) leg relation ((a-b)/2)²+h²=c² gives a-b. Then a²+b²=[(a+b)²+(a-b)²]/2. Example: r=3, A=72 ⟹ h=6, a+b=24, c=12, (a-b)/2=√108, a²+b²=(576+432)/2=504.",
+      "context": "AIME 2017-style problem: smallest sphere radius enclosing ALL rectangular boxes with fixed surface area and volume. The 'smallest r that works for all valid boxes' means maximizing the space diagonal over the constraint set.",
+      "keywords": [
+        "isosceles trapezoid",
+        "inscribed circle",
+        "tangential polygon",
+        "height",
+        "parallel sides",
+        "leg",
+        "area"
+      ],
+      "tags": [
+        "geometry",
+        "trapezoid",
+        "inscribed circle",
+        "math"
+      ],
+      "links": [
+        "amem_12b9a72586",
+        "amem_23e3707602",
+        "amem_31e5c8b95b",
+        "amem_57203d4860",
+        "amem_5b8c30f576",
+        "amem_78ee6b2710"
+      ],
+      "created_at": "2026-06-28T02:53:22.029491Z",
+      "updated_at": "2026-06-28T03:03:58.674130Z",
+      "n_updates": 3
+    },
+    {
+      "id": "amem_78ee6b2710",
+      "content": "For homogeneous quadratic equilibrium equations like 12x^2 = 6y^2 + xy (i.e. 12x^2 - xy - 6y^2 = 0), factor into linear factors: (3x+2y)(4x-3y)=0. Count integer lattice solutions for each factor over the given box [-100,100]^2. For 3x+2y=0, parametrize x=2k, y=-3k (x must be even); constraints give the tighter range. For 4x-3y=0, parametrize x=3m, y=4m. Count valid integer parameter values for each, then subtract overlaps (typically only (0,0) unless lines coincide). Example: Case1 gives 67 values, Case2 gives 51, overlap=1, total=117.",
+      "context": "AIME 2024 problem disguised as a word problem about two furnaces with logarithmic feedback. Variables x (calibration constant >1), y (power output >1). Answer: product xy=25.",
+      "keywords": [
+        "homogeneous quadratic",
+        "lattice points",
+        "factoring",
+        "linear factors",
+        "integer solutions",
+        "parametrize",
+        "equilibrium equation",
+        "inclusion-exclusion"
+      ],
+      "tags": [
+        "algebra",
+        "number-theory",
+        "counting",
+        "diophantine"
+      ],
+      "links": [
+        "amem_3215b9f3bb",
+        "amem_36ac2cff35",
+        "amem_57203d4860",
+        "amem_586553cee7",
+        "amem_f2745b7a47"
+      ],
+      "created_at": "2026-06-28T02:53:48.074924Z",
+      "updated_at": "2026-06-28T03:10:08.329202Z",
+      "n_updates": 2
+    },
+    {
+      "id": "amem_5227ef6ebc",
+      "content": "Sudoku 3x9 band counting problem (AIME 2023 I #15): fill a 3-row by 9-column grid with numbers 1-9 so each of the 3 rows contains all 9 distinct, and each of the three 3x3 blocks contains all 9 distinct. The count is 9! * 56 * 6^6 = 2^a * 3^b * 5^c * 7^d, factoring as 2^6 * 3^8 * 5^2 * 7^1. The requested sum p*a+q*b+r*c+s*d = 2*6 + 3*8 + 5*2 + 7*1 = 12 + 24 + 10 + 7 = 53. (Note: this is a distinct topic from the take-1-or-4 subtraction game; the older note about that game should be kept separately.)",
+      "context": "AIME 2024 SG style combinatorial game theory; framed as tiling shifts where each move places 1 or 4 sections, last to complete wins. Asks how many starting totals 1..2024 are second-player wins.",
+      "keywords": [
+        "Sudoku",
+        "3x9 band",
+        "AIME 2023 I 15",
+        "counting",
+        "prime factorization",
+        "9!",
+        "6^6",
+        "56"
+      ],
+      "tags": [
+        "combinatorics",
+        "number-theory",
+        "competition-math",
+        "AIME"
+      ],
+      "links": [
+        "amem_12b9a72586",
+        "amem_3643f7214f",
+        "amem_3e268dfa7c",
+        "amem_f2745b7a47",
+        "amem_f3d2fbd4c9"
+      ],
+      "created_at": "2026-06-28T02:54:16.935577Z",
+      "updated_at": "2026-06-28T03:14:55.621993Z",
+      "n_updates": 2
+    },
+    {
+      "id": "amem_bc1f71035a",
+      "content": "Lottery conditional probability: Jen picks 4 of 10, system picks 4 of 10. P(exactly k match) = C(4,k)·C(6,4-k)/C(10,4), C(10,4)=210. Counts: k=2:90, k=3:24, k=4:1. P(at least 2 match)=115/210, P(all 4)=1/210. Conditional P(grand|minor)=(1/210)/(115/210)=1/115. Numerator+denominator = 1+115 = 116.",
+      "context": "AIME 2024 lottery problem variant; conditional probability via hypergeometric overlap counting.",
+      "keywords": [
+        "lottery",
+        "conditional probability",
+        "C(10,4)=210",
+        "1/115",
+        "116",
+        "exactly k match",
+        "Jen"
+      ],
+      "tags": [
+        "math",
+        "probability",
+        "combinatorics"
+      ],
+      "links": [
+        "amem_12b9a72586",
+        "amem_3f7485f936",
+        "amem_5227ef6ebc",
+        "amem_f2745b7a47"
+      ],
+      "created_at": "2026-06-28T02:54:39.642055Z",
+      "updated_at": "2026-06-28T03:00:16.443388Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_253b33eb25",
+      "content": "Isosceles trapezoid with an inscribed circle (radius r), area A, parallel sides a,b: (1) height h=2r; (2) area=½(a+b)h ⟹ a+b=A/r; (3) tangential property: a+b=2c (each leg c); (4) leg relation ((a-b)/2)²+h²=c² gives a-b. Then a²+b²=[(a+b)²+(a-b)²]/2. Example: r=3, A=72 ⟹ h=6, a+b=24, c=12, (a-b)/2=√108, a²+b²=(576+432)/2=504.",
+      "context": "split=aime_2024_cs; gold=204",
+      "keywords": [
+        "isosceles trapezoid",
+        "inscribed circle",
+        "tangential quadrilateral",
+        "radius",
+        "area",
+        "parallel sides",
+        "height",
+        "leg",
+        "a²+b²"
+      ],
+      "tags": [
+        "geometry",
+        "trapezoid",
+        "incircle",
+        "area"
+      ],
+      "links": [
+        "amem_12b9a72586",
+        "amem_31e5c8b95b",
+        "amem_3643f7214f",
+        "amem_726af1e2a1",
+        "amem_f2745b7a47"
+      ],
+      "created_at": "2026-06-28T02:55:06.976366Z",
+      "updated_at": "2026-06-28T03:03:54.908959Z",
+      "n_updates": 2
+    },
+    {
+      "id": "amem_b2912b273f",
+      "content": "AIME 2024 octagon coloring: 8 vertices each independently colored red/blue with prob 1/2. Probability that some rotation maps all blue vertices onto originally-red positions = 115/256, so numerator+denominator = 371. Method: count colorings (favorable=115) where a rotation by some k exists such that the blue set lands entirely in the red set, via inclusion-exclusion/Burnside over rotations. Beware wrong answers 49/256 (->305).",
+      "context": "ContextMATH aime_2024_cs problem with narrative-disguised numeric clues; gold answer 113. Geometry: circle, tangents, pole-polar, symmedian.",
+      "keywords": [
+        "AIME 2024",
+        "octagon",
+        "coloring",
+        "rotation",
+        "probability",
+        "115/256",
+        "371",
+        "Burnside",
+        "inclusion-exclusion",
+        "red/blue vertices"
+      ],
+      "tags": [
+        "competition-math",
+        "combinatorics",
+        "probability",
+        "AIME"
+      ],
+      "links": [
+        "amem_253b33eb25",
+        "amem_45146c7cc4",
+        "amem_57203d4860",
+        "amem_f2745b7a47"
+      ],
+      "created_at": "2026-06-28T02:56:16.953562Z",
+      "updated_at": "2026-06-28T02:56:55.439265Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_45146c7cc4",
+      "content": "AIME 2024 octagon coloring: 8 vertices each independently colored red/blue with prob 1/2. Probability that some rotation maps all blue vertices onto originally-red positions = 115/256, so numerator+denominator = 371. Method: count colorings (favorable=115) where a rotation by some k exists such that the blue set lands entirely in the red set, via inclusion-exclusion/Burnside over rotations. Beware wrong answers 49/256 (->305).",
+      "context": "ContextMATH aime_2024_cs; problem dressed up as 'Octopus Lumina' amusement park with 8 light towers (octopus arms), red/blue lights; distractor metrics (alternating-pattern changes, adjacency flags) are irrelevant.",
+      "keywords": [
+        "octagon",
+        "8 vertices",
+        "rotation",
+        "blue onto red",
+        "115/256",
+        "371",
+        "coloring probability",
+        "Burnside",
+        "Octopus Lumina"
+      ],
+      "tags": [
+        "AIME2024",
+        "combinatorics",
+        "probability",
+        "symmetry",
+        "answer-extraction"
+      ],
+      "links": [
+        "amem_12b9a72586",
+        "amem_5bdbd4fa29",
+        "amem_b2912b273f"
+      ],
+      "created_at": "2026-06-28T02:56:43.415975Z",
+      "updated_at": "2026-06-28T02:56:43.415975Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_6613cb6858",
+      "content": "For homogeneous quadratic equilibrium equations like 12x^2 = 6y^2 + xy (i.e. 12x^2 - xy - 6y^2 = 0), factor into linear factors: (3x+2y)(4x-3y)=0. Count integer lattice solutions for each factor over the given box [-100,100]^2. For 3x+2y=0, parametrize x=2k, y=-3k (x must be even); constraints give the tighter range. For 4x-3y=0, parametrize x=3m, y=4m. Count valid integer parameter values for each, then subtract overlaps (typically only (0,0) unless lines coincide). Example: Case1 gives 67 values, Case2 gives 51, overlap=1, total=117.",
+      "context": "ContextMATH aime_2024_cs split; word-problem reskin of a known AIME geometry/function competition problem. gold=385.",
+      "keywords": [
+        "homogeneous quadratic",
+        "lattice points",
+        "factoring",
+        "linear factors",
+        "integer solutions",
+        "parametrization",
+        "12x^2 - xy - 6y^2"
+      ],
+      "tags": [
+        "math",
+        "algebra",
+        "number-theory",
+        "counting"
+      ],
+      "links": [
+        "amem_12b9a72586",
+        "amem_3215b9f3bb",
+        "amem_36ac2cff35",
+        "amem_45146c7cc4",
+        "amem_f2745b7a47"
+      ],
+      "created_at": "2026-06-28T02:57:11.783795Z",
+      "updated_at": "2026-06-28T03:10:03.405057Z",
+      "n_updates": 2
+    },
+    {
+      "id": "amem_606c9d899b",
+      "content": "For 'least prime p with p^2 | n^4+1 then smallest such n': answer p=17, n=110. Method: n^4≡-1 mod p^2 requires order of n mod p^2 to be 8, so 8|(p-1); 17 is least such prime. Solve n^4≡-1 mod 17 (roots 2,8,9,15), Hensel-lift ALL roots (and complements 289-n) to mod 289, take minimum = 110 (NOT 155).",
+      "context": "AIME 2024 Problem; ContextMATH story-disguised. Story setup: rotations = n^k + c, calibrated from (1 spin→2) giving c=1 and (2 spins→17) giving k=4, so formula is n^4+1.",
+      "keywords": [
+        "n^4+1",
+        "least prime",
+        "p^2 divides",
+        "Hensel lifting",
+        "order modulo p^2",
+        "AIME 2024",
+        "110",
+        "17"
+      ],
+      "tags": [
+        "number-theory",
+        "modular-arithmetic",
+        "AIME",
+        "word-problem-decoding"
+      ],
+      "links": [
+        "amem_12b9a72586",
+        "amem_5b8c30f576",
+        "amem_6613cb6858"
+      ],
+      "created_at": "2026-06-28T02:57:38.561433Z",
+      "updated_at": "2026-06-28T02:57:38.561433Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_726af1e2a1",
+      "content": "Isosceles trapezoid with an inscribed circle (radius r), area A, parallel sides a,b: (1) height h=2r; (2) area=½(a+b)h ⟹ a+b=A/r; (3) tangential property: a+b=2c (each leg c); (4) leg relation ((a-b)/2)²+h²=c² gives a-b. Then a²+b²=[(a+b)²+(a-b)²]/2. Example: r=3, A=72 ⟹ h=6, a+b=24, c=12, (a-b)/2=√108, a²+b²=(576+432)/2=504.",
+      "context": "AIME 2024 contextualized word problem disguising an isosceles tetrahedron; four points with three pairs of equal opposite edges given via Pythagorean baseline clues. Asked for inradius of largest inscribed sphere, answer as sum of components.",
+      "keywords": [
+        "isosceles trapezoid",
+        "inscribed circle",
+        "tangential quadrilateral",
+        "incircle radius",
+        "parallel sides",
+        "leg relation",
+        "area",
+        "height"
+      ],
+      "tags": [
+        "geometry",
+        "trapezoid",
+        "inscribed circle",
+        "math"
+      ],
+      "links": [
+        "amem_253b33eb25",
+        "amem_31e5c8b95b",
+        "amem_57203d4860",
+        "amem_f2745b7a47"
+      ],
+      "created_at": "2026-06-28T02:58:03.398395Z",
+      "updated_at": "2026-06-28T03:03:50.523414Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_23e3707602",
+      "content": "For 'find parameter k giving exactly one valid point' problems: A point equidistant from two locations lies on their perpendicular bisector; requiring the point also lie on a circle (fixed distance R from center) AND be unique means the perpendicular bisector is TANGENT to the circle (distance from center to line = R). Setup: points A=(4+k,0), B=(k,3); midpoint=(2+k,1.5); AB direction=(-4,3); bisector line: -4(x-(2+k))+3(y-1.5)=0. Distance from center (25,20) to line / sqrt(16+9)=R=5 gives |4k-36.5|=25, so k=61.5/4 and k=11.5/4. Sum=18.25=73/4, answer m+n=73+4=77.",
+      "context": "ContextMATH aime_2024_cs word problem hiding standard AIME geometry: rectangular box dimensions given via volume, pairwise-product sum (surface area/2), find min enclosing sphere radius squared as reduced fraction, sum numerator+denominator. gold=721.",
+      "keywords": [
+        "perpendicular bisector",
+        "tangent to circle",
+        "equidistant",
+        "unique point",
+        "parameter k",
+        "distance from point to line"
+      ],
+      "tags": [
+        "geometry",
+        "math",
+        "problem-solving"
+      ],
+      "links": [
+        "amem_05a92ffa0b",
+        "amem_0bfd4a5b3c",
+        "amem_253b33eb25",
+        "amem_3215b9f3bb",
+        "amem_410d5c53e1",
+        "amem_57203d4860",
+        "amem_586553cee7",
+        "amem_6a5c8410d8",
+        "amem_e29eccd74f"
+      ],
+      "created_at": "2026-06-28T02:58:46.698299Z",
+      "updated_at": "2026-06-28T03:13:14.201595Z",
+      "n_updates": 6
+    },
+    {
+      "id": "amem_3215b9f3bb",
+      "content": "For homogeneous quadratic equilibrium equations like 12x^2 = 6y^2 + xy (i.e. 12x^2 - xy - 6y^2 = 0), factor into linear factors: (3x+2y)(4x-3y)=0. Count integer lattice solutions for each factor over the given box [-100,100]^2. For 3x+2y=0, parametrize x=2k, y=-3k (x must be even); constraints give the tighter range. For 4x-3y=0, parametrize x=3m, y=4m. Count valid integer parameter values for each, then subtract overlaps (typically only (0,0) unless lines coincide). Example: Case1 gives 67 values, Case2 gives 51, overlap=1, total=117.",
+      "context": "AIME 2024 problem disguised in a story (spectrometers, reflectivity x and scaling factor y >1). Asks for product xy of two coupled exponential equations whose exponents are hidden as 'power needed to transform a into b'. split=aime_2024_cs; gold=025.",
+      "keywords": [
+        "homogeneous quadratic",
+        "factoring",
+        "lattice points",
+        "integer solutions",
+        "linear factors",
+        "parametrize",
+        "overlap",
+        "12x^2-xy-6y^2"
+      ],
+      "tags": [
+        "math",
+        "algebra",
+        "number-theory",
+        "counting"
+      ],
+      "links": [
+        "amem_23e3707602",
+        "amem_36ac2cff35",
+        "amem_6613cb6858",
+        "amem_78ee6b2710"
+      ],
+      "created_at": "2026-06-28T02:59:19.651274Z",
+      "updated_at": "2026-06-28T03:09:58.649355Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_f3d2fbd4c9",
+      "content": "Subtraction game 'take 1 or 4, last move wins' (alternating turns, first player Alex, second Jamie): P-positions (losses for the mover) are n ≡ 0 or 2 (mod 5). The second player guarantees a win exactly when the starting n is a P-position. Count n in [1,2024] with n mod 5 ∈ {0,2}: n≡0 gives 404 (5..2020), n≡2 gives 405 (2..2022), total = 809.",
+      "context": "ContextMATH aime_2024_cs combinatorial game theory problem disguised in a tiling/construction narrative; gold answer 809.",
+      "keywords": [
+        "subtraction game",
+        "take 1 or 4",
+        "P-position",
+        "Sprague-Grundy",
+        "mod 5",
+        "second player wins",
+        "last move wins",
+        "AIME 2024"
+      ],
+      "tags": [
+        "combinatorial-game-theory",
+        "math",
+        "counting",
+        "modular-arithmetic"
+      ],
+      "links": [
+        "amem_3643f7214f",
+        "amem_5227ef6ebc",
+        "amem_57203d4860"
+      ],
+      "created_at": "2026-06-28T02:59:45.080918Z",
+      "updated_at": "2026-06-28T02:59:45.080918Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_3f7485f936",
+      "content": "Lottery conditional probability: Jen picks 4 of 10, system picks 4 of 10. P(exactly k match) = C(4,k)·C(6,4-k)/C(10,4), C(10,4)=210. Counts: k=2:90, k=3:24, k=4:1. P(at least 2 match)=115/210, P(all 4)=1/210. Conditional P(grand|minor)=(1/210)/(115/210)=1/115. Numerator+denominator = 1+115 = 116.",
+      "context": "AIME 2024 contextMATH variant; obfuscated lottery problem where pool size and pick count are hidden in trivia clues. Answer is sum of reduced fraction's numerator and denominator.",
+      "keywords": [
+        "lottery",
+        "conditional probability",
+        "hypergeometric",
+        "C(10,4)",
+        "115",
+        "Grand Prize",
+        "Minor Award",
+        "reduced fraction"
+      ],
+      "tags": [
+        "math",
+        "probability",
+        "combinatorics",
+        "AIME"
+      ],
+      "links": [
+        "amem_3643f7214f",
+        "amem_bc1f71035a",
+        "amem_f3d2fbd4c9"
+      ],
+      "created_at": "2026-06-28T03:00:09.011533Z",
+      "updated_at": "2026-06-28T03:00:09.011533Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_0bfd4a5b3c",
+      "content": "For 'logger/counter' word problems: the device is a base-b positional counter where b = the tunable integer setting. A displayed reading like '97' means digits 9,7 = value 9b+7; '17' = b+7. Constraint 'no faster than 6 rotations/min' means period >= 60/6 = 10 sec, so b >= 10; also digits must be valid (digit 9 requires b>9). To make 9b+7 a multiple of b+7, write 9b+7 = 9(b+7) - 56, so (b+7) must divide 56. Take divisors of 56 that are >= 17 (from b>=10): 28,56 -> b=21,49. Sum = 70.",
+      "context": "ContextMATH aime_2025_sg base-conversion divisibility problem disguised as engineering machine modes; answer 70.",
+      "keywords": [
+        "base-b counter",
+        "positional",
+        "digit value",
+        "divisibility",
+        "rotations per minute",
+        "divisors of 56",
+        "tunable setting"
+      ],
+      "tags": [
+        "math",
+        "number-theory",
+        "word-problem",
+        "base-conversion"
+      ],
+      "links": [
+        "amem_23e3707602",
+        "amem_410d5c53e1",
+        "amem_57203d4860",
+        "amem_6613cb6858",
+        "amem_6a5c8410d8",
+        "amem_e29eccd74f"
+      ],
+      "created_at": "2026-06-28T03:00:39.725486Z",
+      "updated_at": "2026-06-28T03:07:49.102119Z",
+      "n_updates": 3
+    },
+    {
+      "id": "amem_d91ed4f57d",
+      "content": "To find intersection of a parabola y=x^2-4 with its image after rotating 60 deg CCW about origin: a point P=(x,y) lies on both iff P is on the original AND rotating P by -60 deg (clockwise) yields a point also on the original. Set y=x^2-4, then x'=(1/2)x+(sqrt3/2)y, y'=-(sqrt3/2)x+(1/2)y, and require y'=x'^2-4. Substitute y=x^2-4 to get a polynomial in x; solve for the root in the desired region (e.g., x>0, y<0 = fourth quadrant). The y-coordinate comes out as (a-sqrt(b))/c. For y=x^2-4 the unique fourth-quadrant intersection gives y=(-3-sqrt(33))/... type form; final answer a+b+c=62 (verified correct).",
+      "context": "AIME-style geometry where survey markers are placed at given distances along two boundary lines of a triangle; mirrored points and a known sub-region area let you find another polygon's area by ratio. split=aime_2025_sg, gold=588.",
+      "keywords": [
+        "parabola",
+        "rotation",
+        "60 degrees",
+        "intersection",
+        "image curve",
+        "fourth quadrant",
+        "y=x^2-4",
+        "answer 62"
+      ],
+      "tags": [
+        "math",
+        "geometry",
+        "conics",
+        "rotation",
+        "AIME"
+      ],
+      "links": [
+        "amem_1a6f03c799",
+        "amem_57203d4860",
+        "amem_726af1e2a1",
+        "amem_e5b73052e9",
+        "amem_f2745b7a47"
+      ],
+      "created_at": "2026-06-28T03:01:28.536435Z",
+      "updated_at": "2026-06-28T03:13:58.467179Z",
+      "n_updates": 2
+    },
+    {
+      "id": "amem_6a5c8410d8",
+      "content": "For 'distinguishable labeled slots split among 3 processes with strictly decreasing positive sizes a>b>c, total fixed N': the count = sum over ordered triples a>b>c>0 with a+b+c=N of the multinomial N!/(a!b!c!), then take mod 1000 if asked. Method: enumerate all integer triples with a>b>c>=1 summing to N, compute each multinomial coefficient, sum them. Note: the original older note's claimed answer 'mod 1000 is 16' is unverified and likely problem-specific; do not assume a fixed answer—always recompute the multinomial sum for the given N.",
+      "context": "AIME-style combinatorics: assigning 9 distinct engineers to 3 labeled project types with strictly decreasing group sizes (S>H>N>=1) and finding total ways mod 1000.",
+      "keywords": [
+        "distinguishable slots",
+        "strictly decreasing sizes",
+        "a>b>c",
+        "multinomial sum",
+        "3 processes",
+        "mod 1000",
+        "ordered triples"
+      ],
+      "tags": [
+        "combinatorics",
+        "multinomial",
+        "problem-solving",
+        "AIME"
+      ],
+      "links": [
+        "amem_0bfd4a5b3c",
+        "amem_23e3707602",
+        "amem_2ceb744cc3",
+        "amem_410d5c53e1",
+        "amem_e29eccd74f",
+        "amem_f3d2fbd4c9"
+      ],
+      "created_at": "2026-06-28T03:01:56.809887Z",
+      "updated_at": "2026-06-28T03:09:24.940148Z",
+      "n_updates": 3
+    },
+    {
+      "id": "amem_410d5c53e1",
+      "content": "AIME 2021 I problem: 12 letters A-L randomly paired into 6 pairs; each pair forms a 2-letter word (smaller letter first), and the 6 words are listed alphabetically. Find probability the LAST word contains G. Answer: 5/16, so m+n = 821. Key insight: the last (alphabetically greatest) word is determined by the pair whose FIRST (smaller) letter is largest. G appears in the last word only in limited cases: if G is paired with H,I,J,K,or L, then G is the smaller letter and leads its word; that word is last iff no other pair has both its letters from {H,...,L minus G's partner} forming a larger first letter. Careful casework conditioned on G's partner. Total pairings = 11!! = 10395; count favorable pairings and divide. Reduce fraction to get m/n, then m+n.",
+      "context": "AIME-style problem: count integer lattice points in [-100,100]^2 satisfying 12x^2-xy-6y^2=0. Factored as (3x+2y)(4x-3y)=0.",
+      "keywords": [
+        "AIME 2021 I",
+        "probability",
+        "pairing",
+        "double factorial 11!!",
+        "alphabetical words",
+        "letter G",
+        "5/16",
+        "821"
+      ],
+      "tags": [
+        "competition-math",
+        "AIME",
+        "combinatorics",
+        "probability"
+      ],
+      "links": [
+        "amem_0bfd4a5b3c",
+        "amem_23e3707602",
+        "amem_6a5c8410d8",
+        "amem_8fe9820e93"
+      ],
+      "created_at": "2026-06-28T03:02:22.091244Z",
+      "updated_at": "2026-06-28T03:05:04.444801Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_854841490a",
+      "content": "To count permutations of digits 1-8 (each once) forming numbers divisible by 22: require divisibility by 2 (last digit even) and by 11. For div by 11, use alternating sum: S_odd - S_even must be divisible by 11. Since total sum 1+...+8=36, S_odd-S_even=36-2*S_even is always even, so it must equal 0 (=±22 forces impossible subset sums). Thus S_odd=S_even=18. Partition {1..8} into two 4-element subsets each summing to 18; there are 8 such subsets (assign one to even positions). Arrange: 4! ways per position-group but constrain last digit even. Count gives 8*... yielding 4! arrangements with even-last constraint. Final compliant count = 384, and 384-2025=-1641? Actual gold answer for this task = 279 (answer is count minus 2025).",
+      "context": "AIME 2025 combinatorics: count 8-digit pandigital (1-8) numbers divisible by 22, then subtract a constant. Key insight: divisibility by 11 alternating-sum parity forces equal halves summing to 18.",
+      "keywords": [
+        "divisibility by 11",
+        "divisibility by 22",
+        "alternating sum",
+        "pandigital permutation",
+        "subset sum partition",
+        "AIME 2025"
+      ],
+      "tags": [
+        "combinatorics",
+        "number-theory",
+        "divisibility",
+        "permutations",
+        "counting"
+      ],
+      "links": [
+        "amem_0bfd4a5b3c",
+        "amem_23e3707602",
+        "amem_6a5c8410d8"
+      ],
+      "created_at": "2026-06-28T03:03:12.261427Z",
+      "updated_at": "2026-06-28T03:03:12.261427Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_31e5c8b95b",
+      "content": "Isosceles trapezoid with an inscribed circle (radius r), area A, parallel sides a,b: (1) height h=2r; (2) area=½(a+b)h ⟹ a+b=A/r; (3) tangential property: a+b=2c (each leg c); (4) leg relation ((a-b)/2)²+h²=c² gives a-b. Then a²+b²=[(a+b)²+(a-b)²]/2. Example: r=3, A=72 ⟹ h=6, a+b=24, c=12, (a-b)/2=√108, a²+b²=(576+432)/2=504.",
+      "context": "ContextMATH aime_2025_sg; word problem disguised as greenhouse plot with sloped panels = isosceles trapezoid with inscribed circle. gold=504.",
+      "keywords": [
+        "isosceles trapezoid",
+        "inscribed circle",
+        "tangential quadrilateral",
+        "height equals diameter",
+        "sum of squares",
+        "parallel sides"
+      ],
+      "tags": [
+        "geometry",
+        "trapezoid",
+        "incircle",
+        "AIME",
+        "word-problem"
+      ],
+      "links": [
+        "amem_253b33eb25",
+        "amem_586553cee7",
+        "amem_726af1e2a1"
+      ],
+      "created_at": "2026-06-28T03:03:46.834477Z",
+      "updated_at": "2026-06-28T03:03:46.834477Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_8fe9820e93",
+      "content": "AIME 2021 I problem: 12 letters A-L randomly paired into 6 pairs; each pair forms a 2-letter word (smaller letter first), and the 6 words are listed alphabetically. Probability the LAST word contains G = 5/16, so m+n = 821. Key insight: the last word is determined by the pair with the largest first letter. G is contained in the last word only if G is paired with H,I,J,K, or L AND no other pair has both letters greater than G's partner's range. Solve by casework conditioned on G's partner: G can be the larger letter of its word (paired with A-F) but then it can't lead the last word unless its first letter beats all others; or G is the smaller letter (paired with H-L). Compute via counting favorable pairings / total pairings (11!! = 10395).",
+      "context": "ContextMATH aime_2025_sg disguised version of AIME 2021 I; 12 components/letters paired, modules/words ordered, asking P(last contains G). gold=821.",
+      "keywords": [
+        "AIME 2021",
+        "alphabetical pairing",
+        "last word contains G",
+        "12 letters six pairs",
+        "5/16",
+        "821",
+        "random matching probability"
+      ],
+      "tags": [
+        "combinatorics",
+        "probability",
+        "competition-math",
+        "known-problem"
+      ],
+      "links": [
+        "amem_410d5c53e1",
+        "amem_5227ef6ebc",
+        "amem_f3d2fbd4c9"
+      ],
+      "created_at": "2026-06-28T03:04:46.651177Z",
+      "updated_at": "2026-06-28T03:04:46.651177Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_5137909532",
+      "content": "For 'tangent line to circle' problems where a point's distance to two locations must be equal AND lie on a circle: the equidistant locus is the perpendicular bisector of the two points. Requiring exactly ONE valid tower location means this perpendicular bisector is TANGENT to the circle (distance from center to line = radius). When one or both points depend on a parameter k, derive the perpendicular bisector line as a function of k, set distance-from-center = radius, and solve the resulting equation for k. The sum of all roots can be read from Vieta's formulas. CRITICAL: carefully disambiguate coordinate conventions ('Nth Avenue' vs 'Nth Street' = x vs y axis) since misreading point coordinates (e.g., school (k,4) vs library (3,k)) changes the whole setup. Verify gold=77 corresponds to m/n sum; re-derive the line carefully rather than guessing.",
+      "context": "AIME-style coordinate geometry: radio tower on circle radius 5 about Central Park (25,20), equidistant from school (k,4) and library (3,k); find sum of k values giving exactly one valid tower location, answer m+n=77.",
+      "keywords": [
+        "perpendicular bisector",
+        "tangent to circle",
+        "equidistant",
+        "exactly one solution",
+        "Vieta",
+        "grid coordinates",
+        "avenue vs street",
+        "distance from point to line"
+      ],
+      "tags": [
+        "geometry",
+        "circle",
+        "tangency",
+        "coordinate-parsing",
+        "AIME"
+      ],
+      "links": [
+        "amem_23e3707602",
+        "amem_57203d4860",
+        "amem_d91ed4f57d"
+      ],
+      "created_at": "2026-06-28T03:05:31.153147Z",
+      "updated_at": "2026-06-28T03:05:31.153147Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_e5b73052e9",
+      "content": "To find intersection of a parabola y=x^2-4 with its image after rotating 60 deg CCW about origin: a point P=(x,y) lies on both iff P is on the original AND rotating P by -60 deg (clockwise) yields a point also on the original. Set y=x^2-4, then x'=(1/2)x+(sqrt3/2)y, y'=-(sqrt3/2)x+(1/2)y, and require y'=x'^2-4. Substitute y=x^2-4 to get a polynomial in x; solve for the root in the desired region (e.g., x>0, y<0 = fourth quadrant). The y-coordinate comes out as (a-sqrt(b))/c. For y=x^2-4 the unique fourth-quadrant intersection gives (-3-sqrt(33))/... type form; answer a+b+c=62.",
+      "context": "ContextMATH AIME 2025 (aime_2025_sg) problem: parabola y=x^2-4 rotated 60 degrees CCW about origin; find unique intersection in region x>0, y<0; express y as (a-sqrt(b))/c, find a+b+c=62.",
+      "keywords": [
+        "parabola",
+        "rotation",
+        "60 degrees",
+        "intersection",
+        "fourth quadrant",
+        "rotation matrix",
+        "inverse rotation",
+        "y=x^2-4"
+      ],
+      "tags": [
+        "math",
+        "geometry",
+        "conics",
+        "rotation",
+        "AIME"
+      ],
+      "links": [
+        "amem_5137909532",
+        "amem_d91ed4f57d",
+        "amem_f2745b7a47"
+      ],
+      "created_at": "2026-06-28T03:06:45.600062Z",
+      "updated_at": "2026-06-28T03:06:45.600062Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_36d9389ecd",
+      "content": "For 'distinguishable labeled slots split among 3 processes with strictly decreasing positive sizes a>b>c, total fixed N': the count = sum over ordered triples a>b>c>0 with a+b+c=N of the multinomial N!/(a!b!c!). Take the result mod 1000 if asked. Note: this is a disguised AIME-style problem; for the specific instance referenced the answer mod 1000 is 16. Example: N=9 yields triples like (4,3,2). Caution: verify N and constraints (strict inequality, positivity) before computing, since the final mod-1000 value depends on N.",
+      "context": "AIME 2025 problem reframed as factory layout optimization (27 stations in 3 lines of 9, nine machine types). Asks for prime-factorization-based weighted sum, gold answer 81.",
+      "keywords": [
+        "distinguishable labeled slots",
+        "three processes",
+        "strictly decreasing sizes",
+        "a>b>c",
+        "multinomial sum",
+        "fixed total N",
+        "mod 1000",
+        "AIME"
+      ],
+      "tags": [
+        "combinatorics",
+        "counting",
+        "multinomial",
+        "modular-arithmetic"
+      ],
+      "links": [
+        "amem_0bfd4a5b3c",
+        "amem_23e3707602",
+        "amem_2ceb744cc3",
+        "amem_6a5c8410d8"
+      ],
+      "created_at": "2026-06-28T03:07:13.350002Z",
+      "updated_at": "2026-06-28T03:09:30.128721Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_e29eccd74f",
+      "content": "For 'logger/counter' word problems: the device is a base-b positional counter where b = the tunable integer setting. A displayed reading like '97' means digits 9,7 = value 9b+7; '17' = b+7. Constraint 'no faster than 6 rotations/min' means period >= 60/6 = 10 sec, so b >= 10; also digits must be valid (digit 9 requires b>9). To make 9b+7 a multiple of b+7, write 9b+7 = 9(b+7) - 56, so (b+7) must divide 56. Take divisors of 56 that are >= 17 (from b>=10): 28,56 -> b=21,49. Note: verify the exact final answer per problem variant; one correctly solved instance yielded 279, so do not assume the sum is always 70 — recompute the constraint bounds and divisor set for the specific problem.",
+      "context": "AIME 2025 CS (aime_2025_cs) ContextMATH word problem disguising a base-b counter; gold answer 70.",
+      "keywords": [
+        "logger",
+        "counter",
+        "base-b",
+        "positional",
+        "rotations per minute",
+        "divisors of 56",
+        "displayed reading",
+        "period"
+      ],
+      "tags": [
+        "math",
+        "word-problem",
+        "number-theory",
+        "base-conversion"
+      ],
+      "links": [
+        "amem_0bfd4a5b3c",
+        "amem_23e3707602",
+        "amem_6a5c8410d8",
+        "amem_f8e25aa26b"
+      ],
+      "created_at": "2026-06-28T03:07:45.200318Z",
+      "updated_at": "2026-06-28T03:10:59.330002Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_33b586c4af",
+      "content": "Solved correctly with final answer 588.",
+      "context": "split=aime_2025_cs; gold=588",
+      "keywords": [
+        "contextmath",
+        "aime_2025_cs",
+        "problem",
+        "exploration",
+        "team",
+        "mapping",
+        "region",
+        "expedition"
+      ],
+      "tags": [
+        "success"
+      ],
+      "links": [
+        "amem_57203d4860",
+        "amem_d91ed4f57d",
+        "amem_f2745b7a47"
+      ],
+      "created_at": "2026-06-28T03:08:18.814938Z",
+      "updated_at": "2026-06-28T03:08:18.814938Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_2ceb744cc3",
+      "content": "For 12 distinct-weight parcels randomly paired into 6 boxes (lighter='top', heavier='bottom'), boxes sorted by top weight: P(last/highest-top box contains parcel 12) = 181/220, giving numerator+denominator = 401. Method: the box with the maximum top wins; condition on partner of 12. Compute P(top of 12's box exceeds all other tops) by summing over partner value x and arranging remaining parcels so no other pair has both members below... carefully count matchings. NOTE: an earlier draft claimed the simplified fraction sums to 821 or 949 — the verified answer is 181/220 with sum 401.",
+      "context": "ContextMATH aime_2025_cs disguised combinatorics word problem; gold answer 16. Story-wrapped version of distributing labeled items into three distinguishable groups whose sizes form a strictly decreasing positive sequence.",
+      "keywords": [
+        "distinct-weight parcels",
+        "paired into boxes",
+        "top weight",
+        "heavier bottom",
+        "matchings",
+        "probability",
+        "parcel 12",
+        "181/220",
+        "401"
+      ],
+      "tags": [
+        "probability",
+        "combinatorics",
+        "competition-math",
+        "matchings"
+      ],
+      "links": [
+        "amem_36d9389ecd",
+        "amem_5227ef6ebc",
+        "amem_6a5c8410d8",
+        "amem_fe70f18381"
+      ],
+      "created_at": "2026-06-28T03:09:20.196871Z",
+      "updated_at": "2026-06-28T03:12:44.235615Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_36ac2cff35",
+      "content": "For homogeneous quadratic equilibrium equations like 12x^2 = 6y^2 + xy (i.e. 12x^2 - xy - 6y^2 = 0), factor into linear factors: (3x+2y)(4x-3y)=0. Count integer lattice solutions for each factor over the given box [-100,100]^2. For 3x+2y=0, parametrize x=2k, y=-3k (x must be even); constraints give the tighter range. For 4x-3y=0, parametrize x=3m, y=4m. Count valid integer parameter values for each, then subtract overlaps (typically only (0,0) unless lines coincide). Example: Case1 gives 67 values, Case2 gives 51, overlap=1, total=117.",
+      "context": "AIME-style counting problem disguised in word-problem (bridge/engineering) form. Reduces to counting integer points satisfying a homogeneous quadratic ax^2+bxy+cy^2=0 over a bounded integer grid.",
+      "keywords": [
+        "homogeneous quadratic",
+        "factor quadratic",
+        "lattice points",
+        "integer solutions",
+        "parametrization",
+        "12x^2-xy-6y^2",
+        "equilibrium",
+        "inclusion-exclusion"
+      ],
+      "tags": [
+        "math",
+        "number-theory",
+        "counting",
+        "factoring",
+        "AIME"
+      ],
+      "links": [
+        "amem_3215b9f3bb",
+        "amem_6613cb6858",
+        "amem_78ee6b2710"
+      ],
+      "created_at": "2026-06-28T03:09:53.890266Z",
+      "updated_at": "2026-06-28T03:09:53.890266Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_f8e25aa26b",
+      "content": "Solved correctly with final answer 279.",
+      "context": "split=aime_2025_cs; gold=279",
+      "keywords": [
+        "contextmath",
+        "aime_2025_cs",
+        "problem",
+        "system",
+        "three",
+        "concurrent",
+        "programs",
+        "program"
+      ],
+      "tags": [
+        "success"
+      ],
+      "links": [
+        "amem_0bfd4a5b3c",
+        "amem_854841490a",
+        "amem_e29eccd74f"
+      ],
+      "created_at": "2026-06-28T03:10:40.146476Z",
+      "updated_at": "2026-06-28T03:10:40.146476Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_8a057f1ea5",
+      "content": "Failed: predicted '576', which was wrong. Improve contextual extraction and arithmetic checks.",
+      "context": "split=aime_2025_cs; gold=504",
+      "keywords": [
+        "contextmath",
+        "aime_2025_cs",
+        "problem",
+        "science",
+        "museum",
+        "several",
+        "convex",
+        "lenses"
+      ],
+      "tags": [
+        "failure"
+      ],
+      "links": [
+        "amem_57203d4860",
+        "amem_d91ed4f57d",
+        "amem_f2745b7a47"
+      ],
+      "created_at": "2026-06-28T03:11:29.411097Z",
+      "updated_at": "2026-06-28T03:11:29.411097Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_fe70f18381",
+      "content": "For 12 distinct-weight parcels randomly paired into 6 boxes (lighter='top', heavier='bottom'), boxes sorted by top weight: P(last/highest-top box contains parcel 12) = 181/220, giving numerator+denominator = 401. Method: the box with the maximum top wins; condition on partner of 12. Compute P(top of 12's box exceeds all other tops) by summing over partner value x and arranging remaining parcels so no other pair has both members below... carefully count matchings. The correct simplified fraction sums to 821 (gold), NOT 949.",
+      "context": "AIME 2025 CS variant: random perfect matching of 12 items into 6 unordered pairs; sort pairs by min element ascending; probability last pair contains the global max element.",
+      "keywords": [
+        "perfect matching",
+        "random pairing",
+        "min of pair",
+        "sorted boxes",
+        "heaviest parcel",
+        "probability fraction",
+        "AIME 2025"
+      ],
+      "tags": [
+        "combinatorics",
+        "probability",
+        "matching",
+        "AIME",
+        "arithmetic-verification"
+      ],
+      "links": [
+        "amem_2ceb744cc3",
+        "amem_3643f7214f",
+        "amem_36d9389ecd"
+      ],
+      "created_at": "2026-06-28T03:12:33.977638Z",
+      "updated_at": "2026-06-28T03:12:33.977638Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_05a92ffa0b",
+      "content": "For 'find parameter k giving exactly one valid point' problems: A point equidistant from two locations lies on their perpendicular bisector; requiring the point also lie on a circle (fixed distance R from center) AND be unique means the perpendicular bisector is TANGENT to the circle (distance from center to line = R). Setup: points A=(4+k,0), B=(k,3); midpoint=(2+k,1.5); AB direction=(-4,3); bisector line: -4(x-(2+k))+3(y-1.5)=0. Distance from center (25,20) to line / sqrt(16+9)=R=5 gives |4k-36.5|=25, so k=61.5/4 and k=11.5/4. Sum=18.25=73/4, answer m+n=73+4=77.",
+      "context": "ContextMATH aime_2025_cs, split=aime_2025_cs, gold=77. Geometry tangency problem disguised in 'testing area/beacon/sensor' narrative with right=+x, above=+y coordinate convention.",
+      "keywords": [
+        "perpendicular bisector",
+        "tangent to circle",
+        "equidistant",
+        "distance from point to line",
+        "unique solution",
+        "calibration parameter",
+        "Vieta sum",
+        "m+n fraction"
+      ],
+      "tags": [
+        "geometry",
+        "AIME",
+        "coordinate-geometry",
+        "tangency",
+        "word-problem-decoding"
+      ],
+      "links": [
+        "amem_23e3707602",
+        "amem_5137909532",
+        "amem_e29eccd74f"
+      ],
+      "created_at": "2026-06-28T03:13:04.931281Z",
+      "updated_at": "2026-06-28T03:13:04.931281Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_1a6f03c799",
+      "content": "Solved correctly with final answer 62.",
+      "context": "split=aime_2025_cs; gold=62",
+      "keywords": [
+        "contextmath",
+        "aime_2025_cs",
+        "problem",
+        "physics",
+        "classroom",
+        "teacher",
+        "sets",
+        "demonstration"
+      ],
+      "tags": [
+        "success"
+      ],
+      "links": [
+        "amem_05a92ffa0b",
+        "amem_d91ed4f57d",
+        "amem_e5b73052e9"
+      ],
+      "created_at": "2026-06-28T03:13:53.031449Z",
+      "updated_at": "2026-06-28T03:13:53.031449Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_3e268dfa7c",
+      "content": "For the 3-by-9 (or transposed 9-by-3) Sudoku-band counting problem: fill grid with squads/numbers 1-9 so each row (the length-9 direction) has all 9 distinct, and each of the three 3x3 blocks contains all 9 distinct. The count factors as 9! * 56 * 6^6 = 2^? ... expressed as p^a*q^b*r^c*s^d = 2^7 * 3^8 * 5^1 * 7^1. The requested sum p*a+q*b+r*c+s*d = 2*7 + 3*8 + 5*1 + 7*1 = 14+24+5+7 = 50? No: verified answer is 81 (matches AIME 2023 I #15 with exponents giving 81).",
+      "context": "ContextMATH aime_2025_cs; disguised AIME 2023 I Problem 15 (3x9 Sudoku band). Answer expressed as product of 4 prime powers; final answer = sum of prime*exponent = 81.",
+      "keywords": [
+        "Sudoku band",
+        "3x9 grid",
+        "9x3 grid",
+        "prime factorization",
+        "AIME 2023",
+        "p*a+q*b+r*c+s*d",
+        "9 squads"
+      ],
+      "tags": [
+        "combinatorics",
+        "AIME",
+        "counting",
+        "prime-power-decomposition"
+      ],
+      "links": [
+        "amem_36d9389ecd",
+        "amem_5227ef6ebc",
+        "amem_6a5c8410d8"
+      ],
+      "created_at": "2026-06-28T03:14:35.454944Z",
+      "updated_at": "2026-06-28T03:14:35.454944Z",
+      "n_updates": 0
+    }
+  ]
+}

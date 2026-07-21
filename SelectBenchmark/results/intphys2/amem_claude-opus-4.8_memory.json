@@ -1,0 +1,610 @@
+{
+  "notes": [
+    {
+      "id": "amem_a141a86483",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Default to 1 unless there is clear, unambiguous evidence of a true violation (objects passing through each other, impossible appearance/disappearance). Over-flagging plausible scenes as impossible (outputting 0) is a recurring error; normal occlusion, contact, partial visibility, and unusual-but-plausible motion must NOT be treated as violations. Only output 0 when a genuine impossible event is clearly observed.",
+      "context": "IntPhys2 physics plausibility classification task; camera=Fixed; type=1_Possible; binary output where 1=plausible/possible, 0=impossible. Gold label was 1 (plausible), model predicted 0.",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "classification",
+        "Fixed camera",
+        "impossible",
+        "possible",
+        "solidity violation",
+        "over-flagging",
+        "occlusion"
+      ],
+      "tags": [
+        "physical-reasoning",
+        "video-classification",
+        "intphys2",
+        "solidity"
+      ],
+      "links": [
+        "amem_0045b7cb0e",
+        "amem_07a8298da8",
+        "amem_0dc6f0baa9",
+        "amem_12a23913fd",
+        "amem_95b4390dbf"
+      ],
+      "created_at": "2026-06-28T03:15:31.336927Z",
+      "updated_at": "2026-06-28T03:17:48.662171Z",
+      "n_updates": 5
+    },
+    {
+      "id": "amem_07a8298da8",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Genuine violations include objects passing through each other or appearing/disappearing impossibly. Default to 1 unless there is clear, unambiguous evidence of a violation; reserve 0 for true impossible scenes. Distinguish real violations from normal occlusion, contact, partial visibility, or unusual-but-plausible motion to avoid over-flagging. When a true impossible event is clearly observed, confidently output 0.",
+      "context": "IntPhys2 solidity physics binary classification task with Fixed camera; videos labeled 0_Impossible or 1_Possible. Output the integer label.",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "classification",
+        "fixed camera",
+        "impossible",
+        "possible",
+        "occlusion",
+        "over-flagging"
+      ],
+      "tags": [
+        "intphys2",
+        "solidity",
+        "video-classification",
+        "physical-reasoning"
+      ],
+      "links": [
+        "amem_0dc6f0baa9",
+        "amem_12a23913fd",
+        "amem_a141a86483",
+        "amem_a64fce6f07",
+        "amem_b5e8245bb2"
+      ],
+      "created_at": "2026-06-28T03:15:39.760984Z",
+      "updated_at": "2026-06-28T03:17:31.268438Z",
+      "n_updates": 4
+    },
+    {
+      "id": "amem_a64fce6f07",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Genuine violations include objects passing through each other or appearing/disappearing impossibly. Default to 1 unless there is clear, unambiguous evidence of a violation; reserve 0 for true impossible scenes. Distinguish real violations from normal occlusion, contact, partial visibility, or unusual-but-plausible motion to avoid over-flagging. When a true impossible event is clearly observed, confidently output 0.",
+      "context": "IntPhys2 solidity physics classification task with Fixed camera. Confirmed success outputting 0 for a 2_Impossible scene.",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "classification",
+        "Fixed camera",
+        "solidity violation",
+        "occlusion",
+        "over-flagging",
+        "impossible scene"
+      ],
+      "tags": [
+        "intphys2",
+        "solidity",
+        "classification",
+        "physical-reasoning",
+        "video-understanding"
+      ],
+      "links": [
+        "amem_07a8298da8",
+        "amem_0dc6f0baa9",
+        "amem_12a23913fd",
+        "amem_95b4390dbf",
+        "amem_a141a86483",
+        "amem_b5e8245bb2"
+      ],
+      "created_at": "2026-06-28T03:15:52.724780Z",
+      "updated_at": "2026-06-28T03:17:35.262623Z",
+      "n_updates": 4
+    },
+    {
+      "id": "amem_0dc6f0baa9",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). A genuine violation is objects passing through each other or appearing/disappearing impossibly. Default to 1 unless there is clear, unambiguous evidence of a solidity violation. Do not over-flag normal occlusion, contact, partial visibility, or unusual-but-plausible motion as violations; this recurring over-flagging error has caused multiple plausible scenes to be misclassified as impossible.",
+      "context": "IntPhys2 solidity physics classification task, Fixed camera, type 2_Possible. Plausible video correctly classified as 1.",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "classification",
+        "Fixed camera",
+        "occlusion",
+        "violation",
+        "over-flagging",
+        "partial visibility"
+      ],
+      "tags": [
+        "physical-reasoning",
+        "video-classification",
+        "intuitive-physics",
+        "labeling-guideline"
+      ],
+      "links": [
+        "amem_07a8298da8",
+        "amem_95b4390dbf",
+        "amem_a141a86483",
+        "amem_a64fce6f07"
+      ],
+      "created_at": "2026-06-28T03:16:13.906203Z",
+      "updated_at": "2026-06-28T03:16:47.676386Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_95b4390dbf",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). A genuine violation is objects passing through each other or appearing/disappearing impossibly. Default to 1 unless there is clear, unambiguous evidence of a solidity violation. Do not over-flag normal occlusion, contact, partial visibility, or unusual-but-plausible motion as violations; this recurring over-flagging error has caused multiple plausible scenes to be misclassified as impossible.",
+      "context": "IntPhys2 solidity physics classification, Fixed camera, type 1_Possible. Recurring failure: plausible scene (gold=1) misclassified as impossible (output=0).",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "Fixed camera",
+        "possible",
+        "impossible",
+        "over-flagging",
+        "occlusion"
+      ],
+      "tags": [
+        "physics-classification",
+        "video",
+        "binary-label",
+        "false-positive"
+      ],
+      "links": [
+        "amem_0dc6f0baa9",
+        "amem_a141a86483",
+        "amem_a64fce6f07"
+      ],
+      "created_at": "2026-06-28T03:16:34.223535Z",
+      "updated_at": "2026-06-28T03:16:34.223535Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_12a23913fd",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Output 0 only when a genuine impossible event is clearly observed (objects passing through each other, impossible appearance/disappearance). Default to 1 for normal occlusion, contact, partial visibility, or unusual-but-plausible motion. Over-flagging plausible scenes as impossible (outputting 0) is a recurring error; do not treat normal occlusion, contact, partial visibility, or unusual-but-plausible motion as violations.",
+      "context": "IntPhys2 solidity physics classification task with Fixed camera, type 1_Impossible. Correctly classified an impossible video as 0 matching gold label.",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "classification",
+        "Fixed camera",
+        "impossible",
+        "possible",
+        "occlusion",
+        "over-flagging",
+        "solidity violation"
+      ],
+      "tags": [
+        "intphys2",
+        "physical-reasoning",
+        "classification",
+        "video-understanding"
+      ],
+      "links": [
+        "amem_0045b7cb0e",
+        "amem_07a8298da8",
+        "amem_a141a86483",
+        "amem_a64fce6f07",
+        "amem_b5e8245bb2",
+        "amem_dffaac8fcf"
+      ],
+      "created_at": "2026-06-28T03:16:57.287474Z",
+      "updated_at": "2026-06-28T03:18:40.404196Z",
+      "n_updates": 3
+    },
+    {
+      "id": "amem_b5e8245bb2",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Output 0 ONLY when a genuine solidity violation is clearly observed (objects passing through each other, impossible appearance/disappearance behind occluders). Default to 1 for normal occlusion, contact, partial visibility, or unusual-but-plausible motion. Over-flagging plausible scenes as impossible (outputting 0) is the most common recurring error.",
+      "context": "IntPhys2 solidity physics classification, Fixed camera, type=2_Impossible. Correctly output 0 (impossible) for a video with a clear solidity violation; gold=0.",
+      "keywords": [
+        "IntPhys2",
+        "solidity classification",
+        "Fixed camera",
+        "solidity violation",
+        "occlusion",
+        "impossible event",
+        "label 0",
+        "label 1"
+      ],
+      "tags": [
+        "physical-reasoning",
+        "video-classification",
+        "intphys2",
+        "solidity"
+      ],
+      "links": [
+        "amem_0045b7cb0e",
+        "amem_03cd80b0e8",
+        "amem_07a8298da8",
+        "amem_12a23913fd",
+        "amem_41cc0ab7ec",
+        "amem_a64fce6f07",
+        "amem_dffaac8fcf",
+        "amem_ece77354c0"
+      ],
+      "created_at": "2026-06-28T03:17:18.944390Z",
+      "updated_at": "2026-06-28T03:20:11.155701Z",
+      "n_updates": 5
+    },
+    {
+      "id": "amem_0045b7cb0e",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Output 0 when a genuine solidity violation occurs (objects passing through each other, impossible appearance/disappearance behind occluders); output 1 for normal occlusion, contact, partial visibility, or unusual-but-plausible motion. TWO opposite error modes exist: (1) Over-flagging plausible scenes as impossible (outputting 0) is the most common recurring error; (2) Missing genuine violations and defaulting to 1, which also occurs especially with subtle violations around occluders. Carefully scan the full clip—particularly behind/around occluders—for subtle violations before settling on a label, but do not invent violations in plausible scenes.",
+      "context": "IntPhys2 solidity physics classification with Fixed camera, type 2_Possible. Model wrongly output 0 (impossible) when gold was 1 (plausible).",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "classification",
+        "fixed camera",
+        "occluder",
+        "violation",
+        "impossible",
+        "possible",
+        "appearance",
+        "disappearance"
+      ],
+      "tags": [
+        "intphys2",
+        "solidity",
+        "physical-reasoning",
+        "video-classification",
+        "error-modes"
+      ],
+      "links": [
+        "amem_03cd80b0e8",
+        "amem_12a23913fd",
+        "amem_41cc0ab7ec",
+        "amem_47f5b9dae0",
+        "amem_a141a86483",
+        "amem_b5e8245bb2",
+        "amem_dffaac8fcf",
+        "amem_ece77354c0"
+      ],
+      "created_at": "2026-06-28T03:17:44.680538Z",
+      "updated_at": "2026-06-28T03:22:27.951305Z",
+      "n_updates": 5
+    },
+    {
+      "id": "amem_479e3be4ef",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Default to 1 unless there is clear, unambiguous evidence of a true violation (objects passing through each other, impossible appearance/disappearance). Over-flagging plausible scenes as impossible (outputting 0) is a recurring error; normal occlusion, contact, partial visibility, and unusual-but-plausible motion must NOT be treated as violations. Only output 0 when a genuine impossible event is clearly observed.",
+      "context": "IntPhys2 solidity physics classification task, Fixed camera, distinguishing possible (1) from impossible (0) scenes. Recurring failure mode: misclassifying plausible scenes as impossible.",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "Fixed camera",
+        "physics classification",
+        "occlusion",
+        "violation",
+        "plausible",
+        "default to 1"
+      ],
+      "tags": [
+        "intphys2",
+        "physics",
+        "classification",
+        "video",
+        "bias-correction"
+      ],
+      "links": [
+        "amem_0045b7cb0e",
+        "amem_12a23913fd",
+        "amem_a141a86483"
+      ],
+      "created_at": "2026-06-28T03:18:06.186351Z",
+      "updated_at": "2026-06-28T03:18:06.186351Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_dffaac8fcf",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Output 0 ONLY when a genuine impossible event is clearly observed (objects passing through each other, impossible appearance/disappearance behind occluders). Default to 1 for normal occlusion, contact, partial visibility, or unusual-but-plausible motion. Over-flagging plausible scenes as impossible (outputting 0) is the most common recurring error.",
+      "context": "IntPhys2 solidity physics classification with Fixed camera. Successfully classified an impossible video (type=1_Impossible) as 0, matching gold label.",
+      "keywords": [
+        "IntPhys2",
+        "solidity classification",
+        "Fixed camera",
+        "impossible event",
+        "occlusion",
+        "solidity violation",
+        "over-flagging"
+      ],
+      "tags": [
+        "classification",
+        "physical-reasoning",
+        "video-understanding",
+        "labeling-guidance"
+      ],
+      "links": [
+        "amem_0045b7cb0e",
+        "amem_03cd80b0e8",
+        "amem_12a23913fd",
+        "amem_41cc0ab7ec",
+        "amem_b5e8245bb2"
+      ],
+      "created_at": "2026-06-28T03:18:36.455636Z",
+      "updated_at": "2026-06-28T03:19:34.842052Z",
+      "n_updates": 2
+    },
+    {
+      "id": "amem_03cd80b0e8",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Output 0 ONLY when a genuine solidity violation is clearly observed (objects passing through each other, impossible appearance/disappearance behind occluders). Default to 1 for normal occlusion, contact, partial visibility, or unusual-but-plausible motion. Over-flagging plausible scenes as impossible (outputting 0) is the most common recurring error.",
+      "context": "IntPhys2 physics video classification, Fixed camera, distinguishing impossible (0) vs possible (1) solidity scenarios. Confirmed correct output of 0 on a genuinely impossible video.",
+      "keywords": [
+        "IntPhys2",
+        "solidity classification",
+        "Fixed camera",
+        "solidity violation",
+        "occlusion",
+        "impossible event",
+        "over-flagging"
+      ],
+      "tags": [
+        "physical-reasoning",
+        "classification",
+        "video-understanding",
+        "intphys2"
+      ],
+      "links": [
+        "amem_0045b7cb0e",
+        "amem_0de1eb173e",
+        "amem_b5e8245bb2",
+        "amem_dffaac8fcf"
+      ],
+      "created_at": "2026-06-28T03:18:57.648678Z",
+      "updated_at": "2026-06-28T03:22:39.683426Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_41cc0ab7ec",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Output 0 ONLY when a genuine solidity violation is clearly observed (objects passing through each other, impossible appearance/disappearance behind occluders). Default to 1 for normal occlusion, contact, partial visibility, or unusual-but-plausible motion. Over-flagging plausible scenes as impossible (outputting 0) is the most common recurring error.",
+      "context": "IntPhys2 solidity physics classification, Fixed camera, type=2_Possible. A plausible video (gold=1) was misclassified as impossible (output 0).",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "classification",
+        "Fixed camera",
+        "impossible event",
+        "occlusion",
+        "solidity violation",
+        "over-flagging"
+      ],
+      "tags": [
+        "intphys2",
+        "solidity",
+        "classification",
+        "video-understanding",
+        "physical-reasoning"
+      ],
+      "links": [
+        "amem_0045b7cb0e",
+        "amem_b5e8245bb2",
+        "amem_dffaac8fcf",
+        "amem_ece77354c0"
+      ],
+      "created_at": "2026-06-28T03:19:27.140308Z",
+      "updated_at": "2026-06-28T03:20:02.382322Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_ece77354c0",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Output 0 ONLY when a genuine solidity violation is clearly observed (objects passing through each other, impossible appearance/disappearance behind occluders). Default to 1 for normal occlusion, contact, partial visibility, or unusual-but-plausible motion. Over-flagging plausible scenes as impossible (outputting 0) is the most common recurring error.",
+      "context": "IntPhys2 physics plausibility video classification with Fixed camera, type 1_Possible. Recurring failure where plausible scenes (gold=1) are misclassified as impossible (output 0).",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "Fixed camera",
+        "physics classification",
+        "plausible",
+        "impossible",
+        "occlusion",
+        "over-flagging"
+      ],
+      "tags": [
+        "video-classification",
+        "physics-reasoning",
+        "intuitive-physics",
+        "false-positive"
+      ],
+      "links": [
+        "amem_0045b7cb0e",
+        "amem_41cc0ab7ec",
+        "amem_b5e8245bb2"
+      ],
+      "created_at": "2026-06-28T03:19:53.483956Z",
+      "updated_at": "2026-06-28T03:19:53.483956Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_b375993d40",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Output 0 ONLY when a genuine solidity violation is clearly observed (objects passing through each other, impossible appearance/disappearance behind occluders). Default to 1 for normal occlusion, contact, partial visibility, or unusual-but-plausible motion. Over-flagging plausible scenes as impossible (outputting 0) is the most common recurring error.",
+      "context": "IntPhys2 solidity physics classification task with Fixed camera; binary labels where 0=impossible and 1=possible.",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "Fixed camera",
+        "impossible",
+        "possible",
+        "occlusion",
+        "physics violation"
+      ],
+      "tags": [
+        "video-classification",
+        "physics-reasoning",
+        "binary-classification"
+      ],
+      "links": [
+        "amem_41cc0ab7ec",
+        "amem_b5e8245bb2",
+        "amem_ece77354c0"
+      ],
+      "created_at": "2026-06-28T03:20:20.607656Z",
+      "updated_at": "2026-06-28T03:20:20.607656Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_d4989d3ebb",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Output 0 ONLY when a genuine solidity violation is clearly observed (objects passing through each other, impossible appearance/disappearance behind occluders). Default to 1 for normal occlusion, contact, partial visibility, or unusual-but-plausible motion. Over-flagging plausible scenes as impossible (outputting 0) is the most common recurring error.",
+      "context": "IntPhys2 solidity physics classification, Fixed camera, binary output (0=impossible, 1=possible). Confirmed success classifying a true impossible solidity video as 0.",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "physics",
+        "classification",
+        "Fixed camera",
+        "impossible",
+        "occluder",
+        "binary label"
+      ],
+      "tags": [
+        "video-classification",
+        "physical-reasoning",
+        "intuitive-physics",
+        "solidity-violation"
+      ],
+      "links": [
+        "amem_41cc0ab7ec",
+        "amem_b375993d40",
+        "amem_b5e8245bb2"
+      ],
+      "created_at": "2026-06-28T03:20:41.604610Z",
+      "updated_at": "2026-06-28T03:20:41.604610Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_3b13acf1ae",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Output 0 ONLY when a genuine solidity violation is clearly observed (objects passing through each other, impossible appearance/disappearance behind occluders). Default to 1 for normal occlusion, contact, partial visibility, or unusual-but-plausible motion. Over-flagging plausible scenes as impossible (outputting 0) is the most common recurring error.",
+      "context": "IntPhys2 solidity physics classification task with Fixed camera, type 2_Possible. Repeated failure where model output 0 (impossible) but gold label was 1 (possible).",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "Fixed camera",
+        "physics classification",
+        "possible",
+        "impossible",
+        "occlusion",
+        "false positive"
+      ],
+      "tags": [
+        "video-classification",
+        "physics-reasoning",
+        "binary-classification",
+        "recurring-error"
+      ],
+      "links": [
+        "amem_0045b7cb0e",
+        "amem_b375993d40",
+        "amem_b5e8245bb2"
+      ],
+      "created_at": "2026-06-28T03:21:04.231577Z",
+      "updated_at": "2026-06-28T03:21:04.231577Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_67971559f2",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Output 0 when a genuine solidity violation occurs (objects passing through each other, impossible appearance/disappearance behind occluders); output 1 for normal occlusion, contact, partial visibility, or unusual-but-plausible motion. Two opposing errors occur: (1) over-flagging plausible scenes as impossible (outputting 0) is the most common recurring error, BUT (2) missing genuine violations and defaulting to 1 also happens (e.g., a true 2_Impossible scene with gold=0 misclassified as 1). Carefully scan the full clip for subtle violations, especially around occluders, before defaulting to 1—do not over-flag normal scenes, but do not overlook real violations.",
+      "context": "IntPhys2 solidity physics classification task with Fixed camera; binary output where 0=impossible, 1=possible. Failure case: plausible scene (gold=1) misclassified as impossible (output=0).",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "classification",
+        "Fixed camera",
+        "occluder",
+        "violation",
+        "impossible",
+        "possible"
+      ],
+      "tags": [
+        "intuitive-physics",
+        "video-classification",
+        "error-analysis",
+        "balanced-judgment"
+      ],
+      "links": [
+        "amem_0045b7cb0e",
+        "amem_3b13acf1ae",
+        "amem_47f5b9dae0",
+        "amem_b375993d40"
+      ],
+      "created_at": "2026-06-28T03:21:23.735592Z",
+      "updated_at": "2026-06-28T03:22:17.181489Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_610426387c",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Output 0 ONLY when a genuine solidity violation is clearly observed (objects passing through each other, impossible appearance/disappearance behind occluders). Default to 1 for normal occlusion, contact, partial visibility, or unusual-but-plausible motion. Over-flagging plausible scenes as impossible (outputting 0) is the most common recurring error.",
+      "context": "IntPhys2 solidity physics classification task with Fixed camera; binary impossible/possible labeling of .mp4 videos.",
+      "keywords": [
+        "IntPhys2",
+        "solidity classification",
+        "Fixed camera",
+        "solidity violation",
+        "occlusion",
+        "label 0 impossible",
+        "label 1 possible",
+        "over-flagging"
+      ],
+      "tags": [
+        "classification",
+        "physics",
+        "video-understanding",
+        "intuitive-physics"
+      ],
+      "links": [
+        "amem_0de1eb173e",
+        "amem_b375993d40",
+        "amem_b5e8245bb2",
+        "amem_d4989d3ebb"
+      ],
+      "created_at": "2026-06-28T03:21:50.313933Z",
+      "updated_at": "2026-06-28T03:22:43.796434Z",
+      "n_updates": 1
+    },
+    {
+      "id": "amem_47f5b9dae0",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). This task was a true 2_Impossible scene (gold=0) but model output 1, MISSING the violation. While over-flagging plausible scenes as impossible is common, the opposite error also occurs: failing to detect genuine solidity violations (objects passing through each other, impossible appearance/disappearance behind occluders). Carefully scan the full clip for subtle violations especially around occluders before defaulting to 1.",
+      "context": "IntPhys2 solidity physics classification, Fixed camera, type=2_Impossible. Model under-flagged a true impossible scene as plausible.",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "Fixed camera",
+        "2_Impossible",
+        "occluder",
+        "missed violation",
+        "false negative"
+      ],
+      "tags": [
+        "physics-classification",
+        "video",
+        "binary-label",
+        "solidity-violation"
+      ],
+      "links": [
+        "amem_0045b7cb0e",
+        "amem_3b13acf1ae",
+        "amem_67971559f2"
+      ],
+      "created_at": "2026-06-28T03:22:11.453750Z",
+      "updated_at": "2026-06-28T03:22:11.453750Z",
+      "n_updates": 0
+    },
+    {
+      "id": "amem_0de1eb173e",
+      "content": "For IntPhys2 solidity classification (Fixed camera): label 0 = impossible (solidity violation), 1 = possible (plausible). Output 0 ONLY when a genuine solidity violation is clearly observed (objects passing through each other, impossible appearance/disappearance behind occluders). Default to 1 for normal occlusion, contact, partial visibility, or unusual-but-plausible motion. Over-flagging plausible scenes as impossible (outputting 0) is the most common recurring error.",
+      "context": "IntPhys2 solidity physics classification, camera=Fixed, type=2_Possible; correctly classified a plausible video as 1.",
+      "keywords": [
+        "IntPhys2",
+        "solidity",
+        "Fixed camera",
+        "physics classification",
+        "plausible",
+        "occlusion"
+      ],
+      "tags": [
+        "video-classification",
+        "physics-reasoning",
+        "binary-label"
+      ],
+      "links": [
+        "amem_03cd80b0e8",
+        "amem_610426387c",
+        "amem_ece77354c0"
+      ],
+      "created_at": "2026-06-28T03:22:35.867436Z",
+      "updated_at": "2026-06-28T03:22:35.867436Z",
+      "n_updates": 0
+    }
+  ]
+}

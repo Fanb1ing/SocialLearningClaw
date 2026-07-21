@@ -1,0 +1,372 @@
+{
+  "baseline": "expel",
+  "model": "claude-opus-4.8",
+  "insight_interval": 5,
+  "splits": {
+    "aime_2024_sg": {
+      "accuracy": 90.0,
+      "n_correct": 9,
+      "n_total": 10,
+      "records": [
+        {
+          "id": 60,
+          "gold": "204",
+          "predicted": "204",
+          "correct": true,
+          "n_experiences_before": 0,
+          "n_insights": 0
+        },
+        {
+          "id": 61,
+          "gold": "113",
+          "predicted": "113",
+          "correct": true,
+          "n_experiences_before": 1,
+          "n_insights": 0
+        },
+        {
+          "id": 62,
+          "gold": "371",
+          "predicted": "305",
+          "correct": false,
+          "n_experiences_before": 2,
+          "n_insights": 0
+        },
+        {
+          "id": 63,
+          "gold": "385",
+          "predicted": "385",
+          "correct": true,
+          "n_experiences_before": 3,
+          "n_insights": 0
+        },
+        {
+          "id": 64,
+          "gold": "110",
+          "predicted": "110",
+          "correct": true,
+          "n_experiences_before": 4,
+          "n_insights": 10
+        },
+        {
+          "id": 65,
+          "gold": "104",
+          "predicted": "104",
+          "correct": true,
+          "n_experiences_before": 5,
+          "n_insights": 10
+        },
+        {
+          "id": 66,
+          "gold": "721",
+          "predicted": "721",
+          "correct": true,
+          "n_experiences_before": 6,
+          "n_insights": 10
+        },
+        {
+          "id": 67,
+          "gold": "025",
+          "predicted": "25",
+          "correct": true,
+          "n_experiences_before": 7,
+          "n_insights": 10
+        },
+        {
+          "id": 68,
+          "gold": "809",
+          "predicted": "809",
+          "correct": true,
+          "n_experiences_before": 8,
+          "n_insights": 10
+        },
+        {
+          "id": 69,
+          "gold": "116",
+          "predicted": "116",
+          "correct": true,
+          "n_experiences_before": 9,
+          "n_insights": 9
+        }
+      ]
+    },
+    "aime_2024_cs": {
+      "accuracy": 90.0,
+      "n_correct": 9,
+      "n_total": 10,
+      "records": [
+        {
+          "id": 60,
+          "gold": "204",
+          "predicted": "204",
+          "correct": true,
+          "n_experiences_before": 10,
+          "n_insights": 9
+        },
+        {
+          "id": 61,
+          "gold": "113",
+          "predicted": "113",
+          "correct": true,
+          "n_experiences_before": 11,
+          "n_insights": 9
+        },
+        {
+          "id": 62,
+          "gold": "371",
+          "predicted": "305",
+          "correct": false,
+          "n_experiences_before": 12,
+          "n_insights": 9
+        },
+        {
+          "id": 63,
+          "gold": "385",
+          "predicted": "385",
+          "correct": true,
+          "n_experiences_before": 13,
+          "n_insights": 9
+        },
+        {
+          "id": 64,
+          "gold": "110",
+          "predicted": "110",
+          "correct": true,
+          "n_experiences_before": 14,
+          "n_insights": 8
+        },
+        {
+          "id": 65,
+          "gold": "104",
+          "predicted": "104",
+          "correct": true,
+          "n_experiences_before": 15,
+          "n_insights": 8
+        },
+        {
+          "id": 66,
+          "gold": "721",
+          "predicted": "721",
+          "correct": true,
+          "n_experiences_before": 16,
+          "n_insights": 8
+        },
+        {
+          "id": 67,
+          "gold": "025",
+          "predicted": "25",
+          "correct": true,
+          "n_experiences_before": 17,
+          "n_insights": 8
+        },
+        {
+          "id": 68,
+          "gold": "809",
+          "predicted": "809",
+          "correct": true,
+          "n_experiences_before": 18,
+          "n_insights": 8
+        },
+        {
+          "id": 69,
+          "gold": "116",
+          "predicted": "116",
+          "correct": true,
+          "n_experiences_before": 19,
+          "n_insights": 9
+        }
+      ]
+    },
+    "aime_2025_sg": {
+      "accuracy": 70.0,
+      "n_correct": 7,
+      "n_total": 10,
+      "records": [
+        {
+          "id": 0,
+          "gold": "70",
+          "predicted": "70",
+          "correct": true,
+          "n_experiences_before": 20,
+          "n_insights": 9
+        },
+        {
+          "id": 1,
+          "gold": "588",
+          "predicted": "588",
+          "correct": true,
+          "n_experiences_before": 21,
+          "n_insights": 9
+        },
+        {
+          "id": 2,
+          "gold": "16",
+          "predicted": "16",
+          "correct": true,
+          "n_experiences_before": 22,
+          "n_insights": 9
+        },
+        {
+          "id": 3,
+          "gold": "117",
+          "predicted": "117",
+          "correct": true,
+          "n_experiences_before": 23,
+          "n_insights": 9
+        },
+        {
+          "id": 4,
+          "gold": "279",
+          "predicted": "279",
+          "correct": true,
+          "n_experiences_before": 24,
+          "n_insights": 9
+        },
+        {
+          "id": 5,
+          "gold": "504",
+          "predicted": "504",
+          "correct": true,
+          "n_experiences_before": 25,
+          "n_insights": 9
+        },
+        {
+          "id": 6,
+          "gold": "821",
+          "predicted": "12",
+          "correct": false,
+          "n_experiences_before": 26,
+          "n_insights": 9
+        },
+        {
+          "id": 7,
+          "gold": "77",
+          "predicted": "78",
+          "correct": false,
+          "n_experiences_before": 27,
+          "n_insights": 9
+        },
+        {
+          "id": 8,
+          "gold": "62",
+          "predicted": "65",
+          "correct": false,
+          "n_experiences_before": 28,
+          "n_insights": 9
+        },
+        {
+          "id": 9,
+          "gold": "81",
+          "predicted": "81",
+          "correct": true,
+          "n_experiences_before": 29,
+          "n_insights": 9
+        }
+      ]
+    },
+    "aime_2025_cs": {
+      "accuracy": 70.0,
+      "n_correct": 7,
+      "n_total": 10,
+      "records": [
+        {
+          "id": 0,
+          "gold": "70",
+          "predicted": "70",
+          "correct": true,
+          "n_experiences_before": 30,
+          "n_insights": 9
+        },
+        {
+          "id": 1,
+          "gold": "588",
+          "predicted": "588",
+          "correct": true,
+          "n_experiences_before": 31,
+          "n_insights": 9
+        },
+        {
+          "id": 2,
+          "gold": "16",
+          "predicted": "16",
+          "correct": true,
+          "n_experiences_before": 32,
+          "n_insights": 9
+        },
+        {
+          "id": 3,
+          "gold": "117",
+          "predicted": "117",
+          "correct": true,
+          "n_experiences_before": 33,
+          "n_insights": 9
+        },
+        {
+          "id": 4,
+          "gold": "279",
+          "predicted": "279",
+          "correct": true,
+          "n_experiences_before": 34,
+          "n_insights": 9
+        },
+        {
+          "id": 5,
+          "gold": "504",
+          "predicted": "576",
+          "correct": false,
+          "n_experiences_before": 35,
+          "n_insights": 9
+        },
+        {
+          "id": 6,
+          "gold": "821",
+          "predicted": "949",
+          "correct": false,
+          "n_experiences_before": 36,
+          "n_insights": 9
+        },
+        {
+          "id": 7,
+          "gold": "77",
+          "predicted": "77",
+          "correct": true,
+          "n_experiences_before": 37,
+          "n_insights": 9
+        },
+        {
+          "id": 8,
+          "gold": "62",
+          "predicted": null,
+          "correct": false,
+          "n_experiences_before": 38,
+          "n_insights": 9
+        },
+        {
+          "id": 9,
+          "gold": "81",
+          "predicted": "81",
+          "correct": true,
+          "n_experiences_before": 39,
+          "n_insights": 8
+        }
+      ]
+    }
+  },
+  "summary": {
+    "aime_2024_sg": 90.0,
+    "aime_2024_cs": 90.0,
+    "aime_2025_sg": 70.0,
+    "aime_2025_cs": 70.0
+  },
+  "final_insights": [
+    "Here are generalizable rules extracted from these experiences:",
+    "1. Recognize that \"real-world\" framings (factories, parades, timing labs, delivery hubs) are usually disguised abstract math problems—strip away the narrative and identify the underlying combinatorics, geometry, or number theory structure first.",
+    "2. When the same answer recurs across differently-worded tasks (e.g., 70, 588, 16, 117, 279, 81), treat structurally identical problems consistently; map a new problem to a previously solved template before computing.",
+    "3. For geometry problems involving distance from a fixed point (radio tower 5 miles from a center, receiver coordinates), carefully count lattice points or intersections and double-check boundary inclusion—these were a repeated failure source (tasks 8, 18).",
+    "4. In counting/partition problems (pairing parcels into boxes, grouping engineers into project types), verify whether order matters and whether groups are distinguishable, since misclassifying these distinctions caused failures (tasks 7, 17).",
+    "5. For pairing problems with distinct items into fixed-size groups (e.g., 12 parcels into 6 boxes of 2), apply the correct multinomial/double-counting correction rather than a naive product, which led to wrong answers like '949' and '12'.",
+    "6. For physics-motion problems (projectiles, roller coaster height as a quadratic), set up the governing equation explicitly and solve fully—partial or incomplete reasoning produced 'None' and wrong values (tasks 9, 19).",
+    "7. With optics or rate problems (lenses, gears"
+  ],
+  "n_experiences": 40
+}

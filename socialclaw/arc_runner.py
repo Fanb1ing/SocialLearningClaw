@@ -445,7 +445,9 @@ def run_arc_agi3(
                 print(f"[ARC] Observation is None/empty at step {step}, breaking.")
                 break
 
-            grid = obs.frame[0] if obs.frame else None
+            # ARC observations can include intermediate animation frames.
+            # Use the final frame for prompts and state diffs.
+            grid = obs.frame[-1] if obs.frame else None
             if grid is None:
                 print(f"[ARC] Grid is None at step {step}, breaking.")
                 break
@@ -663,7 +665,7 @@ def run_arc_agi3(
             total_steps += 1
 
             state_str = str(obs.state) if obs else "UNKNOWN"
-            post_grid = obs.frame[0] if obs and obs.frame else None
+            post_grid = obs.frame[-1] if obs and obs.frame else None
             grid_changed, changed_regions = compute_grid_diff(pre_grid, post_grid)
 
             # Extract objects from post-action grid and update schema

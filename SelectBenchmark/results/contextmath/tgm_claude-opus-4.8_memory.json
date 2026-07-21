@@ -1,0 +1,1577 @@
+{
+  "queries": [
+    {
+      "id": "q_45c4bbc0d5",
+      "task": "ContextMATH aime_2024_sg problem:\nA delivery truck follows a daily route that covers a total of 9 kilometers. Initially, the truck travels at an average speed, and the route takes 4 hours, which includes a specified time for loading, unloading, and the driver's rest break. When the truck is optimized to travel 2 kilometers per hour faster, the route takes 2 hours and 24 minutes, again including the same loading, unloading, and rest time. If the truck is now tuned to drive \\(\\frac{1}{2}\\) kilometer per hour faster under normal conditions, determine the total time in minutes for the delivery route, including the stops for loading, unloading, and the driver's rest break.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "Let me denote the driving speed as v km/h and the fixed stop time as t hours.\n\n**Setting up equations:**\n\nDriving distance is 9 km. Total time = driving time + stop time.\n\n**Case 1:** speed v, total time 4 hours:\n$$\\frac{9}{v} + t = 4$$\n\n**Case 2:** speed v+2, total time 2.4 hours (2h24min):\n$$\\frac{9}{v+2} + t = 2.4$$\n\n**Subtracting:**\n$$\\frac{9}{v} - \\frac{9}{v+2} = 4 - 2.4 = 1.6$$\n\n$$9 \\cdot \\frac{(v+2) - v}{v(v+2)} = 1.6$$\n\n$$\\frac{18}{v(v+2)} = 1.6$$\n\n$$v(v+2) = \\frac{18}{1.6} = 11.25$$\n\n$$v^2 + 2v - 11.25 = 0$$\n\n$$v = \\frac{-2 + \\sqrt{4 + 45}}{2} = \\frac{-2 + 7}{2} = 2.5$$\n\nSo v = 2.5 km/h.\n\n**Finding t:**\n$$t = 4 - \\frac{9}{2.5} = 4 - 3.6 = 0.4 \\text{ hours}$$\n\n**Case 3:** speed = v + 0.5 = 3.0 km/h:\n$$\\text{Total time} = \\frac{9}{3.0} + 0.4 = 3 + 0.4 = 3.4 \\text{ hours}$$\n\nConverting to minutes:\n$$3.4 \\times 60 = 204 \\text{ minutes}$$\n\n\\boxed{204}",
+      "lesson": "Solved correctly with final answer 204. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_sg; gold=204; predicted=204",
+      "domain": "contextmath",
+      "path_id": "p_885ea35afd08",
+      "created_at": "2026-07-07T05:00:47.493480Z"
+    },
+    {
+      "id": "q_51d7a13d56",
+      "task": "ContextMATH aime_2024_sg problem:\nAt the heart of a large botanical garden lies a perfectly circular walking path known as Harmony Loop. Three popular landmarks are located along this path: the Butterfly Pavilion, the Rose Fountain, and the Zen Arch. Visitors often walk between these spots, and the garden staff has measured the straight-line distances between them: it's 5 meters from the Butterfly Pavilion to the Rose Fountain, 9 meters from the Rose Fountain to the Zen Arch, and 10 meters from the Butterfly Pavilion to the Zen Arch.\n\nOne day, a drone photographer named Alex sets up a camera on a tripod just outside the garden. From this vantage point, Alex notices that if you draw straight lines from the camera to both the Rose Fountain and the Zen Arch, those lines just barely graze the circular path — they touch it at exactly those two landmarks and then continue outward, meeting at the camera's location.\n\nCurious about the geometry, Alex decides to walk from the Butterfly Pavilion directly toward the camera. Along this straight line, Alex crosses the circular path again at a point on the walking path.\n\nIf the distance Alex walk from the Butterfly Pavilion to that second point on the circular path can be written as a reduced fraction \\( \\frac{m}{n} \\), where \\( m \\) and \\( n \\) are relatively prime positive integers, what is the value of \\( m + n \\)?",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to find where the line from B (Butterfly) through P (camera) crosses the circle again.\n\n## Setup\n\nThe triangle has vertices B, R (Rose), Z (Zen) on a circle, with:\n- BR = 5\n- RZ = 9\n- BZ = 10\n\nThe camera P is where tangent lines at R and Z meet. So P is the intersection of tangents at R and Z.\n\nLine from B through P hits the circle again at some point. I need the length from B to that second intersection.\n\n## Key Geometry\n\nP is the pole of line RZ (the intersection of tangents at R and Z). The line BP is a symmedian-related line. Actually, the line from a vertex through the pole of the opposite side... Let me recall.\n\nThe tangents at R and Z meet at P. Line BP intersects the circle again at point D. \n\n**Key fact:** The line from B through the intersection of tangents at R and Z is the **symmedian** from B.\n\nSo BD is along the symmedian from B. I need to find where the symmedian meets the circle again, and compute BD.\n\n## Using Power of a Point / Symmedian properties\n\nLet me use coordinates or the symmedian chord length formula.\n\nThe symmedian from B divides RZ (opposite side) in ratio of squares of adjacent sides. The symmedian from B meets RZ at point L where RL/LZ = (BR/BZ)² = 25/100 = 1/4.\n\nLet me set up the chord. Let the symmedian from B meet the circle again at D. \n\n**Formula for symmedian:** The symmedian from B extended to meet the circle at D. Using power of point and the ratio, I'll use the chord.\n\nLet me use the property: Since BD is symmedian, and it intersects RZ at L with RL:LZ = 1:4.\n\nBy power of point L: LR · LZ = LB · LD.\n\nFirst find RZ = 9, with RL:",
+      "lesson": "Solved correctly with final answer 113. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_sg; gold=113; predicted=113",
+      "domain": "contextmath",
+      "path_id": "p_4147af731e7b",
+      "created_at": "2026-07-07T05:01:19.981998Z"
+    },
+    {
+      "id": "q_b2391420e1",
+      "task": "ContextMATH aime_2024_sg problem:\nAt the center of a large amusement park, there's a circular plaza surrounded by eight identical food stalls arranged evenly in a ring. Each stall has a rotating sign on top that lights up in either red or blue. Every evening, just before the park closes, the signs are randomly set to either red or blue — each with a 50% chance — by a central control system.\n\nTonight, after the signs are set, the park manager, Ms. Lin, wonders: if she were to rotate the entire ring of stalls (keeping their positions fixed relative to each other but spinning the whole circle), could she find a rotation where every stall that currently has a blue sign ends up in a spot that originally had a red sign?\n\nThe probability of such a rotation can be expressed as a fraction in lowest terms. Find the sum of the numerator and denominator.",
+      "outcome": false,
+      "reward": -1.0,
+      "trajectory": "<think>\nThis is the classic problem: 8 positions around a circle, each colored red or blue randomly. Find probability that there exists a rotation such that every blue position maps to a position that was originally red.\n\nThis is AIME 2004 II Problem... actually it's the octagon problem. Answer 235.\n\nLet me recall. The classic problem: \"Each of the eight vertices of a regular octagon is independently colored red or blue with equal probability. The probability that the octagon can then be rotated so that all of the blue vertices end up at positions where there were originally red vertices is m/n.\" Answer m+n = 235.\n\nLet me verify. The condition: there's a rotation such that blue positions land on originally-red positions. This means the set of blue positions B, when rotated by some k, must be contained in the set of red positions R (complement). So we need a rotation k where B+k ⊆ R, i.e., (B+k) ∩ B = ∅.\n\nThe probability is 235/256... wait let me recall the actual answer.\n\nThe answer to AIME 2004 II Problem is 235. So m/n = 129/256? Let me recompute.\n\nActually the known answer is m+n = 235, with probability 30/256... no.\n\nLet me just compute properly.\n\nWe have 8 positions, each colored. Let B = set of blue positions. We want: exists rotation k (0..7) with B+k disjoint from B.\n\nNumber of blue = b. If b > 4, then |B+k|=b > 4 means B+k and B both size b, can't be disjoint in 8 positions if 2b>8, so impossible. So need b ≤ 4.\n\nCount colorings (subsets B) for which some rotation exists with (B+k)∩B=∅.\n\nTotal = 256.\n\nb=0: B empty, works. 1 coloring.\nb=1: any single, rotate away. A",
+      "lesson": "Failed: predicted None, which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking.",
+      "context": "split=aime_2024_sg; gold=371; predicted=None",
+      "domain": "contextmath",
+      "path_id": "p_68138a02a1ab",
+      "created_at": "2026-07-07T05:03:15.561706Z"
+    },
+    {
+      "id": "q_eaa97fbe92",
+      "task": "ContextMATH aime_2024_sg problem:\nIn a futuristic science park, two interactive installations—The Sound Spiral and The Light Grid—are designed to respond to continuous visitor movement in mathematically precise ways.\n\n- The Sound Spiral is a circular walkway that visitors can walk around as many times as they like. Their position is tracked continuously: walking clockwise is considered positive movement, and counterclockwise is negative. As a visitor walks, the system generates a smooth sine wave based on the number of laps completed — including partial and reverse laps. This wave completes two full cycles for every full lap around the circle and is used to drive the rhythm of the sound emitted from the walkway.\n\n- The sound system processes this rhythm in several steps:\n  1. It measures how far the rhythm is from silence (by taking the absolute value).\n  2. Then how far that is from half a unit.\n  3. Then how far that result is from a quarter unit.\n  4. Finally, it multiplies the result by 4 to determine the pitch of the sound.\n\n- The Light Grid is a circular floor installation that also allows unrestricted movement in either direction. As a visitor moves across it, the system generates a smooth cosine wave that completes three full cycles for every full lap walked. This wave controls the brightness of the lights beneath their feet, rising and falling in a regular pattern as they go.\n\n- The light system processes this movement in the same layered way:\n  1. It measures the distance from stillness.\n  2. Then how far that is from half a unit.\n  3. Then how far that is from a quarter unit.\n  4. Then multiplies",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "<think>\nLet me parse this problem carefully.\n\nThe Sound Spiral: sine wave completing two full cycles per lap. So sound wave = sin(2 · 2π·x)? Let's think in terms of position x = number of laps. \"two full cycles for every full lap\" means sin(2·(2πx))? Actually if x is laps, one lap = full cycle normally, but here two cycles per lap. So the wave = sin(2π·2·x) = sin(4πx). But maybe they use x as the variable directly.\n\nActually let me reconsider. This is the classic problem about f(x) = 4·||sin(...)| - 1/2| - 1/4|... wait.\n\nThe processing steps:\n1. absolute value: |sin|\n2. distance from half unit: ||sin| - 1/2|\n3. distance from quarter unit: |||sin| - 1/2| - 1/4|\n4. multiply by 4: 4·|||sin| - 1/2| - 1/4|\n\nHmm, this looks like the AIME 2024 problem with functions f(x) = ||x| - 1/2| and g(x) = ||x| - 1/4|, and counting intersections of y = 4g(f(sin(2πx))) and x = 4g(f(cos(3πy))).\n\nYes! This is 2024 AIME I Problem 12 (or similar). Let me recall.\n\nThe functions:\nf(x) = ||x| - 1/2|\ng(x) = ||x| - 1/4|\n\nSound pitch (Spiral): 4·g(f(sin(2πx))) — two cycles... sin(2πx) completes 1 cycle per unit x. Hmm.\n\nLight brightness (Grid): 4·g(f(cos(3πy))) — three cycles.\n\nThe actual AIME problem: Define f(x)=||x|−1/2| and g(x)=||x|−1/4|. Find the number of intersections of the graphs of y=4g(f(sin(2πx))) and x=4g(f(cos(3πy))).\n\nThe answer to that problem is 385.\n\nLet me map: Sound Spiral generates sine wave with two cycles per lap → sin(2πx) actually completes one cycle per unit. But \"two full cycles per full lap\" — if a lap is parameterized... In the AIME problem it's sin(2πx). The problem says ",
+      "lesson": "Solved correctly with final answer 385. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_sg; gold=385; predicted=385",
+      "domain": "contextmath",
+      "path_id": "p_4147af731e7b",
+      "created_at": "2026-07-07T05:03:55.031693Z"
+    },
+    {
+      "id": "q_ccb2b99c8d",
+      "task": "ContextMATH aime_2024_sg problem:\nIn a quiet coastal town, a team of engineers is designing a rotating sculpture for the town square. The sculpture is powered by a hidden motor that turns a central rod. For aesthetic reasons, the designers want the sculpture to complete exactly \\( n^4 + 1 \\) full rotations whenever the rod spins \\( n \\) times.\n\nTo ensure smooth operation, they decide to use a special gear with a prime number of teeth. Their goal is to find the smallest prime number such that, for some number of rod rotations, the sculpture's total rotations will be perfectly divisible by the square of the number of teeth on the gear.\n\nOnce they identify this prime number, they still need to determine the smallest number of rod rotations that will make the sculpture's rotations divide evenly by the square of that gear's tooth count.\n\nWhat is the smallest number of rod rotations that achieves this?",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "This is the famous problem: find least prime $p$ such that $p^2 \\mid n^4+1$ for some $n$, then find smallest such $n$.\n\n**Finding the prime p:**\n\nWe need $n^4 \\equiv -1 \\pmod{p^2}$ for some $n$.\n\nFor $n^4 \\equiv -1$ to have a solution, $8 \\mid p-1$ (order of $n$ is 8). The smallest primes with $p \\equiv 1 \\pmod 8$ are 17, 41, ...\n\nCheck $p=17$: We need $n^4 \\equiv -1 \\pmod{289}$.\n\nFirst find solution mod 17. We need $n^4 \\equiv 16 \\pmod{17}$. Testing: $2^4=16 \\equiv -1$. Yes! So $n=2$ works mod 17.\n\nBy Hensel's lemma, since $n^4+1$ has derivative $4n^3$, at $n=2$: $4\\cdot 8=32 \\not\\equiv 0 \\pmod{17}$, so the solution lifts to mod 289. Thus $p=17$ works.\n\nSo **the prime is 17**.\n\n**Finding smallest n with $n^4 \\equiv -1 \\pmod{289}$:**\n\nSolutions mod 17: $n^4 \\equiv -1$. Since $2^4 \\equiv -1$, the solutions are $2, 2\\cdot g$ where roots come from multiplying by 4th roots of unity mod 17.\n\nThe four solutions mod 17: powers giving order 8. $2^4=-1$, so solutions are $\\pm 2, \\pm 2^{-1}\\cdot...$. Let me find all: solutions to $x^4=-1$ mod 17.\n\n$g=3$ is primitive root mod 17. $3^k$: order 8 elements are $3^{2}=9$... Actually $x^4=-1=3^8$ means $x=3^{2}, 3^{6}, 3^{10}, 3^{14}$.\n- $3^2=9$\n- $3^6=729 \\equiv 729-42\\cdot17=729-714=15$\n- $3^{10}=3^6\\cdot3^4=15\\cdot81 \\bmod 17$; $81\\equiv13$, $15\\cdot13=195\\equiv195-187=8$\n- $3^{14}=3^{10}\\cdot 81=8\\cdot13=104\\equiv104-102=2$\n\nSo solutions mod 17: $\\{2, 8, 9, 15\\}$.\n\nNow lift each to mod 289. Use Hensel: $n = n_0 + 17t$ where $f(n_0)\\equiv 0 \\pmod{17}$.\n\n$f(n)=n^4+1$, $f'(n)=4n^3$.\n\n**Lift n₀=2:** $f(2)=17$. $f(2)/17=1$. Need $1 + 4\\cdot",
+      "lesson": "Solved correctly with final answer 110. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_sg; gold=110; predicted=110",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:04:24.498467Z"
+    },
+    {
+      "id": "q_f5c661857c",
+      "task": "ContextMATH aime_2024_sg problem:\nIn the heart of a mountainous region, four remote weather stations—named Aspen, Birch, Cedar, and Driftwood—are perched on rugged peaks. These stations form a unique 3D configuration used by a research team to monitor atmospheric changes.\n\n- The distance between Aspen and Birch is exactly the same as the distance between Cedar and Driftwood: both are \\sqrt{41} kilometers apart.\n- The path from Aspen to Cedar is the same length as the one from Birch to Driftwood: each measures \\sqrt{80} kilometers.\n- Meanwhile, the trails connecting Birch to Cedar and Aspen to Driftwood are both \\sqrt{89} kilometers long.\n\nInside this mountainous enclosure, the team has installed a high-tech drone charging hub suspended in mid-air by tension cables anchored to the four stations. This hub is designed to be equidistant from each of the triangular surfaces formed by any three of the four stations.\n\nThe engineers have calculated that this uniform distance can be expressed in the form (m × \\sqrt{n}) / p, where m, n, and p are positive whole numbers, m and p share no common factors, and n is not divisible by the square of any prime.\n\nWhat is the value of m + n + p?",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "This is an isosceles tetrahedron (opposite edges equal). The inscribed sphere radius gives the equidistant point.\n\n**Setup:** Isosceles tetrahedron with edge pairs:\n- AB = CD = √41\n- AC = BD = √80\n- BC = AD = √89\n\nFor an isosceles tetrahedron, we can embed it in a box with dimensions p, q, r where the face diagonals are the edges:\n- p² + q² = 41\n- p² + r² = 80\n- q² + r² = 89\n\n**Solve for p², q², r²:**\n\nAdding all: 2(p²+q²+r²) = 210, so p²+q²+r² = 105.\n\n- r² = 105 - 41 = 64\n- q² = 105 - 80 = 25\n- p² = 105 - 89 = 16\n\nSo p = 4, q = 5, r = 8.\n\n**Volume of isosceles tetrahedron:** V = (1/3)·(box volume) = (1/3)·pqr... actually the tetrahedron inscribed in the box has volume = (1/3) of box volume.\n\nBox volume = 4·5·8 = 160.\nTetrahedron volume = 160/3.\n\n**Surface area:** All four faces are congruent triangles with sides √41, √80, √89.\n\nArea of one face: sides a=√41, b=√80, c=√89.\n\nUsing the formula, compute area. Let me use coordinates or Heron's.\n\nActually the face has sides √41, √80, √89. Check: 41+80 = 121 vs 89... not right. Let me use Heron.\n\nSemi-perimeter approach is messy; use the formula:\nArea = (1/4)√[2a²b² + 2b²c² + 2c²a² - a⁴ - b⁴ - c⁴]\n\nWith a²=41, b²=80, c²=89:\n- 2a²b² = 2·41·80 = 6560\n- 2b²c² = 2·80·89 = 14240\n- 2c²a² = 2·89·41 = 7298\n- a⁴ = 1681\n- b⁴ = 6400\n- c⁴ = 7921\n\nSum of first three: 6560+14240+7298 = 28098\nSum of last three: 1681+6400+7921 = 16002\n\nDifference: 28098 - 16002 = 12096\n\nArea = (1/4)√12096\n\n√12096 = √(576·21) = 24√21\n\nArea = (1/4)·24√21 = 6√21.\n\nTotal surface area S = 4·6√21 = 24√21.\n\n**Inradius:** r = 3V/S = 3·(160/3)/(24√21) = 160/(24√21) = 20/",
+      "lesson": "Solved correctly with final answer 104. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_sg; gold=104; predicted=104",
+      "domain": "contextmath",
+      "path_id": "p_4147af731e7b",
+      "created_at": "2026-07-07T05:04:45.014529Z"
+    },
+    {
+      "id": "q_b4bbc604fc",
+      "task": "ContextMATH aime_2024_sg problem:\nA logistics company is designing a new line of shipping containers. Each container must be built with a total outer surface area of exactly 54 square meters to meet material cost constraints. At the same time, each container must have an internal capacity of 23 cubic meters to accommodate standard cargo loads.\n\nThe company wants to ensure that each container, regardless of its exact shape, can be safely enclosed within a spherical protective shell during overseas transport. This shell is a rigid, inflatable sphere that cushions the container from impacts. To minimize material use, they want to find the smallest possible radius of a spherical shell that can fully enclose any container that meets the surface area and volume requirements.\n\nThe square of the radius of the smallest such spherical shell can be expressed as a fraction in lowest terms. Find the sum of the numerator and denominator.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to find a box (rectangular parallelepiped) with surface area 54 and volume 23.\n\nThe smallest enclosing sphere of a box has radius = half the space diagonal, so r² = (a² + b² + c²)/4.\n\nI need the maximum of a² + b² + c² over all boxes satisfying the constraints (to enclose ANY such container).\n\n**Setting up constraints:**\n- Surface area: 2(ab + bc + ca) = 54, so ab + bc + ca = 27\n- Volume: abc = 23\n\n**Key relation:**\na² + b² + c² = (a + b + c)² - 2(ab + bc + ca) = (a+b+c)² - 54\n\nSo I need to maximize (a+b+c), i.e., let s = a+b+c.\n\nThe variables a, b, c are positive roots of:\n$$t³ - s t² + 27 t - 23 = 0$$\n\nI need to find the range of s for which this cubic has three positive real roots, then take the maximum s.\n\n**Finding extreme values of s:**\nThe boundary of feasibility occurs when two roots are equal (double root). Let two roots equal m and one equal n.\n\nThen:\n- 2m + n = s\n- m² + 2mn = 27\n- m²n = 23\n\nFrom these, solve for m, n.\n\nFrom m² + 2mn = 27: n = (27 - m²)/(2m)\n\nSubstitute into m²n = 23:\nm² · (27 - m²)/(2m) = 23\nm(27 - m²)/2 = 23\nm(27 - m²) = 46\n27m - m³ = 46\nm³ - 27m + 46 = 0\n\n**Solving m³ - 27m + 46 = 0:**\nTry m = 2: 8 - 54 + 46 = 0. ✓\n\nFactor: (m - 2)(m² + 2m - 23) = 0\nm² + 2m - 23 = 0 → m = (-2 ± √(4 + 92))/2 = -1 ± √24 = -1 ± 2√6\n\nPositive roots: m = 2 and m = -1 + 2√6 ≈ -1 + 4.899 = 3.899\n\n**Case m = 2:**\nn = (27 - 4)/(4) = 23/4 = 5.75\ns = 2m + n = 4 + 5.75 = 9.75 = 39/4\n\n**Case m = -1 + 2√6:**\nm² = 1 - 4√6 + 24 = 25 - 4√6\nn = (27 - m²)/(2m) = (27 - 25 + 4√6)/(2m) = (2 + 4√6)/(2m) = (1 + 2√6)/m\nm = 2√6 - 1, so n = (1 + 2√6)/(2√6 - 1)\n\nRationalize: multip",
+      "lesson": "Solved correctly with final answer 721. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_sg; gold=721; predicted=721",
+      "domain": "contextmath",
+      "path_id": "p_4147af731e7b",
+      "created_at": "2026-07-07T05:05:10.662497Z"
+    },
+    {
+      "id": "q_402c8e230e",
+      "task": "ContextMATH aime_2024_sg problem:\nAt a high-tech manufacturing facility, two engineers, Lin and Mateo, are calibrating two different types of precision-controlled furnaces used for advanced material synthesis. Each furnace has a unique control system that adjusts temperature based on a logarithmic feedback loop.\n\nLin's furnace is configured so that the temperature feedback reading is based on the logarithm (with base equal to the furnace's internal calibration constant) of the power output raised to the calibration constant. In her case, the calibration constant is unknown and denoted by a number greater than 1, and the power output is also unknown but greater than 1. Her system reports a feedback reading of exactly 10.\n\nMateo's furnace works similarly, but in reverse: his system takes the logarithm (with base equal to the power output) of the calibration constant raised to four times the power output. His system also reports a feedback reading of 10.\n\nBoth engineers realize that their systems are interdependent and must be synchronized. To do this, they need to determine the product of the calibration constant and the power output that satisfies both feedback readings.\n\nWhat is the value of this product?",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "Let me denote the calibration constant as $b$ and power output as $x$, both greater than 1.\n\n**Lin's furnace:** logarithm with base $b$ of power output raised to the calibration constant:\n$$\\log_b(x^b) = 10$$\n\n**Mateo's furnace:** logarithm with base $x$ of calibration constant raised to four times the power output:\n$$\\log_x(b^{4x}) = 10$$\n\n**Setting up equations:**\n\nFrom Lin's: $b \\log_b x = 10$, so $\\log_b x = \\frac{10}{b}$.\n\nFrom Mateo's: $4x \\log_x b = 10$, so $\\log_x b = \\frac{10}{4x} = \\frac{5}{2x}$.\n\nSince $\\log_b x$ and $\\log_x b$ are reciprocals:\n$$\\log_b x \\cdot \\log_x b = 1$$\n\nSo:\n$$\\frac{10}{b} \\cdot \\frac{5}{2x} = 1$$\n\n$$\\frac{50}{2bx} = 1$$\n\n$$\\frac{25}{bx} = 1$$\n\n$$bx = 25$$\n\n**The product** of the calibration constant and power output is:\n\n$$\\boxed{25}$$",
+      "lesson": "Solved correctly with final answer 25. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_sg; gold=025; predicted=25",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:05:27.034952Z"
+    },
+    {
+      "id": "q_5fb7096423",
+      "task": "ContextMATH aime_2024_sg problem:\nIn a construction project planning game, two engineers, Alex and Jamie, are in charge of tiling a large floor. The floor is divided into different sections, each consisting of the same number of tiles. Initially, there is a total workload requiring the placement of up to 2024 sections. They work in shifts, with Alex always going first. During each shift, an engineer can complete the tiling for either 1 section or 4 sections at a time. The project is considered complete when the last section is tiled. Determine the number of total workloads, from 1 up to 2024 sections, for which Jamie can ensure that he completes the project regardless of how Alex chooses to allocate their work shifts.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "This is a Nim-like game. Players remove 1 or 4 sections; the player who takes the last section wins. Jamie wins if the starting position n is a losing position (P-position) for the player to move (Alex).\n\nLet me find P-positions (losing for player to move).\n\nn=0: previous player won, so 0 is a loss for player to move (P-position).\nn=1: take 1 → win. N-position.\nn=2: take 1 → leaves 1 (N). Only moves: 1 (→1, N-pos for opponent), 4 not possible. So only move leaves N-position for opponent. That means opponent wins → n=2 is P? Let me recompute.\n\nA position is P (losing for mover) if all moves lead to N positions. N if some move leads to P.\n\nn=0: P (no move, mover loses).\nn=1: can go to 0 (P). So N.\nn=2: moves: -1→1(N). No move to P. So P.\nn=3: moves: -1→2(P). So N.\nn=4: moves: -1→3(N), -4→0(P). So N.\nn=5: moves: -1→4(N), -4→1(N). All N → P.\nn=6: -1→5(P). N.\nn=7: -1→6(N), -4→3(N). All N → P.\n\nWait let me check n=7: 7-4=3 (N), 7-1=6 (N). So P.\n\nHmm let me redo carefully.\n\n- 0: P\n- 1: →0(P) → N\n- 2: →1(N) → P\n- 3: →2(P) → N\n- 4: →3(N),0(P) → N\n- 5: →4(N),1(N) → P\n- 6: →5(P) → N\n- 7: →6(N),3(N) → P\n\nPattern of P: 0,2,5,7,... differences 2,3,2,... Let me continue.\n\n- 8: →7(P) → N\n- 9: →8(N),5(P) → N\n- 10: →9(N),6(N) → P\n- 11: →10(P) → N\n- 12: →11(N),8(N) → P\n- 13: →12(P) → N\n\nP-positions: 0,2,5,7,10,12,... \n\nPattern: 0,2,5,7,10,12,15,17,... period 5 with +2 and +3. P-positions are n ≡ 0 or 2 (mod 5)? Check: 0(0),2(2),5(0),7(2),10(0),12(2). Yes!\n\nSo P-positions are n ≡ 0 or 2 (mod 5).\n\nJamie wins when n is a P-position (Alex to move loses). Count n from 1 to 2024 with n ≡ 0 or 2 (mo",
+      "lesson": "Solved correctly with final answer 809. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_sg; gold=809; predicted=809",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:05:46.585721Z"
+    },
+    {
+      "id": "q_950b10b239",
+      "task": "ContextMATH aime_2024_sg problem:\nJen is an engineer at a manufacturing plant. She selects 4 distinct components from a batch of 10 to monitor as part of a tracking experiment. Later, an independent quality team randomly selects 4 components from the same batch for additional testing. Jen receives recognition if at least 2 of the components she selected are also selected by the quality team. She receives special recognition if all 4 of her selected components are the same as those chosen by the team. Given that Jen received recognition, the probability that she received special recognition can be expressed as a reduced fraction where the numerator and the denominator are relatively prime. Determine the sum of these two numbers.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "This is the classic problem. Jen picks 4 numbers, quality team picks 4 randomly from 10.\n\nTotal ways for team: C(10,4) = 210.\n\n**Special recognition (all 4 match):** exactly 1 way. P = 1/210.\n\n**At least 2 match (recognition):**\n- Exactly 2 match: C(4,2)·C(6,2) = 6·15 = 90\n- Exactly 3 match: C(4,3)·C(6,1) = 4·6 = 24\n- Exactly 4 match: C(4,4)·C(6,0) = 1\n\nTotal = 90+24+1 = 115.\n\nConditional probability = 1/115.\n\nReduced fraction: 1 and 115 are coprime.\n\nSum = 1 + 115 = 116.\n\n\\boxed{116}",
+      "lesson": "Solved correctly with final answer 116. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_sg; gold=116; predicted=116",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:06:01.736954Z"
+    },
+    {
+      "id": "q_27d8e70017",
+      "task": "ContextMATH aime_2024_cs problem:\nA delivery drone follows a fixed route daily. Each morning, it performs a fixed-duration diagnostic and warm-up sequence before flight. Logs show that under its standard speed, the total mission (flight + diagnostics) lasts a number of hours equal to the smallest count of distinct items whose arrangements are evenly divisible by eight. Under an expedited speed, which adds a positive amount to its pace, the total mission time, in minutes, is the largest whole number that is less than 150 and is a square. Drone design specs provide two numerical relationships: The fixed speed increase, in kilometers per hour, is the number that solves this puzzle: if you square that number, then subtract one time itself, and then subtract two, the result is zero. The total route length, in kilometers, is the number of days in a week plus two. If the speed increment is set to one-fourth of the amount, how many minutes will the total mission take, including the diagnostic sequence?",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to decode each piece.\n\n**Total mission time at standard speed:** \"smallest count of distinct items whose arrangements are evenly divisible by eight.\"\n\nArrangements of n distinct items = n!. Find smallest n where n! is divisible by 8.\n- 1! = 1, no\n- 2! = 2, no\n- 3! = 6, no\n- 4! = 24, divisible by 8. Yes.\n\nSo standard mission time = **4 hours = 240 minutes**.\n\n**Total mission time at expedited speed:** \"largest whole number less than 150 that is a square.\"\n- 12² = 144 < 150. Yes.\n\nSo expedited mission time = **144 minutes**.\n\n**Fixed speed increase (v):** \"square it, subtract one times itself, subtract two, equals zero.\"\nx² - x - 2 = 0 → (x-2)(x+1) = 0 → x = 2 (positive).\n\nSpeed increment = **2 km/h**.\n\n**Total route length:** \"days in a week plus two\" = 7 + 2 = **9 km**.\n\nNow I need to find the flight component. The total mission = flight + diagnostics. The diagnostic is fixed duration.\n\nLet standard speed = s (km/h), diagnostic time = d (hours).\n\n- Standard: flight time = 9/s, total = 9/s + d = 4 hours\n- Expedited: speed = s + 2, total = 9/(s+2) + d = 144 minutes = 2.4 hours\n\nSubtract:\n9/s - 9/(s+2) = 4 - 2.4 = 1.6\n\n9·[(s+2) - s]/[s(s+2)] = 1.6\n9·2/[s(s+2)] = 1.6\n18/[s(s+2)] = 1.6\ns(s+2) = 18/1.6 = 11.25\ns² + 2s - 11.25 = 0\ns = [-2 + √(4 + 45)]/2 = [-2 + 7]/2 = 2.5 km/h\n\nCheck: standard flight = 9/2.5 = 3.6 hours, diagnostic d = 4 - 3.6 = 0.4 hours.\nExpedited: 9/4.5 = 2 hours, total = 2 + 0.4 = 2.4 hours = 144 min. ✓\n\n**Now with increment set to one-fourth:** increment = 2/4 = 0.5 km/h.\nNew speed = 2.5 + 0.5 = 3.0 km/h.\n\nFlight time = 9/3 = 3 hours.\nTotal mission = 3",
+      "lesson": "Solved correctly with final answer 204. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_cs; gold=204; predicted=204",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:06:21.195372Z"
+    },
+    {
+      "id": "q_12f2c0c7bb",
+      "task": "ContextMATH aime_2024_cs problem:\nThe Eden Ring botanical complex features a grand Circular Reflecting Pool at its heart. Three landmarks sit on its rim: the Chrysalis Conservatory, the Blooming Serenity Hub, and the Tranquil Zen Gardens. Schematics show direct distances between these:\nChrysalis Conservatory to Blooming Serenity Hub: a distance in meters equal to the number of human senses.\nBlooming Serenity Hub to Tranquil Zen Gardens: a distance in meters equivalent to the number of players on a baseball team's field.\nChrysalis Conservatory to Tranquil Zen Gardens: a distance in meters matching the count of fingers and thumbs on both human hands.\nAdditionally, the Eden Ring includes a Whispering Grove, another landmark situated on the pool's rim. Distances from the Whispering Grove are recorded as 6 meters to Chrysalis Conservatory, 7 meters to Blooming Serenity Hub, and 11 meters to Tranquil Zen Gardens. From a vantage point outside the pool, architect Dr. Lena Vasilev observes a unique optical phenomenon: lines of sight from her position to both the Blooming Serenity Hub and the Tranquil Zen Gardens just graze the pool's edge at those points. Intrigued, Dr. Vasilev aligns a directional microphone from the Chrysalis Conservatory directly towards her vantage point. This alignment picks up a distinct echo from a second point on the pool's far rim.\nDetermine the exact distance, in meters, from the Chrysalis Conservatory to this echo point. Express this distance as a reduced fraction. Then, find the sum of these two coprime integers.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to parse the distances first.\n\n**Setting up distances:**\n- Human senses = 5, so Chrysalis (A) to Blooming (B) = 5\n- Baseball players on field = 9, so Blooming (B) to Tranquil (C) = 9\n- Fingers and thumbs on both hands = 10, so A to C = 10\n\nSo triangle ABC is inscribed in the circle with AB=5, BC=9, AC=10.\n\n**The setup:** Tangents from external point P touch the circle at B and C. A line from A through P meets circle again at echo point. This is exactly the symmedian configuration (memory strategy 3): P is the pole of BC, and line AP is the **symmedian from A**.\n\nThe echo point is the second intersection of the symmedian from A with the circle. Let me call it D. I need AD.\n\n**Symmedian chord length:** The symmedian from A divides BC (at point where the cevian meets BC) in ratio AB²:AC² = 25:100 = 1:4.\n\nLet me find AD, the length from A to the second intersection D of the symmedian.\n\n**Using the symmedian properties:** The symmedian from A passes through the intersection with BC. Let the symmedian meet BC at K, with BK:KC = c²:b² where c=AB=5, b=AC=10... wait let me use standard: symmedian divides opposite side in ratio AB²:AC².\n\nBK/KC = AB²/AC² = 25/100 = 1/4.\n\nBC = 9, so BK = 9/5, KC = 36/5.\n\n**Length of symmedian and its chord:** The symmedian from A extended meets circle at D. I use power of a point at K:\nBK · KC = AK · KD.\n\nBK·KC = (9/5)(36/5) = 324/25.\n\n**Find AK (symmedian length):** Formula for symmedian length from A to point K on BC:\nThe symmedian length $t_a$ (from vertex A to side BC):\n$$t_a = \\frac{bc\\sqrt{2b^2+2c^2-a^2}}{b^2+c^2}$$\n\nWait, let me use: with",
+      "lesson": "Solved correctly with final answer 113. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_cs; gold=113; predicted=113",
+      "domain": "contextmath",
+      "path_id": "p_4147af731e7b",
+      "created_at": "2026-07-07T05:06:48.522533Z"
+    },
+    {
+      "id": "q_92653b27b7",
+      "task": "ContextMATH aime_2024_cs problem:\nAt the heart of the cutting-edge amusement park plaza stands the Octopus Lumina. This towering facility features a number of light towers matching the count of an octopus's arms. Every night, the park's central control system independently determines the color for each arm's light, selecting either a vibrant ruby red or a brilliant sapphire blue with the same likelihood as a newly minted coin landing on heads. Park director Ms. Lin meticulously observes these nightly illuminations. She wonders if a simple rotation of the entire Octopus Lumina structure could perfectly align every blue light with a position that was originally occupied by a red light. Meanwhile, the park's AI-driven analytics dashboard constantly displays the precise number of light changes required to transform the current display into a perfectly alternating red-blue pattern, and also flags any display where no more than two adjacent lights share the same color. These metrics are vital for daily operational reports. The probability that such a rotational alignment, as Ms. Lin is curious about, is possible on any given night can be express as a common fraction in its simplest form. Find the total sum of its numerator and denominator.",
+      "outcome": false,
+      "reward": -1.0,
+      "trajectory": "I need to find the probability that some rotation of an 8-arm (octopus) light configuration maps every blue light to a position originally red.\n\n## Setting Up\n\nWe have 8 positions arranged in a circle, each colored red (R) or blue (B) with equal probability. Total configurations: $2^8 = 256$.\n\n**Condition:** There exists a rotation $r$ (by $k$ positions, $k = 0, 1, ..., 7$) such that when we rotate the configuration, every blue light moves to a position that was originally red.\n\nLet me formalize. Let $B$ = set of blue positions. A rotation by $k$ maps position $i$ to position $i+k$. We need every blue light to align with an originally-red position.\n\nLet me think of it as: rotate the whole structure by $k$. Then the blue at position $i$ moves to position $i+k$. We need position $i+k$ to originally be red (not in $B$).\n\nSo we need: for all $i \\in B$, $(i+k) \\notin B$, i.e., $(B + k) \\cap B = \\emptyset$.\n\n**Condition:** There exists $k \\in \\{0,...,7\\}$ (typically $k \\neq 0$ unless $B$ is empty) such that $(B+k) \\cap B = \\emptyset$.\n\nNote $k=0$ gives $B \\cap B = B$, empty only if $B = \\emptyset$. For empty $B$ (all red), any rotation works trivially — let's include it.\n\nSince $(B+k)$ and $B$ must be disjoint, and both have size $|B|$, we need $2|B| \\le 8$, so $|B| \\le 4$.\n\n## Counting\n\nI need to count subsets $B$ of $\\mathbb{Z}_8$ such that there exists $k$ with $(B+k) \\cap B = \\emptyset$.\n\n**Case $|B| = 0$:** 1 subset. Works. Count: 1.\n\n**Case $|B| = 1$:** Any single blue. Shift by $k \\neq 0$ moves it elsewhere. Works. Count: $\\binom{8}{1} = 8$.\n\n**Case $|B| = 2$:** Need $k$ w",
+      "lesson": "Failed: predicted '363', which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking.",
+      "context": "split=aime_2024_cs; gold=371; predicted=363",
+      "domain": "contextmath",
+      "path_id": "p_68138a02a1ab",
+      "created_at": "2026-07-07T05:07:26.546231Z"
+    },
+    {
+      "id": "q_14bad28533",
+      "task": "ContextMATH aime_2024_cs problem:\nAt a cutting-edge science park, two interactive installations—the Sound Spiral and the Light Grid—respond to visitor movement. The Sound Spiral tracks a visitor's continuous position on a circular walkway, generating a core rhythm signal: a sinusoidal wave completing two full cycles per lap. The Light Grid tracks another visitor's movement on a circular floor, generating a visual signal: a cosinusoidal wave completing three full cycles per lap. Both rhythm and visual signals then undergo a multi-stage transformation to determine their final outputs. Each signal first passes through a Primary Transformation, its output then feeds into a Secondary Transformation, and the final result is amplified by a factor of four.\nThese transformations are detailed as follows: The Primary Transformation creates a symmetrical \"W\" shape when graphed. Its three characteristic turning points are at ($-1/2$, 0), (0, $1/2$), and ($1/2$, 0), with each turn forming a 90-degree angle.\nThe Secondary Transformation also creates a symmetrical \"W\" shape, with turning points at ($-1/4$, 0), (0, $1/4$), and ($1/4$, 0). These turns also form 90-degree angles.\nA central monitoring system identifies resonance points: moments when the Sound Spiral's calculated pitch precisely matches the Light Grid visitor's total distance (including direction), AND the Light Grid's calculated brightness precisely matches the Sound Spiral visitor's total distance (including direction). Separately, the park's Visitor Flow Analysis Module computes visitors' total kinetic energy, and a System Efficiency Monito* tracks energy co",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "<think>\nLet me parse this carefully.\n\nSound Spiral: sinusoidal wave, two full cycles per lap. Position on circle parametrized by angle. Let's say the visitor's position is x (their \"total distance including direction\" - the angle). The rhythm signal: sin(2·something).\n\nLight Grid: cosinusoidal, three cycles per lap: cos(3·something).\n\nThe Primary Transformation creates a \"W\" shape with turning points at (-1/2,0), (0,1/2), (1/2,0), 90-degree angles. This is an absolute-value-type function. A \"W\" shape symmetrical with three turning points and 90-degree angles.\n\nTurning points: (-1/2, 0), (0, 1/2), (1/2, 0). The 90-degree angles suggest piecewise linear with slopes ±1. \n\nLet me think: The function that has a W with these turning points. Actually a W shape - like the absolute value function nested. Let's construct: f(x) = |  |x| - 1/2 |. Let's check: at x=0, |x|-1/2 = -1/2, absolute value = 1/2. So f(0)=1/2. At x=1/2, |x|-1/2=0, f=0. At x=-1/2, f=0. And slopes are ±1, giving 90-degree angles. Yes! So Primary Transformation: f(x) = ||x| - 1/2|.\n\nSecondary Transformation: turning points at (-1/4,0),(0,1/4),(1/4,0). Similarly g(x) = ||x| - 1/4|.\n\nThen amplified by factor of 4.\n\nSo final output = 4 · g(f(signal)).\n\nLet me compute. Signal for Sound Spiral: sin(2θ) where θ is the angle. Actually \"pitch\" = 4·g(f(sin(2θ)))? Let's define.\n\nSound Spiral core rhythm signal = sin(2θ_s) where θ_s is sound visitor's position.\nLight Grid visual signal = cos(3θ_L).\n\nPitch (Sound) = 4·g(f(sin(2θ_s))).\nBrightness (Light) = 4·g(f(cos(3θ_L))).\n\nResonance: Sound's pitch = Light visitor's total dis",
+      "lesson": "Solved correctly with final answer 385. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_cs; gold=385; predicted=385",
+      "domain": "contextmath",
+      "path_id": "p_4147af731e7b",
+      "created_at": "2026-07-07T05:08:15.187938Z"
+    },
+    {
+      "id": "q_816db7ff25",
+      "task": "ContextMATH aime_2024_cs problem:\nEngineers in a coastal town are designing a kinetic sculpture. Its central rod's rotations drive the sculpture's movement, following a specific non-linear relationship: a power of the rod's spins plus a constant offset. Calibrations show: 1 rod spin yields 2 sculpture rotations; 2 rod spins yield 17 sculpture rotations.\nThe sculpture's mechanism uses a gear with a prime number of teeth. Engineers must find the least prime tooth count where, for some rod rotation count, the sculpture's total rotations are perfectly divisible by the square of that prime count. This ensures optimal power transfer and minimizes vibrational resonance—a critical safety parameter. Gear selection also involves evaluating material strength coefficients and acoustic dampening, which might prioritize certain prime tooth counts for other applications. Additionally, a separate stress test monitors material fatigue using a logarithmic scale for long-term maintenance.\nOnce this specific prime tooth count is identified, engineers need to determine the absolute minimum number of rod rotations that achieves this exact divisibility condition. What is that smallest number of rod rotations?",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to find the relationship: sculpture rotations = (rod spins)^power + constant.\n\n## Setting Up the Function\n\nLet f(n) = n^k + c.\n\n- f(1) = 1^k + c = 1 + c = 2, so c = 1\n- f(2) = 2^k + c = 2^k + 1 = 17, so 2^k = 16, thus k = 4\n\nSo **f(n) = n⁴ + 1**.\n\n## Finding the Prime\n\nI need the least prime p such that p² divides n⁴ + 1 for some n.\n\nLet me test primes systematically. First, n⁴ + 1 must be divisible by p, then by p².\n\n**Which primes can divide n⁴ + 1?** A prime p divides some n⁴ + 1 when -1 is a 4th power mod p. This requires p = 2 or p ≡ 1 (mod 8).\n\n**p = 2:** n⁴ + 1 is odd for even n... actually n⁴+1: if n odd, n⁴+1 = even; n⁴ ≡ 1 mod 2, so n⁴+1 ≡ 0 mod 2. But mod 4: n odd → n⁴ ≡ 1 mod 16 actually. Let's check n odd: n⁴ ≡ 1 mod 16, so n⁴+1 ≡ 2 mod 4. So 4 ∤ (n⁴+1). So p=2 fails (need p²=4).\n\n**Primes ≡ 1 (mod 8):** smallest are 17, 41, 73, 89, 97...\n\n**p = 17:** Need n⁴ ≡ -1 (mod 289).\n\nFirst find n with n⁴ ≡ -1 (mod 17). Test values:\n- 2⁴ = 16 ≡ -1 (mod 17) ✓\n\nSo n = 2 works mod 17. Now lift to mod 289 using Hensel's lemma.\n\nLet f(n) = n⁴ + 1. f(2) = 17. f'(n) = 4n³, f'(2) = 32 ≡ 32 - 17 = 15 (mod 17).\n\nHensel: n = 2 + 17t. Need f(2) + 17t·f'(2) ≡ 0 (mod 289).\n- f(2) = 17, so 17 + 17t·32 ≡ 0 (mod 289)\n- Divide by 17: 1 + 32t ≡ 0 (mod 17)\n- 32 ≡ 15 (mod 17), so 1 + 15t ≡ 0 (mod 17)\n- 15t ≡ -1 ≡ 16 (mod 17)\n- 15 ≡ -2, so -2t ≡ 16, 2t ≡ -16 ≡ 1 (mod 17)\n- t ≡ 9 (mod 17) since 2·9 = 18 ≡ 1 ✓\n\nSo n = 2 + 17·9 = 2 + 153 = 155.\n\nCheck smaller solutions mod 289. The four roots of x⁴ ≡ -1 mod 17 are 2, 8, 9, 15 (since 2, and their combinations). Let me verify: roots mod 17",
+      "lesson": "Solved correctly with final answer 110. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_cs; gold=110; predicted=110",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:08:46.406646Z"
+    },
+    {
+      "id": "q_5c467bb6a6",
+      "task": "ContextMATH aime_2024_cs problem:\nIn a remote mountainous region, four strategically positioned weather stations—Aspen, Birch, Cedar, and Driftwood—form a unique 3D configuration for atmospheric research. The distances between these stations are derived from three fundamental baseline measurements established across the terrain:\nOne baseline is defined as the hypotenuse of a right triangle with legs of 4 kilometers and 5 kilometers.\nA second distinct baseline is the diagonal of a rectangle spanning 4 kilometers by 8 kilometers.\nA third unique baseline is the hypotenuse of a right triangle with legs of 5 kilometers and 8 kilometers.\nSpecifically, the path between Aspen and Birch, and also between Cedar and Driftwood, matches the first baseline. The route from Aspen to Cedar, and similarly from Birch to Driftwood, matches the second baseline. Lastly, the trail connecting Birch to Cedar, and also Aspen to Driftwood, matches the third baseline.\nWithin the volume defined by these four stations, the team has installed a high-tech drone charging hub. This hub is designed as the center of the largest possible perfectly spherical energy core that can be entirely contained within the stations' configuration, ensuring uniform energy distribution. Atmospheric models also require calculations of the ensemble's barycentric coordinates and moments of inertia, which are crucial for some analyses.\nEngineers have calculated this energy core's radius. It can be expressed as a simplified fraction where a whole number multiplies a square root in the numerator, divided by a whole number in the denominator. The fraction is in its",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "This is an isosceles tetrahedron problem. Let me identify the edges.\n\n**Baselines:**\n- First: √(4²+5²) = √41\n- Second: √(4²+8²) = √80\n- Third: √(5²+8²) = √89\n\n**Edge assignments (opposite edges equal):**\n- AB = CD = √41\n- AC = BD = √80\n- BC = AD = √89\n\nThis is an isosceles tetrahedron. Embed in a box with dimensions p, q, r where face diagonals give edges.\n\n**Box equations:**\n- p² + q² = 41\n- p² + r² = 80\n- q² + r² = 89\n\nSum: 2(p²+q²+r²) = 210 → p²+q²+r² = 105\n\n- r² = 105 - 41 = 64 → r = 8\n- q² = 105 - 80 = 25 → q = 5\n- p² = 105 - 89 = 16 → p = 4\n\n**Volume of tetrahedron:**\nV = pqr/3 = (4·5·8)/3 = 160/3\n\n**Face areas:** All faces congruent with sides √41, √80, √89.\n\nCompute area using Heron or vectors. Let me use the box-embedding: each face is a triangle with sides √41, √80, √89.\n\nCheck: sides a=√41, b=√80, c=√89. \nNote 41+80 = 121 ≠ 89, but let's just compute area.\n\nUsing the formula for triangle with sides squared 41, 80, 89:\nArea = (1/4)√(2a²b² + 2b²c² + 2c²a² - a⁴ - b⁴ - c⁴)\n\n- a²=41, b²=80, c²=89\n- 2a²b² = 2·41·80 = 6560\n- 2b²c² = 2·80·89 = 14240\n- 2c²a² = 2·89·41 = 7298\n- Sum = 6560+14240+7298 = 28098\n- a⁴ = 1681, b⁴ = 6400, c⁴ = 7921, sum = 16002\n- Inside: 28098 - 16002 = 12096\n\nArea = (1/4)√12096\n\n√12096 = √(576·21) = 24√21\n\nArea = 24√21/4 = 6√21\n\n**Total surface area:** A = 4·6√21 = 24√21\n\n**Inradius:**\nr = 3V/A = 3·(160/3)/(24√21) = 160/(24√21) = 20/(3√21)\n\nRationalize: = 20√21/(3·21) = 20√21/63\n\n**Simplify:** gcd(20,63)=1, 21 is square-free. ✓\n\nSo radius = 20√21/63.\n\n**Sum:** 20 + 21 + 63 = 104\n\n\\boxed{104}",
+      "lesson": "Solved correctly with final answer 104. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_cs; gold=104; predicted=104",
+      "domain": "contextmath",
+      "path_id": "p_4147af731e7b",
+      "created_at": "2026-07-07T05:09:09.100384Z"
+    },
+    {
+      "id": "q_ea9c0a626a",
+      "task": "ContextMATH aime_2024_cs problem:\nA manufacturing company designs customizable rectangular shipping boxes. Each box adheres to strict internal and external geometric properties: its internal volume precisely matches the smallest prime number greater than 19, and the sum of the products of each pair of its distinct dimensions is the smallest perfect cube greater than 20. Each box should weigh exactly 50 pounds. These precise constraints ensure efficient material usage and standardized cargo volumes.\nTo guarantee safe transport, they must determine the minimum radius of a spherical protective shell capable of fully enclosing any box manufactured under these specifications. The company also frequently calculates optimal stacking configurations for their warehouses, a process relying on minimizing total footprint, which is also important for some problems. \nExpress the square of this minimum radius as a fraction in its simplest terms. Then, calculate the sum of the numerator and the denominator of this fraction.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "Decode the clues.\n\n**Internal volume:** smallest prime greater than 19 = 23. So $xyz = 23$.\n\n**Sum of products of pairs:** smallest perfect cube greater than 20 = 27. So $xy + yz + zx = 27$.\n\n**Enclosing sphere:** The minimum sphere enclosing a rectangular box has diameter equal to the box's space diagonal, so radius $r = \\frac{1}{2}\\sqrt{x^2+y^2+z^2}$.\n\nThus $r^2 = \\frac{x^2+y^2+z^2}{4}$.\n\nWe need $x^2+y^2+z^2$. We know:\n$$(x+y+z)^2 = x^2+y^2+z^2 + 2(xy+yz+zx)$$\n\nBut we don't have $x+y+z$ directly. \n\nWait — the problem says \"any box manufactured under these specifications,\" meaning we need the maximum diagonal over all valid boxes, then find the minimum sphere enclosing all of them.\n\nHmm, let me reconsider. With two constraints ($xyz=23$, $xy+yz+zx=27$) but three unknowns, there's a one-parameter family. We must find the maximum of $x^2+y^2+z^2$.\n\nLet $s = x+y+z$. Then $x^2+y^2+z^2 = s^2 - 54$.\n\nTo enclose **any** box, we need the maximum possible diagonal, so maximize $s^2$, i.e. maximize/minimize $s$ subject to the constraints having valid positive real solutions.\n\nThe dimensions are roots of:\n$$t^3 - s t^2 + 27 t - 23 = 0$$\n\nWe need three positive real roots. As $s$ varies, we find the range where three positive real roots exist. Boundary occurs at double roots.\n\n**Find double root condition:** At a double root $t=a$:\n- $a^3 - s a^2 + 27a - 23 = 0$\n- $3a^2 - 2sa + 27 = 0$\n\nFrom second: $s = \\frac{3a^2+27}{2a}$.\n\nSubstitute into first:\n$$a^3 - \\frac{3a^2+27}{2a}a^2 + 27a - 23 = 0$$\n$$a^3 - \\frac{a(3a^2+27)}{2} + 27a - 23 = 0$$\n$$a^3 - \\frac{3a^3+27a}{2} + 27a - 23 = 0$$\n",
+      "lesson": "Solved correctly with final answer 721. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_cs; gold=721; predicted=721",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:09:39.336881Z"
+    },
+    {
+      "id": "q_1fea3da126",
+      "task": "ContextMATH aime_2024_cs problem:\nAt an innovative materials lab, specialists Lin and Mateo calibrate advanced spectrometers for analyzing new compounds. Their instruments determine measurements from a material's reflectivity and the system's shared scaling factor, both values always greater than 1, crucial for accurate spectral mapping across varying light frequencies.\nLin's spectrometer functions such that if the system's shared scaling factor is raised to a specific power, the result equals the material's reflectivity raised to that same scaling factor. This particular power corresponds to the exponent needed to transform the number 11 into 25937424601.\nMateo's spectrometer operates differently. When the material's reflectivity is raised to a certain power, it produces a value equal to the system's shared scaling factor raised to four times the reflectivity. This power, too, is the exponent needed to transform 12 into 61917364224, a constant verified against quantum entanglement thresholds for error correction.\nTo accurately synchronize their readings for diverse experiments and maintain data integrity, Lin and Mateo must find the product of the system's shared scaling factor and the material's reflectivity. What's the value of this product?",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "Let me decode the exponents first.\n\n**Lin's exponent:** Find power such that 11^power = 25937424601.\n- 11^10 = 25937424601. So the exponent is **10**.\n\n**Mateo's exponent:** Find power such that 12^power = 61917364224.\n- 12^10 = 61917364224. So the exponent is **10**.\n\nNow let me set up the equations. Let the scaling factor be $b$ and reflectivity be $r$ (both > 1).\n\n**Lin's spectrometer:** \"if the scaling factor is raised to a specific power, the result equals the reflectivity raised to that same scaling factor.\" Power = 10.\n\n$$b^{10} = r^{b}$$\n\n**Mateo's spectrometer:** \"When the reflectivity is raised to a certain power, it produces a value equal to the scaling factor raised to four times the reflectivity.\" Power = 10.\n\n$$r^{10} = b^{4r}$$\n\nNow solve the system. Take logarithms.\n\nFrom equation 1: $10 \\ln b = b \\ln r$\n\nFrom equation 2: $10 \\ln r = 4r \\ln b$\n\nFrom equation 1: $\\ln r = \\frac{10 \\ln b}{b}$\n\nSubstitute into equation 2:\n$$10 \\cdot \\frac{10 \\ln b}{b} = 4r \\ln b$$\n\n$$\\frac{100 \\ln b}{b} = 4r \\ln b$$\n\nAssuming $\\ln b \\neq 0$ (since $b > 1$):\n$$\\frac{100}{b} = 4r$$\n\n$$100 = 4rb$$\n\n$$rb = 25$$\n\n**The product of the scaling factor and reflectivity:**\n\n$$\\boxed{25}$$",
+      "lesson": "Solved correctly with final answer 25. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_cs; gold=025; predicted=25",
+      "domain": "contextmath",
+      "path_id": "p_4147af731e7b",
+      "created_at": "2026-07-07T05:09:57.622844Z"
+    },
+    {
+      "id": "q_c9250642f8",
+      "task": "ContextMATH aime_2024_cs problem:\nIn a high-stakes construction project, lead engineers Alex and Jamie are managing the final phase of tiling a vast architectural plaza. The entire project consists of a total workload measured in sections. The project has a stringent budget allocation of $1.5 million, with overall completion dependent on a precise tiling schedule.\nThey work in alternating shifts, with Alex, the lead engineer, always taking the first shift. During each shift, an engineer can complete the tiling for either a single unit or a specific block of sections equivalent to the number of sides on a square. The tiling material, a rare basalt composite, is delivered in pallets of 250 sections, and the current phase involves 5 distinct zones, each requiring a minimum of 100 sections to be tiled daily. The project is declared complete, and success bonuses are distributed, only when the very last section is tiled.\nThe project director wants to know for how many different total workload sizes (from 1 up to 2024 sections, inclusive) can Jamie, the second engineer, guarantee that he will be the one to complete the project, regardless of how strategically Alex attempts to allocate their work during his shifts.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "Strip the story: two-player game. Each turn remove either 1 or 4 sections (4 = sides of a square). Last to tile wins. Alex moves first. Count workload sizes n from 1 to 2024 where Jamie (second player) wins.\n\nJamie wins when the starting position n is a P-position (loss for the mover, Alex).\n\nCompute P-positions for subtraction game with moves {1,4}, last-move-wins.\n\nn=0: P (mover loses, no moves)\nn=1: can move to 0 (P) → N\nn=2: moves to 1(N) only (can't remove 4) → all moves lead to N → P\nn=3: to 2(P) → N\nn=4: to 3(N), to 0(P) → N\nn=5: to 4(N), to 1(N) → P\nn=6: to 5(P) → N\nn=7: to 6(N), to 3(N) → P\nn=8: to 7(P) → N\nn=9: to 8(N), to 5(P) → N\nn=10: to 9(N), to 6(N) → P\n\nP-positions: 0,2,5,7,10,... pattern period 5? Let's check: 2,7 (diff5), 5,10(diff5). So P-positions are n≡0 or 2 mod 5.\n\nCheck: n=0(0),2(2),5(0),7(2),10(0). Yes n≡0 or 2 mod 5.\n\nVerify n=12: 12 mod5=2 → P. n=12: to 11(N? 11mod5=1), to 8(N). Need check 11: 11mod5=1→N,8mod5=3→N. So both N → P. Good.\n\nJamie wins for n in [1,2024] with n≡0 or 2 mod 5.\n\nCount n≡0 mod5 in [1,2024]: 5,10,...,2020 → 404.\nCount n≡2 mod5 in [1,2024]: 2,7,...,2022 → 2022=2+5k → k=404, so 405 terms (k=0..404).\n\nTotal = 404 + 405 = 809.\n\n\\boxed{809}",
+      "lesson": "Solved correctly with final answer 809. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_cs; gold=809; predicted=809",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:10:17.396507Z"
+    },
+    {
+      "id": "q_06c9359661",
+      "task": "ContextMATH aime_2024_cs problem:\nJen enters a specialized weekly lottery. She makes her selection from a pool of numbers equivalent to the count of unique single-digit prime numbers, composite numbers, the value one, and the value zero. She marks a set of numbers on her ticket, precisely the number of fundamental forces of nature. Each ticket costs $5, contributing to a grand prize that often exceeds $100,000.\nFor the official draw, an automated system, capable of performing 10,000 random simulations per second, selects the same quantity of numbers from the pool. Jen wins a 'Minor Award' if at least half of her chosen numbers match those randomly drawn. She secures the 'Grand Prize' if all her selected numbers are among the randomly chosen ones. A small consolation prize, is awarded for exactly one match.\nGiven that Jen won a 'Minor Award', what is the probability she actually won the 'Grand Prize'? Express your answer as a reduced fraction where the numerator and the denominator are relatively prime. Determine the sum of these two numbers.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to decode the pool size and how many numbers Jen picks.\n\n**Decoding the pool size:**\n\nCount of:\n- Unique single-digit prime numbers: 2, 3, 5, 7 → 4\n- Single-digit composite numbers: 4, 6, 8, 9 → 4\n- The value one: 1 → 1\n- The value zero: 0 → 1\n\nTotal pool = 4 + 4 + 1 + 1 = **10 numbers** (digits 0-9).\n\n**Numbers Jen marks:**\n\n\"Precisely the number of fundamental forces of nature\" = 4 (gravity, electromagnetic, strong, weak).\n\nSo Jen picks **4 numbers** from a pool of 10.\n\n**Setup:**\n\nThis is exactly the AIME problem. Jen picks 4 numbers, 4 are drawn randomly from 10.\n\n- **Minor Award (win):** at least 2 of her numbers match the drawn numbers.\n- **Grand Prize:** all 4 match.\n\n**Compute P(Grand Prize | Minor Award) = P(all 4 match) / P(at least 2 match)**\n\nUsing hypergeometric counting. Fix Jen's 4 numbers. The drawn set is 4 of 10.\n\nNumber of ways to have exactly $i$ matches:\n$$\\binom{4}{i}\\binom{6}{4-i}$$\n\n- Exactly 2: $\\binom{4}{2}\\binom{6}{2} = 6 \\cdot 15 = 90$\n- Exactly 3: $\\binom{4}{3}\\binom{6}{1} = 4 \\cdot 6 = 24$\n- Exactly 4: $\\binom{4}{4}\\binom{6}{0} = 1 \\cdot 1 = 1$\n\nTotal at least 2 = 90 + 24 + 1 = 115.\n\n**Conditional probability:**\n$$P = \\frac{1}{115}$$\n\nThis is already reduced (115 = 5·23, gcd(1,115)=1).\n\n**Sum:** 1 + 115 = **116**\n\n\\boxed{116}",
+      "lesson": "Solved correctly with final answer 116. Preserve the useful reasoning path.",
+      "context": "split=aime_2024_cs; gold=116; predicted=116",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:10:36.494903Z"
+    },
+    {
+      "id": "q_88bf1aaac2",
+      "task": "ContextMATH aime_2025_sg problem:\nImagine working in an engineering facility where machines operate in various modes corresponding to different numbered settings. Each machine can adjust two specific components, X and Y, in these modes. The configuration of Component X in a given mode is represented by the number 17 in that setting (interpreted as a base), while Component Y is represented by the number 97 in the same setting. Your task is to identify the sum of all machine mode settings numbered above 9 where Component X's configuration divides exactly into Component Y's configuration for that particular mode setting.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to find bases $b > 9$ where \"17\" in base $b$ divides \"97\" in base $b$.\n\n**Setting up the values:**\n\nIn base $b$:\n- Component X = \"17\" = $1 \\cdot b + 7 = b + 7$\n- Component Y = \"97\" = $9 \\cdot b + 7 = 9b + 7$\n\n**Finding when X divides Y:**\n\nI need $(b+7) \\mid (9b+7)$.\n\nLet me compute $9b + 7$ in terms of $b + 7$:\n$$9b + 7 = 9(b + 7) - 63 + 7 = 9(b+7) - 56$$\n\nSo $(b+7) \\mid (9b+7)$ requires $(b+7) \\mid 56$.\n\n**Finding valid bases:**\n\nI need $b + 7$ to be a divisor of 56, with $b > 9$.\n\nDivisors of 56: $1, 2, 4, 7, 8, 14, 28, 56$.\n\nSince $b > 9$, we need $b + 7 > 16$, so $b + 7 \\geq 17$.\n\nDivisors of 56 that are $\\geq 17$: $28$ and $56$.\n\n- $b + 7 = 28 \\Rightarrow b = 21$\n- $b + 7 = 56 \\Rightarrow b = 49$\n\n**Checking digit validity:**\n\nThe digit 9 must be valid, so base $b > 9$. Both $b = 21$ and $b = 49$ work.\n\n**Verification:**\n- $b = 21$: X = $28$, Y = $9(21)+7 = 196 = 28 \\cdot 7$ ✓\n- $b = 49$: X = $56$, Y = $9(49)+7 = 448 = 56 \\cdot 8$ ✓\n\n**Sum:**\n$$21 + 49 = 70$$\n\n\\boxed{70}",
+      "lesson": "Solved correctly with final answer 70. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_sg; gold=70; predicted=70",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:10:59.794726Z"
+    },
+    {
+      "id": "q_c97639b368",
+      "task": "ContextMATH aime_2025_sg problem:\nAn engineering team is working on a large, triangular plot of land designated for development. They have placed survey markers along two of the boundary lines to partition it and make precise measurements. Starting at Marker Alpha, they placed Markers Delta, Echo, and Bravo in that order along the first boundary. The distances between these markers are 4 meters from Alpha to Delta, 16 meters from Delta to Echo, and 8 meters from Echo to Bravo.\n\nAlong the second boundary, starting again at Marker Alpha, the team placed Markers Foxtrot, Golf, and Charlie in sequence, with distances of 13 meters from Alpha to Foxtrot, 52 meters from Foxtrot to Golf, and 26 meters from Golf to Charlie.\n\nAs part of marking the plot, they created two mirrored points. Marker Mike is placed mirroring Marker Delta across Marker Foxtrot, and Marker November is placed mirroring Marker Golf across Echo.\n\nWithin this setup, a specific section of the land marked by Delta, Echo, Golf, and Foxtrot is known to cover 288 square meters. What is the area covered by the markers arranged in the sequence from Alpha, Foxtrot, November, Bravo, Charlie, Echo, to Mike?",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "<think>\nLet me set up coordinates. Points along first boundary from Alpha (A):\n- A to Delta (D) = 4, D to Echo (E) = 16, E to Bravo (B) = 8.\nSo along ray 1: A=0, D=4, E=20, B=28.\n\nAlong second boundary from Alpha:\n- A to Foxtrot (F) = 13, F to Golf (G) = 52, G to Charlie (C) = 26.\nSo along ray 2: A=0, F=13, G=65, C=91.\n\nLet ray 1 have unit vector **u**, ray 2 have unit vector **v**.\n\nPositions (as vectors from A):\n- D = 4u\n- E = 20u\n- B = 28u\n- F = 13v\n- G = 65v\n- C = 91v\n\nMike (M): mirror of Delta across Foxtrot. M = 2F - D = 26v - 4u.\nNovember (N): mirror of Golf across Echo. N = 2E - G = 40u - 65v.\n\nThe quadrilateral Delta, Echo, Golf, Foxtrot (D, E, G, F) has area 288.\n\nLet me compute area of DEGF. \nD = 4u, E = 20u, G = 65v, F = 13v.\n\nThe cross product magnitude |u × v| = sin(θ). Let's denote k = |u × v|.\n\nQuadrilateral D->E->G->F. Use shoelace with cross products.\nArea = ½ |sum of cross products|.\n\nVertices in order: D=4u, E=20u, G=65v, F=13v.\nShoelace: ½ |D×E + E×G + G×F + F×D|\n\nD×E = 4u × 20u = 80 (u×u) = 0.\nE×G = 20u × 65v = 1300 (u×v) = 1300 k\nG×F = 65v × 13v = 0.\nF×D = 13v × 4u = 52 (v×u) = -52 k\n\nSum = 1300k - 52k = 1248k.\nArea = ½ |1248k| = 624k = 288.\nSo k = 288/624 = 12/26 = 6/13.\n\nSo u×v = 6/13 (magnitude, taking sign positive).\n\nNow compute area of polygon A, F, N, B, C, E, M.\n\nVertices:\n- A = 0\n- F = 13v\n- N = 40u - 65v\n- B = 28u\n- C = 91v\n- E = 20u\n- M = -4u + 26v\n\nLet me write each as (coefficient of u, coefficient of v).\nA = (0, 0)\nF = (0, 13)\nN = (40, -65)\nB = (28, 0)\nC = (0, 91)\nE = (20, 0)\nM = (-4, 26)\n\nShoelace using cross product where cross of (a1 ",
+      "lesson": "Solved correctly with final answer 588. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_sg; gold=588; predicted=588",
+      "domain": "contextmath",
+      "path_id": "p_4147af731e7b",
+      "created_at": "2026-07-07T05:11:32.308473Z"
+    },
+    {
+      "id": "q_dbdc220f7e",
+      "task": "ContextMATH aime_2025_sg problem:\nA project team consists of 9 engineers who just completed a major development cycle. To allocate resources for the next quarter, the engineers are separated into three project types: Software Development, Hardware Development, and Networking. Each engineer is assigned to exactly one project type, with at least one engineer in each type. The leader of the team ensures that there are more engineers working on Software Development than on Hardware Development, and more on Hardware Development than on Networking. Determine how many different ways the project assignments can be made given these conditions, and then find out the remainder when this number is divided by 1000.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to count ways to assign 9 engineers to three groups where Software > Hardware > Networking, with each group having at least one.\n\n**Step 1: Find valid group sizes (s, h, n)**\n\nI need s + h + n = 9 with s > h > n ≥ 1.\n\nLet me enumerate with n ≥ 1, h > n, s > h:\n\n- n=1: h from 2 upward, s = 9 - 1 - h = 8 - h, need s > h\n  - h=2: s=6, check 6>2 ✓ → (6,2,1)\n  - h=3: s=5, 5>3 ✓ → (5,3,1)\n  - h=4: s=4, 4>4 ✗\n  \n- n=2: h > 2, s = 7 - h > h\n  - h=3: s=4, 4>3 ✓ → (4,3,2)\n  - h=4: s=3, 3>4 ✗\n\n- n=3: h>3, s = 6-h > h → h=4: s=2 ✗\n\nSo valid size triples: (6,2,1), (5,3,1), (4,3,2).\n\n**Step 2: Count assignments for each (distinct engineers, labeled groups)**\n\nSince the three project types are distinct, the number of ways to assign specific counts is the multinomial coefficient $\\frac{9!}{s!\\,h!\\,n!}$.\n\n- (6,2,1): $\\frac{9!}{6!2!1!} = \\frac{362880}{720 \\cdot 2 \\cdot 1} = \\frac{362880}{1440} = 252$\n- (5,3,1): $\\frac{9!}{5!3!1!} = \\frac{362880}{120 \\cdot 6 \\cdot 1} = \\frac{362880}{720} = 504$\n- (4,3,2): $\\frac{9!}{4!3!2!} = \\frac{362880}{24 \\cdot 6 \\cdot 2} = \\frac{362880}{288} = 1260$\n\n**Step 3: Sum**\n\n$$252 + 504 + 1260 = 2016$$\n\n**Step 4: Remainder mod 1000**\n\n$$2016 \\mod 1000 = 16$$\n\n\\boxed{16}",
+      "lesson": "Solved correctly with final answer 16. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_sg; gold=16; predicted=16",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:11:52.229238Z"
+    },
+    {
+      "id": "q_3cff2ffd76",
+      "task": "ContextMATH aime_2025_sg problem:\nAn event planner is organizing a large outdoor festival in a park set up using a coordinate grid system that extends from point $-100$ to $100$ in both the horizontal and vertical directions. The park needs to be arranged so that the placement of different festival elements, such as stages and tents, satisfies a certain balance condition. Specifically, this balance condition ensures structural stability or aesthetic harmony, represented by a rule where the arrangement of each object must adhere to: $12 \\times (\\text{horizontal position})^2 - (\\text{horizontal position}) \\times (\\text{vertical position}) - 6 \\times (\\text{vertical position})^2 = 0$. Determine how many different combinations of horizontal and vertical positions (each position being a labeled point on the grid) could satisfy this rule.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to find integer solutions (x,y) with -100 ≤ x,y ≤ 100 to:\n\n$$12x^2 - xy - 6y^2 = 0$$\n\n**Factor the quadratic form.**\n\nTreating as quadratic in terms of the ratio, factor $12x^2 - xy - 6y^2$.\n\nI look for factorization $(ax + by)(cx + dy)$ where:\n- $ac = 12$\n- $bd = -6$\n- $ad + bc = -1$\n\nTry $(3x + 2y)(4x - 3y)$: \n- $ac = 12$ ✓\n- $bd = 2 \\cdot(-3) = -6$ ✓\n- $ad + bc = 3(-3) + 2(4) = -9 + 8 = -1$ ✓\n\nSo: $(3x + 2y)(4x - 3y) = 0$\n\n**Case 1: $3x + 2y = 0$**\n\nSo $3x = -2y$, meaning $x = -\\frac{2y}{3}$. Need $y$ divisible by 3.\n\nLet $y = 3k$, then $x = -2k$.\n\nConstraints: $-100 \\le -2k \\le 100 \\Rightarrow -50 \\le k \\le 50$\nAnd $-100 \\le 3k \\le 100 \\Rightarrow -33.33 \\le k \\le 33.33 \\Rightarrow -33 \\le k \\le 33$\n\nSo $k \\in \\{-33, ..., 33\\}$: that's $67$ values.\n\n**Case 2: $4x - 3y = 0$**\n\nSo $4x = 3y$, meaning $y = \\frac{4x}{3}$. Need $x$ divisible by 3.\n\nLet $x = 3m$, then $y = 4m$.\n\nConstraints: $-100 \\le 3m \\le 100 \\Rightarrow -33 \\le m \\le 33$\nAnd $-100 \\le 4m \\le 100 \\Rightarrow -25 \\le m \\le 25$\n\nSo $m \\in \\{-25, ..., 25\\}$: that's $51$ values.\n\n**Overlap between cases.**\n\nThe common solution must satisfy both, which means both factors zero. Solving:\n$3x + 2y = 0$ and $4x - 3y = 0$.\n\nFrom these: $9x + 6y = 0$ and $8x - 6y = 0$, adding: $17x = 0 \\Rightarrow x = 0, y = 0$.\n\nSo the only overlap is $(0,0)$, counted in both cases.\n\n**Total count.**\n\n$67 + 51 - 1 = 117$\n\n\\boxed{117}",
+      "lesson": "Solved correctly with final answer 117. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_sg; gold=117; predicted=117",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:12:12.273108Z"
+    },
+    {
+      "id": "q_31153ed573",
+      "task": "ContextMATH aime_2025_sg problem:\nIn a large manufacturing plant, the production process for assembling a specific model consists of a sequence where exactly eight unique components must be arranged in every completed assembly line. Each component is labeled with a model number from 1 to 8, ensuring an orderly inclusion of each piece exactly once in the assembly process. To meet high industry standards, every assembly sequence must pass a rigorous quality control check, which is successfully met when the sequence number associated with the order in which components are assembled allows the product to meet a specific quality measure—a numerical property equivalent to the sequence number being divisible by a factor of 22. Determine the difference between the number of compliant assembly sequences possible and the value 2025.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to find 8-digit numbers using digits 1-8 exactly once that are divisible by 22.\n\n## Setting Up\n\nA number divisible by 22 must be divisible by both 2 and 11.\n\n**Divisibility by 2:** The last digit must be even (2, 4, 6, or 8).\n\n**Divisibility by 11:** The alternating sum of digits must be divisible by 11.\n\nThe total sum of digits 1+2+...+8 = 36.\n\nLet me define positions 1-8. The rule: (sum of odd positions) - (sum of even positions) ≡ 0 (mod 11).\n\nLet S_odd = sum of digits in positions 1,3,5,7 and S_even = sum in positions 2,4,6,8.\n\nWe have S_odd + S_even = 36, and S_odd - S_even ≡ 0 (mod 11).\n\nSo S_odd - S_even = 2·S_odd - 36. For divisibility by 11: 2·S_odd - 36 ≡ 0 (mod 11).\n\nThe difference S_odd - S_even is even (since sum is 36, both parts have same parity as... 2S_odd - 36 is even). The difference ranges: minimum S_odd is 1+2+3+4=10, max is 5+6+7+8=26. So difference ranges from 2(10)-36 = -16 to 2(26)-36 = 16.\n\nEven multiples of 11 in [-16,16]: only 0. So we need S_odd - S_even = 0, meaning S_odd = S_even = 18.\n\n## Counting partitions with sum 18\n\nI need to split {1,...,8} into two groups of 4 digits each, where the \"odd-position\" set sums to 18.\n\nFind 4-element subsets of {1,...,8} summing to 18. Let me count these subsets.\n\nThe complement of a subset summing to 18 also sums to 18 (since 36-18=18). So subsets come in complementary pairs, both summing to 18.\n\nLet me enumerate 4-element subsets summing to 18:\n- Contains 8: need 3 elements from {1..7} summing to 10: {1,2,7},{1,3,6},{1,4,5},{2,3,5},{3,4,... 3+4+3 no}. Let me list: {1,2,7}=10✓,{1,3,6}✓,{1,4,5}✓,{2,3",
+      "lesson": "Solved correctly with final answer 279. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_sg; gold=279; predicted=279",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:12:46.857694Z"
+    },
+    {
+      "id": "q_2c6ab254e1",
+      "task": "ContextMATH aime_2025_sg problem:\nImagine you are designing a greenhouse plot. The plot has two parallel walls, and the sloped glass panels connecting them have the same length, maintaining symmetrical balance. Within this plot, there is a circular flower bed perfectly centered and touching each boundary of the greenhouse plot. The distance from the center of this flower bed to its edge is 3 meters. The total planting area of the greenhouse is 72 square meters. If the lengths of the two parallel walls differ, determine the sum of the squares of these lengths.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to find the sum of squares of the two parallel sides of an isosceles trapezoid with an inscribed circle.\n\n## Setting Up the Problem\n\nThe greenhouse is an **isosceles trapezoid** (two parallel walls, symmetrical sloped sides of equal length) with an **inscribed circle** touching all four sides.\n\n**Given:**\n- Inscribed circle radius r = 3 meters\n- Area = 72 square meters\n- The two parallel walls have different lengths\n\n## Key Properties\n\n**Height:** Since the circle is inscribed and touches both parallel walls, the height equals the diameter:\n$$h = 2r = 6 \\text{ meters}$$\n\n**Area of trapezoid:** With parallel sides a and b:\n$$\\text{Area} = \\frac{(a+b)}{2} \\cdot h = 72$$\n$$\\frac{(a+b)}{2} \\cdot 6 = 72$$\n$$(a+b) \\cdot 3 = 72$$\n$$a + b = 24$$\n\n**Tangential polygon property:** For a quadrilateral with an inscribed circle, the sums of opposite sides are equal. For an isosceles trapezoid with parallel sides a, b and equal legs c:\n$$a + b = c + c = 2c$$\n$$2c = 24 \\implies c = 12$$\n\n## Finding a and b\n\nThe leg length c relates to the height and the difference of parallel sides. For an isosceles trapezoid:\n$$c^2 = h^2 + \\left(\\frac{a-b}{2}\\right)^2$$\n\nSubstituting c = 12, h = 6:\n$$144 = 36 + \\left(\\frac{a-b}{2}\\right)^2$$\n$$\\left(\\frac{a-b}{2}\\right)^2 = 108$$\n$$\\frac{a-b}{2} = \\sqrt{108} = 6\\sqrt{3}$$\n$$a - b = 12\\sqrt{3}$$\n\n## Computing Sum of Squares\n\nI need $a^2 + b^2$.\n\nUsing the identity:\n$$a^2 + b^2 = \\frac{(a+b)^2 + (a-b)^2}{2}$$\n\n$$(a+b)^2 = 24^2 = 576$$\n$$(a-b)^2 = (12\\sqrt{3})^2 = 144 \\cdot 3 = 432$$\n\n$$a^2 + b^2 = \\frac{576 + 432}{2} = \\frac{1008}{2} = 504$$\n\n## Ver",
+      "lesson": "Solved correctly with final answer 504. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_sg; gold=504; predicted=504",
+      "domain": "contextmath",
+      "path_id": "p_4147af731e7b",
+      "created_at": "2026-07-07T05:13:08.856935Z"
+    },
+    {
+      "id": "q_e8bbe1752a",
+      "task": "ContextMATH aime_2025_sg problem:\nImagine a factory that needs to assemble a series of machines. Each machine requires exactly six modules, and each module is constructed using two distinct components. There are twelve components in total, labeled uniquely from Component A to Component L, and ordered by increasing size. These components are randomly paired to form the six modules, with the smaller component in each pair always attached before the larger one. Once assembled, the modules are organized on an assembly line, following the same size-order rule.\n\nGiven this arrangement process, determine the chance that the final module placed on the assembly line includes Component G. Express that probability as a fraction where the numerator and denominator have no common factors other than 1, and find the sum of the numerator and the denominator.",
+      "outcome": false,
+      "reward": -1.0,
+      "trajectory": "I need to find the probability that the last module on the assembly line contains Component G.\n\n## Setup\n\nWe have 12 components A-L (ordered by size, so A smallest, L largest). They're randomly paired into 6 modules. Each module is ordered by size (smaller component first). The modules are then ordered on the assembly line.\n\n**Ordering rule for modules:** Each module has a smaller and larger component. The modules are organized \"following the same size-order rule.\" The natural interpretation: modules are ordered by their larger component (since within a module the larger component determines the module's \"size\" for placement), analogous to the standard problem.\n\nActually, this is the classic problem: the last module (in the sorted order) is the one containing component L (the largest), since whatever module contains L will have the largest \"larger element.\"\n\nThe module containing L is placed last. For G to be in the last module, G must be paired with L.\n\nWait - let me reconsider the ordering. The last module is determined by ordering. The module containing the overall largest component L will be last (its larger element is L, which exceeds all others). So the last module contains L.\n\nFor the last module to contain G, we need G paired with L.\n\n## Probability that G is paired with L\n\nComponent L must be paired with one of the other 11 components, uniformly at random. The probability L is paired with G is 1/11.\n\nWait, let me verify this is uniform. In random pairing, each component is equally likely to be L's partner. So P(G paired with L) = 1/11.\n\n## Reconsidering\n\nBut I shou",
+      "lesson": "Failed: predicted '12', which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking.",
+      "context": "split=aime_2025_sg; gold=821; predicted=12",
+      "domain": "contextmath",
+      "path_id": "p_f190e2ee36c1",
+      "created_at": "2026-07-07T05:13:39.437936Z"
+    },
+    {
+      "id": "q_0ddf5b3e32",
+      "task": "ContextMATH aime_2025_sg problem:\nIn a city organized as a grid, there is a requirement to build a new radio tower such that it is precisely 5 miles from Central Park, which sits at the crossing of 25th Avenue and 20th Street. There are two key locations within this city: a school positioned on 4th Street at an unknown avenue $k$ and a library set on 3rd Avenue at the same unknown avenue $k$. The objective is to determine the location for the radio tower such that its distance to the school matches its distance to the library. Identify the specific avenue number $k$ so that there is exactly one valid location for placing the tower. If the total of all possible avenue numbers $k$ can be expressed as a reduced fraction $\\frac{m}{n}$, compute the sum $m+n$.",
+      "outcome": false,
+      "reward": -1.0,
+      "trajectory": "<think>\nLet me parse this carefully. Grid city, avenues and streets as coordinates.\n\nCentral Park is at crossing of 25th Avenue and 20th Street. Let me set coordinates: let x = avenue, y = street. So Central Park is at (25, 20).\n\nTower must be exactly 5 miles from Central Park: circle centered (25,20) radius 5.\n\nSchool: on 4th Street at avenue k → (k, 4).\nLibrary: on 3rd Avenue at \"the same unknown avenue k\"... hmm. Wait, library on 3rd Avenue at avenue k? That's confusing.\n\nLet me reconsider. Perhaps school at avenue k on 4th street: (k, 4). Library on 3rd avenue... at the same... this is odd. Let me think it's a classic problem.\n\nActually this is a known problem: \"The point equidistant from two points lies on the perpendicular bisector.\" The set of points equidistant from school and library is the perpendicular bisector. We want this line to intersect the circle in exactly one point (tangent).\n\nSchool = (k, 4), Library = (3, k)? \"library set on 3rd Avenue at the same unknown avenue k\" - maybe library is at (3, k): 3rd avenue, street k. Hmm.\n\nLet me guess: School (k, 4), Library (3, k). The perpendicular bisector of these two points. We want tangency to circle center (25,20) radius 5. Sum of all k values.\n\nPerpendicular bisector: set of points P with |P - School| = |P - Library|. This is a line. Tangent to circle means distance from center to line = 5.\n\nLet me compute. Points A=(k,4), B=(3,k). Midpoint M = ((k+3)/2, (4+k)/2). Direction AB = (3-k, k-4). Perpendicular bisector: (P-M)·(AB)=0.\n\nLine: (3-k)(x - (k+3)/2) + (k-4)(y - (4+k)/2) = 0.\n\nDistance from center C=(25,20) ",
+      "lesson": "Failed: predicted '78', which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking.",
+      "context": "split=aime_2025_sg; gold=77; predicted=78",
+      "domain": "contextmath",
+      "path_id": "p_68138a02a1ab",
+      "created_at": "2026-07-07T05:14:13.150142Z"
+    },
+    {
+      "id": "q_3f1e26a011",
+      "task": "ContextMATH aime_2025_sg problem:\nA roller coaster track follows a specific curved design, where the height of the track above ground is given by squaring the horizontal distance from the central support pillar and subtracting 4 feet. For safety testing, engineers simulate a modification in which this curved section is rotated 60 degrees counterclockwise around the central support pillar. After the rotation, the new version of the track intersects the original track at several points. One of these intersection points lies to the right of the central pillar and below ground level. This is the only intersection in that specific region. The height at this point (a negative value) can be expressed as a fraction in the form “(a minus the square root of b) divided by c” feet, where a, b, and c are positive integers and a and c share no common factors other than 1. What is the sum of a, b, and c?",
+      "outcome": false,
+      "reward": -1.0,
+      "trajectory": "The original curve is y = x² - 4.\n\nWe rotate this curve 60° counterclockwise around the origin (central pillar). We need to find intersection points of the original curve with the rotated curve.\n\n**Setting up the rotation.**\n\nA point (x, y) on the original parabola gets rotated by 60° to a new point (X, Y):\n- X = x cos60° - y sin60° = (1/2)x - (√3/2)y\n- Y = x sin60° + y cos60° = (√3/2)x + (1/2)y\n\nThe rotated curve consists of all such (X, Y). For an intersection point, we need a point that lies on BOTH the original parabola and the rotated parabola.\n\n**Finding intersections via inverse rotation.**\n\nA point P is on the rotated curve if rotating P *back* by 60° (i.e., clockwise) lands on the original parabola.\n\nLet P = (x, y) be on the original parabola: y = x² - 4.\n\nRotate P clockwise by 60° to get (u, v):\n- u = x cos60° + y sin60° = (1/2)x + (√3/2)y\n- v = -x sin60° + y cos60° = -(√3/2)x + (1/2)y\n\nFor P to also be on the rotated curve, (u, v) must satisfy the original equation: v = u² - 4.\n\nSo:\n$$-\\frac{\\sqrt3}{2}x + \\frac12 y = \\left(\\frac12 x + \\frac{\\sqrt3}{2}y\\right)^2 - 4$$\n\nSubstitute y = x² - 4.\n\n**Compute the right side.**\n\nLet me denote y = x² - 4.\n\nLeft side: L = -(√3/2)x + (1/2)(x²-4) = (1/2)x² - (√3/2)x - 2.\n\nRight side inner: (1/2)x + (√3/2)y = (1/2)x + (√3/2)(x²-4).\n\nLet A = (1/2)x + (√3/2)x² - 2√3.\n\nThen RHS = A² - 4.\n\nSet L = A² - 4.\n\nThis is messy. Let me look for the specific intersection point.\n\n**Alternative: guess intersection near x-axis.**\n\nWe want a point right of pillar (x > 0) below ground (y < 0). Height y is what we want.\n\nLet me solve numerically",
+      "lesson": "Failed: predicted '34', which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking.",
+      "context": "split=aime_2025_sg; gold=62; predicted=34",
+      "domain": "contextmath",
+      "path_id": "p_f190e2ee36c1",
+      "created_at": "2026-07-07T05:14:50.470564Z"
+    },
+    {
+      "id": "q_37454eb396",
+      "task": "ContextMATH aime_2025_sg problem:\nIn a factory layout optimization scenario, imagine a factory floor divided into three assembly lines, each comprising nine machine stations, making a total of twenty-seven stations. Your task is to install nine different types of machines throughout the factory. Each assembly line must contain all nine types, and each of the three 3x3 blocks must also include all nine types. Determine the number of different possible configurations for arranging the machines across the factory floor. The number of configurations can be expressed in the form of a multiplication of distinct prime factors raised to various powers. Calculate the weighted sum of these powers as the prime factors are scaled by their respective powers.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to carefully parse this problem.\n\n## Setting Up the Problem\n\nWe have 27 stations arranged as three assembly lines, each with 9 stations. This is essentially a **Sudoku-like structure but reduced**.\n\nLet me reconsider. The structure: 3 assembly lines × 9 stations = 27 stations. We install 9 different machine types. Each assembly line (row of 9) must contain all 9 types. Each of three 3×3 blocks must contain all 9 types.\n\nThis is exactly the structure of a **3×9 Sudoku band** (one \"band\" of a Sudoku grid): 3 rows, 9 columns, divided into three 3×3 blocks. Each row contains all 9 symbols, and each 3×3 block contains all 9 symbols.\n\n## Counting the Configurations\n\nThe number of ways to fill a single Sudoku band (3 rows × 9 columns, three 3×3 boxes) is a well-known result.\n\nThe number of ways to fill the first band of a Sudoku grid is:\n$$56 \\times 9!$$\n\nWait, let me recall the standard computation. The number of ways to fill one band is:\n\n$$9! \\times 56 \\times (3!)^? $$\n\nThe classic result: the first band can be filled in $9! \\times 56 \\times 6^6$... let me be careful.\n\nThe standard count for a single band (3×9 with the box constraint) is:\n$$9! \\times 56 \\times 6^6$$ — no.\n\nThe well-known result (Felgenhauer & Jarvis): the number of ways to fill the top band is \n$$9! \\times 72^2 \\times 2 \\times 9! ...$$\n\nLet me use the established figure. The number of valid bands is:\n$$\\frac{9!^3 \\cdot ...}{}$$\n\nThe accepted value: number of ways to fill first band = $948109639680 = 9! \\times 56 \\times ...$\n\nLet me just compute directly. Fill box 1: $9!$ ways. Then boxes 2 and 3 must com",
+      "lesson": "Solved correctly with final answer 81. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_sg; gold=81; predicted=81",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:15:19.094222Z"
+    },
+    {
+      "id": "q_30bf668ad1",
+      "task": "ContextMATH aime_2025_cs problem:\nIn a timing lab, researchers use adjustable gears to control different experiment chambers. Each gear rotates at a constant speed, where the second that the gear completes exactly one full turn is a tunable integer value unique to each chamber. For safety reasons, these gears are restricted to spin no faster than 6 full rotations per minute. A separate digital logger is attached to each chamber. It consists of a series of cascading digit displays, all initially showing 0. Whenever a display reaches the limit defined by the gear's setting (i.e., the number of seconds per full turn), the display resets to 0, and the display to the left increments by 1. The rightmost display is directly driven by the gear: it increases by 1 every time the gear completes a full rotation. Find the sum of all possible gear settings such that the number of full rotations completed by the gear when the logger shows 97 is an exact integer multiple of the number completed when it shows 17.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "<think>\nLet me parse this problem carefully.\n\nWe have a gear with a setting = seconds per full turn (an integer). The gear spins no faster than 6 full rotations per minute. So each rotation takes at least 60/6 = 10 seconds. So the seconds per full turn ≥ 10.\n\nWait, \"the second that the gear completes exactly one full turn is a tunable integer value unique to each chamber\". So seconds per full turn is an integer ≥ 10.\n\nThe logger is a cascading digit display in base b where b = the gear's setting (seconds per full turn = number). Wait, \"Whenever a display reaches the limit defined by the gear's setting (i.e., the number of seconds per full turn), the display resets to 0.\" So the base of the counter is the gear setting.\n\nThe rightmost display increases by 1 every full rotation. So the logger counts number of rotations in base b (where b = gear setting).\n\nSo the logger shows a number in base b. \"The number shows 97\" means the digits read \"97\" in base b. That represents 9*b + 7 rotations. \"The logger shows 17\" means digits read \"1 7\" = 1*b + 7 rotations.\n\nWait, we need the number of full rotations when logger shows 97 to be an integer multiple of the number when logger shows 17.\n\nFor \"97\" to be valid in base b, we need digits 9 and 7 < b, so b ≥ 10. Also for \"17\", digit 7 < b, so b ≥ 8. Combined b ≥ 10.\n\nAlso gear setting ≥ 10 (from the 6 rotations/min constraint). Consistent.\n\nNumber of rotations when logger shows \"97\" = 9b + 7.\nNumber of rotations when logger shows \"17\" = b + 7.\n\nWe need (9b+7) to be an integer multiple of (b+7).\n\n(9b+7)/(b+7) = integer.\n\n9b+7 = 9(b+7) - 63 +",
+      "lesson": "Solved correctly with final answer 70. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_cs; gold=70; predicted=70",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:15:49.111076Z"
+    },
+    {
+      "id": "q_803a747ed1",
+      "task": "ContextMATH aime_2025_cs problem:\nAn exploration team is mapping out a region for an expedition. They've placed reference points to navigate two connected straight paths of the terrain. Beginning at Base Camp Alpha, the team moved to Delta Spring, then continued to Echo Clearing, and finally reached Bravo Ridge. The segments between the points are as follows: the trek from Base Camp Alpha to Delta Spring takes 4 hours, from Delta Spring to Echo Clearing takes 16 hours, and from Echo Clearing to Bravo Ridge takes 8 hours.\n\nOn another path starting again from Base Camp Alpha, the team moves sequentially to Foxtrot Falls, then towards Golf Glade, and ultimately arrives at Charlie Cove. The times taken are 13 hours to Foxtrot Falls, 52 hours to Golf Glade, and another 26 hours to reach Charlie Cove.\n\nAs part of their exploration notes, they recorded two distinct mirrored signals. Signal Mike mirrors Delta Spring when observed from Foxtrot Falls, and Signal November mirrors Golf Glade when viewed from Echo Clearing.\n\nIn this adventure, they have noted that the plot of land encompassed by Delta Spring, Echo Clearing, Golf Glade, and Foxtrot Falls takes a total of 288 expedition hours to explore. Your task is to determine how many expedition hours it takes to cover the land spanned by the sequence of markers from Base Camp Alpha, Foxtrot Falls, November Signal, Bravo Ridge, Charlie Cove, Echo Clearing, to Mike Signal.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "<think>\nLet me parse this problem. We have two straight paths from Base Camp Alpha (let's call it A).\n\nPath 1: A → Delta Spring (D) → Echo Clearing (E) → Bravo Ridge (B)\n- A to D: 4\n- D to E: 16\n- E to B: 8\n\nPath 2: A → Foxtrot Falls (F) → Golf Glade (G) → Charlie Cove (C)\n- A to F: 13\n- F to G: 52\n- G to C: 26\n\nThese are two straight lines (rays) from A. The \"times\" are distances along the lines.\n\nSo along line 1: A, then D at distance 4, E at distance 4+16=20, B at distance 20+8=28.\nAlong line 2: A, then F at distance 13, G at distance 13+52=65, C at distance 65+26=91.\n\nSignal Mike mirrors Delta Spring when observed from Foxtrot Falls. So Mike (M) is the reflection of D across F? \"mirrors D when observed from F\" — M is reflection of D over point F.\n\nSignal November mirrors Golf Glade when viewed from Echo Clearing. So November (N) is reflection of G over point E.\n\nLet me set up coordinates. Place A at origin. Line 1 along direction u, line 2 along direction v.\n\nPoints on line 1: D = 4u, E = 20u, B = 28u.\nPoints on line 2: F = 13v, G = 65v, C = 91v.\n\nMike = reflection of D over F: M = 2F - D = 26v - 4u.\nNovember = reflection of G over E: N = 2E - G = 40u - 65v.\n\nThe quadrilateral D, E, G, F has area (in \"expedition hours\" — area units) = 288.\n\nActually the area of quadrilateral with vertices D, E, G, F. Let's compute.\n\nLet me denote u and v as vectors with cross product magnitude |u × v| = k (the sine of angle times unit... actually u,v are unit-length direction vectors? The distances are the times). Let's treat u, v as unit vectors. Then D = 4u etc.\n\nCross product u × v =",
+      "lesson": "Solved correctly with final answer 588. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_cs; gold=588; predicted=588",
+      "domain": "contextmath",
+      "path_id": "p_4147af731e7b",
+      "created_at": "2026-07-07T05:16:29.889875Z"
+    },
+    {
+      "id": "q_c8fd186a6b",
+      "task": "ContextMATH aime_2025_cs problem:\nThree independent processes must be scheduled to run across a shared system. Each process will occupy some whole time slots, and the total amount of time allocated to all three processes is fixed. For system stability, the time allocations for them must form a strictly decreasing sequence and be positive. For example, one valid allocation would assign 4 slots to the first process, 3 to the second, and 2 to the third. In this system, each time slot is uniquely labeled and must be assigned to at most one process. Determine the number of valid assignments of time slots to these three processes. Find the remainder when this number is divided by 1000.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to find the number of valid time slot assignments for three processes.\n\n## Decoding the Problem\n\nLet me identify the key constraints:\n- Three processes get whole (positive) time slots\n- The allocations form a strictly decreasing sequence: $a_1 > a_2 > a_3 > 0$\n- Total time is fixed: $a_1 + a_2 + a_3 = N$ for some fixed $N$\n- Each time slot is uniquely labeled, and slots are assigned to processes\n\nThe phrase \"each time slot is uniquely labeled and must be assigned to at most one process\" means the slots are **distinguishable**. So we're not just counting the partitions $(a_1, a_2, a_3)$; we're counting ways to assign labeled slots.\n\n## Finding the Fixed Total\n\nThe problem references the example (4, 3, 2), summing to 9. This is the classic AIME problem structure. The standard version of this problem uses a total that I need to determine. \n\nGiven the structure and example summing to 9... but let me reconsider. The problem seems to be the well-known problem where the total is a specific value. The example (4,3,2) suggests a small case, but the actual problem likely uses a larger fixed total.\n\nThis matches **AIME 2016 I Problem** style, but more precisely resembles a problem where we count functions. Let me interpret: we have $N$ labeled slots total, distributed so that $a_1 > a_2 > a_3 > 0$, and we choose WHICH labeled slots go to each process.\n\nFor a given decreasing sequence $(a_1, a_2, a_3)$ with sum $N$, the number of ways to assign labeled slots is the multinomial $\\binom{N}{a_1, a_2, a_3} = \\frac{N!}{a_1! a_2! a_3!}$.\n\n## Determining N\n\nThe example (4,3,2) sums to ",
+      "lesson": "Solved correctly with final answer 16. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_cs; gold=16; predicted=16",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:16:54.686045Z"
+    },
+    {
+      "id": "q_03de717b71",
+      "task": "ContextMATH aime_2025_cs problem:\nEngineers are studying the behavior of a prototype bridge under test conditions involving delayed activation and spatial offsets. Each trial is conducted by initiating a signal with a specific delay (in whole hours from -100 to 100) and applying a lateral load at a particular horizontal distance (also from -100 to 100). To prevent oscillation resonance, the system must reach a precise balance point. According to calibration data, the bridge's reactive energy grows rapidly with the square of the delay — specifically, twelve units of energy are accumulated for each hour squared. Meanwhile, lateral stress increases with the square of the distance from the center, contributing six units per meter squared. There is also a minor interaction effect, modeled as one unit of stress for each product of the time delay and the lateral distance. Only when the reactive energy is exactly balanced by the combined effects of lateral stress and interaction is the system considered dynamically neutral. How many such (time delay, lateral position) pairs satisfy this equilibrium?",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to find integer pairs (t, x) with t, x ∈ [-100, 100] satisfying the equilibrium condition.\n\n## Setting Up the Equation\n\n- Reactive energy: 12t² (twelve units per hour squared)\n- Lateral stress: 6x² (six units per meter squared)\n- Interaction: tx (one unit per product)\n\n**Balance condition:** Reactive energy = lateral stress + interaction\n\n$$12t^2 = 6x^2 + tx$$\n\n## Solving\n\nRearrange:\n$$12t^2 - tx - 6x^2 = 0$$\n\nTreat this as a quadratic. Let me factor it. Looking for factorization:\n$$12t^2 - tx - 6x^2 = 0$$\n\nTry $(at + bx)(ct + dx)$ where $ac = 12$, $bd = -6$, $ad + bc = -1$.\n\nTry $(3t + 2x)(4t - 3x)$: \n- $ac = 12$ ✓\n- $bd = 2(-3) = -6$ ✓\n- $ad + bc = 3(-3) + 2(4) = -9 + 8 = -1$ ✓\n\nSo:\n$$(3t + 2x)(4t - 3x) = 0$$\n\n## Finding Solutions\n\n**Case 1:** $3t + 2x = 0 \\Rightarrow x = -\\frac{3t}{2}$\n\nNeed x integer, so t must be even. Let t = 2k, then x = -3k.\n- t ∈ [-100, 100]: t = 2k means k ∈ [-50, 50]\n- x = -3k ∈ [-100, 100]: -3k needs |3k| ≤ 100, so |k| ≤ 33.33, k ∈ [-33, 33]\n\nCombined: k ∈ [-33, 33], giving **67 solutions**.\n\n**Case 2:** $4t - 3x = 0 \\Rightarrow x = \\frac{4t}{3}$\n\nNeed x integer, so t must be divisible by 3. Let t = 3m, then x = 4m.\n- t = 3m ∈ [-100, 100]: |3m| ≤ 100, so |m| ≤ 33.33, m ∈ [-33, 33]\n- x = 4m ∈ [-100, 100]: |4m| ≤ 100, so |m| ≤ 25, m ∈ [-25, 25]\n\nCombined: m ∈ [-25, 25], giving **51 solutions**.\n\n## Checking Overlap\n\nOverlap requires both conditions: x = -3t/2 and x = 4t/3.\n$$-\\frac{3t}{2} = \\frac{4t}{3} \\Rightarrow -9t = 8t \\Rightarrow t = 0$$\n\nAt t = 0: x = 0. This point (0, 0) satisfies both cases.\n\n## Total Count\n\n$$67 + 51 - 1 = 117$$\n\n",
+      "lesson": "Solved correctly with final answer 117. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_cs; gold=117; predicted=117",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:17:17.942530Z"
+    },
+    {
+      "id": "q_52962a1dad",
+      "task": "ContextMATH aime_2025_cs problem:\nIn a system of three concurrent programs, one program acts as a timer, incrementing by one every unit of time from zero. A second program counts these ticks and sends out a signal every time the timer has advanced 22 times. A third program is tasked with monitoring the output. It begins listening when the timer reaches 10000000 and stops at 99999999. Whenever the timer's current value meets all of the following criteria, the value is recorded by the monitor: It contains no 0 or 9. All of its digits are distinct. And it occurs exactly when a signal is sent. How many values does the monitor record during its operation? Find the difference between this number and 2025.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to count 8-digit numbers from 10000000 to 99999999 that satisfy:\n1. Divisible by 22 (signal sent every 22 ticks, so value is a multiple of 22)\n2. Contains no digit 0 or 9\n3. All digits distinct\n\n**Setup:** Digits must come from {1,2,3,4,5,6,7,8}, all distinct, so we use 8 distinct digits from a set of 8 — meaning we use ALL of {1,2,3,4,5,6,7,8} in some permutation.\n\n**Divisibility by 22 = divisible by 2 and 11.**\n\n**Digit sum:** 1+2+...+8 = 36.\n\n**Divisibility by 11:** Difference between sum of odd-position digits and even-position digits must be divisible by 11. Positions 1-8. Let S_odd = sum of positions 1,3,5,7 and S_even = sum of positions 2,4,6,8.\n\nS_odd + S_even = 36, and S_odd - S_even ≡ 0 (mod 11).\n\nLet d = S_odd - S_even. Then S_odd = (36+d)/2. Need d divisible by 11 and 36+d even, so d even. d must be multiple of 11 and even → d = 0, ±22, ±44...\n\nSince digits are 1-8, S_odd ranges. Min sum of 4 digits = 1+2+3+4=10, max = 5+6+7+8=26. So S_odd ∈ [10,26], d = 2·S_odd - 36 ∈ [-16, 16]. Only d=0 works.\n\nSo S_odd = S_even = 18. I need to split {1,...,8} into two groups of 4, each summing to 18, placed in odd/even positions.\n\n**Divisibility by 2:** Last digit (position 8, even position) must be even.\n\n**Count 4-subsets of {1..8} summing to 18:**\nFind all 4-element subsets summing to 18.\n\nLet me enumerate subsets containing 8:\n- 8 + three from {1..7} summing to 10: {1,2,7},{1,3,6},{1,4,5},{2,3,5} → {8,1,2,7},{8,1,3,6},{8,1,4,5},{8,2,3,5}\n- Also {8, others}: three summing to 10: also {2,4,... } 2+4+4 no. {3,... } 3+3+4 no. So: {1,2,7},{1,3,6},{1,4,5},{2,3,5}. That's",
+      "lesson": "Solved correctly with final answer 279. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_cs; gold=279; predicted=279",
+      "domain": "contextmath",
+      "path_id": "p_fc67af713c85",
+      "created_at": "2026-07-07T05:17:50.682920Z"
+    },
+    {
+      "id": "q_4e37e1d6a4",
+      "task": "ContextMATH aime_2025_cs problem:\nIn a science museum, several convex lenses are mounted along a straight rail. Each lens has a different focal length, clearly labeled. Two visitors stand on the same side of two different lenses, each precisely at twice the focal length of their respective lens. They place small light sources on the ground beneath their feet. On the opposite side of the lenses, two other visitors move around until they locate the exact spots where each light source produces a clear, inverted, same-sized image on a projection screen they're holding. Once aligned, the four people form a closed quadrilateral region. A fifth visitor walks inside the region and notices something unusual: the distance from his position to all four edges of the region is the same, being exactly 3 units. If the area enclosed by the four visitors is known to be 72 square units, what is the sum of the squares of the original distances of the two light sources from their respective images?",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "I need to find the positions of the four people forming a quadrilateral.\n\n## Setting Up the Optics\n\nFor a convex lens, when an object is placed at **twice the focal length (2f)**, the image forms at **2f on the other side**, and it's **inverted, same-sized (real)**.\n\nSo for each lens with focal length f:\n- Object distance = 2f\n- Image distance = 2f\n- **Distance from source to image = 2f + 2f = 4f**\n\nThe two visitors with light sources stand at 2f₁ and 2f₂ from their lenses. The two image-locators stand at 2f₁ and 2f₂ on the opposite sides.\n\n## The Quadrilateral\n\nThe four people are:\n- Source 1 at distance 2f₁ (one side)\n- Image 1 at distance 2f₁ (other side)  \n- Source 2 at distance 2f₂ (one side)\n- Image 2 at distance 2f₂ (other side)\n\nThe distance between source and its image for lens 1 is **4f₁**, and for lens 2 is **4f₂**.\n\nThe four people form a closed quadrilateral with an **inscribed circle** (a point equidistant from all four sides, distance = 3). This means it's a **tangential quadrilateral** with inradius r = 3.\n\n## Interpreting the Geometry\n\nThe lenses are along a straight rail. The light sources are on the ground (a line), and images on screens. The two source-image lines are the two \"diagonals\" or the shape formed suggests the segments connecting source-to-image are parallel (both along the optical axis direction, perpendicular to the rail).\n\nLet me consider: The four points form a quadrilateral. The two source-image segments (lengths 4f₁ and 4f₂) are the two **parallel sides** of a trapezoid. This matches strategy 3: an isosceles trapezoid with inscribed circl",
+      "lesson": "Solved correctly with final answer 504. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_cs; gold=504; predicted=504",
+      "domain": "contextmath",
+      "path_id": "p_4147af731e7b",
+      "created_at": "2026-07-07T05:18:18.778910Z"
+    },
+    {
+      "id": "q_d76cee0f1e",
+      "task": "ContextMATH aime_2025_cs problem:\nA delivery hub processes twelve parcels of distinct weights, from lightest to heaviest. For packaging efficiency, the parcels are grouped into six sealed boxes, each containing exactly two parcels. When placing parcels into a box, the lighter one is always stacked on top of the heavier one. Once all boxes are sealed, they are placed on a conveyor belt where an automatic scanner processes them in order. The scanner sorts the boxes in ascending order by first comparing the weight of the top parcel in each box; if there is a tie, it then compares the weight of the bottom parcel. What is the probability that the last box in this sorted order contains the heaviest parcel? Express your answer as a simplified fraction, and provide the sum of the numerator and denominator.",
+      "outcome": false,
+      "reward": -1.0,
+      "trajectory": "<think>\nWe have 12 parcels of distinct weights, labeled 1 (lightest) to 12 (heaviest). They're paired into 6 boxes of 2 each. In each box, lighter is \"top\", heavier is \"bottom\".\n\nBoxes are sorted by top parcel weight ascending; ties broken by bottom parcel weight. Since all weights distinct, top parcels are all distinct across boxes? Not necessarily—each box has a distinct top since parcels are distinct. Actually each parcel is used once, so all 12 weights distinct, so all top values distinct. So no ties actually. The tie-breaking rule is irrelevant then.\n\nWait, top values are the lighter parcel of each box. These are 6 distinct values. So sorting by top value gives a unique order.\n\nWe want probability that the last box (in sorted order, i.e., box with the largest top value) contains parcel 12 (heaviest).\n\nThe heaviest parcel 12 is always the bottom of its box. The box containing 12 has top = its partner. For this box to be last, its top value must be the maximum among all top values.\n\nSo we need: the box containing parcel 12 has the largest \"top\" value among the 6 boxes.\n\nLet me think. We randomly pair the 12 parcels into 6 unordered pairs. Each pair's \"top\" is the smaller element. We want P(the pair containing 12 has the largest minimum).\n\nParcel 12 is paired with some parcel x. The top of that pair is x (since 12 is heaviest). We want x to be larger than the min of every other pair.\n\nLet me denote the partner of 12 as x, where x ∈ {1,...,11}. The remaining 10 parcels form 5 pairs. We need x > (min of each of the 5 other pairs).\n\nActually we need x to be the maximum of al",
+      "lesson": "Failed: predicted '949', which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking.",
+      "context": "split=aime_2025_cs; gold=821; predicted=949",
+      "domain": "contextmath",
+      "path_id": "p_a73ecbde9441",
+      "created_at": "2026-07-07T05:19:08.979457Z"
+    },
+    {
+      "id": "q_f8f4f000f9",
+      "task": "ContextMATH aime_2025_cs problem:\nImagine a vast, flat testing area, perfectly level. From your perspective standing at the southwest corner, a main receiver is located 25 units directly to your right and 20 units directly above you. A sound-emitting beacon needs to be positioned within this area. Its placement must meet two crucial conditions: First, the beacon must be exactly 5 units away from the main receiver. Second, the beacon must be equally distant from two mobile calibration sensors, A and B. These sensors' positions shift based on a \"calibration setting.\" Sensor A is always on the horizontal line extending directly to your right from where you stand. Its position is found by moving 4 units to your right, then adding the \"calibration setting\" as an additional distance further to your right. Sensor B is always on a horizontal line 3 units directly above the line extending to your right from where you stand. Its position is found by moving the \"calibration setting\" units directly to your right along this line. Find all \"calibration settings\" for which there is only one possible location for the sound-emitting beacon. If the sum of these \"calibration settings\" is a simplified fraction, state the sum of its numerator and denominator.",
+      "outcome": true,
+      "reward": 1.0,
+      "trajectory": "<think>\nLet me set up coordinates. Southwest corner is origin (0,0). Right = +x, up = +y.\n\nMain receiver at (25, 20).\n\nBeacon must be exactly 5 units from receiver: so beacon lies on circle centered (25,20) radius 5.\n\nBeacon equidistant from sensors A and B: lies on perpendicular bisector of AB.\n\nSensor A: on x-axis (y=0). Position: 4 + t units right, so A = (4+t, 0), where t is calibration setting.\n\nSensor B: on line y=3, position t units right: B = (t, 3).\n\nPerpendicular bisector of AB. Beacon equidistant from A and B means it's on the perpendicular bisector line.\n\nFor there to be only one possible beacon location, the perpendicular bisector line must be tangent to the circle.\n\nLet me find the perpendicular bisector of A=(4+t, 0), B=(t, 3).\n\nMidpoint M = ((4+t+t)/2, (0+3)/2) = ((4+2t)/2, 3/2) = (2+t, 1.5).\n\nDirection AB = B - A = (t-(4+t), 3-0) = (-4, 3).\n\nPerpendicular bisector: set of points (x,y) with (x - Mx, y - My)·(-4,3) = 0.\n-4(x - (2+t)) + 3(y - 1.5) = 0\n-4x + 4(2+t) + 3y - 4.5 = 0\n-4x + 8 + 4t + 3y - 4.5 = 0\n-4x + 3y + 3.5 + 4t = 0\nMultiply by -1: 4x - 3y - 3.5 - 4t = 0\nSo line: 4x - 3y - (3.5 + 4t) = 0.\n\nTangent to circle center (25,20), radius 5.\nDistance from center to line = |4·25 - 3·20 - (3.5+4t)| / sqrt(16+9) = |100 - 60 - 3.5 - 4t|/5 = |36.5 - 4t|/5.\n\nSet equal to 5:\n|36.5 - 4t| = 25.\n36.5 - 4t = 25 → 4t = 11.5 → t = 2.875 = 23/8.\n36.5 - 4t = -25 → 4t = 61.5 → t = 15.375 = 123/8.\n\nSum = 23/8 + 123/8 = 146/8 = 73/4.\n\nSum of numerator and denominator: 73 + 4 = 77.\n</think>\n\n**Setting up coordinates:**\n- Origin (0,0) at southwest corner; right = +x, up = +y",
+      "lesson": "Solved correctly with final answer 77. Preserve the useful reasoning path.",
+      "context": "split=aime_2025_cs; gold=77; predicted=77",
+      "domain": "contextmath",
+      "path_id": "p_4147af731e7b",
+      "created_at": "2026-07-07T05:19:39.646085Z"
+    },
+    {
+      "id": "q_771fd5b988",
+      "task": "ContextMATH aime_2025_cs problem:\nIn a physics classroom, a teacher sets up a demonstration. From a precise starting point, a small, heavy ball is launched directly forward with a horizontal speed of $\\sqrt{g/2}$ units per second, where $g$ is the standard acceleration due to gravity. Air resistance is ignored. A special tracking system records the ball's exact path as it falls. Immediately, the recorded path is digitally manipulated. It's first flipped horizontally across the starting point's vertical line, then shifted upwards by 4 units, and finally rotated 180 degrees around the starting point. Next, a robotic arm smoothly rotates the entire digital display counterclockwise by exactly one-sixth of a full circle around the original starting point. Both the initial path and its rotated image are now visible. Observe the display carefully. You'll see a unique bright spot where these two paths overlap. This spot is in the region of the display that is both to the right of the starting point's original vertical line and below its original horizontal line. Your task is to determine the exact vertical distance of this unique overlapping bright spot from the starting point's original horizontal line. If this distance is a simplified fraction where the numerator is a whole number minus the square root of another whole number, and the denominator is a whole number, and the first whole number and the third whole number have no common factors other than one, find the sum of these three positive whole numbers.",
+      "outcome": false,
+      "reward": -1.0,
+      "trajectory": "<think>\nLet me set up the problem. A ball is launched horizontally with speed $v = \\sqrt{g/2}$ from origin.\n\nParametric motion:\n- $x = vt = \\sqrt{g/2}\\, t$\n- $y = -\\frac{1}{2}g t^2$ (falling down)\n\nLet me find the path equation. From $x = \\sqrt{g/2}\\,t$, so $t = x/\\sqrt{g/2} = x\\sqrt{2/g}$.\n\n$y = -\\frac{1}{2}g t^2 = -\\frac{1}{2}g \\cdot x^2 \\cdot (2/g) = -x^2$.\n\nSo the original path is $y = -x^2$ for $x \\geq 0$ (launched forward, right).\n\n**Transformations of the path:**\n\nStart with $y = -x^2$, $x \\geq 0$.\n\n1. Flip horizontally across the starting point's vertical line (y-axis): $x \\to -x$. Path becomes $y = -x^2$, now $x \\leq 0$. (Same parabola, other branch.)\n\n2. Shift upwards by 4 units: $y = -x^2 + 4$, $x \\leq 0$.\n\n3. Rotate 180° around starting point (origin): $(x,y) \\to (-x,-y)$. \n   Point $(x,y)$ on curve satisfies $y = -x^2 + 4$ with $x\\le 0$.\n   New point $(X,Y) = (-x,-y)$. So $x = -X$, $y = -Y$.\n   $-Y = -(-X)^2 + 4 = -X^2 + 4$, so $Y = X^2 - 4$.\n   Domain: $x \\le 0 \\Rightarrow -X \\le 0 \\Rightarrow X \\ge 0$.\n   \nSo after all these, the \"recorded path manipulated\" curve is $y = x^2 - 4$, $x \\geq 0$.\n\nWait, let me recheck. The initial path and its rotated image are visible. Let me re-read.\n\n\"the recorded path is digitally manipulated\" — steps 1,2,3 produce the manipulated path. Then \"a robotic arm smoothly rotates the entire digital display counterclockwise by one-sixth of full circle (60°) around starting point.\" \n\n\"Both the initial path and its rotated image are now visible.\"\n\nHmm. So which is \"initial path\"? Let me reconsider. The initial path is the original $y=-",
+      "lesson": "Failed: predicted None, which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking.",
+      "context": "split=aime_2025_cs; gold=62; predicted=None",
+      "domain": "contextmath",
+      "path_id": "p_68138a02a1ab",
+      "created_at": "2026-07-07T05:21:17.178061Z"
+    },
+    {
+      "id": "q_1faeed81e8",
+      "task": "ContextMATH aime_2025_cs problem:\nImagine a grand parade formation involving nine distinct squads, each with three individuals. The parade director arranges all participants into a 9-row by 3-column formation. Two strict rules ensure visual integrity: No two individuals from the same squad can stand in the same column. Each of the three consecutive 3x3 square blocks must contain individuals from nine different squads. Determine the total number of distinct ways to arrange the participants. This total number can be uniquely described as a combination of four prime numbers, each raised to a specific, positive whole number power. Your final mission is to calculate the sum obtained by multiplying each of these fundamental prime numbers by its corresponding power, then adding all those results together.",
+      "outcome": false,
+      "reward": -1.0,
+      "trajectory": "<think>\nThis is the classic Sudoku-like counting problem. Let me parse it.\n\nWe have a 9×3 formation (9 rows, 3 columns). There are nine distinct squads each with 3 individuals — so 27 individuals total, matching 9×3 = 27 cells.\n\nWait, actually this is the \"number of ways to fill the first three columns of a Sudoku grid\" problem. Let me reconsider.\n\nActually this is a well-known problem. The answer to \"number of ways to fill a 3×9 (or 9×3) arrangement forming the first band of Sudoku\" is 9!×56×6^3 or something. Let me think carefully.\n\nActually the classic result: The number of ways to fill the top band (3 rows × 9 columns) of a Sudoku is 9! × 56 × 6^6... no.\n\nLet me re-read. We have 9 squads, each 3 individuals. Formation 9 rows × 3 columns = 27 cells. Each squad's 3 members placed somewhere.\n\nRules:\n- No two from same squad in same column. Since each squad has 3 members and there are 3 columns, each squad has exactly one member in each column.\n- The formation split into three consecutive 3×3 blocks (rows 1-3, 4-6, 7-9), each block must contain individuals from 9 different squads. Each block is 3×3 = 9 cells, so each block contains all 9 squads exactly once.\n\nThis is exactly the Sudoku \"band\" counting but transposed. It's a 3-column, 9-row grid = three 3×3 blocks stacked. Each block contains all 9 squads (like all 9 digits). Each column across the whole grid: each squad appears once per column (like each digit appears once per column... wait a column has 9 cells and 9 squads, so each squad exactly once per column).\n\nSo this is: fill a 9×3 grid with symbols 1-9 (squads), suc",
+      "lesson": "Failed: predicted '126', which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking.",
+      "context": "split=aime_2025_cs; gold=81; predicted=126",
+      "domain": "contextmath",
+      "path_id": "p_f190e2ee36c1",
+      "created_at": "2026-07-07T05:22:16.128082Z"
+    }
+  ],
+  "paths": [
+    {
+      "id": "p_885ea35afd08",
+      "states": [
+        "ParseProblem",
+        "IdentifyAlgebraicStructure",
+        "SetUpEquation",
+        "Compute",
+        "VerifyAnswer",
+        "Answer"
+      ],
+      "summary": "ParseProblem -> IdentifyAlgebraicStructure -> SetUpEquation -> Compute -> VerifyAnswer -> Answer",
+      "domain": "contextmath",
+      "n_success": 1,
+      "n_failure": 0,
+      "created_at": "2026-07-07T05:00:47.493615Z",
+      "updated_at": "2026-07-07T05:00:47.493480Z"
+    },
+    {
+      "id": "p_4147af731e7b",
+      "states": [
+        "ParseProblem",
+        "IdentifyGeometryStructure",
+        "SetUpEquation",
+        "Compute",
+        "VerifyAnswer",
+        "Answer"
+      ],
+      "summary": "ParseProblem -> IdentifyGeometryStructure -> SetUpEquation -> Compute -> VerifyAnswer -> Answer",
+      "domain": "contextmath",
+      "n_success": 13,
+      "n_failure": 0,
+      "created_at": "2026-07-07T05:01:19.982250Z",
+      "updated_at": "2026-07-07T05:19:39.646085Z"
+    },
+    {
+      "id": "p_68138a02a1ab",
+      "states": [
+        "ParseProblem",
+        "IdentifyGeometryStructure",
+        "SetUpEquation",
+        "Compute",
+        "MissedVerification",
+        "Answer"
+      ],
+      "summary": "ParseProblem -> IdentifyGeometryStructure -> SetUpEquation -> Compute -> MissedVerification -> Answer",
+      "domain": "contextmath",
+      "n_success": 0,
+      "n_failure": 4,
+      "created_at": "2026-07-07T05:03:15.561823Z",
+      "updated_at": "2026-07-07T05:21:17.178061Z"
+    },
+    {
+      "id": "p_fc67af713c85",
+      "states": [
+        "ParseProblem",
+        "IdentifyNumberTheoryStructure",
+        "SetUpEquation",
+        "Compute",
+        "VerifyAnswer",
+        "Answer"
+      ],
+      "summary": "ParseProblem -> IdentifyNumberTheoryStructure -> SetUpEquation -> Compute -> VerifyAnswer -> Answer",
+      "domain": "contextmath",
+      "n_success": 18,
+      "n_failure": 0,
+      "created_at": "2026-07-07T05:04:24.498664Z",
+      "updated_at": "2026-07-07T05:17:50.682920Z"
+    },
+    {
+      "id": "p_f190e2ee36c1",
+      "states": [
+        "ParseProblem",
+        "IdentifyNumberTheoryStructure",
+        "SetUpEquation",
+        "Compute",
+        "MissedVerification",
+        "Answer"
+      ],
+      "summary": "ParseProblem -> IdentifyNumberTheoryStructure -> SetUpEquation -> Compute -> MissedVerification -> Answer",
+      "domain": "contextmath",
+      "n_success": 0,
+      "n_failure": 3,
+      "created_at": "2026-07-07T05:13:39.438027Z",
+      "updated_at": "2026-07-07T05:22:16.128082Z"
+    },
+    {
+      "id": "p_a73ecbde9441",
+      "states": [
+        "ParseProblem",
+        "IdentifyAlgebraicStructure",
+        "SetUpEquation",
+        "Compute",
+        "MissedVerification",
+        "Answer"
+      ],
+      "summary": "ParseProblem -> IdentifyAlgebraicStructure -> SetUpEquation -> Compute -> MissedVerification -> Answer",
+      "domain": "contextmath",
+      "n_success": 0,
+      "n_failure": 1,
+      "created_at": "2026-07-07T05:19:08.979920Z",
+      "updated_at": "2026-07-07T05:19:08.979457Z"
+    }
+  ],
+  "meta": [
+    {
+      "id": "m_3b02d84c8f",
+      "summary": "For rate-time-distance problems with a fixed additive overhead (e.g., stops/rest included in total time), model total time as travel_time + constant_overhead, then eliminate the constant by subtracting equations from two scenarios to solve for the unknown rate before back-solving.",
+      "principles": [
+        "Separate variable components (travel time = distance/speed) from fixed components (constant overhead) explicitly in each equation.",
+        "When two scenarios share the same fixed overhead, subtract the equations to cancel it and isolate the rate-dependent terms.",
+        "Convert all time units to a single consistent unit (e.g., hours) early; carefully translate mixed formats like '2 hours 24 minutes' to decimals before computing.",
+        "After finding the rate, back-substitute into one original equation to recover the fixed overhead, then apply both to the queried scenario.",
+        "Solve resulting quadratics carefully and select the physically meaningful (positive) root."
+      ],
+      "confidence": 0.78,
+      "evidence_count": 1,
+      "reward_sum": 1.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_885ea35afd08"
+      ],
+      "created_at": "2026-07-07T05:00:56.059851Z",
+      "updated_at": "2026-07-07T05:00:56.059851Z"
+    },
+    {
+      "id": "m_4072fdf5a7",
+      "summary": "For circle-geometry problems where two tangents from an external point touch at two triangle vertices and a cevian from the third vertex is extended, recognize the tangent intersection as the pole of the opposite side, making the cevian the symmedian from that vertex; use symmedian and power-of-a-point relations to find chord lengths. / For word problems that encode numeric quantities via trivia clues and then pose a circle-geometry configuration, first decode each clue to a number, confirm the resulting triangle side lengths, then translate the optical/tangent setup into standard geometry: two tangents from an external point make that point the pole of the chord joining the tangency points,",
+      "principles": [
+        "First parse the configuration precisely: identify which points lie on the circle, which are external, and what tangency/intersection conditions define auxiliary points.",
+        "Key structural cue: the intersection of tangents at two vertices is the pole of the chord joining them, and a line from the third vertex through that pole is the symmedian from that vertex.",
+        "Recall the symmedian ratio: the symmedian from a vertex divides the opposite side in the ratio of the squares of the two adjacent sides.",
+        "For the length along a symmedian chord to its second circle intersection, combine power-of-a-point with the symmedian division and use the law of cosines / Stewart's theorem to compute needed distances.",
+        "When the answer is requested as a reduced fraction m/n with m+n, keep exact rational arithmetic throughout and verify the fraction is fully reduced before summing."
+      ],
+      "confidence": 0.71,
+      "evidence_count": 2,
+      "reward_sum": 2.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_4147af731e7b"
+      ],
+      "created_at": "2026-07-07T05:01:29.402556Z",
+      "updated_at": "2026-07-07T05:07:01.622732Z"
+    },
+    {
+      "id": "m_3861d52c75",
+      "summary": "For counting/probability problems that resemble a known competition problem, do not shortcut to a recalled answer; re-derive the count from the problem's exact conditions and verify against the stated answer format before committing.",
+      "principles": [
+        "Never substitute a remembered answer for an actual computation; recalled values are frequently misremembered or belong to a subtly different problem variant.",
+        "Translate the narrative condition precisely into set/combinatorial language: 'a rotation exists mapping every blue position onto an originally-red position' means there is a cyclic shift k with (B+k) disjoint from B.",
+        "Count systematically by number of blue elements (cases 0..n), and for each count enumerate configurations admitting a valid disjoint rotation, using inclusion-exclusion or complementary counting to avoid double counting.",
+        "Distinguish 'rotations of a fixed labeled configuration' from 'colorings up to symmetry'—here each of the 2^n colorings is equally likely and rotations are the tool, not a quotient.",
+        "After computing the probability, reduce the fraction fully to lowest terms and re-read the question to confirm what quantity is requested (e.g., numerator+denominator)."
+      ],
+      "confidence": 0.6,
+      "evidence_count": 1,
+      "reward_sum": -1.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_68138a02a1ab"
+      ],
+      "created_at": "2026-07-07T05:03:25.426471Z",
+      "updated_at": "2026-07-07T05:03:25.426471Z"
+    },
+    {
+      "id": "m_6e194f8c92",
+      "summary": "For narrative/word problems that obscure a composed-function equation (e.g., nested absolute values with periodic inner functions), translate each described processing step into explicit function notation, reconstruct the full system of equations, then count solutions/intersections by exploiting periodicity and piecewise structure rather than recalling a memorized result. / For narrative word problems that encode composed functions with piecewise-linear 'W-shaped' transformations applied to periodic signals, decode each described graph feature into explicit function notation before computing, then count intersections using periodicity and symmetry.",
+      "principles": [
+        "Decompose story-driven steps literally: each phrase like 'distance from half a unit' maps to an absolute-value operation (|value - c|), and 'multiply by 4' scales the outer function; build f and g compositions incrementally.",
+        "Carefully extract the frequency/period from cues such as 'two full cycles per lap' or 'three cycles', translating them into the argument's coefficient (e.g., sin(2πkx)) before analyzing behavior.",
+        "For intersection-counting between two implicit curves y=F(x) and x=G(y), analyze the range and monotonic pieces of each composed function over one period, count crossings per subinterval, then multiply by symmetry/period counts.",
+        "Re-derive the count from the problem's exact frequencies and transformations even when it resembles a known competition problem; a recalled answer may not match altered parameters.",
+        "Verify the final count against expected structure (e.g., product of piece counts, symmetry) and sanity-check magnitude before committing."
+      ],
+      "confidence": 0.71,
+      "evidence_count": 2,
+      "reward_sum": 2.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_4147af731e7b"
+      ],
+      "created_at": "2026-07-07T05:04:05.376314Z",
+      "updated_at": "2026-07-07T05:08:22.562469Z"
+    },
+    {
+      "id": "m_9dd0fed37b",
+      "summary": "For problems asking for the least prime p with p^2 dividing a polynomial value (e.g., n^4+1) and then the smallest n achieving it, first constrain p using order/congruence conditions, verify the smallest candidate lifts via Hensel, then find the minimal root modulo p^2 and take the least positive residue. / For narrative word problems that disguise a number-theory task about the least prime p whose square divides a polynomial value f(n), first strip the story to recover f(n) from the given data points, then apply order/congruence constraints to bound candidate primes, verify lifting via Hensel, and return the minimal positive n satisfying p^2 | f(n).",
+      "principles": [
+        "Strip away narrative framing and restate the task as a precise number-theoretic condition (e.g., p^2 | n^4+1) before computing.",
+        "For divisibility by p^2 of expressions like n^k+1, use multiplicative order constraints to restrict which primes are possible (e.g., n^4 = -1 forces order 8, so p = 1 mod 8), and test candidate primes in increasing order.",
+        "Confirm a mod-p solution lifts to mod-p^2 using Hensel's lemma: check the derivative is nonzero mod p at the root; only then is the smaller prime valid.",
+        "To get the smallest n, enumerate all roots mod p^2 (lift each mod-p root) and choose the least positive residue, rather than assuming the mod-p root is smallest.",
+        "Verify the final n by direct substitution into the original divisibility condition before answering."
+      ],
+      "confidence": 0.7350000000000001,
+      "evidence_count": 2,
+      "reward_sum": 2.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_fc67af713c85"
+      ],
+      "created_at": "2026-07-07T05:04:32.307788Z",
+      "updated_at": "2026-07-07T05:08:56.195753Z"
+    },
+    {
+      "id": "m_1126307e57",
+      "summary": "For 3D tetrahedron problems where opposite edges are pairwise equal (isosceles/orthocentric tetrahedron), embed it in a rectangular box whose face diagonals are the edges to quickly recover volume and congruent-face areas, then compute the inradius as 3V/A_total. / For 3D word problems that encode edge lengths via trivia/baseline clues and describe an inscribed sphere in a tetrahedron with pairwise-equal opposite edges, decode each clue to a length, recognize the isosceles tetrahedron, embed it in a rectangular box to get volume and congruent face areas, then compute the inradius as r = 3V/A_total, reducing the final radius expression to the requested form.",
+      "principles": [
+        "Detect the isosceles tetrahedron signature: three pairs of equal opposite edges (AB=CD, AC=BD, BC=AD); this unlocks the box-embedding trick.",
+        "Set box dimensions p,q,r from face-diagonal equations p^2+q^2, p^2+r^2, q^2+r^2 equal to the squared edge lengths; sum all three and halve to get p^2+q^2+r^2, then subtract each equation to isolate individual squares.",
+        "For such tetrahedra, volume = (1/3) of the enclosing box volume (equivalently V = pqr/3), and all four faces are congruent, so total surface area = 4 x (one face area).",
+        "Compute a triangle's area from squared side lengths with Area = (1/4)sqrt(2a^2b^2+2b^2c^2+2c^2a^2 - a^4 - b^4 - c^4) to avoid messy Heron radicals.",
+        "The point equidistant from all four faces is the incenter; its distance is the inradius r = 3V / (total surface area); simplify the resulting radical to the required m*sqrt(n)/p form with gcd(m,p)=1 and n squarefree before summing."
+      ],
+      "confidence": 0.7849999999999999,
+      "evidence_count": 2,
+      "reward_sum": 2.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_4147af731e7b"
+      ],
+      "created_at": "2026-07-07T05:04:53.949253Z",
+      "updated_at": "2026-07-07T05:09:17.982028Z"
+    },
+    {
+      "id": "m_cfa92fa4b9",
+      "summary": "For 'smallest enclosing sphere of any shape satisfying fixed surface area and volume' problems, reduce to a rectangular box, express the enclosing radius via the space diagonal, and optimize the sum-of-squares of edges over the feasible constraint set by finding the extremal parameter where two dimensions coincide.",
+      "principles": [
+        "Translate 'smallest sphere enclosing any qualifying container' into maximizing the box's space diagonal, since r^2 = (a^2+b^2+c^2)/4 for a rectangular box.",
+        "Use symmetric-function identities: a^2+b^2+c^2 = (a+b+c)^2 - 2(ab+bc+ca), so with fixed surface area (ab+bc+ca) and volume (abc), the problem reduces to finding the extreme value of s = a+b+c.",
+        "Treat a,b,c as roots of the cubic t^3 - s t^2 + (ab+bc+ca) t - abc = 0, and note that feasibility boundaries (extremal s) occur when two roots coincide (a double root), collapsing the system to solvable equations.",
+        "At the double-root boundary, substitute to derive a single-variable polynomial, find rational roots by testing small integer/divisor candidates, and factor to isolate the relevant physical (positive) solution.",
+        "Verify the chosen extremum actually corresponds to the maximum (not minimum) diagonal and yields valid positive dimensions before computing r^2, then reduce the fraction to lowest terms and report the requested combination of numerator and denominator."
+      ],
+      "confidence": 0.79,
+      "evidence_count": 1,
+      "reward_sum": 1.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_4147af731e7b"
+      ],
+      "created_at": "2026-07-07T05:05:20.812850Z",
+      "updated_at": "2026-07-07T05:05:20.812850Z"
+    },
+    {
+      "id": "m_1636aa7e4c",
+      "summary": "For word problems that disguise logarithmic equations, translate each described 'logarithm of a power' phrase into explicit log notation, apply the power rule to expose the log term, and exploit the reciprocal relationship between log_b(x) and log_x(b) to combine the two equations into a single product relation.",
+      "principles": [
+        "Carefully map narrative phrases to notation: 'log with base A of B raised to C' becomes log_A(B^C) = C*log_A(B).",
+        "Use the power rule to reduce each equation to a coefficient times a base-change log term.",
+        "When two equations involve log_b(x) and log_x(b), remember these are reciprocals; multiplying the equations can eliminate the individual logs and directly yield the product of the two unknowns.",
+        "Track domain constraints (e.g., both variables > 1) to confirm a valid, unique solution.",
+        "Verify the final relation dimensionally/algebraically before committing, and respect the required answer format (e.g., zero-padded integers)."
+      ],
+      "confidence": 0.75,
+      "evidence_count": 1,
+      "reward_sum": 1.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_fc67af713c85"
+      ],
+      "created_at": "2026-07-07T05:05:33.504805Z",
+      "updated_at": "2026-07-07T05:05:33.504805Z"
+    },
+    {
+      "id": "m_7e0e0b1789",
+      "summary": "For narrative/word problems describing a two-player turn-based game where players remove a fixed set of quantities and the player taking the last unit wins, model it as a combinatorial game using P-positions (losing for the mover) and N-positions (winning for the mover), then count target positions in the requested range. / For narrative word problems that disguise a two-player subtraction/combinatorial game, strip the story to identify the allowed moves and win condition, then compute winning/losing (N/P) positions via base-case recursion to find a periodic pattern, and count qualifying values within the stated range.",
+      "principles": [
+        "Strip away the story framing and identify the core game rules: allowed move sizes, the winning condition (last-move-wins vs misère), and who moves first.",
+        "Define positions recursively: a position is a loss for the mover (P-position) if every legal move leads to a win for the opponent (N-position); it is an N-position if some move leads to a P-position.",
+        "Compute P/N status starting from the base case (0 remaining = loss for the mover), building up incrementally and rechecking early terms carefully to avoid off-by-one errors.",
+        "Search for a periodic pattern in the P-positions; once a stable period emerges, verify it on several consecutive values before extrapolating.",
+        "Carefully map the question to the right positions: 'second player wins' means counting starting positions that are P-positions (losses for the first mover)."
+      ],
+      "confidence": 0.78,
+      "evidence_count": 2,
+      "reward_sum": 2.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_fc67af713c85"
+      ],
+      "created_at": "2026-07-07T05:05:54.964898Z",
+      "updated_at": "2026-07-07T05:10:27.033180Z"
+    },
+    {
+      "id": "m_090dfab065",
+      "summary": "For conditional probability word problems disguised in a narrative (e.g., overlap between two random selections), strip the story to identify the underlying combinatorial structure, then compute P(A|B) = P(A and B)/P(B) by counting favorable outcomes via hypergeometric case-splitting. / For narrative word problems that disguise a hypergeometric/lottery probability question, first decode each trivia clue into its numeric value (pool size, pick count), then compute a conditional probability by counting outcomes with exact-match combinatorics before reducing the fraction and answering the requested numerator+denominator sum.",
+      "principles": [
+        "Translate narrative selections into set-overlap counts: fix one party's choice and count how the other's random choice overlaps using C(k,i)*C(n-k,size-i) for exactly i matches.",
+        "For 'given B, probability of A' where A implies B (special outcome is a subset of qualifying outcome), the conditional probability simplifies to count(A)/count(B), and shared denominators (total ways) cancel.",
+        "Enumerate all overlap cases meeting the threshold (e.g., at least 2 matches) by summing exactly-i-match counts; double-check case boundaries so no overlap level is omitted or double-counted.",
+        "Reduce the resulting fraction and confirm numerator and denominator are coprime before forming the requested sum or transformed answer.",
+        "Do not rely on recognizing a 'classic' problem to recall the answer; re-derive counts from the exact stated batch size, selection size, and threshold, then verify."
+      ],
+      "confidence": 0.7950000000000002,
+      "evidence_count": 2,
+      "reward_sum": 2.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_fc67af713c85"
+      ],
+      "created_at": "2026-07-07T05:06:10.320382Z",
+      "updated_at": "2026-07-07T05:10:51.259716Z"
+    },
+    {
+      "id": "m_69acaed762",
+      "summary": "For narrative word problems that encode numeric constants via mini-puzzles (factorial divisibility, largest square below a bound, quadratic roots, calendar facts) feeding a rate-time-distance model with fixed overhead, first decode each clue into an explicit number with units, then set up travel_time + constant_overhead equations and subtract scenarios to solve for the base rate, and finally re-apply the model with the modified parameter requested.",
+      "principles": [
+        "Decode each embedded clue independently into a concrete value with correct units before assembling equations; keep hours-vs-minutes consistent by converting early.",
+        "Watch for the smallest/largest qualifier: 'smallest n with n! divisible by 8' means test factorials sequentially; 'largest square below X' means the greatest perfect square under the bound.",
+        "Translate verbal quadratic descriptions literally (e.g., 'square it minus itself minus two') into a polynomial, factor, and select the root matching stated sign/context (positive speed).",
+        "Model total time as travel_time (distance/speed) + fixed_overhead; eliminate the unknown overhead and base speed by subtracting the two given scenarios.",
+        "The final question often changes one decoded parameter (e.g., speed increment set to one-fourth); re-substitute into the solved model rather than reusing an earlier scenario's answer."
+      ],
+      "confidence": 0.8,
+      "evidence_count": 1,
+      "reward_sum": 1.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_fc67af713c85"
+      ],
+      "created_at": "2026-07-07T05:06:31.454315Z",
+      "updated_at": "2026-07-07T05:06:31.454315Z"
+    },
+    {
+      "id": "m_c21a3929be",
+      "summary": "Failed: predicted '363', which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking. / Failed: predicted None, which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking.",
+      "principles": [
+        "Failed: predicted '363', which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking.",
+        "Failed: predicted None, which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking."
+      ],
+      "confidence": 0.42500000000000004,
+      "evidence_count": 2,
+      "reward_sum": -2.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_68138a02a1ab"
+      ],
+      "created_at": "2026-07-07T05:07:38.951564Z",
+      "updated_at": "2026-07-07T05:21:28.801865Z"
+    },
+    {
+      "id": "m_bdda4b0752",
+      "summary": "Solved correctly with final answer 721. Preserve the useful reasoning path. / Solved correctly with final answer 77. Preserve the useful reasoning path.",
+      "principles": [
+        "Solved correctly with final answer 721. Preserve the useful reasoning path.",
+        "Solved correctly with final answer 77. Preserve the useful reasoning path."
+      ],
+      "confidence": 0.65,
+      "evidence_count": 2,
+      "reward_sum": 2.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_4147af731e7b",
+        "p_fc67af713c85"
+      ],
+      "created_at": "2026-07-07T05:09:49.692727Z",
+      "updated_at": "2026-07-07T05:19:50.918990Z"
+    },
+    {
+      "id": "m_3ed017f5f9",
+      "summary": "For narrative word problems that encode a system of exponential equations, first decode any trivia/embedded constants into numeric exponents, then translate each described relation into explicit equations with variables, take logarithms to linearize, and eliminate the log terms to isolate the requested product or combination.",
+      "principles": [
+        "Decode embedded numeric clues (e.g., 'exponent turning 11 into N') by testing small integer powers before setting up the main system.",
+        "Carefully map narrative phrasing to exact equation structure: identify which quantity is the base, which is the exponent, and note multipliers like 'four times the reflectivity'.",
+        "Take natural logs of each exponential equation to convert products of variables into linear relations in ln(base).",
+        "When ln(base) appears as a common factor and base > 1 guarantees it is nonzero, divide it out to simplify—but always state that assumption explicitly.",
+        "Aim to combine the equations to directly yield the requested quantity (e.g., a product r*b) rather than solving for each variable separately."
+      ],
+      "confidence": 0.76,
+      "evidence_count": 1,
+      "reward_sum": 1.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_4147af731e7b"
+      ],
+      "created_at": "2026-07-07T05:10:06.809562Z",
+      "updated_at": "2026-07-07T05:10:06.809562Z"
+    },
+    {
+      "id": "m_3ee18cba45",
+      "summary": "For narrative word problems that disguise base-b digit-string divisibility tasks, decode each numeral into its base-b polynomial form, reduce the divisibility condition to a divisor constraint on a constant, then enumerate valid bases respecting digit-legality bounds. / For word problems that disguise a permutation-counting task with a divisibility condition, strip the narrative to recover the core structure (permutations of a digit set forming a number divisible by k), then decompose the divisibility rule into independent constraints and count valid arrangements combinatorially. / For narrative-disguised number-theory problems where a 'cascading digit display' or odometer counts events, rec",
+      "principles": [
+        "Strip the story to its core: identify that phrases like 'the number N interpreted in a setting/base' mean converting the digit string to sum(digit_i * b^i).",
+        "Translate each described quantity into an explicit polynomial in the base b before doing any arithmetic.",
+        "For 'X divides Y' conditions, use the division/subtraction trick: express Y as q*X + r so that X | Y reduces to X | r (a constant), turning the problem into finding divisors of that constant.",
+        "Apply all validity constraints explicitly: base must exceed the largest digit appearing, plus any problem-stated lower bound (e.g., >9); intersect these when filtering candidate bases.",
+        "Enumerate divisors of the constant, map each back to a base value, and discard those violating the constraints before summing."
+      ],
+      "confidence": 0.7132812500000001,
+      "evidence_count": 4,
+      "reward_sum": 4.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_fc67af713c85"
+      ],
+      "created_at": "2026-07-07T05:11:08.620703Z",
+      "updated_at": "2026-07-07T05:18:00.269510Z"
+    },
+    {
+      "id": "m_41c91883cb",
+      "summary": "For narrative geometry problems where markers are placed at cumulative distances along two rays from a common vertex, encode each point as a scalar multiple of that ray's unit vector, express mirrored/reflected points via P' = 2*center - point, then compute all polygon areas with the vector shoelace formula so the unknown ray-angle factor (|u x v|) cancels using the given reference area. / For narrative-disguised geometry problems where travel times or distances lay out collinear points along two rays from a common origin, model each ray with a direction vector, place points by cumulative distance, decode 'mirror/reflection' clues as point reflections (M = 2*center - source), then compute th",
+      "principles": [
+        "Convert cumulative segment distances into absolute positions along each ray before assigning vectors; misreading 'from X to Y' as absolute rather than incremental is a common error.",
+        "Set both rays sharing the origin vertex as scalar multiples of unit vectors u and v; every point is a*u or b*v, and reflections become 2*center - point.",
+        "Use the vector shoelace formula (Area = 1/2 |sum of consecutive cross products|); same-ray cross products vanish, isolating the shared factor k = |u x v|.",
+        "Solve for the unknown angle factor k from the given reference-region area, then substitute it into the target polygon's area expression so k cancels or is determined exactly.",
+        "Keep vertices in the stated traversal order for the shoelace sum, and take absolute value; verify the polygon is simple (non-self-intersecting) or decompose if needed."
+      ],
+      "confidence": 0.6781250000000001,
+      "evidence_count": 3,
+      "reward_sum": 3.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_4147af731e7b"
+      ],
+      "created_at": "2026-07-07T05:11:41.461588Z",
+      "updated_at": "2026-07-07T05:18:27.423035Z"
+    },
+    {
+      "id": "m_a1c8c2c836",
+      "summary": "For counting problems that partition n labeled items into distinct groups under strict size-ordering constraints (e.g., group A > group B > group C, each nonempty), first enumerate all valid integer size triples, then sum the multinomial coefficients for each triple, and finally apply any requested modular reduction. / For narrative-disguised combinatorics problems specifying a strictly decreasing positive sequence with a fixed total and 'labeled/distinguishable' units, carefully separate the count of ordered value-tuples from any labeling multiplicities implied by wording, and re-derive the fixed total from the given constraints rather than assuming a large canonical value.",
+      "principles": [
+        "Separate the problem into two stages: (1) find all admissible size compositions satisfying the sum and strict inequality/positivity constraints, (2) count assignments for each composition.",
+        "Enumerate size tuples systematically by fixing the smallest group first and increasing others, explicitly checking each inequality (strict '>' excludes equality) to avoid missing or double-counting cases.",
+        "Because the groups are distinct/labeled (named project types), use the multinomial coefficient n!/(a!b!c!) per size tuple; do NOT divide by symmetry factors since ordered inequality already fixes which count goes to which labeled group.",
+        "Verify each multinomial arithmetic step independently and re-add the sum before applying the final modulo.",
+        "Apply the requested modular reduction only as the last step on the total, and confirm the answer matches the required output format."
+      ],
+      "confidence": 0.735,
+      "evidence_count": 2,
+      "reward_sum": 2.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_fc67af713c85"
+      ],
+      "created_at": "2026-07-07T05:12:02.104625Z",
+      "updated_at": "2026-07-07T05:17:02.381563Z"
+    },
+    {
+      "id": "m_e9d58a6b34",
+      "summary": "For narrative word problems that hide a homogeneous quadratic (or higher) Diophantine form over a bounded integer grid, factor the form into linear factors, count integer solutions for each factor within the bounds, and subtract shared solutions to avoid double-counting. / For narrative-disguised number theory problems that reduce to a homogeneous quadratic in two integer variables over a bounded range, translate each described physical quantity into its exact term, form the equation, factor the quadratic into linear factors, and count integer solutions per factor branch while enforcing divisibility and range constraints—then merge branches with careful overlap handling.",
+      "principles": [
+        "Strip the story to the exact equation and the exact integer bounds (e.g., -N to N inclusive) before doing any algebra.",
+        "For a homogeneous quadratic like a*x^2 + b*x*y + c*y^2 = 0, seek a factorization (px+qy)(rx+sy)=0 by matching product and cross-term coefficients; verify all three coefficient conditions.",
+        "For each linear factor, express one variable as a proportion of the other, introduce a parameter to enforce integrality (require the needed divisibility), then intersect the two bound constraints to get the parameter range.",
+        "Count parameter values inclusively (upper - lower + 1) and double-check both endpoint constraints, taking the tighter bound.",
+        "Explicitly compute the overlap: solutions satisfying both factors simultaneously (often only the origin) must be subtracted once so it is not counted twice."
+      ],
+      "confidence": 0.725,
+      "evidence_count": 2,
+      "reward_sum": 2.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_fc67af713c85"
+      ],
+      "created_at": "2026-07-07T05:12:20.400813Z",
+      "updated_at": "2026-07-07T05:17:27.384849Z"
+    },
+    {
+      "id": "m_36c4a8f540",
+      "summary": "For word problems describing a symmetric quadrilateral (two parallel walls, equal slanted sides) with a circle touching every boundary, model it as an isosceles trapezoid with an inscribed circle and exploit tangential and symmetry relations to recover the parallel-side lengths.",
+      "principles": [
+        "Decode narrative geometry cues: 'two parallel walls' plus 'equal-length sloped sides' means isosceles trapezoid; 'circle centered and touching each boundary' means an inscribed (tangential) circle.",
+        "Interpret the given radial distance carefully—'distance from center to edge' is the inradius r, and for a circle inscribed between two parallel sides the height equals the diameter, h = 2r.",
+        "Use the trapezoid area formula Area = ((a+b)/2)*h to get the sum of parallel sides, and the tangential-quadrilateral property (opposite sides sum equal) to relate the legs: a+b = 2c.",
+        "Relate the leg to height and half-difference of parallel sides via c^2 = h^2 + ((a-b)/2)^2 to obtain a-b; combine with a+b to solve both lengths.",
+        "When asked for the sum of squares, prefer the identity a^2+b^2 = ((a+b)^2 + (a-b)^2)/2 to avoid solving each side and to reduce arithmetic error."
+      ],
+      "confidence": 0.78,
+      "evidence_count": 1,
+      "reward_sum": 1.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_4147af731e7b"
+      ],
+      "created_at": "2026-07-07T05:13:17.382660Z",
+      "updated_at": "2026-07-07T05:13:17.382660Z"
+    },
+    {
+      "id": "m_fdecb5267b",
+      "summary": "For probability problems disguised as narrative that resemble known competition setups, do not stop at identifying the winning configuration; complete the full conditional-probability computation and verify by counting favorable outcomes over total outcomes, then reduce the fraction and match the requested output format (e.g., numerator+denominator). / For probability problems about random pairings/matchings where an item's rank within its pair determines a sorted position, carefully define the correct event, distinguish 'contains item X' from 'item X occupies the extreme sorted slot', and compute via clean conditional or symmetry arguments—then verify by an independent method before reducin",
+      "principles": [
+        "Re-read the ordering/placement rule literally: 'the last item' is often determined by a max element, but confirm which element forces last placement and what condition on the target element that implies.",
+        "Do not report an intermediate quantity as the answer; check whether the task asks for a probability, a reduced fraction, or a sum of numerator and denominator, and compute through to that final form.",
+        "For pairing/matching probabilities, count total pairings and favorable pairings explicitly (e.g., using conditional reasoning on where the largest element goes), rather than asserting a single forced pairing.",
+        "The last module containing L does NOT require the target component to be paired with L; the target could be the larger element of an earlier-ranked module or appear in the last module in other ways—enumerate cases carefully.",
+        "After deriving a fraction, verify gcd=1, sanity-check the magnitude (a probability must lie in [0,1]), and only then form the requested combined value."
+      ],
+      "confidence": 0.575,
+      "evidence_count": 2,
+      "reward_sum": -2.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_a73ecbde9441",
+        "p_f190e2ee36c1"
+      ],
+      "created_at": "2026-07-07T05:13:49.609220Z",
+      "updated_at": "2026-07-07T05:19:20.211102Z"
+    },
+    {
+      "id": "m_4a1e744556",
+      "summary": "For grid/coordinate word problems combining an equidistance locus with a fixed-distance circle, carefully decode each labeled point's coordinates (distinguishing avenue vs. street axes), recognize the equidistant set as a perpendicular bisector, and translate the 'exactly one valid location' condition into a tangency (or single-intersection) requirement solved via discriminant, then complete all arithmetic and reduce the requested fraction before answering.",
+      "principles": [
+        "Explicitly assign axes: fix which named unit (e.g., 'avenue') is x and which (e.g., 'street') is y, then re-read each location's clue and write its exact (x,y); watch for the same variable k appearing in different coordinate slots for different points.",
+        "The set of points equidistant from two fixed points is their perpendicular bisector; intersect it with the given circle rather than guessing.",
+        "'Exactly one location' usually means the line is tangent to the circle: set the discriminant of the substituted quadratic to zero (or set distance-from-center = radius) to solve for the parameter.",
+        "A quadratic-in-k tangency condition often yields multiple valid k values; use Vieta's formulas to get the exact sum of roots as a fraction instead of solving numerically, which avoids rounding.",
+        "Do not skip verification: substitute each candidate k back to confirm a single real intersection, reduce m/n to lowest terms, and confirm you report the requested combination (e.g., m+n)."
+      ],
+      "confidence": 0.55,
+      "evidence_count": 1,
+      "reward_sum": -1.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_68138a02a1ab"
+      ],
+      "created_at": "2026-07-07T05:14:25.010001Z",
+      "updated_at": "2026-07-07T05:14:25.010001Z"
+    },
+    {
+      "id": "m_38cc78a50a",
+      "summary": "For rotated-conic intersection problems, set up the rotation correctly, solve the full polynomial system, and select the intersection point that matches ALL stated regional constraints (sign, quadrant, uniqueness) before extracting the requested closed-form value and reducing the final fraction.",
+      "principles": [
+        "Decode the geometry precisely: 'squaring horizontal distance minus 4' means y = x^2 - 4; confirm the base equation before rotating.",
+        "For rotation intersections, a point on both curves satisfies the original equation AND its inverse-rotated image satisfies it too; substitute carefully and keep exact symbolic (radical) coefficients rather than decimals.",
+        "Expand the resulting polynomial completely; rotation of a parabola typically yields a degree-4 system, so expect multiple intersection roots and do not stop at the first candidate.",
+        "Use the region conditions ('right of pillar' => x>0, 'below ground' => y<0, 'only intersection in that region') to filter and confirm you selected the unique correct root—these constraints disambiguate among several solutions.",
+        "After finding the height, back-substitute the value into both curve equations to verify it truly is a common intersection point (the missed-verification step is the likely failure cause)."
+      ],
+      "confidence": 0.55,
+      "evidence_count": 1,
+      "reward_sum": -1.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_f190e2ee36c1"
+      ],
+      "created_at": "2026-07-07T05:15:00.337708Z",
+      "updated_at": "2026-07-07T05:15:00.337708Z"
+    },
+    {
+      "id": "m_8aeb63970b",
+      "summary": "For narrative-disguised combinatorics problems that map onto a known competition structure (e.g., a Sudoku-like band count), first re-derive the exact count from the stated constraints, factor it into prime powers, then carefully re-read what final scalar the problem actually requests (a weighted/derived function of the exponents), rather than reporting the raw count. / For narrative-disguised combinatorics that maps to a known structure (e.g., Sudoku first-band counting on a 3-block grid), re-derive the count from the stated constraints, factor it fully into prime powers, then re-read the exact final scalar requested rather than reporting the count or a partial factor sum.",
+      "principles": [
+        "Decode the narrative into its precise combinatorial structure and confirm each constraint (rows/lines contain all symbols; blocks contain all symbols) before recalling any formula.",
+        "When a setup resembles a famous count, verify the formula by re-derivation instead of relying on a half-remembered constant; the classic 3x9 Sudoku band count is 9! x 56 x 6^6, which factors into primes.",
+        "Fully factor the resulting number into distinct prime powers, listing each prime and its exponent explicitly.",
+        "Parse the FINAL requested quantity literally: phrases like 'weighted sum of the powers scaled by their prime factors' define a specific arithmetic combination of exponents/primes, not the count itself.",
+        "Compute the requested aggregate (e.g., sum over primes of prime x exponent, or sum of exponents) exactly as worded, then sanity-check the magnitude against the problem's expected answer format."
+      ],
+      "confidence": 0.575,
+      "evidence_count": 2,
+      "reward_sum": 0.0,
+      "domain": "contextmath",
+      "source_path_ids": [
+        "p_f190e2ee36c1",
+        "p_fc67af713c85"
+      ],
+      "created_at": "2026-07-07T05:15:27.854282Z",
+      "updated_at": "2026-07-07T05:22:25.720036Z"
+    }
+  ],
+  "edges": [
+    {
+      "source": "q_45c4bbc0d5",
+      "target": "p_885ea35afd08",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_885ea35afd08",
+      "target": "m_3b02d84c8f",
+      "relation": "path_supports_meta",
+      "weight": 0.78,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_51d7a13d56",
+      "target": "p_4147af731e7b",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_4147af731e7b",
+      "target": "m_4072fdf5a7",
+      "relation": "path_supports_meta",
+      "weight": 0.7024999999999999,
+      "usage_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "source": "q_b2391420e1",
+      "target": "p_68138a02a1ab",
+      "relation": "query_follows_path",
+      "weight": 0.65,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "source": "p_68138a02a1ab",
+      "target": "m_3861d52c75",
+      "relation": "path_supports_meta",
+      "weight": 0.39,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "source": "q_eaa97fbe92",
+      "target": "p_4147af731e7b",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_4147af731e7b",
+      "target": "m_6e194f8c92",
+      "relation": "path_supports_meta",
+      "weight": 0.7024999999999999,
+      "usage_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "source": "q_ccb2b99c8d",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_fc67af713c85",
+      "target": "m_9dd0fed37b",
+      "relation": "path_supports_meta",
+      "weight": 0.7237500000000001,
+      "usage_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "source": "q_f5c661857c",
+      "target": "p_4147af731e7b",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_4147af731e7b",
+      "target": "m_1126307e57",
+      "relation": "path_supports_meta",
+      "weight": 0.78125,
+      "usage_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "source": "q_b4bbc604fc",
+      "target": "p_4147af731e7b",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_4147af731e7b",
+      "target": "m_cfa92fa4b9",
+      "relation": "path_supports_meta",
+      "weight": 0.79,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_402c8e230e",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_fc67af713c85",
+      "target": "m_1636aa7e4c",
+      "relation": "path_supports_meta",
+      "weight": 0.75,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_5fb7096423",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_fc67af713c85",
+      "target": "m_7e0e0b1789",
+      "relation": "path_supports_meta",
+      "weight": 0.78,
+      "usage_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "source": "q_950b10b239",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_fc67af713c85",
+      "target": "m_090dfab065",
+      "relation": "path_supports_meta",
+      "weight": 0.7987500000000001,
+      "usage_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "source": "q_27d8e70017",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_fc67af713c85",
+      "target": "m_69acaed762",
+      "relation": "path_supports_meta",
+      "weight": 0.8,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_12f2c0c7bb",
+      "target": "p_4147af731e7b",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_92653b27b7",
+      "target": "p_68138a02a1ab",
+      "relation": "query_follows_path",
+      "weight": 0.65,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "source": "p_68138a02a1ab",
+      "target": "m_c21a3929be",
+      "relation": "path_supports_meta",
+      "weight": 0.28843750000000007,
+      "usage_count": 2,
+      "reward_sum": -2.0
+    },
+    {
+      "source": "q_14bad28533",
+      "target": "p_4147af731e7b",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_816db7ff25",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_5c467bb6a6",
+      "target": "p_4147af731e7b",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_ea9c0a626a",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_fc67af713c85",
+      "target": "m_bdda4b0752",
+      "relation": "path_supports_meta",
+      "weight": 0.65,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_1fea3da126",
+      "target": "p_4147af731e7b",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_4147af731e7b",
+      "target": "m_3ed017f5f9",
+      "relation": "path_supports_meta",
+      "weight": 0.76,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_c9250642f8",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_06c9359661",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_88bf1aaac2",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_fc67af713c85",
+      "target": "m_3ee18cba45",
+      "relation": "path_supports_meta",
+      "weight": 0.7555859374999999,
+      "usage_count": 4,
+      "reward_sum": 4.0
+    },
+    {
+      "source": "q_c97639b368",
+      "target": "p_4147af731e7b",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_4147af731e7b",
+      "target": "m_41c91883cb",
+      "relation": "path_supports_meta",
+      "weight": 0.7053125,
+      "usage_count": 3,
+      "reward_sum": 3.0
+    },
+    {
+      "source": "q_dbdc220f7e",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_fc67af713c85",
+      "target": "m_a1c8c2c836",
+      "relation": "path_supports_meta",
+      "weight": 0.7687499999999999,
+      "usage_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "source": "q_3cff2ffd76",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_fc67af713c85",
+      "target": "m_e9d58a6b34",
+      "relation": "path_supports_meta",
+      "weight": 0.73625,
+      "usage_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "source": "q_31153ed573",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_2c6ab254e1",
+      "target": "p_4147af731e7b",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_4147af731e7b",
+      "target": "m_36c4a8f540",
+      "relation": "path_supports_meta",
+      "weight": 0.78,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_e8bbe1752a",
+      "target": "p_f190e2ee36c1",
+      "relation": "query_follows_path",
+      "weight": 0.65,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "source": "p_f190e2ee36c1",
+      "target": "m_fdecb5267b",
+      "relation": "path_supports_meta",
+      "weight": 0.39,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "source": "q_0ddf5b3e32",
+      "target": "p_68138a02a1ab",
+      "relation": "query_follows_path",
+      "weight": 0.65,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "source": "p_68138a02a1ab",
+      "target": "m_4a1e744556",
+      "relation": "path_supports_meta",
+      "weight": 0.35750000000000004,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "source": "q_3f1e26a011",
+      "target": "p_f190e2ee36c1",
+      "relation": "query_follows_path",
+      "weight": 0.65,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "source": "p_f190e2ee36c1",
+      "target": "m_38cc78a50a",
+      "relation": "path_supports_meta",
+      "weight": 0.35750000000000004,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "source": "q_37454eb396",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_fc67af713c85",
+      "target": "m_8aeb63970b",
+      "relation": "path_supports_meta",
+      "weight": 0.6,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_30bf668ad1",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_803a747ed1",
+      "target": "p_4147af731e7b",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_c8fd186a6b",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_03de717b71",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_52962a1dad",
+      "target": "p_fc67af713c85",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_4e37e1d6a4",
+      "target": "p_4147af731e7b",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_d76cee0f1e",
+      "target": "p_a73ecbde9441",
+      "relation": "query_follows_path",
+      "weight": 0.65,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "source": "p_a73ecbde9441",
+      "target": "m_fdecb5267b",
+      "relation": "path_supports_meta",
+      "weight": 0.37374999999999997,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "source": "q_f8f4f000f9",
+      "target": "p_4147af731e7b",
+      "relation": "query_follows_path",
+      "weight": 1.0,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "p_4147af731e7b",
+      "target": "m_bdda4b0752",
+      "relation": "path_supports_meta",
+      "weight": 0.65,
+      "usage_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "source": "q_771fd5b988",
+      "target": "p_68138a02a1ab",
+      "relation": "query_follows_path",
+      "weight": 0.65,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "source": "q_1faeed81e8",
+      "target": "p_f190e2ee36c1",
+      "relation": "query_follows_path",
+      "weight": 0.65,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "source": "p_f190e2ee36c1",
+      "target": "m_8aeb63970b",
+      "relation": "path_supports_meta",
+      "weight": 0.37374999999999997,
+      "usage_count": 1,
+      "reward_sum": -1.0
+    }
+  ]
+}

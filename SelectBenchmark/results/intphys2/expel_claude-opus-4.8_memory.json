@@ -1,0 +1,136 @@
+{
+  "experiences": [
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "failure",
+      "lesson": "Misclassified as impossible; correct was plausible. Need to look more carefully at solidity violations."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "success",
+      "lesson": "Correctly classified as impossible. The physics cue was detectable."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "success",
+      "lesson": "Correctly classified as impossible. The physics cue was detectable."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "success",
+      "lesson": "Correctly classified as plausible. The physics cue was detectable."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "failure",
+      "lesson": "Misclassified as impossible; correct was plausible. Need to look more carefully at solidity violations."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "success",
+      "lesson": "Correctly classified as impossible. The physics cue was detectable."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "failure",
+      "lesson": "Misclassified as plausible; correct was impossible. Need to look more carefully at solidity violations."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "success",
+      "lesson": "Correctly classified as plausible. The physics cue was detectable."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "failure",
+      "lesson": "Misclassified as impossible; correct was plausible. Need to look more carefully at solidity violations."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "success",
+      "lesson": "Correctly classified as impossible. The physics cue was detectable."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "success",
+      "lesson": "Correctly classified as impossible. The physics cue was detectable."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "success",
+      "lesson": "Correctly classified as plausible. The physics cue was detectable."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "failure",
+      "lesson": "Misclassified as impossible; correct was plausible. Need to look more carefully at solidity violations."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "success",
+      "lesson": "Correctly classified as impossible. The physics cue was detectable."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "failure",
+      "lesson": "Misclassified as plausible; correct was impossible. Need to look more carefully at solidity violations."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "success",
+      "lesson": "Correctly classified as plausible. The physics cue was detectable."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "failure",
+      "lesson": "Misclassified as impossible; correct was plausible. Need to look more carefully at solidity violations."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "success",
+      "lesson": "Correctly classified as impossible. The physics cue was detectable."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "failure",
+      "lesson": "Misclassified as plausible; correct was impossible. Need to look more carefully at solidity violations."
+    },
+    {
+      "task": "Physics video — category: solidity, camera: Fixed",
+      "trajectory": "",
+      "outcome": "success",
+      "lesson": "Correctly classified as plausible. The physics cue was detectable."
+    }
+  ],
+  "insights": [
+    "Looking at these 20 experiences, I notice they are all the *same task type* (solidity physics videos, fixed camera), so genuine generalizable diversity is limited. Below I extract patterns from the actual error distribution rather than inventing variety.",
+    "**Key observation from the data:** Of 8 failures, 6 were \"misclassified as impossible (correct was plausible)\" — a strong false-positive bias toward calling videos impossible.",
+    "1. Beware a false-positive bias toward \"impossible\": most errors came from calling plausible videos impossible, so require clear, specific evidence of a solidity violation before choosing \"impossible.\"",
+    "2. When unsure between plausible and impossible, lean toward \"plausible,\" since misfiring on \"impossible\" was the single most common failure mode.",
+    "3. For solidity tasks, explicitly locate the exact moment and object where one solid object passes through another; if you cannot point to such an event, classify as plausible.",
+    "4. Don't treat unusual-but-physically-valid motion as a violation; visually surprising behavior is not by itself evidence of impossibility.",
+    "5. Both error directions occur (false \"impossible\" and false \"plausible\"), so verify your judgment against concrete frame evidence rather than a default guess.",
+    "6. With a fixed camera, exploit the stable background to track objects frame-by-frame, since apparent overlaps are not caused by camera motion.",
+    "7. Re-watch segments where objects contact or occlude each other, as these are the decision-critical moments for solidity judgments.",
+    "8. Calibrate confidence to the visibility of the physics cue: successes cons"
+  ]
+}

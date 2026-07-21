@@ -16,6 +16,7 @@ import argparse
 import csv
 import json
 import os
+import re
 import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -32,9 +33,13 @@ _BASELINE_MAP = {
     "arc_agi3":         "Schema",
     "arc_agi3_withrule":"WithRule",
     "arc_withrule":     "WithRule",
+    "arc_memory_reflexion": "Reflexion",
+    "arc_memory_expel":     "ExpeL",
+    "arc_memory_amem":      "A-MEM",
+    "arc_memory_tgm":       "TGM",
 }
 
-_BASELINE_ORDER = ["ZeroShot", "FewShot", "RAG", "WithRule", "Schema"]
+_BASELINE_ORDER = ["ZeroShot", "FewShot", "RAG", "WithRule", "Reflexion", "ExpeL", "A-MEM", "TGM", "Schema"]
 
 
 @dataclass
@@ -86,11 +91,9 @@ def _parse_episode(ep_path: str) -> Optional[LevelResult]:
     problem_id = (data.get("problem") or {}).get("id", "") if isinstance(data.get("problem"), dict) else data.get("problem", "")
     # Extract level number from id like "sk48-d8078629_L3"
     level = 0
-    if "_L" in problem_id:
-        try:
-            level = int(problem_id.split("_L")[-1])
-        except ValueError:
-            pass
+    m = re.search(r"_L(\d+)", problem_id)
+    if m:
+        level = int(m.group(1))
 
     evals = data.get("evals", [])
     outcome = "TIMEOUT"
