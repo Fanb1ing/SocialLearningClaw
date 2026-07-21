@@ -10,7 +10,10 @@ SocialLearningClaw 是一个研究 Agent Schema Learning 的实验仓库。当�
 
 `naive`、`icl`、`rag`、`withrule`、`reflexion`、`expel`、`amem`、`tgm`、`schema`。
 
-`schema` 当前只接入 ARC-AGI-3。它仍是早期的单层 Concept/Relation 实现；新的分层 Schema 与 Agent 架构见 [Schema redesign notes](docs/schema_redesign_notes.md)，将在后续单独重写。
+`schema` 当前只接入 ARC-AGI-3，其 runner 仍使用早期的单层
+Concept/Relation 实现以保持实验兼容。新的 memory-grounded 分层 Schema
+基础设施已经落地，见 [Schema architecture](docs/schema_architecture.md)；runner
+迁移将作为独立步骤进行。
 
 ## 项目结构
 
@@ -20,8 +23,9 @@ socialclaw/
   benchmarks/            ContextMATH / IntPhys2 adapters
   dataset/               ARC-AGI-3 environment wrapper and shared types
   memory_agents/         Reflexion / ExPeL / A-MEM / TGM
+  memory/                新架构的 episode/knowledge/skill 记忆与持久化
   methods/               Unified baseline lifecycle
-  schema/                Current schema graph implementation
+  schema/                Legacy graph + new layered Schema implementation
   experiment.py          Protocol, budget, manifest, result types
   run_static.py          ContextMATH / IntPhys2 entry point
   run_arc.py             ARC-AGI-3 entry point
@@ -124,3 +128,4 @@ python -m unittest discover -s tests -v
 - [Baselines](docs/baselines.md)
 - [Experiment protocol](docs/experiment_protocol.md)
 - [Result format](docs/results_format.md)
+- [Memory-grounded layered Schema](docs/schema_architecture.md)

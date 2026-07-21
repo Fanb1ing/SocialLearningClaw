@@ -33,9 +33,9 @@ ARC 是交互式环境，因此保留专用 loop，但由 `socialclaw.run_arc` �
 
 统一入口负责给三类 loop 传入相同的模型、step budget、token budget 和输出根目录，并在运行目录写入相同的 `manifest.json`。
 
-## Current schema boundary
+## Schema boundaries
 
-当前 Schema 是 `Concept + Relation + embedding` 单层图，包含：
+现有 ARC runner 仍使用 `Concept + Relation + embedding` 单层图，包含：
 
 - ARC object observations；
 - spatial relations；
@@ -43,5 +43,10 @@ ARC 是交互式环境，因此保留专用 loop，但由 `socialclaw.run_arc` �
 - confidence/weight feedback；
 - persistence and retrieval。
 
-本次整理没有把它改写为计划中的分层 SchemaNode，只修复了稳定 object ID 覆盖学习置信度、重复 relation 和 grid shape change 等明确工程问题。
+新的 memory-grounded 分层架构已经作为独立基础层落地，包括
+`MemoryRecord`、`SchemaNode`、自动生成/融合、反馈、mask、遗忘、去重、
+持久化和可替换 LLM/embedding 接口。完整设计见
+[Memory-grounded layered Schema architecture](schema_architecture.md)。
 
+两套类型暂时并存：旧类型保证现有 ARC 实验可复现，新类型供下一阶段
+runner 迁移使用，避免在没有实验协议确认时静默改变行为与 artifact 格式。
