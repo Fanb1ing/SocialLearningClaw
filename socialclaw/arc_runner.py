@@ -20,7 +20,6 @@ from .schema.arc_agi3_parser import (
     build_spatial_relations,
     color_name,
     compute_grid_diff,
-    diff_objects_to_rules,
     extract_grid_objects,
     llm_extract_grid_concepts,
     objects_to_concepts,
@@ -389,7 +388,7 @@ def run_arc_agi3(
     print(f"[ARC] win_levels={win_levels}, initial state={obs.state if obs else 'N/A'}")
 
     model_str = model or "unknown_model"
-    run_dir = make_run_dir(runs_dir, "arc_agi3", model_str)
+    run_dir = make_run_dir(runs_dir, "arc_agi3/schema", model_str)
     save_cmd(run_dir)
 
     # Schema is scoped to the run directory.

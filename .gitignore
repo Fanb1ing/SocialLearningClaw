@@ -1,12 +1,25 @@
-auto-pipeline-ab/
-data/
-.venv/*
-# Local env (secrets)
+# Local environments and secrets
 .env
+.venv/
+
+# Python build/cache artifacts
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Downloaded datasets and generated experiment artifacts
+data/
+outputs/
 runs/
 runs_*/
-runs_arc_agi3/
+
+# Tool-local state
+.claude/
+.agents/
+.codex/
+auto-pipeline-ab/

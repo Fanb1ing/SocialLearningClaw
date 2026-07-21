@@ -177,69 +177,6 @@ def build_spatial_relations(objects: List[Dict], concepts: List[Concept], max_ne
     return relations
 
 
-def diff_objects_to_rules(
-    prev_objects: List[Dict],
-    prev_concepts: List[Concept],
-    curr_objects: List[Dict],
-    curr_concepts: List[Concept],
-    action_name: str,
-) -> List[Relation]:
-    """Compare two frames and infer transformation rules.
-
-    Heuristic: match objects across frames by color and centroid proximity.
-    Only creates a rule when the object actually changed (moved, grew, shrank).
-    """
-    import math
-
-    rules: List[Relation] = []
-    if not prev_objects or not curr_objects:
-        return rules
-
-    used_curr: set = set()
-    for pobj, pc in zip(prev_objects, prev_concepts):
-        best_j = None
-        best_dist = float("inf")
-        for j, cobj in enumerate(curr_objects):
-            if j in used_curr:
-                continue
-            if cobj["color"] != pobj["color"]:
-                continue
-            dist = math.hypot(
-                cobj["centroid"][0] - pobj["centroid"][0],
-                cobj["centroid"][1] - pobj["centroid"][1],
-            )
-            if dist < best_dist:
-                best_dist = dist
-                best_j = j
-
-        if best_j is not None:
-            used_curr.add(best_j)
-            cobj = curr_objects[best_j]
-            cc = curr_concepts[best_j]
-
-            # Skip meaningless rules where the object did not actually change
-            pos_changed = best_dist > 0.5
-            area_changed = abs(cobj["area"] - pobj["area"]) > 0
-            if not (pos_changed or area_changed):
-                continue
-
-            # With stable IDs, same object maps to same concept ID → skip self-loop
-            if pc.id == cc.id:
-                continue
-
-            rules.append(
-                Relation(
-                    source=pc.id,
-                    target=cc.id,
-                    relation_type=f"transformed_by_{action_name}",
-                    weight=0.5,
-                    evidence=[{"action": action_name}],
-                )
-            )
-
-    return rules
-
-
 def compute_grid_diff(pre_grid: np.ndarray, post_grid: np.ndarray) -> Tuple[bool, List[Dict]]:
     """Compare pre- and post-action grids pixel-wise.
 
@@ -249,7 +186,19 @@ def compute_grid_diff(pre_grid: np.ndarray, post_grid: np.ndarray) -> Tuple[bool
     if pre_grid is None or post_grid is None:
         return False, []
     if pre_grid.shape != post_grid.shape:
-        return False, []
+        return True, [
+            {
+                "top_left": (0, 0),
+                "bottom_right": (
+                    max(pre_grid.shape[1], post_grid.shape[1]) - 1,
+                    max(pre_grid.shape[0], post_grid.shape[0]) - 1,
+                ),
+                "color_before": -1,
+                "color_after": -1,
+                "shape_before": list(pre_grid.shape),
+                "shape_after": list(post_grid.shape),
+            }
+        ]
 
     h, w = pre_grid.shape
     changed_pixels = []

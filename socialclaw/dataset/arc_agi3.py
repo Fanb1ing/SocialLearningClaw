@@ -120,28 +120,8 @@ class ARCAGI3EnvWrapper:
 
         Returns list of dicts: {color, top_left, bottom_right, area, centroid}.
         """
-        from scipy import ndimage
+        # Keep one implementation of ARC object extraction. The schema parser
+        # uses a dependency-free four-neighbour BFS and is the canonical path.
+        from ..schema.arc_agi3_parser import extract_grid_objects
 
-        objects = []
-        visited = np.zeros_like(grid, dtype=bool)
-        unique_vals = sorted(set(grid.flatten()))
-
-        for val in unique_vals:
-            if val == 0:  # Background often 0
-                continue
-            mask = grid == val
-            labeled, num_features = ndimage.label(mask)
-            for i in range(1, num_features + 1):
-                component = labeled == i
-                ys, xs = np.where(component)
-                if len(xs) == 0:
-                    continue
-                obj = {
-                    "color": int(val),
-                    "top_left": (int(xs.min()), int(ys.min())),
-                    "bottom_right": (int(xs.max()), int(ys.max())),
-                    "area": int(component.sum()),
-                    "centroid": (float(xs.mean()), float(ys.mean())),
-                }
-                objects.append(obj)
-        return objects
+        return extract_grid_objects(grid)

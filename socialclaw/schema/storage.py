@@ -71,8 +71,15 @@ class SchemaStorage:
             mat = np.load(self.embeddings_path)
             with open(self.concept_ids_path, "r", encoding="utf-8") as f:
                 ids = json.load(f)
+            if mat.ndim != 2:
+                raise ValueError(f"Expected a 2D embedding matrix, got shape={mat.shape}")
+            if len(ids) != len(mat):
+                raise ValueError(
+                    f"Schema embedding index mismatch: {len(ids)} ids for {len(mat)} vectors"
+                )
             for i, cid in enumerate(ids):
-                embeddings[cid] = mat[i]
+                if graph.get_concept(cid) is not None:
+                    embeddings[cid] = mat[i]
 
         return graph, embeddings
 

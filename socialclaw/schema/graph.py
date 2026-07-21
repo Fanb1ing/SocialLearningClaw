@@ -100,9 +100,27 @@ class SchemaGraph:
     def add_concept(self, c: Concept) -> None:
         if not c.id:
             c.id = f"concept_{uuid.uuid4().hex[:8]}"
+        existing = self.concepts.get(c.id)
+        if existing is not None:
+            # Observed ARC objects intentionally reuse stable ids across frames.
+            # Preserve learned state while refreshing perceptual attributes.
+            c.confidence = existing.confidence
+            c.created_at = existing.created_at or c.created_at
+            c.neighbors = sorted({*existing.neighbors, *c.neighbors})
         self.concepts[c.id] = c
 
     def add_relation(self, r: Relation) -> None:
+        for existing in self.relations:
+            if (
+                existing.source == r.source
+                and existing.target == r.target
+                and _normalize_relation_type(existing.relation_type)
+                == _normalize_relation_type(r.relation_type)
+            ):
+                existing.evidence.extend(
+                    item for item in r.evidence if item not in existing.evidence
+                )
+                return
         self.relations.append(r)
 
     def get_concept(self, cid: str) -> Optional[Concept]:
