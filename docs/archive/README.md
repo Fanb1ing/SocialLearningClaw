@@ -4,3 +4,6 @@
 
 当前文档入口请从仓库根目录 `README.md` 开始。
 
+历史 baseline 的跨 benchmark 汇总已重新盘点到
+`docs/baseline_smoke_results.md`；本目录中的 `memory_baseline_summary.md`
+保留原始报告文本。

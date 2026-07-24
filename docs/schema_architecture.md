@@ -23,8 +23,9 @@ Memory is the source of truth. A schema contains references to memory IDs,
 not copied trajectories. This makes every generated, reinforced, weakened, or
 merged rule auditable against its original evidence.
 
-The legacy `Concept`/`Relation` modules remain importable for historical
-artifact compatibility, but no current `schema` runner uses them.
+The legacy `Concept`/`Relation` modules are retained as source history under
+`archive/code/legacy_schema/`; they are no longer importable from the active
+`socialclaw` package. No current `schema` runner uses them.
 
 ## Benchmark integration
 

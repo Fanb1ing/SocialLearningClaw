@@ -57,3 +57,58 @@ server call was made.
 Potential experiment follow-up: run small live smoke experiments on one sample
 per benchmark to validate provider-specific structured output and measure the
 unaccounted auxiliary Schema induction token cost before full benchmark runs.
+
+## 2026-07-24 — Repository walkthrough
+
+Reviewed the tracked repository file-by-file and explained the execution
+entries, benchmark adapters, baseline controllers, ARC loops, durable Memory ->
+layered Schema path, compatibility modules, tests, configuration, documentation,
+archived results, and vendored game environments. No implementation behavior
+was changed. Verification was source inspection plus a clean `git status`;
+tests were not run because this was a read-only explanation task. No follow-up
+is required.
+
+## 2026-07-24 — Retired legacy Schema and restored baseline report
+
+Moved the obsolete single-layer `Concept`/`Relation` graph, storage, retriever,
+initializer, full ARC parser, helpers, and tests to
+`archive/code/legacy_schema/`. The active ARC parser now retains only connected
+component extraction, color naming, and grid diff utilities; current package
+exports no longer expose the legacy API.
+
+Added `docs/baseline_smoke_results.md` after auditing tracked results, Git
+history, and local legacy ARC artifacts. The report lists all eight current
+baseline names and all three benchmarks. Historical numeric results exist for
+`naive/reflexion/expel/amem/tgm` across all three and for
+`icl/rag/withrule` on ARC only; no prior ContextMATH or IntPhys2 artifacts were
+found for the latter three, so those six cells are explicitly marked missing
+rather than inferred. Historical runs use mixed models and protocols and are
+not a fair unified comparison.
+
+Verification: compileall, `git diff --check`, legacy-import search, two legacy
+ARC summary reconstructions, and `.venv/bin/python -m unittest discover -s
+tests -v` passed all 31 active tests. Unfinished follow-up: rerun the six
+missing static baseline cells under one unified protocol if a complete numeric
+8-by-3 matrix is required.
+
+## 2026-07-24 — ICL/RAG static benchmark retest
+
+Reran ICL and RAG on ContextMATH and IntPhys2 with the historical
+`anthropic/claude-opus-4.8` model, temperature 0, binary feedback, and one
+attempt. ContextMATH used 10 samples from each AIME split and produced ICL
+accuracies of 90%, 80%, 70%, and 70% (77.5% mean), versus RAG accuracies of
+100%, 90%, 80%, and 70% (85% mean).
+
+For IntPhys2, the first 3 of 20 local videos were reserved as ICL
+demonstrations and excluded from both methods' evaluation sets. On the same
+remaining 17 videos, ICL scored 10/17 (58.8%) and RAG scored 12/17 (70.6%).
+This 17-video protocol prevents demonstration leakage but is not strictly
+sample-identical to the historical 20-video rows. Raw artifacts are under
+`outputs/smoke_retest_20260724/`, and the results/configuration notes were
+added to `docs/baseline_smoke_results.md`.
+
+Verification: all five `scripts/summarize_static.py` comparisons passed
+without `--allow-incomparable`; a manifest audit verified the model, budgets,
+sample equality, and IntPhys2 demo/evaluation separation across 10 runs; all
+31 unit tests and `git diff --check` passed. Unfinished follow-up:
+ContextMATH/IntPhys2 `withrule` remains intentionally untested.

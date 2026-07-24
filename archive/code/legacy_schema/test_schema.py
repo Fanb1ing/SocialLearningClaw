@@ -1,3 +1,5 @@
+"""Archived regression tests for the single-layer Concept/Relation schema."""
+
 from __future__ import annotations
 
 import tempfile
@@ -53,4 +55,3 @@ class SchemaGraphTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

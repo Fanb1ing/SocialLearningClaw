@@ -6,3 +6,6 @@ Associated reports and notes are in `docs/archive/`.
 
 Historical run directories are local, Git-ignored artifacts under `outputs/legacy/`.
 
+`code/legacy_schema/` contains the retired single-layer `Concept` / `Relation`
+implementation. It is source history only and is not part of the installed
+`socialclaw` package.

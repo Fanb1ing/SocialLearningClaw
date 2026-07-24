@@ -33,7 +33,7 @@ configs/arc_agi3/        Fixed ICL examples and human-written rule baselines
 scripts/                 Batch execution and ARC summarization
 tests/                   Offline unit tests
 docs/                    Active documentation
-archive/                 Historical benchmark-selection results
+  archive/                 Historical results and retired source code
 third_party/             Downloaded ARC-AGI-3 game environments
 data/                    Local datasets; ignored by Git
 outputs/                 Generated experiments; ignored by Git
@@ -50,9 +50,9 @@ outputs/                 Generated experiments; ignored by Git
   feedback 与 artifact 协议。
   Reflexion、ExPeL、A-MEM、TGM 的具体数据结构在 `memory_agents/`，新的 Schema
   数据结构在 `memory/` 与 `schema/`，`methods/` 只协调它们的生命周期。
-- `archive/` 只保存历史 benchmark-selection 结果和来源说明；`docs/archive/`
-  保存旧设计、旧 CLI 和 handoff 文档。它们用于追溯，不会被当前 runner 导入，
-  也不能和当前统一协议的结果自动合并。
+- `archive/` 保存历史 benchmark-selection 结果、来源说明和退役的单层 Schema
+  源码；`docs/archive/` 保存旧设计、旧 CLI 和 handoff 文档。它们用于追溯，
+  不会被当前 runner 导入，也不能和当前统一协议的结果自动合并。
 - `tests/` 是不调用真实 API 的离线回归测试，覆盖 benchmark 解析、实验协议、
   Memory/Schema 数据结构、持久化、反馈、遗忘、合并和 ARC runner 的关键转换。
   修改代码后用它确认没有破坏现有行为。
@@ -146,3 +146,4 @@ python -m unittest discover -s tests -v
 - [Experiment protocol](docs/experiment_protocol.md)
 - [Result format](docs/results_format.md)
 - [Memory-grounded layered Schema](docs/schema_architecture.md)
+- [Historical baseline smoke results](docs/baseline_smoke_results.md)

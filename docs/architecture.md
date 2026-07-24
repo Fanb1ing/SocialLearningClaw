@@ -47,5 +47,6 @@ ARC 是交互式环境，因此保留专用 loop，但由 `socialclaw.run_arc` �
 遗忘、去重、持久化和可替换 LLM/embedding 接口。完整设计见
 [Memory-grounded layered Schema architecture](schema_architecture.md)。
 
-旧 `Concept`/`Relation` 模块暂时保留，只用于历史代码/数据兼容；当前三个
-正式 runner 的 `schema` method 都不再依赖它。
+旧 `Concept`/`Relation` 模块已经移到
+`archive/code/legacy_schema/`，不再随 `socialclaw` 包安装。当前三个正式
+runner 的 `schema` method 只使用分层架构。

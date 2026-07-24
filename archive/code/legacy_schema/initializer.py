@@ -1,3 +1,5 @@
+"""Archived initializer for the single-layer Concept/Relation schema."""
+
 from __future__ import annotations
 
 import json

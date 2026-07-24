@@ -1,3 +1,5 @@
+"""Archived single-layer Concept/Relation schema graph."""
+
 from __future__ import annotations
 
 import difflib

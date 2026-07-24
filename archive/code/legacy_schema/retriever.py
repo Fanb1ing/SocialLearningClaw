@@ -1,3 +1,5 @@
+"""Archived retriever for the single-layer Concept/Relation schema."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
