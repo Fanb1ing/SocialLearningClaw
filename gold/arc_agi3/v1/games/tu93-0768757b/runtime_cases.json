@@ -1,0 +1,116 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "case_id": "directional_move_and_wall",
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768"
+      ],
+      "passed": true,
+      "observed": {
+        "right_move": [
+          9,
+          3
+        ],
+        "blocked_up": [
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "case_id": "orange_chaser_activation",
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:orange_chaser:e788d7d629b0"
+      ],
+      "passed": true,
+      "observed": {
+        "before": [
+          27,
+          18
+        ],
+        "after_first_animation_tick": [
+          26,
+          18
+        ]
+      }
+    },
+    {
+      "case_id": "cyan_patrol_motion_and_reverse",
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:cyan_patrol:3a347f143336"
+      ],
+      "passed": true,
+      "observed": {
+        "moved_one_tick": true,
+        "reversed_at_wall": true
+      }
+    },
+    {
+      "case_id": "magenta_two_step_delay",
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:magenta_delayed_follower:fc4b79b0c965"
+      ],
+      "passed": true,
+      "observed": {
+        "activated": true,
+        "rotations": [
+          180,
+          90
+        ]
+      }
+    },
+    {
+      "case_id": "player_removes_enemy",
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:player_collision_attack:e55171a60a50"
+      ],
+      "passed": true,
+      "observed": {
+        "phase_completion": [
+          false,
+          false,
+          true
+        ]
+      }
+    },
+    {
+      "case_id": "enemy_removes_player",
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:enemy_collision_attack:49d77f90d47f"
+      ],
+      "passed": true,
+      "observed": {
+        "phase_completion": [
+          false,
+          false,
+          true
+        ]
+      }
+    },
+    {
+      "case_id": "local_exit_transition",
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75"
+      ],
+      "passed": true,
+      "observed": {
+        "new_level_index": 1
+      }
+    },
+    {
+      "case_id": "blocked_move_consumes_last_step",
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:step_budget:cd3c6932e339"
+      ],
+      "passed": true,
+      "observed": {
+        "position": [
+          3,
+          3
+        ],
+        "remaining_steps": 0
+      }
+    }
+  ]
+}

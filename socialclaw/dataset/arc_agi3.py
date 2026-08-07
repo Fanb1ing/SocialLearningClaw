@@ -1,8 +1,56 @@
 from __future__ import annotations
 
+import hashlib
+import json
+from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 import numpy as np
+
+
+DEFAULT_ARC_ENVIRONMENTS_DIR = (
+    Path(__file__).resolve().parents[2] / "third_party" / "arc_agi3_games"
+)
+
+
+def arc_environment_files(
+    game_id: str,
+    environments_dir: str | Path | None = None,
+) -> Tuple[Path, Path]:
+    """Resolve the pinned metadata/source pair for a full ARC game ID."""
+    base_id, separator, version = game_id.partition("-")
+    if not separator or not base_id or not version:
+        raise ValueError("ARC game ID must use the '<base>-<version>' form")
+    root = Path(environments_dir or DEFAULT_ARC_ENVIRONMENTS_DIR)
+    game_dir = root / base_id / version
+    metadata_path = game_dir / "metadata.json"
+    source_path = game_dir / f"{base_id}.py"
+    missing = [path for path in (metadata_path, source_path) if not path.is_file()]
+    if missing:
+        raise FileNotFoundError(
+            f"Incomplete local ARC environment {game_id}: "
+            + ", ".join(str(path) for path in missing)
+        )
+    return metadata_path, source_path
+
+
+def arc_environment_fingerprint(
+    game_id: str,
+    environments_dir: str | Path | None = None,
+) -> str:
+    """Hash reproducible game semantics, excluding host/download metadata."""
+    metadata_path, source_path = arc_environment_files(game_id, environments_dir)
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    metadata.pop("local_dir", None)
+    metadata.pop("date_downloaded", None)
+    digest = hashlib.sha256()
+    digest.update(
+        json.dumps(metadata, ensure_ascii=False, sort_keys=True).encode("utf-8")
+    )
+    with source_path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 _ARC_COLOR_RGB = {
@@ -32,11 +80,22 @@ class ARCAGI3EnvWrapper:
     Each step: agent observes grid state, chooses an action, env returns new state.
     """
 
-    def __init__(self, game_id: str, render_mode: Optional[str] = None):
+    def __init__(
+        self,
+        game_id: str,
+        render_mode: Optional[str] = None,
+        environments_dir: str | Path | None = None,
+    ):
+        local_environments = Path(environments_dir or DEFAULT_ARC_ENVIRONMENTS_DIR)
+        arc_environment_files(game_id, local_environments)
+
         import arc_agi
         from arcengine import GameState
 
-        self.arc = arc_agi.Arcade()
+        self.arc = arc_agi.Arcade(
+            operation_mode=arc_agi.OperationMode.OFFLINE,
+            environments_dir=str(local_environments),
+        )
         self.env = self.arc.make(game_id, render_mode=render_mode)
         self.game_id = game_id
         self.GameState = GameState

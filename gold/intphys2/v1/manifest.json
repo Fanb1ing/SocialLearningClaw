@@ -1,0 +1,59 @@
+{
+  "format_version": 1,
+  "created_date": "2026-08-06",
+  "benchmark": "intphys2",
+  "scope": "four_condition_pilot",
+  "status": "pilot_review_pending",
+  "scenes": [
+    {
+      "condition": "permanence",
+      "scene_id": "debug:3",
+      "split_aliases": [],
+      "game": "HotAirBallonTwoDist",
+      "directory": "scenes/debug_3",
+      "status": "provisional_review_pending"
+    },
+    {
+      "condition": "immutability",
+      "scene_id": "main_300:21",
+      "split_aliases": [],
+      "game": "HotAirBallon",
+      "directory": "scenes/main_300_21",
+      "status": "provisional_review_pending"
+    },
+    {
+      "condition": "continuity",
+      "scene_id": "main_300:19",
+      "split_aliases": [],
+      "game": "RotatingCup",
+      "directory": "scenes/main_300_19",
+      "status": "provisional_review_pending"
+    },
+    {
+      "condition": "solidity",
+      "scene_id": "debug:1",
+      "split_aliases": [
+        "main_300:1"
+      ],
+      "game": "SolidityFallingFlat",
+      "directory": "scenes/debug_1",
+      "status": "provisional_review_pending"
+    }
+  ],
+  "totals": {
+    "status": "passed",
+    "scene_count": 4,
+    "unique_clip_count": 16,
+    "schema_count": 8,
+    "condition_counts": {
+      "permanence": 2,
+      "immutability": 2,
+      "continuity": 2,
+      "solidity": 2
+    },
+    "pair_assessment_count": 8,
+    "metadata_and_hash_checks": "passed",
+    "visual_semantics": "provisional_review_pending",
+    "errors": []
+  }
+}

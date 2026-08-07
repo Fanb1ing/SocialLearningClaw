@@ -1,0 +1,58 @@
+{
+  "format_version": 1,
+  "problem_id": "aime_2024:75",
+  "generator": "scripts/generate_contextmath_gold.py",
+  "gold_answer_raw": "073",
+  "gold_answer_normalized": "73",
+  "derived_answer_normalized": "73",
+  "checks": [
+    {
+      "witness_id": "cs_population",
+      "description": "CS 人口解码",
+      "calculation": "15*60",
+      "observed": "900",
+      "expected": "900",
+      "passed": true
+    },
+    {
+      "witness_id": "cs_module_counts",
+      "description": "CS 三类订阅人数解码",
+      "calculation": "3*65, 365+2, 270+292",
+      "observed": "(195, 367, 562)",
+      "expected": "(195, 367, 562)",
+      "passed": true
+    },
+    {
+      "witness_id": "cs_exactly_two",
+      "description": "CS 恰有两类解码",
+      "calculation": "19*23",
+      "observed": "437",
+      "expected": "437",
+      "passed": true
+    },
+    {
+      "witness_id": "incidence_total",
+      "description": "四类物品的总拥有次数",
+      "calculation": "900+195+367+562",
+      "observed": "2024",
+      "expected": "2024",
+      "passed": true
+    },
+    {
+      "witness_id": "excess_count",
+      "description": "扣除每人至少一件后的额外拥有次数",
+      "calculation": "2024-900",
+      "observed": "1124",
+      "expected": "1124",
+      "passed": true
+    },
+    {
+      "witness_id": "all_four",
+      "description": "由 n2+2n3+3n4=1124 求 n4",
+      "calculation": "(1124-437-2*234)/3",
+      "observed": "73",
+      "expected": "73",
+      "passed": true
+    }
+  ]
+}

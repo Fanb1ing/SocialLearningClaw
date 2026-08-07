@@ -1,0 +1,165 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "case_id": "direction_mapping",
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:direction_controls:841d9c2467c8"
+      ],
+      "passed": true,
+      "observed": {
+        "1": [
+          0,
+          -1
+        ],
+        "2": [
+          0,
+          1
+        ],
+        "3": [
+          -1,
+          0
+        ],
+        "4": [
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "case_id": "extend_and_wall_block",
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:extend_chain:28d1acb0abd2"
+      ],
+      "passed": true,
+      "observed": {
+        "start_length": 2,
+        "wall_limited_length": 6
+      }
+    },
+    {
+      "case_id": "retract_and_minimum_length",
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:retract_chain:ecbe9a6fc8bf"
+      ],
+      "passed": true,
+      "observed": {
+        "minimum_length": 1
+      }
+    },
+    {
+      "case_id": "perpendicular_translation",
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:translate_chain:bfc4d96bf7c6"
+      ],
+      "passed": true,
+      "observed": {
+        "before": [
+          [
+            11,
+            36
+          ],
+          [
+            17,
+            36
+          ]
+        ],
+        "after": [
+          [
+            11,
+            30
+          ],
+          [
+            17,
+            30
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "select_second_chain",
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:select_chain:871966b91bae",
+        "arc_agi3:sk48-d8078629:L2:movement_budget:396f53ed58b2"
+      ],
+      "passed": true,
+      "observed": {
+        "selected_head_color": 15,
+        "budget": 196
+      }
+    },
+    {
+      "case_id": "push_block_cascade",
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:translate_chain:bfc4d96bf7c6",
+        "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d"
+      ],
+      "passed": true,
+      "observed": {
+        "before": [
+          [
+            41,
+            30
+          ],
+          [
+            41,
+            24
+          ],
+          [
+            41,
+            18
+          ]
+        ],
+        "after": [
+          [
+            41,
+            24
+          ],
+          [
+            41,
+            18
+          ],
+          [
+            41,
+            12
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "undo_board_move",
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:undo_move:9482c4b0402a"
+      ],
+      "passed": true,
+      "observed": {
+        "budget_not_refunded": 191
+      }
+    },
+    {
+      "case_id": "goal_sequence_comparison",
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:goal_sequences_match:9f6a5e9399fb"
+      ],
+      "passed": true,
+      "observed": {
+        "required_colors": [
+          8,
+          14,
+          9
+        ]
+      }
+    },
+    {
+      "case_id": "movement_budget_loss",
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:movement_budget:396f53ed58b2"
+      ],
+      "passed": true,
+      "observed": {
+        "state": "GameState.GAME_OVER",
+        "budget": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,439 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:dc22-fdcac232:L2:walk:28f5d4514b2a",
+      "format_version": 1,
+      "title": "ACTION1–4 控制角色四向移动",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fdcac232",
+      "game_id": "dc22-fdcac232",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "目标像素可站立且无实体阻挡。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "角色按上、下、左、右移动；墙体或实体阻止位移。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:dc22-fdcac232:L2:click_switch:08db6dfc9ff8",
+      "format_version": 1,
+      "title": "ACTION6 点击同组机关切换世界状态",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fdcac232",
+      "game_id": "dc22-fdcac232",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "点击带机关标识的可见对象。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "同字母/同组的桥、门或平台切换可见性、碰撞性或形态。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:dc22-fdcac232:L2:crane_move:05e3c4a82043",
+      "format_version": 1,
+      "title": "起重机方向按钮沿吊臂网格移动抓取点",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fdcac232",
+      "game_id": "dc22-fdcac232",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "ACTION6 点击起重机上/下/左/右按钮且目标锚点合法。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "吊机锚点移动一格；携带物与锚点同步移动，碰撞时整次移动回退。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:dc22-fdcac232:L2:grab:e3f5e969e4da",
+      "format_version": 1,
+      "title": "抓取按钮拾取或释放锚点处对象",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fdcac232",
+      "game_id": "dc22-fdcac232",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "抓取点与可抓桥段/货物中心重合。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "空载时附着对象；有载时释放对象并保持当前位置。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:dc22-fdcac232:L2:bridge:f149ba7f6383",
+      "format_version": 1,
+      "title": "桥段可被搬运并通过形态循环连接道路",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fdcac232",
+      "game_id": "dc22-fdcac232",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "桥段被抓取、移动或同组机关触发。",
+      "action_sequence": [],
+      "expectation": "桥段位置/朝向/版本改变后参与碰撞和支撑，能够填补角色路径。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:dc22-fdcac232:L2:key_gate:ab37e97a400e",
+      "format_version": 1,
+      "title": "角色取得钥匙会开启同标识阻挡",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fdcac232",
+      "game_id": "dc22-fdcac232",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "角色移动到钥匙像素。",
+      "action_sequence": [],
+      "expectation": "钥匙被移除，对应门/阻挡变为可通行。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:dc22-fdcac232:L2:fall_reset:450ae47e276a",
+      "format_version": 1,
+      "title": "角色失去支撑会消耗一次恢复并回到快照",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fdcac232",
+      "game_id": "dc22-fdcac232",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "角色所在像素下不再有有效支撑。",
+      "action_sequence": [],
+      "expectation": "若仍有恢复次数则恢复关卡快照；次数耗尽时 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:dc22-fdcac232:L2:goal:58a4e83ff22a",
+      "format_version": 1,
+      "title": "角色到达目标位置时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fdcac232",
+      "game_id": "dc22-fdcac232",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "角色坐标与终点坐标完全相同。",
+      "action_sequence": [],
+      "expectation": "进入下一关；最后一关满足时 WIN。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:dc22-fdcac232:L2:budget:1486c6fdfc7d",
+      "format_version": 1,
+      "title": "界面资源耗尽时失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fdcac232",
+      "game_id": "dc22-fdcac232",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "操作消耗使剩余资源为零且目标未满足。",
+      "action_sequence": [],
+      "expectation": "游戏进入 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

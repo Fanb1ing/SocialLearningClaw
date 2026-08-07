@@ -1,0 +1,83 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "case_id": "all_levels_and_actions_smoke",
+      "schema_ids": [
+        "arc_agi3:lp85-305b61c3:L2:buttons:33465491c1f3",
+        "arc_agi3:lp85-305b61c3:L2:linked:3f450519bf04",
+        "arc_agi3:lp85-305b61c3:L2:collision:f51289a91db8",
+        "arc_agi3:lp85-305b61c3:L2:goal:2aa8e978edec",
+        "arc_agi3:lp85-305b61c3:L2:budget:4d01ca73ab36"
+      ],
+      "passed": true,
+      "observed": {
+        "levels": [
+          {
+            "level": 1,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 2,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 3,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 4,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 5,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 6,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 7,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 8,
+            "shape": [
+              64,
+              64
+            ]
+          }
+        ],
+        "advertised_actions": [
+          {
+            "action": 6,
+            "frames": 1,
+            "state": "GameState.NOT_FINISHED"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "format_version": 1,
+  "requirements": [
+    {
+      "requirement_id": "mechanism_select",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:sp80-589a99af:L2:select:21a1fbd8062c"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_move",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:sp80-589a99af:L2:move:051907ac7aee"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_pour",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:sp80-589a99af:L2:pour:74c3ad52aba1"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_flow",
+      "category": "state_transition",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:sp80-589a99af:L2:flow:efaf0613b1f8"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_hazard",
+      "category": "hazard",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:sp80-589a99af:L2:hazard:a00da09b08c3"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_goal",
+      "category": "goal",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:sp80-589a99af:L2:goal:7eef76969aa0"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_attempts",
+      "category": "hazard",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:sp80-589a99af:L2:attempts:f7965c31bd53"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_1_goal",
+      "category": "goal",
+      "level_scope": [
+        1
+      ],
+      "schema_ids": [
+        "arc_agi3:sp80-589a99af:L2:goal:7eef76969aa0"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_2_goal",
+      "category": "goal",
+      "level_scope": [
+        2
+      ],
+      "schema_ids": [
+        "arc_agi3:sp80-589a99af:L2:goal:7eef76969aa0"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_3_goal",
+      "category": "goal",
+      "level_scope": [
+        3
+      ],
+      "schema_ids": [
+        "arc_agi3:sp80-589a99af:L2:goal:7eef76969aa0"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_4_goal",
+      "category": "goal",
+      "level_scope": [
+        4
+      ],
+      "schema_ids": [
+        "arc_agi3:sp80-589a99af:L2:goal:7eef76969aa0"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_5_goal",
+      "category": "goal",
+      "level_scope": [
+        5
+      ],
+      "schema_ids": [
+        "arc_agi3:sp80-589a99af:L2:goal:7eef76969aa0"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_6_goal",
+      "category": "goal",
+      "level_scope": [
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:sp80-589a99af:L2:goal:7eef76969aa0"
+      ],
+      "status": "covered"
+    }
+  ]
+}

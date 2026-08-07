@@ -1,0 +1,344 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:g50t-5849a774:L2:move:a2175cf4b860",
+      "format_version": 1,
+      "title": "ACTION1–4 沿可通行轨道移动角色",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5849a774",
+      "game_id": "g50t-5849a774",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "目标方向连接到可通行路径。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "角色向上、下、左、右移动并记录该方向；墙或断路阻止位移。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/g50t/5849a774/g50t.py",
+          "sha256": "6f21f2065744e484ac38534f940158034e69f39add3b10a3d9fd258de7293aa9",
+          "symbol": "qxlodtievc path recording, actors, rewind and completion",
+          "lines": [
+            2494,
+            2855
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:g50t-5849a774:L2:autonomous:2ffab58a0e90",
+      "format_version": 1,
+      "title": "自主单位每回合顺时针寻找首个可走方向",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5849a774",
+      "game_id": "g50t-5849a774",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "玩家完成一次方向移动。",
+      "action_sequence": [],
+      "expectation": "自主单位从当前朝向起最多右转四次，沿首个可通行方向前进一步。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/g50t/5849a774/g50t.py",
+          "sha256": "6f21f2065744e484ac38534f940158034e69f39add3b10a3d9fd258de7293aa9",
+          "symbol": "qxlodtievc path recording, actors, rewind and completion",
+          "lines": [
+            2494,
+            2855
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:g50t-5849a774:L2:rewind:f417bf7ac98c",
+      "format_version": 1,
+      "title": "ACTION5 逐步倒放本阶段玩家路径",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5849a774",
+      "game_id": "g50t-5849a774",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "本阶段已记录至少一次移动。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "玩家每次沿最后一步的反方向回退，直到起点。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/g50t/5849a774/g50t.py",
+          "sha256": "6f21f2065744e484ac38534f940158034e69f39add3b10a3d9fd258de7293aa9",
+          "symbol": "qxlodtievc path recording, actors, rewind and completion",
+          "lines": [
+            2494,
+            2855
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:g50t-5849a774:L2:clone:cc731d39ede5",
+      "format_version": 1,
+      "title": "完整倒放后留下按记录延迟重放的分身",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5849a774",
+      "game_id": "g50t-5849a774",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "ACTION5 已把阶段路径完全倒回。",
+      "action_sequence": [],
+      "expectation": "当前位置生成分身；它按原动作序列和设定延迟逐步重放。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/g50t/5849a774/g50t.py",
+          "sha256": "6f21f2065744e484ac38534f940158034e69f39add3b10a3d9fd258de7293aa9",
+          "symbol": "qxlodtievc path recording, actors, rewind and completion",
+          "lines": [
+            2494,
+            2855
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:g50t-5849a774:L2:stage:c374ab4e6ae8",
+      "format_version": 1,
+      "title": "完成倒放会推进到下一阶段目标",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5849a774",
+      "game_id": "g50t-5849a774",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "本阶段路径封存为分身。",
+      "action_sequence": [],
+      "expectation": "玩家切换到下一起点/终点关系，已有分身继续执行。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/g50t/5849a774/g50t.py",
+          "sha256": "6f21f2065744e484ac38534f940158034e69f39add3b10a3d9fd258de7293aa9",
+          "symbol": "qxlodtievc path recording, actors, rewind and completion",
+          "lines": [
+            2494,
+            2855
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:g50t-5849a774:L2:deadline:51e47c39178f",
+      "format_version": 1,
+      "title": "周期左移的边界吞没关键对象会失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5849a774",
+      "game_id": "g50t-5849a774",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "累计操作达到滚动周期。",
+      "action_sequence": [],
+      "expectation": "场景边界左移；关键角色/目标越出可用区域时 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/g50t/5849a774/g50t.py",
+          "sha256": "6f21f2065744e484ac38534f940158034e69f39add3b10a3d9fd258de7293aa9",
+          "symbol": "qxlodtievc path recording, actors, rewind and completion",
+          "lines": [
+            2494,
+            2855
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:g50t-5849a774:L2:goal:7accbc5d2b06",
+      "format_version": 1,
+      "title": "玩家到达当前终点并完成全部阶段时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5849a774",
+      "game_id": "g50t-5849a774",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "玩家与阶段终点的规定锚点重合。",
+      "action_sequence": [],
+      "expectation": "中间阶段允许封存路径；全部阶段完成后进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/g50t/5849a774/g50t.py",
+          "sha256": "6f21f2065744e484ac38534f940158034e69f39add3b10a3d9fd258de7293aa9",
+          "symbol": "qxlodtievc path recording, actors, rewind and completion",
+          "lines": [
+            2494,
+            2855
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

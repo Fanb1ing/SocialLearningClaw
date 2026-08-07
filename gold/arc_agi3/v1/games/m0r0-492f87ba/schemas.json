@@ -1,0 +1,388 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:m0r0-492f87ba:L2:symmetric:594c9a46e2a2",
+      "format_version": 1,
+      "title": "全局 ACTION1–4 以四种镜像关系同时移动四组对象",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "492f87ba",
+      "game_id": "m0r0-492f87ba",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "未选中单独对象。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "一组同向移动，另三组分别水平镜像、垂直镜像、双轴镜像移动。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:m0r0-492f87ba:L2:individual:cb81830df5bc",
+      "format_version": 1,
+      "title": "ACTION6 选择对象后只移动该对象",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "492f87ba",
+      "game_id": "m0r0-492f87ba",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "点击一个尚未配对的可控对象。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "进入单独控制模式；随后方向输入只移动该对象。点击空处返回全局模式。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:m0r0-492f87ba:L2:noop:d11b9f809ca4",
+      "format_version": 1,
+      "title": "ACTION5 不改变棋盘但仍计入操作次数",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "492f87ba",
+      "game_id": "m0r0-492f87ba",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "游戏处于未完成状态。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "对象位置、配对和门状态均保持不变；全局 action 计数照常增加。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:m0r0-492f87ba:L2:pair:9cfb2873f6c6",
+      "format_version": 1,
+      "title": "两个对象同坐标会配对并退出后续控制",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "492f87ba",
+      "game_id": "m0r0-492f87ba",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "恰有两个未配对对象到达同一位置。",
+      "action_sequence": [],
+      "expectation": "两者合并为配对态，不再碰撞也不再参与移动。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:m0r0-492f87ba:L2:crowded:0a722e4813a9",
+      "format_version": 1,
+      "title": "三个以上对象同时相撞只接受首个合法配对",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "492f87ba",
+      "game_id": "m0r0-492f87ba",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "一次移动使三个以上未配对对象占据同一位置。",
+      "action_sequence": [],
+      "expectation": "仅首对完成合并，其余对象回到移动前位置。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:m0r0-492f87ba:L2:gate:7b32390ff5c0",
+      "format_version": 1,
+      "title": "剩余对象压住传感器时对应门暂时移除",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "492f87ba",
+      "game_id": "m0r0-492f87ba",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "任一未配对对象占据传感器。",
+      "action_sequence": [],
+      "expectation": "对应阻挡门变为不可碰撞；离开传感器后门恢复。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:m0r0-492f87ba:L2:goal:12139f86c450",
+      "format_version": 1,
+      "title": "所有对象均完成两两配对时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "492f87ba",
+      "game_id": "m0r0-492f87ba",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "一次移动后检查未配对对象数。",
+      "action_sequence": [],
+      "expectation": "不再有可触碰的未配对对象时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:m0r0-492f87ba:L2:budget:b96baa500769",
+      "format_version": 1,
+      "title": "累计操作超过上限时失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "492f87ba",
+      "game_id": "m0r0-492f87ba",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "操作计数超过 150 且尚未全部配对。",
+      "action_sequence": [],
+      "expectation": "游戏进入 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

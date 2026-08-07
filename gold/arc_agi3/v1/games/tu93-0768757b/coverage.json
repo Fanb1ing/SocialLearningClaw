@@ -1,0 +1,256 @@
+{
+  "format_version": 1,
+  "requirements": [
+    {
+      "requirement_id": "board_and_exit_roles",
+      "category": "observation",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:board_roles:c484ab94df14"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "directional_controls",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "orange_enemy",
+      "category": "hazard",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:orange_chaser:e788d7d629b0"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "cyan_enemy",
+      "category": "hazard",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:cyan_patrol:3a347f143336"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "magenta_enemy",
+      "category": "hazard",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:magenta_delayed_follower:fc4b79b0c965"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "player_initiated_collision",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:player_collision_attack:e55171a60a50"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "enemy_initiated_collision",
+      "category": "hazard",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:enemy_collision_attack:49d77f90d47f"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "step_budget",
+      "category": "hazard",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:step_budget:cd3c6932e339"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_1_goal",
+      "category": "goal",
+      "level_scope": [
+        1
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_2_goal",
+      "category": "goal",
+      "level_scope": [
+        2
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_3_goal",
+      "category": "goal",
+      "level_scope": [
+        3
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_4_goal",
+      "category": "goal",
+      "level_scope": [
+        4
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_5_goal",
+      "category": "goal",
+      "level_scope": [
+        5
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_6_goal",
+      "category": "goal",
+      "level_scope": [
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_7_goal",
+      "category": "goal",
+      "level_scope": [
+        7
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_8_goal",
+      "category": "goal",
+      "level_scope": [
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_9_goal",
+      "category": "goal",
+      "level_scope": [
+        9
+      ],
+      "schema_ids": [
+        "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75"
+      ],
+      "status": "covered"
+    }
+  ]
+}

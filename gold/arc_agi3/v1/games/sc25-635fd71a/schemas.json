@@ -1,0 +1,436 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:sc25-635fd71a:L2:move:0bb2e002b321",
+      "format_version": 1,
+      "title": "ACTION1–4 按角色尺寸四向移动",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "635fd71a",
+      "game_id": "sc25-635fd71a",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "目标区域不被墙或实体占据。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "角色向上、下、左、右移动；大尺寸角色先尝试整步，受阻时可尝试半步。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sc25-635fd71a:L2:select_spell:c467256f6aef",
+      "format_version": 1,
+      "title": "ACTION6 点击法术图标选择待输入法术",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "635fd71a",
+      "game_id": "sc25-635fd71a",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "点击传送、缩放或攻击法术图标。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "对应法术成为当前参考；再次点击同一图标会演示其 3×3 图案。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sc25-635fd71a:L2:pattern:105fbb44ccd0",
+      "format_version": 1,
+      "title": "点击 3×3 槽位切换布尔图案",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "635fd71a",
+      "game_id": "sc25-635fd71a",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "ACTION6 点击法术输入面板的一个槽位。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "该槽开/关翻转；当前九格与某个已解锁法术模板完全相等时自动施法。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sc25-635fd71a:L2:teleport:2e59fd36da86",
+      "format_version": 1,
+      "title": "传送法术把角色与循环目标交换/传送",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "635fd71a",
+      "game_id": "sc25-635fd71a",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "输入图案匹配 tevyeq。",
+      "action_sequence": [],
+      "expectation": "角色移动到当前传送目标位置，并把目标端状态按循环顺序推进。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sc25-635fd71a:L2:scale:b4d2233a8d38",
+      "format_version": 1,
+      "title": "缩放法术在尺寸 1 和 2 间切换",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "635fd71a",
+      "game_id": "sc25-635fd71a",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "输入图案匹配 sieesc_chwjgc。",
+      "action_sequence": [],
+      "expectation": "角色缩小或放大；放大时寻找不碰撞的邻近偏移，完全无空间则保持原尺寸。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sc25-635fd71a:L2:attack:67c20de95807",
+      "format_version": 1,
+      "title": "攻击法术沿当前朝向发射直线投射物",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "635fd71a",
+      "game_id": "sc25-635fd71a",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "输入图案匹配 fibcey。",
+      "action_sequence": [],
+      "expectation": "投射物前进到首个阻挡；命中特定可破坏物时将其及关联障碍移除。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sc25-635fd71a:L2:pickup:9ead3c2c955a",
+      "format_version": 1,
+      "title": "时间拾取物降低已用动作数",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "635fd71a",
+      "game_id": "sc25-635fd71a",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "角色移动后与时间拾取物重合。",
+      "action_sequence": [],
+      "expectation": "拾取物消失，动作计数减少但不低于零。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sc25-635fd71a:L2:goal:4a26ff5d8f25",
+      "format_version": 1,
+      "title": "角色进入出口时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "635fd71a",
+      "game_id": "sc25-635fd71a",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "一次移动命中出口对象。",
+      "action_sequence": [],
+      "expectation": "角色补齐到出口中心后进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sc25-635fd71a:L2:budget:a1ef18bcda33",
+      "format_version": 1,
+      "title": "移动、面板编辑和施法共享动作预算",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "635fd71a",
+      "game_id": "sc25-635fd71a",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "已用动作超过关卡预算。",
+      "action_sequence": [],
+      "expectation": "游戏进入 GAME_OVER。",
+      "constraints": [
+        "不枚举各关具体预算。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

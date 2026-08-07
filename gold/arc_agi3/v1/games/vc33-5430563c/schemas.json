@@ -1,0 +1,342 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:vc33-5430563c:L2:gravity:6948ad77d65c",
+      "format_version": 1,
+      "title": "关卡重力轴决定所有前后、上下和宽高计算",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5430563c",
+      "game_id": "vc33-5430563c",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "observation_semantics",
+      "trigger": "关卡数据给出水平或垂直重力向量。",
+      "action_sequence": [],
+      "expectation": "同一机制沿重力轴执行；正负方向决定靠近/远离端的比较。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+          "sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd",
+          "symbol": "Vc33 gravity-axis transfer, swap and color-routing goal",
+          "lines": [
+            1829,
+            2124
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "verification": {
+        "static": "passed",
+        "runtime": "not_required",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:vc33-5430563c:L2:transfer:bd63a0cbb6e6",
+      "format_version": 1,
+      "title": "点击可调隔板会从一侧削去单位并加到另一侧",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5430563c",
+      "game_id": "vc33-5430563c",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "ACTION6 点击带调节标记的隔板。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "隔板两侧空间按重力方向一增一减，受支撑物体随边界移动。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+          "sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd",
+          "symbol": "Vc33 gravity-axis transfer, swap and color-routing goal",
+          "lines": [
+            1829,
+            2124
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:vc33-5430563c:L2:support:73d68c2fbf40",
+      "format_version": 1,
+      "title": "物体随其支撑面和可用空间重新落位",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5430563c",
+      "game_id": "vc33-5430563c",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "隔板转移改变支撑边界。",
+      "action_sequence": [],
+      "expectation": "位于受影响支撑上的对象沿重力方向同步移动，且不会越过最近墙面。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+          "sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd",
+          "symbol": "Vc33 gravity-axis transfer, swap and color-routing goal",
+          "lines": [
+            1829,
+            2124
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:vc33-5430563c:L2:swap:65aaa6473b0b",
+      "format_version": 1,
+      "title": "点击夹在两个合法空间之间的交换器互换两侧对象",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5430563c",
+      "game_id": "vc33-5430563c",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "ACTION6 点击处于两侧支撑完整状态的交换器。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "交换器先移开，再把两侧受支撑对象移动到对侧，最后回到原位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+          "sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd",
+          "symbol": "Vc33 gravity-axis transfer, swap and color-routing goal",
+          "lines": [
+            1829,
+            2124
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:vc33-5430563c:L2:blocked_swap:113025fc616f",
+      "format_version": 1,
+      "title": "缺少任一侧完整支撑时不能交换",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5430563c",
+      "game_id": "vc33-5430563c",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "交换器一侧没有成对支撑边界。",
+      "action_sequence": [],
+      "expectation": "交换动作不启动。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+          "sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd",
+          "symbol": "Vc33 gravity-axis transfer, swap and color-routing goal",
+          "lines": [
+            1829,
+            2124
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:vc33-5430563c:L2:goal:388754905b71",
+      "format_version": 1,
+      "title": "每个彩色源必须与同色目标通道连通",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5430563c",
+      "game_id": "vc33-5430563c",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "隔板或交换动画完成。",
+      "action_sequence": [],
+      "expectation": "对每个彩色源，都存在含该颜色的目标对象位于同一重力横截面且与其支撑墙连通，才进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+          "sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd",
+          "symbol": "Vc33 gravity-axis transfer, swap and color-routing goal",
+          "lines": [
+            1829,
+            2124
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:vc33-5430563c:L2:budget:a4d583ce76c5",
+      "format_version": 1,
+      "title": "有效点击耗尽步数时失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "5430563c",
+      "game_id": "vc33-5430563c",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "剩余步数为零且路由未全部满足。",
+      "action_sequence": [],
+      "expectation": "游戏进入 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+          "sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd",
+          "symbol": "Vc33 gravity-axis transfer, swap and color-routing goal",
+          "lines": [
+            1829,
+            2124
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

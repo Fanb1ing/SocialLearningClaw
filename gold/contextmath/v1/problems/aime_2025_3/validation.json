@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "problem_id": "aime_2025:3",
+  "schema_count": 4,
+  "alignment_variants": 2,
+  "witness_checks": 5,
+  "witness_passed": 5,
+  "coverage_complete": true,
+  "answer_match": true,
+  "review": "pending",
+  "errors": []
+}

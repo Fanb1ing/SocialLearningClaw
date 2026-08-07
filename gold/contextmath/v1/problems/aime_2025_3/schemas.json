@@ -1,0 +1,209 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "contextmath:aime_2025:3:L3:factor_quadratic:a6d15729c73b",
+      "format_version": 1,
+      "title": "把齐次二次型精确因式分解",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2025:3",
+      "sample_scope": [
+        "aime_2025_sg:3",
+        "aime_2025_cs:3"
+      ],
+      "abstraction_level": 3,
+      "kind": "representation",
+      "trigger": "方程右侧为零，二次式可在整数系数下分解。",
+      "operation": "寻找两个一次因子并展开复核全部系数。",
+      "expectation": "零集变为两个一次因子的并集。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2025_sg-00000-of-00001.parquet",
+          "sha256": "1fe872c3ece382d946a08c3d61eb8fff18a40304cb60b96bf88d7ff81c340c83",
+          "row_id": 3,
+          "field": "ori_question",
+          "value_sha256": "981c7f2ec58bbc629a520abdcc2d49c69ec86d2c6b2bc574b71d50c2d1dcce0e",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2025_cs-00000-of-00001.parquet",
+          "sha256": "fb9272ac71c3fea21658c005034fa59342036c5f7c847d184f3b2bbe89b9c2b1",
+          "row_id": 3,
+          "field": "ori_question",
+          "value_sha256": "981c7f2ec58bbc629a520abdcc2d49c69ec86d2c6b2bc574b71d50c2d1dcce0e",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "factorization"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "contextmath:aime_2025:3:L3:zero_product_lines:c0ba23990af0",
+      "format_version": 1,
+      "title": "由零乘积将解集拆为两条直线",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2025:3",
+      "sample_scope": [
+        "aime_2025_sg:3",
+        "aime_2025_cs:3"
+      ],
+      "abstraction_level": 3,
+      "kind": "derivation",
+      "trigger": "两个实数一次因子的乘积为零。",
+      "operation": "分别令每个因子为零。",
+      "expectation": "所有实数解均位于两条有理斜率直线上。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "contextmath:aime_2025:3:L3:factor_quadratic:a6d15729c73b"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2025_sg-00000-of-00001.parquet",
+          "sha256": "1fe872c3ece382d946a08c3d61eb8fff18a40304cb60b96bf88d7ff81c340c83",
+          "row_id": 3,
+          "field": "ori_question",
+          "value_sha256": "981c7f2ec58bbc629a520abdcc2d49c69ec86d2c6b2bc574b71d50c2d1dcce0e",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2025_cs-00000-of-00001.parquet",
+          "sha256": "fb9272ac71c3fea21658c005034fa59342036c5f7c847d184f3b2bbe89b9c2b1",
+          "row_id": 3,
+          "field": "ori_question",
+          "value_sha256": "981c7f2ec58bbc629a520abdcc2d49c69ec86d2c6b2bc574b71d50c2d1dcce0e",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "factorization"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "contextmath:aime_2025:3:L3:integer_parameterization:5f727856582d",
+      "format_version": 1,
+      "title": "参数化每条直线的全部整数点并施加边界",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2025:3",
+      "sample_scope": [
+        "aime_2025_sg:3",
+        "aime_2025_cs:3"
+      ],
+      "abstraction_level": 3,
+      "kind": "constraint",
+      "trigger": "x、y 必须同时为整数且均落在闭区间内。",
+      "operation": "按斜率分母选择最小整数步长参数化，再由两个坐标界共同限制参数。",
+      "expectation": "得到每条直线在方框内的完整有限整数点集。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "contextmath:aime_2025:3:L3:zero_product_lines:c0ba23990af0"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2025_sg-00000-of-00001.parquet",
+          "sha256": "1fe872c3ece382d946a08c3d61eb8fff18a40304cb60b96bf88d7ff81c340c83",
+          "row_id": 3,
+          "field": "ori_question",
+          "value_sha256": "981c7f2ec58bbc629a520abdcc2d49c69ec86d2c6b2bc574b71d50c2d1dcce0e",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2025_cs-00000-of-00001.parquet",
+          "sha256": "fb9272ac71c3fea21658c005034fa59342036c5f7c847d184f3b2bbe89b9c2b1",
+          "row_id": 3,
+          "field": "ori_question",
+          "value_sha256": "981c7f2ec58bbc629a520abdcc2d49c69ec86d2c6b2bc574b71d50c2d1dcce0e",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "first_line_count",
+        "second_line_count"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "contextmath:aime_2025:3:L3:union_count:7601d5aeab42",
+      "format_version": 1,
+      "title": "合并两条直线并扣除交点重复计数",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2025:3",
+      "sample_scope": [
+        "aime_2025_sg:3",
+        "aime_2025_cs:3"
+      ],
+      "abstraction_level": 3,
+      "kind": "calculation",
+      "trigger": "两条不同直线的整数点集可能重叠。",
+      "operation": "分别计数后应用容斥；齐次直线仅在原点相交。",
+      "expectation": "得到有序整数对总数。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "contextmath:aime_2025:3:L3:integer_parameterization:5f727856582d"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2025_sg-00000-of-00001.parquet",
+          "sha256": "1fe872c3ece382d946a08c3d61eb8fff18a40304cb60b96bf88d7ff81c340c83",
+          "row_id": 3,
+          "field": "ori_question",
+          "value_sha256": "981c7f2ec58bbc629a520abdcc2d49c69ec86d2c6b2bc574b71d50c2d1dcce0e",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2025_cs-00000-of-00001.parquet",
+          "sha256": "fb9272ac71c3fea21658c005034fa59342036c5f7c847d184f3b2bbe89b9c2b1",
+          "row_id": 3,
+          "field": "ori_question",
+          "value_sha256": "981c7f2ec58bbc629a520abdcc2d49c69ec86d2c6b2bc574b71d50c2d1dcce0e",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "origin_overlap",
+        "independent_enumeration"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

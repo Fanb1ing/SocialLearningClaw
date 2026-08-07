@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import tempfile
 import unittest
+from pathlib import Path
 
 from socialclaw.benchmarks.base import BenchmarkSample
 from socialclaw.benchmarks.contextmath import answers_match, extract_boxed
@@ -45,6 +47,39 @@ class IntPhysParsingTests(unittest.TestCase):
         query = benchmark.schema_query(sample)
         self.assertIn("solidity", query)
         self.assertNotIn("Possible", query)
+
+    def test_main_sample_uses_pinned_sample_manifest(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "Main").mkdir()
+            sample = root / "Main" / "sample_300.csv"
+            sample.write_text("file_name,type\nVideos/x.mp4,1_Possible\n")
+            benchmark = IntPhys2Benchmark(root)
+            self.assertEqual(benchmark._metadata_path("main_300"), sample)
+            self.assertEqual(benchmark._videos_dir("main_300"), root / "Main/Videos")
+
+    def test_main_sample_requires_preparation_manifest(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "Main/Videos").mkdir(parents=True)
+            (root / "Main/sample_300.csv").write_text(
+                "file_name,type\nVideos/x.mp4,1_Possible\n"
+            )
+            (root / "Main/Videos/x.mp4").touch()
+            benchmark = IntPhys2Benchmark(root)
+            with self.assertRaises(FileNotFoundError):
+                benchmark.load("main_300")
+
+    def test_incomplete_debug_inventory_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "Debug/Videos").mkdir(parents=True)
+            (root / "Debug/metadata.csv").write_text(
+                "file_name,type\nVideos/missing.mp4,1_Impossible\n"
+            )
+            benchmark = IntPhys2Benchmark(root)
+            with self.assertRaises(FileNotFoundError):
+                benchmark.load("debug")
 
 
 if __name__ == "__main__":

@@ -8,6 +8,7 @@ from sentence_transformers import SentenceTransformer
 
 from .agent.openai_compatible import OpenAICompatibleAgent
 from .arc_runner import run_arc_agi3
+from .dataset.arc_agi3 import arc_environment_fingerprint
 from .experiment import METHODS, ExperimentBudget, ExperimentConfig, write_manifest
 from .llm import OpenAIChatClient
 from .utils import load_dotenv
@@ -156,7 +157,7 @@ def main() -> None:
         Path(run_dir),
         config,
         sample_ids=[args.game_id],
-        dataset_fingerprint="ARC-AGI-3 remote environment",
+        dataset_fingerprint=arc_environment_fingerprint(args.game_id),
     )
     print(f"Results: {run_dir}")
 

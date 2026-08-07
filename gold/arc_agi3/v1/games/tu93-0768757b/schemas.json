@@ -1,0 +1,508 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:tu93-0768757b:L2:board_roles:c484ab94df14",
+      "format_version": 1,
+      "title": "箭头角色需沿蓝色通路到达黄色出口",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0768757b",
+      "game_id": "tu93-0768757b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "observation_semantics",
+      "trigger": "关卡显示蓝色连通通路、一个带方向的角色和黄色方块。",
+      "action_sequence": [],
+      "expectation": "带方向角色是受控对象；蓝色连接处定义可走边；黄色方块是出口。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "levels / Tu93.step",
+          "lines": [
+            767,
+            923
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step",
+          "lines": [
+            1194,
+            1272
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "verification": {
+        "static": "passed",
+        "runtime": "not_required",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+      "format_version": 1,
+      "title": "ACTION1–4 沿存在的通路边向上、下、左、右移动一格",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0768757b",
+      "game_id": "tu93-0768757b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "角色位于网格中心，输入方向上的半格连接像素为蓝色通路。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "四个 action 分别使角色转向并移动到上、下、左、右相邻网格中心。",
+      "constraints": [
+        "目标方向没有蓝色连接时，角色不移动。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step / Tu93.erkaicaqdh",
+          "lines": [
+            1007,
+            1011
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step",
+          "lines": [
+            1194,
+            1250
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "directional_move_and_wall"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tu93-0768757b:L2:orange_chaser:e788d7d629b0",
+      "format_version": 1,
+      "title": "橙色单位正对一格外角色时激活并直线追击",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0768757b",
+      "game_id": "tu93-0768757b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "橙色单位的朝向正对同一行或列、相距一个网格单位的角色。",
+      "action_sequence": [],
+      "expectation": "该单位变为激活状态，并沿当前朝向移动一个网格单位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.ixnhjkzwic / Tu93.bwlnieccpx",
+          "lines": [
+            1090,
+            1109
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "orange_chaser_activation"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tu93-0768757b:L2:cyan_patrol:3a347f143336",
+      "format_version": 1,
+      "title": "青色单位每回合沿通路前进，前方无路时反向",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0768757b",
+      "game_id": "tu93-0768757b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "玩家完成一次有效移动后。",
+      "action_sequence": [],
+      "expectation": "青色单位沿当前朝向移动一格；到达前方无通路的端点时旋转 180°。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.itwvxwpzyb / Tu93.rgwzxyjuqc",
+          "lines": [
+            1110,
+            1152
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "cyan_patrol_motion_and_reverse"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tu93-0768757b:L2:magenta_delayed_follower:fc4b79b0c965",
+      "format_version": 1,
+      "title": "品红单位正对两格外角色时激活，并以两步延迟模仿转向",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0768757b",
+      "game_id": "tu93-0768757b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "品红单位正对同一行或列、相距两个网格单位的角色。",
+      "action_sequence": [],
+      "expectation": "该单位激活并开始移动；随后按角色方向输入的顺序行动，但先保留两次原朝向，因此角色的新方向在两个行动周期后才影响它。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.gmwsemdsae / Tu93.step",
+          "lines": [
+            1171,
+            1183
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step",
+          "lines": [
+            1202,
+            1250
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "magenta_two_step_delay"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tu93-0768757b:L2:player_collision_attack:e55171a60a50",
+      "format_version": 1,
+      "title": "角色主动移入敌对单位所在格会逐阶段将其清除",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0768757b",
+      "game_id": "tu93-0768757b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "角色作为移动方到达网格中心，且该格存在橙色、青色或品红单位。",
+      "action_sequence": [
+        {
+          "action": "move_into_occupied_cell",
+          "arguments": {}
+        }
+      ],
+      "expectation": "被占据单位经历两个受击形态后从棋盘移除，角色保留。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.onfzuzfvcl / Tu93.uneirnujpq",
+          "lines": [
+            1064,
+            1089
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "player_removes_enemy"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tu93-0768757b:L2:enemy_collision_attack:49d77f90d47f",
+      "format_version": 1,
+      "title": "敌对单位主动移入角色所在格会逐阶段清除角色",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0768757b",
+      "game_id": "tu93-0768757b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "已激活敌对单位作为移动方到达角色所在网格中心。",
+      "action_sequence": [],
+      "expectation": "角色经历两个受击形态后被移除；棋盘上没有角色时 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.bwlnieccpx / Tu93.jxclhrfhnn / Tu93.ddmvoavzus",
+          "lines": [
+            1098,
+            1170
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step",
+          "lines": [
+            1251,
+            1267
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "enemy_removes_player"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75",
+      "format_version": 1,
+      "title": "角色到达黄色出口时进入下一关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0768757b",
+      "game_id": "tu93-0768757b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "所有移动动画结束，角色与黄色出口中心重合。",
+      "action_sequence": [],
+      "expectation": "进入下一关；第 9 关满足时游戏 WIN。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "arc_agi3:tu93-0768757b:L2:board_roles:c484ab94df14"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step",
+          "lines": [
+            1251,
+            1265
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "local_exit_transition"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tu93-0768757b:L2:step_budget:cd3c6932e339",
+      "format_version": 1,
+      "title": "每次方向尝试消耗一步，步数耗尽时失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0768757b",
+      "game_id": "tu93-0768757b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "输入 ACTION1–4，无论该方向是否存在通路。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "剩余步数减少 1；降到 0 且尚未过关时 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "eytqjghipl.rndwkomrip / Tu93.step",
+          "lines": [
+            963,
+            968
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step",
+          "lines": [
+            1194,
+            1272
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "blocked_move_consumes_last_step"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

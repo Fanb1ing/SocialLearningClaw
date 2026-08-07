@@ -1,0 +1,64 @@
+{
+  "format_version": 1,
+  "created_date": "2026-08-06",
+  "benchmark": "contextmath",
+  "scope": "pilot",
+  "status": "pilot_review_pending",
+  "source_splits": [
+    "aime_2024_sg",
+    "aime_2024_cs",
+    "aime_2025_sg",
+    "aime_2025_cs"
+  ],
+  "problems": [
+    {
+      "problem_id": "aime_2024:60",
+      "directory": "problems/aime_2024_60",
+      "schema_count": 5,
+      "witness_checks": 7,
+      "status": "pending"
+    },
+    {
+      "problem_id": "aime_2024:67",
+      "directory": "problems/aime_2024_67",
+      "schema_count": 3,
+      "witness_checks": 4,
+      "status": "pending"
+    },
+    {
+      "problem_id": "aime_2024:75",
+      "directory": "problems/aime_2024_75",
+      "schema_count": 3,
+      "witness_checks": 6,
+      "status": "pending"
+    },
+    {
+      "problem_id": "aime_2024:84",
+      "directory": "problems/aime_2024_84",
+      "schema_count": 4,
+      "witness_checks": 4,
+      "status": "pending"
+    },
+    {
+      "problem_id": "aime_2025:0",
+      "directory": "problems/aime_2025_0",
+      "schema_count": 4,
+      "witness_checks": 4,
+      "status": "pending"
+    },
+    {
+      "problem_id": "aime_2025:3",
+      "directory": "problems/aime_2025_3",
+      "schema_count": 4,
+      "witness_checks": 5,
+      "status": "pending"
+    }
+  ],
+  "totals": {
+    "problems": 6,
+    "variants": 12,
+    "schemas": 23,
+    "witness_checks": 30,
+    "witness_passed": 30
+  }
+}

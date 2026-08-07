@@ -1,0 +1,427 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:lf52-271a04aa:L2:shift:c5415425bef6",
+      "format_version": 1,
+      "title": "ACTION1–4 推动可移动棋盘部件并滚动视野",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "271a04aa",
+      "game_id": "lf52-271a04aa",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "关卡含方向可动的蓝色平台/滑块。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "同类可动部件按上、下、左、右移动；相机/棋盘在特定关卡同步平移。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:lf52-271a04aa:L2:select:736b115c3ad6",
+      "format_version": 1,
+      "title": "ACTION6 点击对象显示其可用跳跃方向",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "271a04aa",
+      "game_id": "lf52-271a04aa",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "点击一个可消除对象。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "对象成为当前选择；只有“相邻处有可越过对象且再下一格为空/目标格”的方向显示为可用。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:lf52-271a04aa:L2:jump:2173c76e2ef6",
+      "format_version": 1,
+      "title": "点击方向标记使选中对象跨越中间对象",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "271a04aa",
+      "game_id": "lf52-271a04aa",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "已选对象存在有效方向标记。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "对象移动到方向两倍距离的落点，中间的匹配对象被消除。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:lf52-271a04aa:L2:type_match:aeacf2b78849",
+      "format_version": 1,
+      "title": "同类型落点对象可被合并消除",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "271a04aa",
+      "game_id": "lf52-271a04aa",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "跳跃中点存在与移动对象同名对象。",
+      "action_sequence": [],
+      "expectation": "中点对象消失，移动对象到达落点；不同类型接触只播放反馈而不按同类消除。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:lf52-271a04aa:L2:world_events:31ea492d8b10",
+      "format_version": 1,
+      "title": "特定落点会触发平台移动或相机位移",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "271a04aa",
+      "game_id": "lf52-271a04aa",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "跳跃抵达关卡定义的机关坐标。",
+      "action_sequence": [],
+      "expectation": "对应棋盘整体或平台按固定方向平移，从而开放后续跳跃。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:lf52-271a04aa:L2:goal:d429982df9da",
+      "format_version": 1,
+      "title": "清除规定的全部目标对象时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "271a04aa",
+      "game_id": "lf52-271a04aa",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "一次跳跃完成。",
+      "action_sequence": [],
+      "expectation": "剩余普通目标对象达到关卡要求的终止数量（通常只剩最后一个）时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:lf52-271a04aa:L2:undo:961ffe2cb021",
+      "format_version": 1,
+      "title": "ACTION7 恢复上一内部快照",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "271a04aa",
+      "game_id": "lf52-271a04aa",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "构建版本启用撤销且存在快照。",
+      "action_sequence": [
+        {
+          "action": "ACTION7",
+          "arguments": {}
+        }
+      ],
+      "expectation": "恢复棋盘对象、选择和视野位置。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:lf52-271a04aa:L2:budget:a8ab93b47e68",
+      "format_version": 1,
+      "title": "不同关卡共享分段动作上限",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "271a04aa",
+      "game_id": "lf52-271a04aa",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "累计动作达到该关所属的上限且仍未完成。",
+      "action_sequence": [],
+      "expectation": "游戏进入 GAME_OVER。",
+      "constraints": [
+        "不记录各关具体动作数，只保留分段预算机制。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

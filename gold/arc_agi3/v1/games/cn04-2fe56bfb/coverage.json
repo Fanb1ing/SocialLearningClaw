@@ -1,0 +1,183 @@
+{
+  "format_version": 1,
+  "requirements": [
+    {
+      "requirement_id": "mechanism_marked",
+      "category": "observation_semantics",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:marked:07d2b06cb8ad"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_select",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:select:5135e788340f"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_move",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:move:cb8e80487941"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_rotate",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:rotate:578a1dea0bc0"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_cycle",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:cycle:d49a122d8a58"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_cancel",
+      "category": "state_transition",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:cancel:7278e585319d"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_goal",
+      "category": "goal",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:goal:2da6054fc7fa"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_1_goal",
+      "category": "goal",
+      "level_scope": [
+        1
+      ],
+      "schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:goal:2da6054fc7fa"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_2_goal",
+      "category": "goal",
+      "level_scope": [
+        2
+      ],
+      "schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:goal:2da6054fc7fa"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_3_goal",
+      "category": "goal",
+      "level_scope": [
+        3
+      ],
+      "schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:goal:2da6054fc7fa"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_4_goal",
+      "category": "goal",
+      "level_scope": [
+        4
+      ],
+      "schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:goal:2da6054fc7fa"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_5_goal",
+      "category": "goal",
+      "level_scope": [
+        5
+      ],
+      "schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:goal:2da6054fc7fa"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_6_goal",
+      "category": "goal",
+      "level_scope": [
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:goal:2da6054fc7fa"
+      ],
+      "status": "covered"
+    }
+  ]
+}

@@ -1,0 +1,483 @@
+{
+  "format_version": 1,
+  "created_date": "2026-08-06",
+  "benchmark": "arc_agi3",
+  "status": "full_batch_review_pending",
+  "games": [
+    {
+      "game_id": "ar25-0c556536",
+      "source": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+      "source_sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_count": 8,
+      "validation": "games/ar25-0c556536/validation.json",
+      "review": "games/ar25-0c556536/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "bp35-0a0ad940",
+      "source": "third_party/arc_agi3_games/bp35/0a0ad940/bp35.py",
+      "source_sha256": "e9aecb52c629c3e742276c2db04b81f91555051d8617b6cbc58bac410824867f",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "schema_count": 7,
+      "validation": "games/bp35-0a0ad940/validation.json",
+      "review": "games/bp35-0a0ad940/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "cd82-fb555c5d",
+      "source": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+      "source_sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_count": 18,
+      "validation": "games/cd82-fb555c5d/validation.json",
+      "review": "games/cd82-fb555c5d/review.md",
+      "review_status": "accepted_and_revised"
+    },
+    {
+      "game_id": "cn04-2fe56bfb",
+      "source": "third_party/arc_agi3_games/cn04/2fe56bfb/cn04.py",
+      "source_sha256": "29977e145a0374b5842d360507f045029c3f4b22373612152e713c14691e01dc",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_count": 7,
+      "validation": "games/cn04-2fe56bfb/validation.json",
+      "review": "games/cn04-2fe56bfb/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "dc22-fdcac232",
+      "source": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+      "source_sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_count": 9,
+      "validation": "games/dc22-fdcac232/validation.json",
+      "review": "games/dc22-fdcac232/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "ft09-0d8bbf25",
+      "source": "third_party/arc_agi3_games/ft09/0d8bbf25/ft09.py",
+      "source_sha256": "aa5b54f48a29da9f276c3df0dc04de728002f523384ab868c85d56d819cd0783",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_count": 6,
+      "validation": "games/ft09-0d8bbf25/validation.json",
+      "review": "games/ft09-0d8bbf25/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "g50t-5849a774",
+      "source": "third_party/arc_agi3_games/g50t/5849a774/g50t.py",
+      "source_sha256": "6f21f2065744e484ac38534f940158034e69f39add3b10a3d9fd258de7293aa9",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "schema_count": 7,
+      "validation": "games/g50t-5849a774/validation.json",
+      "review": "games/g50t-5849a774/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "ka59-38d34dbb",
+      "source": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+      "source_sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "schema_count": 8,
+      "validation": "games/ka59-38d34dbb/validation.json",
+      "review": "games/ka59-38d34dbb/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "lf52-271a04aa",
+      "source": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+      "source_sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "schema_count": 8,
+      "validation": "games/lf52-271a04aa/validation.json",
+      "review": "games/lf52-271a04aa/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "lp85-305b61c3",
+      "source": "third_party/arc_agi3_games/lp85/305b61c3/lp85.py",
+      "source_sha256": "7d10baec7dd29d07e574bd47ee1ec7912542a72632077a5446798221f41c4ae9",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_count": 5,
+      "validation": "games/lp85-305b61c3/validation.json",
+      "review": "games/lp85-305b61c3/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "ls20-9607627b",
+      "source": "third_party/arc_agi3_games/ls20/9607627b/ls20.py",
+      "source_sha256": "298c810da2850d557c95d92a2cbd846df29a45d7134e20888617bedf5dafcd92",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "schema_count": 7,
+      "validation": "games/ls20-9607627b/validation.json",
+      "review": "games/ls20-9607627b/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "m0r0-492f87ba",
+      "source": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+      "source_sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_count": 8,
+      "validation": "games/m0r0-492f87ba/validation.json",
+      "review": "games/m0r0-492f87ba/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "r11l-495a7899",
+      "source": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+      "source_sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_count": 8,
+      "validation": "games/r11l-495a7899/validation.json",
+      "review": "games/r11l-495a7899/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "re86-8af5384d",
+      "source": "third_party/arc_agi3_games/re86/8af5384d/re86.py",
+      "source_sha256": "cf3c1520e17f0b70e7a3cea0e680601a591befce306b4dd1926c735a7d3b65e8",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_count": 7,
+      "validation": "games/re86-8af5384d/validation.json",
+      "review": "games/re86-8af5384d/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "s5i5-18d95033",
+      "source": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+      "source_sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_count": 6,
+      "validation": "games/s5i5-18d95033/validation.json",
+      "review": "games/s5i5-18d95033/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "sb26-7fbdac44",
+      "source": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+      "source_sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_count": 7,
+      "validation": "games/sb26-7fbdac44/validation.json",
+      "review": "games/sb26-7fbdac44/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "sc25-635fd71a",
+      "source": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+      "source_sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_count": 9,
+      "validation": "games/sc25-635fd71a/validation.json",
+      "review": "games/sc25-635fd71a/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "sk48-d8078629",
+      "source": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+      "source_sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_count": 10,
+      "validation": "games/sk48-d8078629/validation.json",
+      "review": "games/sk48-d8078629/review.md",
+      "review_status": "accepted"
+    },
+    {
+      "game_id": "sp80-589a99af",
+      "source": "third_party/arc_agi3_games/sp80/589a99af/sp80.py",
+      "source_sha256": "2306d62311a3cc027250217d86cb4e012898edc7647a7c291ade23f36c9b9715",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_count": 7,
+      "validation": "games/sp80-589a99af/validation.json",
+      "review": "games/sp80-589a99af/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "su15-1944f8ab",
+      "source": "third_party/arc_agi3_games/su15/1944f8ab/su15.py",
+      "source_sha256": "a5f91f7c963d6ca6447dae0ab21342b48a3f511601c40dfa8e972bdc59b4651e",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "schema_count": 8,
+      "validation": "games/su15-1944f8ab/validation.json",
+      "review": "games/su15-1944f8ab/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "tn36-ef4dde99",
+      "source": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+      "source_sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "schema_count": 8,
+      "validation": "games/tn36-ef4dde99/validation.json",
+      "review": "games/tn36-ef4dde99/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "tr87-cd924810",
+      "source": "third_party/arc_agi3_games/tr87/cd924810/tr87.py",
+      "source_sha256": "3274657a6499af5c7a52390d58a5c5441497ed70b84388e418fdfa6c9601e305",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_count": 7,
+      "validation": "games/tr87-cd924810/validation.json",
+      "review": "games/tr87-cd924810/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "tu93-0768757b",
+      "source": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+      "source_sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "schema_count": 9,
+      "validation": "games/tu93-0768757b/validation.json",
+      "review": "games/tu93-0768757b/review.md",
+      "review_status": "accepted"
+    },
+    {
+      "game_id": "vc33-5430563c",
+      "source": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+      "source_sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "schema_count": 7,
+      "validation": "games/vc33-5430563c/validation.json",
+      "review": "games/vc33-5430563c/review.md",
+      "review_status": "pending"
+    },
+    {
+      "game_id": "wa30-ee6fef47",
+      "source": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+      "source_sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+      "levels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "schema_count": 7,
+      "validation": "games/wa30-ee6fef47/validation.json",
+      "review": "games/wa30-ee6fef47/review.md",
+      "review_status": "pending"
+    }
+  ],
+  "totals": {
+    "games": 25,
+    "levels": 183,
+    "schemas": 198
+  },
+  "cross_game": {
+    "status": "provisional",
+    "schema_count": 15,
+    "level_counts": {
+      "0": 3,
+      "1": 12
+    },
+    "covered_game_count": 25,
+    "schemas": "cross_game/schemas.json",
+    "validation": "cross_game/validation.json",
+    "review": "cross_game/review.md"
+  }
+}

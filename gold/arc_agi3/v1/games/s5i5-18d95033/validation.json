@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "source_sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+  "schema_count": 6,
+  "runtime_case_count": 1,
+  "runtime_passed": 1,
+  "coverage_requirement_count": 14,
+  "coverage_complete": true,
+  "goal_levels_covered": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "errors": []
+}

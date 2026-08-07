@@ -1,0 +1,2461 @@
+{
+  "format_version": 1,
+  "status": "provisional",
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:cross_game:L0:conditional_operator_system:fbb112e84315",
+      "format_version": 1,
+      "title": "交互环境由带前置条件的状态变换算子组成",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "ar25-0c556536",
+        "bp35-0a0ad940",
+        "cd82-fb555c5d",
+        "cn04-2fe56bfb",
+        "dc22-fdcac232",
+        "g50t-5849a774",
+        "ka59-38d34dbb",
+        "lf52-271a04aa",
+        "ls20-9607627b",
+        "m0r0-492f87ba",
+        "r11l-495a7899",
+        "sb26-7fbdac44",
+        "sc25-635fd71a",
+        "sk48-d8078629",
+        "sp80-589a99af",
+        "tn36-ef4dde99",
+        "tr87-cd924810",
+        "tu93-0768757b",
+        "vc33-5430563c",
+        "wa30-ee6fef47"
+      ],
+      "level_scope": [],
+      "abstraction_level": 0,
+      "kind": "state_transition",
+      "trigger": "Agent 选择对象、参数或动作并提交操作。",
+      "action_sequence": [],
+      "expectation": "环境检查适用条件，执行算子并保持未被作用域覆盖的状态；不满足条件时拒绝、阻挡或采用成员定义的替代效果。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [],
+        "members": [
+          "arc_agi3:cross_game:L1:cardinal_motion:742d6cc6e121",
+          "arc_agi3:cross_game:L1:active_entity_selection:4433c8171f36",
+          "arc_agi3:cross_game:L1:operator_selection:8b34ee0911ff",
+          "arc_agi3:cross_game:L1:structured_interpretation:1218b72d6ede",
+          "arc_agi3:cross_game:L1:world_state_switch:26f39c92ae5e"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:cross_game:L1:cardinal_motion:742d6cc6e121",
+        "arc_agi3:cross_game:L1:active_entity_selection:4433c8171f36",
+        "arc_agi3:cross_game:L1:operator_selection:8b34ee0911ff",
+        "arc_agi3:cross_game:L1:structured_interpretation:1218b72d6ede",
+        "arc_agi3:cross_game:L1:world_state_switch:26f39c92ae5e"
+      ],
+      "member_review_status": {
+        "ar25-0c556536": "pending",
+        "bp35-0a0ad940": "pending",
+        "cd82-fb555c5d": "accepted_and_revised",
+        "cn04-2fe56bfb": "pending",
+        "dc22-fdcac232": "pending",
+        "g50t-5849a774": "pending",
+        "ka59-38d34dbb": "pending",
+        "lf52-271a04aa": "pending",
+        "ls20-9607627b": "pending",
+        "m0r0-492f87ba": "pending",
+        "r11l-495a7899": "pending",
+        "sb26-7fbdac44": "pending",
+        "sc25-635fd71a": "pending",
+        "sk48-d8078629": "accepted",
+        "sp80-589a99af": "pending",
+        "tn36-ef4dde99": "pending",
+        "tr87-cd924810": "pending",
+        "tu93-0768757b": "accepted",
+        "vc33-5430563c": "pending",
+        "wa30-ee6fef47": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/cn04/2fe56bfb/cn04.py",
+          "sha256": "29977e145a0374b5842d360507f045029c3f4b22373612152e713c14691e01dc",
+          "symbol": "Cn04 selection, overlap cancellation and completion",
+          "lines": [
+            833,
+            1131
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/g50t/5849a774/g50t.py",
+          "sha256": "6f21f2065744e484ac38534f940158034e69f39add3b10a3d9fd258de7293aa9",
+          "symbol": "qxlodtievc path recording, actors, rewind and completion",
+          "lines": [
+            2494,
+            2855
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ls20/9607627b/ls20.py",
+          "sha256": "298c810da2850d557c95d92a2cbd846df29a45d7134e20888617bedf5dafcd92",
+          "symbol": "Ls20 movement, modifiers, targets, hazards and completion",
+          "lines": [
+            1765,
+            2060
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sp80/589a99af/sp80.py",
+          "sha256": "2306d62311a3cc027250217d86cb4e012898edc7647a7c291ade23f36c9b9715",
+          "symbol": "Sp80 selection, vessel movement, fluid simulation and goal",
+          "lines": [
+            454,
+            868
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step / Tu93.erkaicaqdh",
+          "lines": [
+            1007,
+            1011
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step",
+          "lines": [
+            1194,
+            1250
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.step / Sk48.crbbymputr",
+          "lines": [
+            746,
+            755
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.crbbymputr",
+          "lines": [
+            818,
+            840
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.qbiojckwxl",
+          "lines": [
+            551,
+            572
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+          "sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+          "symbol": "dimsufvezo commands, ytkjoffamq runner and Tn36 adapter",
+          "lines": [
+            2129,
+            2647
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+          "sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3",
+          "symbol": "Sb26 editing, recursive evaluation, undo and energy",
+          "lines": [
+            712,
+            1146
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tr87/cd924810/tr87.py",
+          "sha256": "3274657a6499af5c7a52390d58a5c5441497ed70b84388e418fdfa6c9601e305",
+          "symbol": "Tr87 rule selection, symbol cycling and translation matcher",
+          "lines": [
+            901,
+            1121
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/bp35/0a0ad940/bp35.py",
+          "sha256": "e9aecb52c629c3e742276c2db04b81f91555051d8617b6cbc58bac410824867f",
+          "symbol": "uakietkqfso mechanics and Bp35 action adapter",
+          "lines": [
+            4032,
+            4565
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+          "sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd",
+          "symbol": "Vc33 gravity-axis transfer, swap and color-routing goal",
+          "lines": [
+            1829,
+            2124
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L0:relational_state_system:432ea3291374",
+      "format_version": 1,
+      "title": "局部操作可通过对象关系图产生非局部状态变化",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "cn04-2fe56bfb",
+        "dc22-fdcac232",
+        "g50t-5849a774",
+        "ka59-38d34dbb",
+        "lf52-271a04aa",
+        "lp85-305b61c3",
+        "m0r0-492f87ba",
+        "r11l-495a7899",
+        "s5i5-18d95033",
+        "sk48-d8078629",
+        "sp80-589a99af",
+        "su15-1944f8ab",
+        "tu93-0768757b",
+        "wa30-ee6fef47"
+      ],
+      "level_scope": [],
+      "abstraction_level": 0,
+      "kind": "state_transition",
+      "trigger": "被操作对象连接到其他对象，或世界含会随时间更新的自主对象。",
+      "action_sequence": [],
+      "expectation": "变化沿关系边传播、被原子约束整体接受/拒绝，或触发匹配归约和自主更新。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [],
+        "members": [
+          "arc_agi3:cross_game:L1:relational_propagation:02fce890e342",
+          "arc_agi3:cross_game:L1:atomic_rejection:bf6396d2ac34",
+          "arc_agi3:cross_game:L1:autonomous_after_action:57bea6cef91f",
+          "arc_agi3:cross_game:L1:matching_contact_reduction:5d55a9a4701a"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:cross_game:L1:relational_propagation:02fce890e342",
+        "arc_agi3:cross_game:L1:atomic_rejection:bf6396d2ac34",
+        "arc_agi3:cross_game:L1:autonomous_after_action:57bea6cef91f",
+        "arc_agi3:cross_game:L1:matching_contact_reduction:5d55a9a4701a"
+      ],
+      "member_review_status": {
+        "cn04-2fe56bfb": "pending",
+        "dc22-fdcac232": "pending",
+        "g50t-5849a774": "pending",
+        "ka59-38d34dbb": "pending",
+        "lf52-271a04aa": "pending",
+        "lp85-305b61c3": "pending",
+        "m0r0-492f87ba": "pending",
+        "r11l-495a7899": "pending",
+        "s5i5-18d95033": "pending",
+        "sk48-d8078629": "accepted",
+        "sp80-589a99af": "pending",
+        "su15-1944f8ab": "pending",
+        "tu93-0768757b": "accepted",
+        "wa30-ee6fef47": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lp85/305b61c3/lp85.py",
+          "sha256": "7d10baec7dd29d07e574bd47ee1ec7912542a72632077a5446798221f41c4ae9",
+          "symbol": "Lp85 button-linked movement and typed goals",
+          "lines": [
+            21339,
+            21451
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+          "sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+          "symbol": "S5i5 group rotation, resizing, collision rollback and goal",
+          "lines": [
+            2026,
+            2247
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.bnrdrdiakd / Sk48.qzvlbxkjgk",
+          "lines": [
+            893,
+            971
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sp80/589a99af/sp80.py",
+          "sha256": "2306d62311a3cc027250217d86cb4e012898edc7647a7c291ade23f36c9b9715",
+          "symbol": "Sp80 selection, vessel movement, fluid simulation and goal",
+          "lines": [
+            454,
+            868
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/g50t/5849a774/g50t.py",
+          "sha256": "6f21f2065744e484ac38534f940158034e69f39add3b10a3d9fd258de7293aa9",
+          "symbol": "qxlodtievc path recording, actors, rewind and completion",
+          "lines": [
+            2494,
+            2855
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/su15/1944f8ab/su15.py",
+          "sha256": "a5f91f7c963d6ca6447dae0ab21342b48a3f511601c40dfa8e972bdc59b4651e",
+          "symbol": "Su15 radial pulse, merging, enemies, zones, undo and completion",
+          "lines": [
+            907,
+            2165
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.itwvxwpzyb / Tu93.rgwzxyjuqc",
+          "lines": [
+            1110,
+            1152
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.ixnhjkzwic / Tu93.bwlnieccpx",
+          "lines": [
+            1090,
+            1109
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.gmwsemdsae / Tu93.step",
+          "lines": [
+            1171,
+            1183
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step",
+          "lines": [
+            1202,
+            1250
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/cn04/2fe56bfb/cn04.py",
+          "sha256": "29977e145a0374b5842d360507f045029c3f4b22373612152e713c14691e01dc",
+          "symbol": "Cn04 selection, overlap cancellation and completion",
+          "lines": [
+            833,
+            1131
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L0:bounded_goal_directed_system:18558b8ec297",
+      "format_version": 1,
+      "title": "规划是在有限资源内满足复合目标，并可利用有限恢复操作",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "ar25-0c556536",
+        "bp35-0a0ad940",
+        "cd82-fb555c5d",
+        "cn04-2fe56bfb",
+        "dc22-fdcac232",
+        "ft09-0d8bbf25",
+        "ka59-38d34dbb",
+        "lf52-271a04aa",
+        "lp85-305b61c3",
+        "ls20-9607627b",
+        "m0r0-492f87ba",
+        "r11l-495a7899",
+        "re86-8af5384d",
+        "s5i5-18d95033",
+        "sb26-7fbdac44",
+        "sc25-635fd71a",
+        "sk48-d8078629",
+        "sp80-589a99af",
+        "su15-1944f8ab",
+        "tn36-ef4dde99",
+        "tu93-0768757b",
+        "vc33-5430563c",
+        "wa30-ee6fef47"
+      ],
+      "level_scope": [],
+      "abstraction_level": 0,
+      "kind": "goal",
+      "trigger": "当前状态尚未满足全部目标且仍有可用操作资源。",
+      "action_sequence": [],
+      "expectation": "Agent 必须在失败边界前使全部必要目标谓词成立；撤销等恢复算子可修正状态，但不保证返还资源。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [],
+        "members": [
+          "arc_agi3:cross_game:L1:conjunctive_goal:1bfaaecd364b",
+          "arc_agi3:cross_game:L1:finite_resource_failure:ac89bb5b7e8a",
+          "arc_agi3:cross_game:L1:snapshot_undo:fb665918a768"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:cross_game:L1:conjunctive_goal:1bfaaecd364b",
+        "arc_agi3:cross_game:L1:finite_resource_failure:ac89bb5b7e8a",
+        "arc_agi3:cross_game:L1:snapshot_undo:fb665918a768"
+      ],
+      "member_review_status": {
+        "ar25-0c556536": "pending",
+        "bp35-0a0ad940": "pending",
+        "cd82-fb555c5d": "accepted_and_revised",
+        "cn04-2fe56bfb": "pending",
+        "dc22-fdcac232": "pending",
+        "ft09-0d8bbf25": "pending",
+        "ka59-38d34dbb": "pending",
+        "lf52-271a04aa": "pending",
+        "lp85-305b61c3": "pending",
+        "ls20-9607627b": "pending",
+        "m0r0-492f87ba": "pending",
+        "r11l-495a7899": "pending",
+        "re86-8af5384d": "pending",
+        "s5i5-18d95033": "pending",
+        "sb26-7fbdac44": "pending",
+        "sc25-635fd71a": "pending",
+        "sk48-d8078629": "accepted",
+        "sp80-589a99af": "pending",
+        "su15-1944f8ab": "pending",
+        "tn36-ef4dde99": "pending",
+        "tu93-0768757b": "accepted",
+        "vc33-5430563c": "pending",
+        "wa30-ee6fef47": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/cn04/2fe56bfb/cn04.py",
+          "sha256": "29977e145a0374b5842d360507f045029c3f4b22373612152e713c14691e01dc",
+          "symbol": "Cn04 selection, overlap cancellation and completion",
+          "lines": [
+            833,
+            1131
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ft09/0d8bbf25/ft09.py",
+          "sha256": "aa5b54f48a29da9f276c3df0dc04de728002f523384ab868c85d56d819cd0783",
+          "symbol": "Ft09 toggle masks, clue constraints and goal",
+          "lines": [
+            2301,
+            2520
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lp85/305b61c3/lp85.py",
+          "sha256": "7d10baec7dd29d07e574bd47ee1ec7912542a72632077a5446798221f41c4ae9",
+          "symbol": "Lp85 button-linked movement and typed goals",
+          "lines": [
+            21339,
+            21451
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ls20/9607627b/ls20.py",
+          "sha256": "298c810da2850d557c95d92a2cbd846df29a45d7134e20888617bedf5dafcd92",
+          "symbol": "Ls20 movement, modifiers, targets, hazards and completion",
+          "lines": [
+            1765,
+            2060
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/re86/8af5384d/re86.py",
+          "sha256": "cf3c1520e17f0b70e7a3cea0e680601a591befce306b4dd1926c735a7d3b65e8",
+          "symbol": "Re86 active shape, deformation, composite target and goal",
+          "lines": [
+            1864,
+            2158
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+          "sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+          "symbol": "S5i5 group rotation, resizing, collision rollback and goal",
+          "lines": [
+            2026,
+            2247
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/su15/1944f8ab/su15.py",
+          "sha256": "a5f91f7c963d6ca6447dae0ab21342b48a3f511601c40dfa8e972bdc59b4651e",
+          "symbol": "Su15 radial pulse, merging, enemies, zones, undo and completion",
+          "lines": [
+            907,
+            2165
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+          "sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+          "symbol": "dimsufvezo commands, ytkjoffamq runner and Tn36 adapter",
+          "lines": [
+            2129,
+            2647
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+          "sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd",
+          "symbol": "Vc33 gravity-axis transfer, swap and color-routing goal",
+          "lines": [
+            1829,
+            2124
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.step",
+          "lines": [
+            630,
+            635
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+          "sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3",
+          "symbol": "Sb26 editing, recursive evaluation, undo and energy",
+          "lines": [
+            712,
+            1146
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.hgivzuhjvj / Sk48.step",
+          "lines": [
+            768,
+            770
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.step",
+          "lines": [
+            740,
+            765
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sp80/589a99af/sp80.py",
+          "sha256": "2306d62311a3cc027250217d86cb4e012898edc7647a7c291ade23f36c9b9715",
+          "symbol": "Sp80 selection, vessel movement, fluid simulation and goal",
+          "lines": [
+            454,
+            868
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "eytqjghipl.rndwkomrip / Tu93.step",
+          "lines": [
+            963,
+            968
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step",
+          "lines": [
+            1194,
+            1272
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/bp35/0a0ad940/bp35.py",
+          "sha256": "e9aecb52c629c3e742276c2db04b81f91555051d8617b6cbc58bac410824867f",
+          "symbol": "uakietkqfso mechanics and Bp35 action adapter",
+          "lines": [
+            4032,
+            4565
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.uqclctlhyh",
+          "lines": [
+            870,
+            891
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L1:cardinal_motion:742d6cc6e121",
+      "format_version": 1,
+      "title": "四向输入提出受可通行条件约束的空间移动",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "ar25-0c556536",
+        "cn04-2fe56bfb",
+        "dc22-fdcac232",
+        "g50t-5849a774",
+        "ls20-9607627b",
+        "sc25-635fd71a",
+        "sp80-589a99af",
+        "tu93-0768757b",
+        "wa30-ee6fef47"
+      ],
+      "level_scope": [],
+      "abstraction_level": 1,
+      "kind": "action_effect",
+      "trigger": "可控主体收到上、下、左或右的方向请求。",
+      "action_sequence": [],
+      "expectation": "若游戏特定的边界、通路和碰撞条件允许，主体沿该方向移动；否则主体不穿透阻挡。",
+      "constraints": [
+        "阻挡只保证不发生非法穿透；输入仍可能消耗预算或推进自主单位。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [
+          "arc_agi3:cross_game:L0:conditional_operator_system:fbb112e84315"
+        ],
+        "requires": [],
+        "members": [
+          "arc_agi3:ar25-0c556536:L2:move:285527377c31",
+          "arc_agi3:cn04-2fe56bfb:L2:move:cb8e80487941",
+          "arc_agi3:dc22-fdcac232:L2:walk:28f5d4514b2a",
+          "arc_agi3:g50t-5849a774:L2:move:a2175cf4b860",
+          "arc_agi3:ls20-9607627b:L2:move:df258f517a95",
+          "arc_agi3:sc25-635fd71a:L2:move:0bb2e002b321",
+          "arc_agi3:sp80-589a99af:L2:move:051907ac7aee",
+          "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+          "arc_agi3:wa30-ee6fef47:L2:move:77e1e438bd3b"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:ar25-0c556536:L2:move:285527377c31",
+        "arc_agi3:cn04-2fe56bfb:L2:move:cb8e80487941",
+        "arc_agi3:dc22-fdcac232:L2:walk:28f5d4514b2a",
+        "arc_agi3:g50t-5849a774:L2:move:a2175cf4b860",
+        "arc_agi3:ls20-9607627b:L2:move:df258f517a95",
+        "arc_agi3:sc25-635fd71a:L2:move:0bb2e002b321",
+        "arc_agi3:sp80-589a99af:L2:move:051907ac7aee",
+        "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+        "arc_agi3:wa30-ee6fef47:L2:move:77e1e438bd3b"
+      ],
+      "member_review_status": {
+        "ar25-0c556536": "pending",
+        "cn04-2fe56bfb": "pending",
+        "dc22-fdcac232": "pending",
+        "g50t-5849a774": "pending",
+        "ls20-9607627b": "pending",
+        "sc25-635fd71a": "pending",
+        "sp80-589a99af": "pending",
+        "tu93-0768757b": "accepted",
+        "wa30-ee6fef47": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/cn04/2fe56bfb/cn04.py",
+          "sha256": "29977e145a0374b5842d360507f045029c3f4b22373612152e713c14691e01dc",
+          "symbol": "Cn04 selection, overlap cancellation and completion",
+          "lines": [
+            833,
+            1131
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/g50t/5849a774/g50t.py",
+          "sha256": "6f21f2065744e484ac38534f940158034e69f39add3b10a3d9fd258de7293aa9",
+          "symbol": "qxlodtievc path recording, actors, rewind and completion",
+          "lines": [
+            2494,
+            2855
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ls20/9607627b/ls20.py",
+          "sha256": "298c810da2850d557c95d92a2cbd846df29a45d7134e20888617bedf5dafcd92",
+          "symbol": "Ls20 movement, modifiers, targets, hazards and completion",
+          "lines": [
+            1765,
+            2060
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sp80/589a99af/sp80.py",
+          "sha256": "2306d62311a3cc027250217d86cb4e012898edc7647a7c291ade23f36c9b9715",
+          "symbol": "Sp80 selection, vessel movement, fluid simulation and goal",
+          "lines": [
+            454,
+            868
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step / Tu93.erkaicaqdh",
+          "lines": [
+            1007,
+            1011
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step",
+          "lines": [
+            1194,
+            1250
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L1:active_entity_selection:4433c8171f36",
+      "format_version": 1,
+      "title": "点击选择决定后续操作作用的活动实体",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "ar25-0c556536",
+        "cn04-2fe56bfb",
+        "ka59-38d34dbb",
+        "lf52-271a04aa",
+        "r11l-495a7899",
+        "sk48-d8078629",
+        "sp80-589a99af"
+      ],
+      "level_scope": [],
+      "abstraction_level": 1,
+      "kind": "action_effect",
+      "trigger": "点击命中多个可控实体之一。",
+      "action_sequence": [],
+      "expectation": "被点击实体成为活动对象；后续移动、旋转、拖动或交互仅作用于它或它代表的关系组。",
+      "constraints": [
+        "选择本身通常不等同于完成实体的后续操作。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [
+          "arc_agi3:cross_game:L0:conditional_operator_system:fbb112e84315"
+        ],
+        "requires": [],
+        "members": [
+          "arc_agi3:ar25-0c556536:L2:select:48617bfbd2d5",
+          "arc_agi3:cn04-2fe56bfb:L2:select:5135e788340f",
+          "arc_agi3:ka59-38d34dbb:L2:select:2a10e842156e",
+          "arc_agi3:lf52-271a04aa:L2:select:736b115c3ad6",
+          "arc_agi3:r11l-495a7899:L2:select:cd80bc69823d",
+          "arc_agi3:sk48-d8078629:L2:select_chain:871966b91bae",
+          "arc_agi3:sp80-589a99af:L2:select:21a1fbd8062c"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:ar25-0c556536:L2:select:48617bfbd2d5",
+        "arc_agi3:cn04-2fe56bfb:L2:select:5135e788340f",
+        "arc_agi3:ka59-38d34dbb:L2:select:2a10e842156e",
+        "arc_agi3:lf52-271a04aa:L2:select:736b115c3ad6",
+        "arc_agi3:r11l-495a7899:L2:select:cd80bc69823d",
+        "arc_agi3:sk48-d8078629:L2:select_chain:871966b91bae",
+        "arc_agi3:sp80-589a99af:L2:select:21a1fbd8062c"
+      ],
+      "member_review_status": {
+        "ar25-0c556536": "pending",
+        "cn04-2fe56bfb": "pending",
+        "ka59-38d34dbb": "pending",
+        "lf52-271a04aa": "pending",
+        "r11l-495a7899": "pending",
+        "sk48-d8078629": "accepted",
+        "sp80-589a99af": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/cn04/2fe56bfb/cn04.py",
+          "sha256": "29977e145a0374b5842d360507f045029c3f4b22373612152e713c14691e01dc",
+          "symbol": "Cn04 selection, overlap cancellation and completion",
+          "lines": [
+            833,
+            1131
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.step / Sk48.crbbymputr",
+          "lines": [
+            746,
+            755
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.crbbymputr",
+          "lines": [
+            818,
+            840
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sp80/589a99af/sp80.py",
+          "sha256": "2306d62311a3cc027250217d86cb4e012898edc7647a7c291ade23f36c9b9715",
+          "symbol": "Sp80 selection, vessel movement, fluid simulation and goal",
+          "lines": [
+            454,
+            868
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L1:operator_selection:8b34ee0911ff",
+      "format_version": 1,
+      "title": "先选择操作参数或程序，再执行后续状态变换",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "cd82-fb555c5d",
+        "sc25-635fd71a",
+        "tn36-ef4dde99"
+      ],
+      "level_scope": [],
+      "abstraction_level": 1,
+      "kind": "state_transition",
+      "trigger": "界面提供颜色、法术或程序等多个可选操作模式。",
+      "action_sequence": [],
+      "expectation": "选择只更新当前参数/程序；随后的绘制、输入或运行使用该选择解释动作。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [
+          "arc_agi3:cross_game:L0:conditional_operator_system:fbb112e84315"
+        ],
+        "requires": [],
+        "members": [
+          "arc_agi3:cd82-fb555c5d:L2:palette_select:5238b6b05cf7",
+          "arc_agi3:sc25-635fd71a:L2:select_spell:c467256f6aef",
+          "arc_agi3:tn36-ef4dde99:L2:programs:de3fbc93ef6b"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:palette_select:5238b6b05cf7",
+        "arc_agi3:sc25-635fd71a:L2:select_spell:c467256f6aef",
+        "arc_agi3:tn36-ef4dde99:L2:programs:de3fbc93ef6b"
+      ],
+      "member_review_status": {
+        "cd82-fb555c5d": "accepted_and_revised",
+        "sc25-635fd71a": "pending",
+        "tn36-ef4dde99": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.qbiojckwxl",
+          "lines": [
+            551,
+            572
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+          "sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+          "symbol": "dimsufvezo commands, ytkjoffamq runner and Tn36 adapter",
+          "lines": [
+            2129,
+            2647
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L1:relational_propagation:02fce890e342",
+      "format_version": 1,
+      "title": "对象变换沿推挤、附着、层级或分组关系传播",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "dc22-fdcac232",
+        "ka59-38d34dbb",
+        "lp85-305b61c3",
+        "s5i5-18d95033",
+        "sk48-d8078629",
+        "wa30-ee6fef47"
+      ],
+      "level_scope": [],
+      "abstraction_level": 1,
+      "kind": "state_transition",
+      "trigger": "被操作对象与其他对象存在显式关系边。",
+      "action_sequence": [],
+      "expectation": "根对象的位移或变换传播到关系可达对象；传播规则由推挤、携带、父子或同组关系的类型决定。",
+      "constraints": [
+        "跨游戏节点只抽象传播结构，不假定各游戏的位移尺度相同。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [
+          "arc_agi3:cross_game:L0:relational_state_system:432ea3291374"
+        ],
+        "requires": [],
+        "members": [
+          "arc_agi3:dc22-fdcac232:L2:crane_move:05e3c4a82043",
+          "arc_agi3:ka59-38d34dbb:L2:push:c0204bb8aa20",
+          "arc_agi3:lp85-305b61c3:L2:linked:3f450519bf04",
+          "arc_agi3:s5i5-18d95033:L2:hierarchy:39630e6b42d8",
+          "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+          "arc_agi3:wa30-ee6fef47:L2:coupled:2bc9ae88117b"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:dc22-fdcac232:L2:crane_move:05e3c4a82043",
+        "arc_agi3:ka59-38d34dbb:L2:push:c0204bb8aa20",
+        "arc_agi3:lp85-305b61c3:L2:linked:3f450519bf04",
+        "arc_agi3:s5i5-18d95033:L2:hierarchy:39630e6b42d8",
+        "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+        "arc_agi3:wa30-ee6fef47:L2:coupled:2bc9ae88117b"
+      ],
+      "member_review_status": {
+        "dc22-fdcac232": "pending",
+        "ka59-38d34dbb": "pending",
+        "lp85-305b61c3": "pending",
+        "s5i5-18d95033": "pending",
+        "sk48-d8078629": "accepted",
+        "wa30-ee6fef47": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lp85/305b61c3/lp85.py",
+          "sha256": "7d10baec7dd29d07e574bd47ee1ec7912542a72632077a5446798221f41c4ae9",
+          "symbol": "Lp85 button-linked movement and typed goals",
+          "lines": [
+            21339,
+            21451
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+          "sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+          "symbol": "S5i5 group rotation, resizing, collision rollback and goal",
+          "lines": [
+            2026,
+            2247
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.bnrdrdiakd / Sk48.qzvlbxkjgk",
+          "lines": [
+            893,
+            971
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L1:atomic_rejection:bf6396d2ac34",
+      "format_version": 1,
+      "title": "非法复合变换不留下部分成功的中间状态",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "ka59-38d34dbb",
+        "lp85-305b61c3",
+        "r11l-495a7899",
+        "s5i5-18d95033",
+        "sk48-d8078629",
+        "sp80-589a99af"
+      ],
+      "level_scope": [],
+      "abstraction_level": 1,
+      "kind": "constraint",
+      "trigger": "一次操作需要同时更新一个对象集合，且集合中至少一个结果非法。",
+      "action_sequence": [],
+      "expectation": "整次操作被阻止或回滚到快照，使对象集合不保留只完成一部分的位移/变换。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [
+          "arc_agi3:cross_game:L0:relational_state_system:432ea3291374"
+        ],
+        "requires": [],
+        "members": [
+          "arc_agi3:ka59-38d34dbb:L2:push:c0204bb8aa20",
+          "arc_agi3:lp85-305b61c3:L2:collision:f51289a91db8",
+          "arc_agi3:r11l-495a7899:L2:wall:e32566810f39",
+          "arc_agi3:s5i5-18d95033:L2:rollback:dab2218f06e8",
+          "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+          "arc_agi3:sp80-589a99af:L2:move:051907ac7aee"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:push:c0204bb8aa20",
+        "arc_agi3:lp85-305b61c3:L2:collision:f51289a91db8",
+        "arc_agi3:r11l-495a7899:L2:wall:e32566810f39",
+        "arc_agi3:s5i5-18d95033:L2:rollback:dab2218f06e8",
+        "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+        "arc_agi3:sp80-589a99af:L2:move:051907ac7aee"
+      ],
+      "member_review_status": {
+        "ka59-38d34dbb": "pending",
+        "lp85-305b61c3": "pending",
+        "r11l-495a7899": "pending",
+        "s5i5-18d95033": "pending",
+        "sk48-d8078629": "accepted",
+        "sp80-589a99af": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lp85/305b61c3/lp85.py",
+          "sha256": "7d10baec7dd29d07e574bd47ee1ec7912542a72632077a5446798221f41c4ae9",
+          "symbol": "Lp85 button-linked movement and typed goals",
+          "lines": [
+            21339,
+            21451
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+          "sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+          "symbol": "S5i5 group rotation, resizing, collision rollback and goal",
+          "lines": [
+            2026,
+            2247
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.bnrdrdiakd / Sk48.qzvlbxkjgk",
+          "lines": [
+            893,
+            971
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sp80/589a99af/sp80.py",
+          "sha256": "2306d62311a3cc027250217d86cb4e012898edc7647a7c291ade23f36c9b9715",
+          "symbol": "Sp80 selection, vessel movement, fluid simulation and goal",
+          "lines": [
+            454,
+            868
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L1:snapshot_undo:fb665918a768",
+      "format_version": 1,
+      "title": "撤销从最近快照恢复可逆状态",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "ar25-0c556536",
+        "bp35-0a0ad940",
+        "lf52-271a04aa",
+        "sb26-7fbdac44",
+        "sk48-d8078629",
+        "su15-1944f8ab"
+      ],
+      "level_scope": [],
+      "abstraction_level": 1,
+      "kind": "action_effect",
+      "trigger": "存在至少一个可撤销的历史快照。",
+      "action_sequence": [],
+      "expectation": "撤销恢复快照记录的对象位置、形态或世界状态；是否返还动作资源由具体游戏决定。",
+      "constraints": [
+        "不能从“棋盘恢复”推断“预算恢复”；例如 SK48 明确不返还预算。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [
+          "arc_agi3:cross_game:L0:bounded_goal_directed_system:18558b8ec297"
+        ],
+        "requires": [],
+        "members": [
+          "arc_agi3:ar25-0c556536:L2:undo:fab14628c517",
+          "arc_agi3:bp35-0a0ad940:L2:undo:e0bde4868ffe",
+          "arc_agi3:lf52-271a04aa:L2:undo:961ffe2cb021",
+          "arc_agi3:sb26-7fbdac44:L2:undo_energy:333bf4fb79b9",
+          "arc_agi3:sk48-d8078629:L2:undo_move:9482c4b0402a",
+          "arc_agi3:su15-1944f8ab:L2:undo:40a7d15030eb"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:ar25-0c556536:L2:undo:fab14628c517",
+        "arc_agi3:bp35-0a0ad940:L2:undo:e0bde4868ffe",
+        "arc_agi3:lf52-271a04aa:L2:undo:961ffe2cb021",
+        "arc_agi3:sb26-7fbdac44:L2:undo_energy:333bf4fb79b9",
+        "arc_agi3:sk48-d8078629:L2:undo_move:9482c4b0402a",
+        "arc_agi3:su15-1944f8ab:L2:undo:40a7d15030eb"
+      ],
+      "member_review_status": {
+        "ar25-0c556536": "pending",
+        "bp35-0a0ad940": "pending",
+        "lf52-271a04aa": "pending",
+        "sb26-7fbdac44": "pending",
+        "sk48-d8078629": "accepted",
+        "su15-1944f8ab": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/bp35/0a0ad940/bp35.py",
+          "sha256": "e9aecb52c629c3e742276c2db04b81f91555051d8617b6cbc58bac410824867f",
+          "symbol": "uakietkqfso mechanics and Bp35 action adapter",
+          "lines": [
+            4032,
+            4565
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+          "sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3",
+          "symbol": "Sb26 editing, recursive evaluation, undo and energy",
+          "lines": [
+            712,
+            1146
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.uqclctlhyh",
+          "lines": [
+            870,
+            891
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/su15/1944f8ab/su15.py",
+          "sha256": "a5f91f7c963d6ca6447dae0ab21342b48a3f511601c40dfa8e972bdc59b4651e",
+          "symbol": "Su15 radial pulse, merging, enemies, zones, undo and completion",
+          "lines": [
+            907,
+            2165
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L1:autonomous_after_action:57bea6cef91f",
+      "format_version": 1,
+      "title": "玩家操作会推进自主单位的策略更新",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "g50t-5849a774",
+        "ka59-38d34dbb",
+        "su15-1944f8ab",
+        "tu93-0768757b",
+        "wa30-ee6fef47"
+      ],
+      "level_scope": [],
+      "abstraction_level": 1,
+      "kind": "state_transition",
+      "trigger": "玩家完成一个会推进世界时间的操作。",
+      "action_sequence": [],
+      "expectation": "自主单位根据朝向、目标、距离或记录历史选择并执行自己的状态转移。",
+      "constraints": [
+        "不同自主单位的策略保持为具体成员 Schema，不在跨游戏层合并成同一策略。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [
+          "arc_agi3:cross_game:L0:relational_state_system:432ea3291374"
+        ],
+        "requires": [],
+        "members": [
+          "arc_agi3:g50t-5849a774:L2:autonomous:2ffab58a0e90",
+          "arc_agi3:ka59-38d34dbb:L2:enemy:356da40a98c5",
+          "arc_agi3:su15-1944f8ab:L2:enemy:8e47fcdbc109",
+          "arc_agi3:tu93-0768757b:L2:cyan_patrol:3a347f143336",
+          "arc_agi3:tu93-0768757b:L2:orange_chaser:e788d7d629b0",
+          "arc_agi3:tu93-0768757b:L2:magenta_delayed_follower:fc4b79b0c965",
+          "arc_agi3:wa30-ee6fef47:L2:autonomous:0ff32d642ec4"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:g50t-5849a774:L2:autonomous:2ffab58a0e90",
+        "arc_agi3:ka59-38d34dbb:L2:enemy:356da40a98c5",
+        "arc_agi3:su15-1944f8ab:L2:enemy:8e47fcdbc109",
+        "arc_agi3:tu93-0768757b:L2:cyan_patrol:3a347f143336",
+        "arc_agi3:tu93-0768757b:L2:orange_chaser:e788d7d629b0",
+        "arc_agi3:tu93-0768757b:L2:magenta_delayed_follower:fc4b79b0c965",
+        "arc_agi3:wa30-ee6fef47:L2:autonomous:0ff32d642ec4"
+      ],
+      "member_review_status": {
+        "g50t-5849a774": "pending",
+        "ka59-38d34dbb": "pending",
+        "su15-1944f8ab": "pending",
+        "tu93-0768757b": "accepted",
+        "wa30-ee6fef47": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/g50t/5849a774/g50t.py",
+          "sha256": "6f21f2065744e484ac38534f940158034e69f39add3b10a3d9fd258de7293aa9",
+          "symbol": "qxlodtievc path recording, actors, rewind and completion",
+          "lines": [
+            2494,
+            2855
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/su15/1944f8ab/su15.py",
+          "sha256": "a5f91f7c963d6ca6447dae0ab21342b48a3f511601c40dfa8e972bdc59b4651e",
+          "symbol": "Su15 radial pulse, merging, enemies, zones, undo and completion",
+          "lines": [
+            907,
+            2165
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.itwvxwpzyb / Tu93.rgwzxyjuqc",
+          "lines": [
+            1110,
+            1152
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.ixnhjkzwic / Tu93.bwlnieccpx",
+          "lines": [
+            1090,
+            1109
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.gmwsemdsae / Tu93.step",
+          "lines": [
+            1171,
+            1183
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step",
+          "lines": [
+            1202,
+            1250
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L1:structured_interpretation:1218b72d6ede",
+      "format_version": 1,
+      "title": "可见结构被解释为图案、程序或重写序列",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "sb26-7fbdac44",
+        "sc25-635fd71a",
+        "tn36-ef4dde99",
+        "tr87-cd924810"
+      ],
+      "level_scope": [],
+      "abstraction_level": 1,
+      "kind": "state_transition",
+      "trigger": "玩家配置的离散结构达到可解释状态或主动请求求值。",
+      "action_sequence": [],
+      "expectation": "环境按精确图案匹配、递归序列、指令编码或示例翻译规则解释结构，并产生对应状态变化。",
+      "constraints": [
+        "跨游戏层不统一各自的编码表，只统一“结构先被解释，再执行结果”的过程。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [
+          "arc_agi3:cross_game:L0:conditional_operator_system:fbb112e84315"
+        ],
+        "requires": [],
+        "members": [
+          "arc_agi3:sc25-635fd71a:L2:pattern:105fbb44ccd0",
+          "arc_agi3:sb26-7fbdac44:L2:evaluate:3e7bc086080f",
+          "arc_agi3:tn36-ef4dde99:L2:run:7a269d2f4144",
+          "arc_agi3:tr87-cd924810:L2:translate:7d27a0fe1c20"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:sc25-635fd71a:L2:pattern:105fbb44ccd0",
+        "arc_agi3:sb26-7fbdac44:L2:evaluate:3e7bc086080f",
+        "arc_agi3:tn36-ef4dde99:L2:run:7a269d2f4144",
+        "arc_agi3:tr87-cd924810:L2:translate:7d27a0fe1c20"
+      ],
+      "member_review_status": {
+        "sb26-7fbdac44": "pending",
+        "sc25-635fd71a": "pending",
+        "tn36-ef4dde99": "pending",
+        "tr87-cd924810": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+          "sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3",
+          "symbol": "Sb26 editing, recursive evaluation, undo and energy",
+          "lines": [
+            712,
+            1146
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+          "sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+          "symbol": "dimsufvezo commands, ytkjoffamq runner and Tn36 adapter",
+          "lines": [
+            2129,
+            2647
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tr87/cd924810/tr87.py",
+          "sha256": "3274657a6499af5c7a52390d58a5c5441497ed70b84388e418fdfa6c9601e305",
+          "symbol": "Tr87 rule selection, symbol cycling and translation matcher",
+          "lines": [
+            901,
+            1121
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L1:matching_contact_reduction:5d55a9a4701a",
+      "format_version": 1,
+      "title": "满足匹配关系的接触会消除、合并或完成配对",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "cn04-2fe56bfb",
+        "lf52-271a04aa",
+        "m0r0-492f87ba",
+        "su15-1944f8ab"
+      ],
+      "level_scope": [],
+      "abstraction_level": 1,
+      "kind": "state_transition",
+      "trigger": "两个对象在同一位置或跳跃关系中接触，并满足具体游戏的同类/同色/同级条件。",
+      "action_sequence": [],
+      "expectation": "接触对象被消除、合并为高阶对象或退出未配对集合；不匹配接触不采用该归约。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [
+          "arc_agi3:cross_game:L0:relational_state_system:432ea3291374"
+        ],
+        "requires": [],
+        "members": [
+          "arc_agi3:cn04-2fe56bfb:L2:cancel:7278e585319d",
+          "arc_agi3:lf52-271a04aa:L2:type_match:aeacf2b78849",
+          "arc_agi3:m0r0-492f87ba:L2:pair:9cfb2873f6c6",
+          "arc_agi3:su15-1944f8ab:L2:merge:f78b529f45a6"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:cn04-2fe56bfb:L2:cancel:7278e585319d",
+        "arc_agi3:lf52-271a04aa:L2:type_match:aeacf2b78849",
+        "arc_agi3:m0r0-492f87ba:L2:pair:9cfb2873f6c6",
+        "arc_agi3:su15-1944f8ab:L2:merge:f78b529f45a6"
+      ],
+      "member_review_status": {
+        "cn04-2fe56bfb": "pending",
+        "lf52-271a04aa": "pending",
+        "m0r0-492f87ba": "pending",
+        "su15-1944f8ab": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cn04/2fe56bfb/cn04.py",
+          "sha256": "29977e145a0374b5842d360507f045029c3f4b22373612152e713c14691e01dc",
+          "symbol": "Cn04 selection, overlap cancellation and completion",
+          "lines": [
+            833,
+            1131
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/su15/1944f8ab/su15.py",
+          "sha256": "a5f91f7c963d6ca6447dae0ab21342b48a3f511601c40dfa8e972bdc59b4651e",
+          "symbol": "Su15 radial pulse, merging, enemies, zones, undo and completion",
+          "lines": [
+            907,
+            2165
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L1:world_state_switch:26f39c92ae5e",
+      "format_version": 1,
+      "title": "局部触发器切换影响后续可达性的世界状态",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "bp35-0a0ad940",
+        "dc22-fdcac232",
+        "lf52-271a04aa",
+        "m0r0-492f87ba",
+        "vc33-5430563c"
+      ],
+      "level_scope": [],
+      "abstraction_level": 1,
+      "kind": "state_transition",
+      "trigger": "角色、点击或对象落点激活开关、传感器或环境机关。",
+      "action_sequence": [],
+      "expectation": "门、平台、重力、桥段或空间边界改变状态，从而改变后续移动和碰撞的可行集合。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [
+          "arc_agi3:cross_game:L0:conditional_operator_system:fbb112e84315"
+        ],
+        "requires": [],
+        "members": [
+          "arc_agi3:bp35-0a0ad940:L2:gravity_switch:eb9db3904b40",
+          "arc_agi3:bp35-0a0ad940:L2:world_switch:0a478e94284c",
+          "arc_agi3:dc22-fdcac232:L2:click_switch:08db6dfc9ff8",
+          "arc_agi3:dc22-fdcac232:L2:key_gate:ab37e97a400e",
+          "arc_agi3:lf52-271a04aa:L2:world_events:31ea492d8b10",
+          "arc_agi3:m0r0-492f87ba:L2:gate:7b32390ff5c0",
+          "arc_agi3:vc33-5430563c:L2:transfer:bd63a0cbb6e6"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:bp35-0a0ad940:L2:gravity_switch:eb9db3904b40",
+        "arc_agi3:bp35-0a0ad940:L2:world_switch:0a478e94284c",
+        "arc_agi3:dc22-fdcac232:L2:click_switch:08db6dfc9ff8",
+        "arc_agi3:dc22-fdcac232:L2:key_gate:ab37e97a400e",
+        "arc_agi3:lf52-271a04aa:L2:world_events:31ea492d8b10",
+        "arc_agi3:m0r0-492f87ba:L2:gate:7b32390ff5c0",
+        "arc_agi3:vc33-5430563c:L2:transfer:bd63a0cbb6e6"
+      ],
+      "member_review_status": {
+        "bp35-0a0ad940": "pending",
+        "dc22-fdcac232": "pending",
+        "lf52-271a04aa": "pending",
+        "m0r0-492f87ba": "pending",
+        "vc33-5430563c": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/bp35/0a0ad940/bp35.py",
+          "sha256": "e9aecb52c629c3e742276c2db04b81f91555051d8617b6cbc58bac410824867f",
+          "symbol": "uakietkqfso mechanics and Bp35 action adapter",
+          "lines": [
+            4032,
+            4565
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+          "sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd",
+          "symbol": "Vc33 gravity-axis transfer, swap and color-routing goal",
+          "lines": [
+            1829,
+            2124
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L1:conjunctive_goal:1bfaaecd364b",
+      "format_version": 1,
+      "title": "过关要求一组目标谓词同时成立",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "ar25-0c556536",
+        "cn04-2fe56bfb",
+        "ft09-0d8bbf25",
+        "lp85-305b61c3",
+        "ls20-9607627b",
+        "re86-8af5384d",
+        "s5i5-18d95033",
+        "su15-1944f8ab",
+        "tn36-ef4dde99",
+        "vc33-5430563c",
+        "wa30-ee6fef47"
+      ],
+      "level_scope": [],
+      "abstraction_level": 1,
+      "kind": "goal",
+      "trigger": "环境在动作或动画结算后检查目标集合。",
+      "action_sequence": [],
+      "expectation": "只有全部必需目标谓词都成立才进入下一关；满足部分目标不足以过关。",
+      "constraints": [
+        "每个成员保留自己的目标谓词、通配符和类型约束。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [
+          "arc_agi3:cross_game:L0:bounded_goal_directed_system:18558b8ec297"
+        ],
+        "requires": [],
+        "members": [
+          "arc_agi3:ar25-0c556536:L2:goal:025e41099719",
+          "arc_agi3:cn04-2fe56bfb:L2:goal:2da6054fc7fa",
+          "arc_agi3:ft09-0d8bbf25:L2:goal:0395d712fce6",
+          "arc_agi3:lp85-305b61c3:L2:goal:2aa8e978edec",
+          "arc_agi3:ls20-9607627b:L2:goal:e26388619e35",
+          "arc_agi3:re86-8af5384d:L2:goal:03c8b33965ca",
+          "arc_agi3:s5i5-18d95033:L2:goal:522cbf17b7a0",
+          "arc_agi3:su15-1944f8ab:L2:goal:481a5cd9f237",
+          "arc_agi3:tn36-ef4dde99:L2:goal:bd162a8ba79b",
+          "arc_agi3:vc33-5430563c:L2:goal:388754905b71",
+          "arc_agi3:wa30-ee6fef47:L2:goal:49e7bac4a683"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:ar25-0c556536:L2:goal:025e41099719",
+        "arc_agi3:cn04-2fe56bfb:L2:goal:2da6054fc7fa",
+        "arc_agi3:ft09-0d8bbf25:L2:goal:0395d712fce6",
+        "arc_agi3:lp85-305b61c3:L2:goal:2aa8e978edec",
+        "arc_agi3:ls20-9607627b:L2:goal:e26388619e35",
+        "arc_agi3:re86-8af5384d:L2:goal:03c8b33965ca",
+        "arc_agi3:s5i5-18d95033:L2:goal:522cbf17b7a0",
+        "arc_agi3:su15-1944f8ab:L2:goal:481a5cd9f237",
+        "arc_agi3:tn36-ef4dde99:L2:goal:bd162a8ba79b",
+        "arc_agi3:vc33-5430563c:L2:goal:388754905b71",
+        "arc_agi3:wa30-ee6fef47:L2:goal:49e7bac4a683"
+      ],
+      "member_review_status": {
+        "ar25-0c556536": "pending",
+        "cn04-2fe56bfb": "pending",
+        "ft09-0d8bbf25": "pending",
+        "lp85-305b61c3": "pending",
+        "ls20-9607627b": "pending",
+        "re86-8af5384d": "pending",
+        "s5i5-18d95033": "pending",
+        "su15-1944f8ab": "pending",
+        "tn36-ef4dde99": "pending",
+        "vc33-5430563c": "pending",
+        "wa30-ee6fef47": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/cn04/2fe56bfb/cn04.py",
+          "sha256": "29977e145a0374b5842d360507f045029c3f4b22373612152e713c14691e01dc",
+          "symbol": "Cn04 selection, overlap cancellation and completion",
+          "lines": [
+            833,
+            1131
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ft09/0d8bbf25/ft09.py",
+          "sha256": "aa5b54f48a29da9f276c3df0dc04de728002f523384ab868c85d56d819cd0783",
+          "symbol": "Ft09 toggle masks, clue constraints and goal",
+          "lines": [
+            2301,
+            2520
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lp85/305b61c3/lp85.py",
+          "sha256": "7d10baec7dd29d07e574bd47ee1ec7912542a72632077a5446798221f41c4ae9",
+          "symbol": "Lp85 button-linked movement and typed goals",
+          "lines": [
+            21339,
+            21451
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ls20/9607627b/ls20.py",
+          "sha256": "298c810da2850d557c95d92a2cbd846df29a45d7134e20888617bedf5dafcd92",
+          "symbol": "Ls20 movement, modifiers, targets, hazards and completion",
+          "lines": [
+            1765,
+            2060
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/re86/8af5384d/re86.py",
+          "sha256": "cf3c1520e17f0b70e7a3cea0e680601a591befce306b4dd1926c735a7d3b65e8",
+          "symbol": "Re86 active shape, deformation, composite target and goal",
+          "lines": [
+            1864,
+            2158
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+          "sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+          "symbol": "S5i5 group rotation, resizing, collision rollback and goal",
+          "lines": [
+            2026,
+            2247
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/su15/1944f8ab/su15.py",
+          "sha256": "a5f91f7c963d6ca6447dae0ab21342b48a3f511601c40dfa8e972bdc59b4651e",
+          "symbol": "Su15 radial pulse, merging, enemies, zones, undo and completion",
+          "lines": [
+            907,
+            2165
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+          "sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+          "symbol": "dimsufvezo commands, ytkjoffamq runner and Tn36 adapter",
+          "lines": [
+            2129,
+            2647
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+          "sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd",
+          "symbol": "Vc33 gravity-axis transfer, swap and color-routing goal",
+          "lines": [
+            1829,
+            2124
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cross_game:L1:finite_resource_failure:ac89bb5b7e8a",
+      "format_version": 1,
+      "title": "有限动作资源在目标完成前耗尽会触发失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "inventory-v1",
+      "game_id": "__cross_game__",
+      "game_scope": [
+        "ar25-0c556536",
+        "cd82-fb555c5d",
+        "dc22-fdcac232",
+        "ft09-0d8bbf25",
+        "ka59-38d34dbb",
+        "lf52-271a04aa",
+        "lp85-305b61c3",
+        "m0r0-492f87ba",
+        "r11l-495a7899",
+        "s5i5-18d95033",
+        "sb26-7fbdac44",
+        "sc25-635fd71a",
+        "sk48-d8078629",
+        "sp80-589a99af",
+        "tu93-0768757b",
+        "vc33-5430563c"
+      ],
+      "level_scope": [],
+      "abstraction_level": 1,
+      "kind": "hazard",
+      "trigger": "受计数操作使剩余步数、能量、尝试次数或总动作额度到达失败边界。",
+      "action_sequence": [],
+      "expectation": "若目标尚未满足，环境进入 GAME_OVER 或执行具体游戏规定的失败/重置流程。",
+      "constraints": [
+        "具体计数单位、是否包含选择/撤销以及失败是否先重置一条生命均由成员 Schema 决定。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [
+          "arc_agi3:cross_game:L0:bounded_goal_directed_system:18558b8ec297"
+        ],
+        "requires": [],
+        "members": [
+          "arc_agi3:ar25-0c556536:L2:budget:f2134b796aec",
+          "arc_agi3:cd82-fb555c5d:L2:action_budget_loss:c397ee61796b",
+          "arc_agi3:dc22-fdcac232:L2:budget:1486c6fdfc7d",
+          "arc_agi3:ft09-0d8bbf25:L2:budget:9ac2c8cb96fd",
+          "arc_agi3:ka59-38d34dbb:L2:budget:3d12761834d7",
+          "arc_agi3:lf52-271a04aa:L2:budget:a8ab93b47e68",
+          "arc_agi3:lp85-305b61c3:L2:budget:4d01ca73ab36",
+          "arc_agi3:m0r0-492f87ba:L2:budget:b96baa500769",
+          "arc_agi3:r11l-495a7899:L2:budget:30cd5d330c0d",
+          "arc_agi3:s5i5-18d95033:L2:budget:455ed2757fae",
+          "arc_agi3:sb26-7fbdac44:L2:undo_energy:333bf4fb79b9",
+          "arc_agi3:sc25-635fd71a:L2:budget:a1ef18bcda33",
+          "arc_agi3:sk48-d8078629:L2:movement_budget:396f53ed58b2",
+          "arc_agi3:sp80-589a99af:L2:attempts:f7965c31bd53",
+          "arc_agi3:tu93-0768757b:L2:step_budget:cd3c6932e339",
+          "arc_agi3:vc33-5430563c:L2:budget:a4d583ce76c5"
+        ]
+      },
+      "member_schema_ids": [
+        "arc_agi3:ar25-0c556536:L2:budget:f2134b796aec",
+        "arc_agi3:cd82-fb555c5d:L2:action_budget_loss:c397ee61796b",
+        "arc_agi3:dc22-fdcac232:L2:budget:1486c6fdfc7d",
+        "arc_agi3:ft09-0d8bbf25:L2:budget:9ac2c8cb96fd",
+        "arc_agi3:ka59-38d34dbb:L2:budget:3d12761834d7",
+        "arc_agi3:lf52-271a04aa:L2:budget:a8ab93b47e68",
+        "arc_agi3:lp85-305b61c3:L2:budget:4d01ca73ab36",
+        "arc_agi3:m0r0-492f87ba:L2:budget:b96baa500769",
+        "arc_agi3:r11l-495a7899:L2:budget:30cd5d330c0d",
+        "arc_agi3:s5i5-18d95033:L2:budget:455ed2757fae",
+        "arc_agi3:sb26-7fbdac44:L2:undo_energy:333bf4fb79b9",
+        "arc_agi3:sc25-635fd71a:L2:budget:a1ef18bcda33",
+        "arc_agi3:sk48-d8078629:L2:movement_budget:396f53ed58b2",
+        "arc_agi3:sp80-589a99af:L2:attempts:f7965c31bd53",
+        "arc_agi3:tu93-0768757b:L2:step_budget:cd3c6932e339",
+        "arc_agi3:vc33-5430563c:L2:budget:a4d583ce76c5"
+      ],
+      "member_review_status": {
+        "ar25-0c556536": "pending",
+        "cd82-fb555c5d": "accepted_and_revised",
+        "dc22-fdcac232": "pending",
+        "ft09-0d8bbf25": "pending",
+        "ka59-38d34dbb": "pending",
+        "lf52-271a04aa": "pending",
+        "lp85-305b61c3": "pending",
+        "m0r0-492f87ba": "pending",
+        "r11l-495a7899": "pending",
+        "s5i5-18d95033": "pending",
+        "sb26-7fbdac44": "pending",
+        "sc25-635fd71a": "pending",
+        "sk48-d8078629": "accepted",
+        "sp80-589a99af": "pending",
+        "tu93-0768757b": "accepted",
+        "vc33-5430563c": "pending"
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.step",
+          "lines": [
+            630,
+            635
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+          "sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e",
+          "symbol": "Dc22 player, crane, bridge, switch and goal logic",
+          "lines": [
+            9958,
+            10892
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ft09/0d8bbf25/ft09.py",
+          "sha256": "aa5b54f48a29da9f276c3df0dc04de728002f523384ab868c85d56d819cd0783",
+          "symbol": "Ft09 toggle masks, clue constraints and goal",
+          "lines": [
+            2301,
+            2520
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+          "sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030",
+          "symbol": "equnaohchtj selection, jumps, world shifts and Lf52 adapter",
+          "lines": [
+            5128,
+            5872
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/lp85/305b61c3/lp85.py",
+          "sha256": "7d10baec7dd29d07e574bd47ee1ec7912542a72632077a5446798221f41c4ae9",
+          "symbol": "Lp85 button-linked movement and typed goals",
+          "lines": [
+            21339,
+            21451
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+          "sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797",
+          "symbol": "M0r0 symmetric control, pairing, gates and goal",
+          "lines": [
+            680,
+            924
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+          "sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+          "symbol": "S5i5 group rotation, resizing, collision rollback and goal",
+          "lines": [
+            2026,
+            2247
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+          "sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3",
+          "symbol": "Sb26 editing, recursive evaluation, undo and energy",
+          "lines": [
+            712,
+            1146
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+          "sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392",
+          "symbol": "Sc25 movement, spell patterns, spell effects and exit",
+          "lines": [
+            1655,
+            2750
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.hgivzuhjvj / Sk48.step",
+          "lines": [
+            768,
+            770
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.step",
+          "lines": [
+            740,
+            765
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sp80/589a99af/sp80.py",
+          "sha256": "2306d62311a3cc027250217d86cb4e012898edc7647a7c291ade23f36c9b9715",
+          "symbol": "Sp80 selection, vessel movement, fluid simulation and goal",
+          "lines": [
+            454,
+            868
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "eytqjghipl.rndwkomrip / Tu93.step",
+          "lines": [
+            963,
+            968
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+          "sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f",
+          "symbol": "Tu93.step",
+          "lines": [
+            1194,
+            1272
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+          "sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd",
+          "symbol": "Vc33 gravity-axis transfer, swap and color-routing goal",
+          "lines": [
+            1829,
+            2124
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "derivation_status": "provisional",
+      "verification": {
+        "static": "passed",
+        "runtime": "derived_from_members",
+        "review": "provisional"
+      }
+    }
+  ]
+}

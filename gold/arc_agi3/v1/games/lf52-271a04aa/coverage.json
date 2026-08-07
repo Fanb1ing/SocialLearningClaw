@@ -1,0 +1,275 @@
+{
+  "format_version": 1,
+  "requirements": [
+    {
+      "requirement_id": "mechanism_shift",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:shift:c5415425bef6"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_select",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:select:736b115c3ad6"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_jump",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:jump:2173c76e2ef6"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_type_match",
+      "category": "state_transition",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:type_match:aeacf2b78849"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_world_events",
+      "category": "state_transition",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:world_events:31ea492d8b10"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_goal",
+      "category": "goal",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:goal:d429982df9da"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_undo",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:undo:961ffe2cb021"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_budget",
+      "category": "hazard",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:budget:a8ab93b47e68"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_1_goal",
+      "category": "goal",
+      "level_scope": [
+        1
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:goal:d429982df9da"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_2_goal",
+      "category": "goal",
+      "level_scope": [
+        2
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:goal:d429982df9da"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_3_goal",
+      "category": "goal",
+      "level_scope": [
+        3
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:goal:d429982df9da"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_4_goal",
+      "category": "goal",
+      "level_scope": [
+        4
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:goal:d429982df9da"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_5_goal",
+      "category": "goal",
+      "level_scope": [
+        5
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:goal:d429982df9da"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_6_goal",
+      "category": "goal",
+      "level_scope": [
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:goal:d429982df9da"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_7_goal",
+      "category": "goal",
+      "level_scope": [
+        7
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:goal:d429982df9da"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_8_goal",
+      "category": "goal",
+      "level_scope": [
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:goal:d429982df9da"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_9_goal",
+      "category": "goal",
+      "level_scope": [
+        9
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:goal:d429982df9da"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_10_goal",
+      "category": "goal",
+      "level_scope": [
+        10
+      ],
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:goal:d429982df9da"
+      ],
+      "status": "covered"
+    }
+  ]
+}

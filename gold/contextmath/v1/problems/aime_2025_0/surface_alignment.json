@@ -1,0 +1,101 @@
+{
+  "format_version": 1,
+  "problem_id": "aime_2025:0",
+  "canonical_question_sha256": "a3145c72cb6b4a78a74d3e97d669d29a5eeb277efb9f6492e9873d0d3fbfd0c4",
+  "canonical_symbols": [
+    "base",
+    "lower_numeral",
+    "upper_numeral",
+    "divisibility",
+    "valid_bases",
+    "base_sum"
+  ],
+  "variants": [
+    {
+      "split": "aime_2025_sg",
+      "row_id": 0,
+      "question_sha256": "a50287b8ccb720c16a9ff2d9c45e35e19c0f3ce0f5ffd0394aedcdc11f8af4a8",
+      "source": {
+        "path": "data/contextmath/aime_2025_sg-00000-of-00001.parquet",
+        "sha256": "1fe872c3ece382d946a08c3d61eb8fff18a40304cb60b96bf88d7ff81c340c83"
+      },
+      "mappings": [
+        {
+          "surface": "machine mode setting",
+          "canonical": "base",
+          "interpretation": "b>9"
+        },
+        {
+          "surface": "Component X configuration 17",
+          "canonical": "lower_numeral",
+          "interpretation": "17_b"
+        },
+        {
+          "surface": "Component Y configuration 97",
+          "canonical": "upper_numeral",
+          "interpretation": "97_b"
+        },
+        {
+          "surface": "divides exactly",
+          "canonical": "divisibility",
+          "interpretation": "17_b | 97_b"
+        },
+        {
+          "surface": "all settings",
+          "canonical": "valid_bases",
+          "interpretation": "target set"
+        },
+        {
+          "surface": "sum",
+          "canonical": "base_sum",
+          "interpretation": "target"
+        }
+      ],
+      "witness_ids": [],
+      "coverage": "complete"
+    },
+    {
+      "split": "aime_2025_cs",
+      "row_id": 0,
+      "question_sha256": "6a973ac094a0bf0cc87414a5f2271600e7b851cd4f04300dc6e16e55e69ef78d",
+      "source": {
+        "path": "data/contextmath/aime_2025_cs-00000-of-00001.parquet",
+        "sha256": "fb9272ac71c3fea21658c005034fa59342036c5f7c847d184f3b2bbe89b9c2b1"
+      },
+      "mappings": [
+        {
+          "surface": "seconds per full turn and cascading display limit",
+          "canonical": "base",
+          "interpretation": "b>=10"
+        },
+        {
+          "surface": "logger shows 17",
+          "canonical": "lower_numeral",
+          "interpretation": "17_b"
+        },
+        {
+          "surface": "logger shows 97",
+          "canonical": "upper_numeral",
+          "interpretation": "97_b"
+        },
+        {
+          "surface": "exact integer multiple",
+          "canonical": "divisibility",
+          "interpretation": "17_b | 97_b"
+        },
+        {
+          "surface": "possible gear settings",
+          "canonical": "valid_bases",
+          "interpretation": "target set"
+        },
+        {
+          "surface": "sum",
+          "canonical": "base_sum",
+          "interpretation": "target"
+        }
+      ],
+      "witness_ids": [],
+      "coverage": "complete"
+    }
+  ]
+}

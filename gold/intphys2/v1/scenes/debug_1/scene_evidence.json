@@ -1,0 +1,263 @@
+{
+  "format_version": 1,
+  "benchmark": "intphys2",
+  "scene_id": "debug:1",
+  "split_aliases": [
+    "main_300:1"
+  ],
+  "condition": "solidity",
+  "game": "SolidityFallingFlat",
+  "camera": "Fixed",
+  "difficulty": "Easy",
+  "metadata_source": {
+    "path": "data/intphys2/Debug/metadata.csv",
+    "sha256": "2831c3e9ce34cb0944dcf2de34bd89f8e7cf456528af7cc229815c85221d2d5b"
+  },
+  "metadata_aliases": [
+    {
+      "scene_id": "main_300:1",
+      "path": "data/intphys2/Main/sample_300.csv",
+      "sha256": "41f7c5235424dc6cce757df682a7e1d05fab461242fe07ef4287e6be561ee0fc",
+      "same_video_inventory": true
+    }
+  ],
+  "clips": [
+    {
+      "type": "1_Possible",
+      "gold_label": 1,
+      "video_path": "data/intphys2/Debug/Videos/0996318787089d31d84af8327bb044e77120cd0a6c6eb7425a179f932369146b.mp4",
+      "video_sha256": "768b0cc7cc1c13730fce142031a249725bc65ef5e38ed22cc328c662fec358d9",
+      "fps": 60.0,
+      "frame_count": 636,
+      "duration_seconds": 10.6,
+      "resolution": [
+        512,
+        512
+      ],
+      "sampled_frames": [
+        {
+          "frame_index": 150,
+          "time_seconds": 2.5,
+          "decoded_bgr_sha256": "25cdfaf3932ff5993e8a922adbd931ef5a55c3daa3acb4be9ae7032ec7bff470"
+        },
+        {
+          "frame_index": 180,
+          "time_seconds": 3.0,
+          "decoded_bgr_sha256": "42c19dd5781b9d668ecdde7a4450bb18a706041dae25b244db8f1ea4c67b7af0"
+        },
+        {
+          "frame_index": 210,
+          "time_seconds": 3.5,
+          "decoded_bgr_sha256": "be81f3f4077a25b38b7d69a383ab1ea82dfdeeba89e1f56af20d211e8913954f"
+        },
+        {
+          "frame_index": 240,
+          "time_seconds": 4.0,
+          "decoded_bgr_sha256": "5c78fb80d2d268c7f90a319514fab9b439ebd909fa52e3db07a799885f444bdd"
+        },
+        {
+          "frame_index": 300,
+          "time_seconds": 5.0,
+          "decoded_bgr_sha256": "c622b43f89711e5375e8fc5763c8abe0a7585a258e8ccf275e3a224b76e87bf5"
+        },
+        {
+          "frame_index": 480,
+          "time_seconds": 8.0,
+          "decoded_bgr_sha256": "52c0d3348c998fef43504defb4d670e793370aaa6db090942a4477afc97b4479"
+        }
+      ]
+    },
+    {
+      "type": "1_Impossible",
+      "gold_label": 0,
+      "video_path": "data/intphys2/Debug/Videos/0412d75b071ce599c9d8c5a1569bce4cd59dae473646ccb075fa8da9b39d47e7.mp4",
+      "video_sha256": "1e6267203b96cc24546ccb0a485c11528057c51d827f873d105698be095d3597",
+      "fps": 60.0,
+      "frame_count": 636,
+      "duration_seconds": 10.6,
+      "resolution": [
+        512,
+        512
+      ],
+      "sampled_frames": [
+        {
+          "frame_index": 150,
+          "time_seconds": 2.5,
+          "decoded_bgr_sha256": "47cc38b00c3b73cbe43c49604e09beb8461f9663237e290fe8ff303abf297449"
+        },
+        {
+          "frame_index": 180,
+          "time_seconds": 3.0,
+          "decoded_bgr_sha256": "8ad3bf6b9e66e693f20a12ca88aaae015c562cf2e990aa8d1dacd8b5b43ac16f"
+        },
+        {
+          "frame_index": 210,
+          "time_seconds": 3.5,
+          "decoded_bgr_sha256": "b2c3215cbe7a79c6164cc89565e270c23697ed400b92387ad5ee7a37203d46d3"
+        },
+        {
+          "frame_index": 240,
+          "time_seconds": 4.0,
+          "decoded_bgr_sha256": "b22276c2196222f892d2423c6ab9e3fcee6ccb33e16453e7498aa2d457ebb900"
+        },
+        {
+          "frame_index": 300,
+          "time_seconds": 5.0,
+          "decoded_bgr_sha256": "ae5b9fdc6b6a7fa318d99331e81034a2cb1c4f86ce20dff312ff4784c5ece0af"
+        },
+        {
+          "frame_index": 480,
+          "time_seconds": 8.0,
+          "decoded_bgr_sha256": "7730edc9f6d212ed2ab3f46bf06d89abf9414b6f1b978e8ccde561262ebd640c"
+        }
+      ]
+    },
+    {
+      "type": "2_Possible",
+      "gold_label": 1,
+      "video_path": "data/intphys2/Debug/Videos/e02457c361240408e2d2417b5b56594052605dfc7fe433314f6768f053adbfdb.mp4",
+      "video_sha256": "d4396b378fc79dcafcaa43b639639d500dac9108a1868e47a5465dc0b8d21968",
+      "fps": 60.0,
+      "frame_count": 636,
+      "duration_seconds": 10.6,
+      "resolution": [
+        512,
+        512
+      ],
+      "sampled_frames": [
+        {
+          "frame_index": 150,
+          "time_seconds": 2.5,
+          "decoded_bgr_sha256": "0cc38fd24228cf99b1f0062cb702283ae8eb4e87579714f044adaf81c670fc5f"
+        },
+        {
+          "frame_index": 180,
+          "time_seconds": 3.0,
+          "decoded_bgr_sha256": "027d0a94605f045afce70a6866ffd796d74ae14439c54c3dd62c82db6e0b3d06"
+        },
+        {
+          "frame_index": 210,
+          "time_seconds": 3.5,
+          "decoded_bgr_sha256": "0a2914acd3388ffc4145efe783e7ee9c817ff80c6f3aad1a72764cd5c7a13b6c"
+        },
+        {
+          "frame_index": 240,
+          "time_seconds": 4.0,
+          "decoded_bgr_sha256": "89bec81b474dcfd2be2d264b4675a576b86feba36eccda1bec50698346ad1b91"
+        },
+        {
+          "frame_index": 300,
+          "time_seconds": 5.0,
+          "decoded_bgr_sha256": "5a0c0d02c1377e4d73f963eb27d14c062b7a9ef7f1e81488cf439db9fccec9f3"
+        },
+        {
+          "frame_index": 480,
+          "time_seconds": 8.0,
+          "decoded_bgr_sha256": "b184978343cd9917e5ad75b5d0fbccd3942d1486549c11d09e55c33eef6162c4"
+        }
+      ]
+    },
+    {
+      "type": "2_Impossible",
+      "gold_label": 0,
+      "video_path": "data/intphys2/Debug/Videos/6ce16e44526c3d52f87fa3f2437058bb9d96455627fc6dd5c430f43a4d647c5d.mp4",
+      "video_sha256": "f9ff08a1d2470b03e7208a22b707df3e21b3d36796d278c49b10f91b1bf68ea2",
+      "fps": 60.0,
+      "frame_count": 636,
+      "duration_seconds": 10.6,
+      "resolution": [
+        512,
+        512
+      ],
+      "sampled_frames": [
+        {
+          "frame_index": 150,
+          "time_seconds": 2.5,
+          "decoded_bgr_sha256": "689abc34d9908097846d121444b81eaf8ff9e567e8f0821c941b4a33806db0e9"
+        },
+        {
+          "frame_index": 180,
+          "time_seconds": 3.0,
+          "decoded_bgr_sha256": "39ec7d690340cadcfe10c4c61cc12343a1f66f4858c9b73e4951f6788dc0d493"
+        },
+        {
+          "frame_index": 210,
+          "time_seconds": 3.5,
+          "decoded_bgr_sha256": "e43a0c3119b86e281d2190d609b246c6e306caf88306da0dc298857738613f4c"
+        },
+        {
+          "frame_index": 240,
+          "time_seconds": 4.0,
+          "decoded_bgr_sha256": "a47b320b39fb27138037199da2388fa8e8c8592c64ad2ff3611a27663868b657"
+        },
+        {
+          "frame_index": 300,
+          "time_seconds": 5.0,
+          "decoded_bgr_sha256": "c5d1dead7dc6fd7e5d72b429d6db41e02b8cfb30270e6737cf19eef4bfa0a98b"
+        },
+        {
+          "frame_index": 480,
+          "time_seconds": 8.0,
+          "decoded_bgr_sha256": "ff6c296784232da84a1d4ef4789c373cac14e25c19a71d05dde0a74f44155c92"
+        }
+      ]
+    }
+  ],
+  "pair_assessments": [
+    {
+      "evidence_id": "intphys2:debug:1:pair1",
+      "pair": 1,
+      "possible_clip": "1_Possible",
+      "impossible_clip": "1_Impossible",
+      "focus_frames": [
+        150,
+        180,
+        210,
+        240,
+        300,
+        480
+      ],
+      "possible_observation": "落点有黄色方块；箱体接触后明显倾转，表现出实体碰撞响应。",
+      "impossible_observation": "落点有黄色方块；箱体仍直立占据该落点，黄色方块被视觉上吞没。",
+      "condition_consistency": "matched",
+      "semantic_status": "provisional_review_pending"
+    },
+    {
+      "evidence_id": "intphys2:debug:1:pair2",
+      "pair": 2,
+      "possible_clip": "2_Possible",
+      "impossible_clip": "2_Impossible",
+      "focus_frames": [
+        150,
+        180,
+        210,
+        240,
+        300,
+        480
+      ],
+      "possible_observation": "落点没有黄色方块；箱体直立落到平台并保持稳定。",
+      "impossible_observation": "落点没有黄色方块；箱体却在同一位置发生类似碰撞后的倾转。",
+      "condition_consistency": "matched",
+      "semantic_status": "provisional_review_pending"
+    }
+  ],
+  "contact_sheet": {
+    "path": "contact_sheet.jpg",
+    "sha256": "dc1a1c0cb795368eaa82158d04214b2ebb555cf723fa1db1d4a9a6571d98f3d1",
+    "columns": [
+      150,
+      180,
+      210,
+      240,
+      300,
+      480
+    ],
+    "rows": [
+      "1_Possible",
+      "1_Impossible",
+      "2_Possible",
+      "2_Impossible"
+    ]
+  },
+  "review": "pending"
+}

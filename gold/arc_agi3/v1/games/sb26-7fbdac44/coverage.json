@@ -1,0 +1,219 @@
+{
+  "format_version": 1,
+  "requirements": [
+    {
+      "requirement_id": "mechanism_frames",
+      "category": "observation_semantics",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:frames:8c67b20aaa0e"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_select_swap",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:select_swap:489a84845789"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_protected",
+      "category": "constraint",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:protected:2e85637c328e"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_evaluate",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:evaluate:3e7bc086080f"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_match",
+      "category": "constraint",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:match:9e4e3fb6351e"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_goal",
+      "category": "goal",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:goal:67d7f7a37f3a"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_undo_energy",
+      "category": "hazard",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:undo_energy:333bf4fb79b9"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_1_goal",
+      "category": "goal",
+      "level_scope": [
+        1
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:goal:67d7f7a37f3a"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_2_goal",
+      "category": "goal",
+      "level_scope": [
+        2
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:goal:67d7f7a37f3a"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_3_goal",
+      "category": "goal",
+      "level_scope": [
+        3
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:goal:67d7f7a37f3a"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_4_goal",
+      "category": "goal",
+      "level_scope": [
+        4
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:goal:67d7f7a37f3a"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_5_goal",
+      "category": "goal",
+      "level_scope": [
+        5
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:goal:67d7f7a37f3a"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_6_goal",
+      "category": "goal",
+      "level_scope": [
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:goal:67d7f7a37f3a"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_7_goal",
+      "category": "goal",
+      "level_scope": [
+        7
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:goal:67d7f7a37f3a"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_8_goal",
+      "category": "goal",
+      "level_scope": [
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sb26-7fbdac44:L2:goal:67d7f7a37f3a"
+      ],
+      "status": "covered"
+    }
+  ]
+}

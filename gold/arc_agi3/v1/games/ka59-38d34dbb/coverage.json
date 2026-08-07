@@ -1,0 +1,218 @@
+{
+  "format_version": 1,
+  "requirements": [
+    {
+      "requirement_id": "mechanism_select",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:select:2a10e842156e"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_move",
+      "category": "action_effect",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:move:364a3e0ae7d0"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_push",
+      "category": "state_transition",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:push:c0204bb8aa20"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_enemy",
+      "category": "hazard",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:enemy:356da40a98c5"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_charge",
+      "category": "state_transition",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:charge:606683222710"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_explosion",
+      "category": "state_transition",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:explosion:8bd697ee1614"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_goal",
+      "category": "goal",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:goal:f83ded35ef07"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "mechanism_budget",
+      "category": "hazard",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:budget:3d12761834d7"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_1_goal",
+      "category": "goal",
+      "level_scope": [
+        1
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:goal:f83ded35ef07"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_2_goal",
+      "category": "goal",
+      "level_scope": [
+        2
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:goal:f83ded35ef07"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_3_goal",
+      "category": "goal",
+      "level_scope": [
+        3
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:goal:f83ded35ef07"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_4_goal",
+      "category": "goal",
+      "level_scope": [
+        4
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:goal:f83ded35ef07"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_5_goal",
+      "category": "goal",
+      "level_scope": [
+        5
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:goal:f83ded35ef07"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_6_goal",
+      "category": "goal",
+      "level_scope": [
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:goal:f83ded35ef07"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_7_goal",
+      "category": "goal",
+      "level_scope": [
+        7
+      ],
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:goal:f83ded35ef07"
+      ],
+      "status": "covered"
+    }
+  ]
+}

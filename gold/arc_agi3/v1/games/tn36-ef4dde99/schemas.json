@@ -1,0 +1,396 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:tn36-ef4dde99:L2:bits:19e6428e4fac",
+      "format_version": 1,
+      "title": "点击程序位会切换比特并改变指令编号",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ef4dde99",
+      "game_id": "tn36-ef4dde99",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "ACTION6 点击可编辑程序单元。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "该位在 0/1 间切换；同一指令格的位按二进制组合成命令编号。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+          "sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+          "symbol": "dimsufvezo commands, ytkjoffamq runner and Tn36 adapter",
+          "lines": [
+            2129,
+            2647
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tn36-ef4dde99:L2:programs:de3fbc93ef6b",
+      "format_version": 1,
+      "title": "程序选择器在多个独立程序间切换并保留内容",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ef4dde99",
+      "game_id": "tn36-ef4dde99",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "ACTION6 点击程序标签/选择器。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "当前编辑区切换到对应程序；离开前的位模式被保存。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+          "sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+          "symbol": "dimsufvezo commands, ytkjoffamq runner and Tn36 adapter",
+          "lines": [
+            2129,
+            2647
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tn36-ef4dde99:L2:run:7a269d2f4144",
+      "format_version": 1,
+      "title": "点击运行区按顺序执行当前程序",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ef4dde99",
+      "game_id": "tn36-ef4dde99",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "ACTION6 点击棋盘/运行按钮且程序非空。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "从第一条命令开始逐条执行，等待每条动画和碰撞结算后继续。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+          "sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+          "symbol": "dimsufvezo commands, ytkjoffamq runner and Tn36 adapter",
+          "lines": [
+            2129,
+            2647
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tn36-ef4dde99:L2:move_commands:28a3ebf3d3c9",
+      "format_version": 1,
+      "title": "移动命令按编号产生一格或两格位移",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ef4dde99",
+      "game_id": "tn36-ef4dde99",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "执行编号对应上、下、左、右或双步移动的命令。",
+      "action_sequence": [],
+      "expectation": "活动对象沿指定方向移动；墙体或对象碰撞可阻止或破坏移动。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+          "sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+          "symbol": "dimsufvezo commands, ytkjoffamq runner and Tn36 adapter",
+          "lines": [
+            2129,
+            2647
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tn36-ef4dde99:L2:transform_commands:508896924ca5",
+      "format_version": 1,
+      "title": "变换命令旋转、缩放或改色",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ef4dde99",
+      "game_id": "tn36-ef4dde99",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "执行旋转、尺寸或颜色命令。",
+      "action_sequence": [],
+      "expectation": "对象按命令旋转 90/180/270°、增减尺寸，或切换到指定颜色。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+          "sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+          "symbol": "dimsufvezo commands, ytkjoffamq runner and Tn36 adapter",
+          "lines": [
+            2129,
+            2647
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tn36-ef4dde99:L2:collision:49bb02d59167",
+      "format_version": 1,
+      "title": "命令后的边界和碰撞决定是否保留变换",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ef4dde99",
+      "game_id": "tn36-ef4dde99",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "执行结果越界或与不可穿越对象重叠。",
+      "action_sequence": [],
+      "expectation": "非法结果被阻止；特定可破坏对象按碰撞规则移除。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+          "sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+          "symbol": "dimsufvezo commands, ytkjoffamq runner and Tn36 adapter",
+          "lines": [
+            2129,
+            2647
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tn36-ef4dde99:L2:goal:bd162a8ba79b",
+      "format_version": 1,
+      "title": "对象四个属性完全匹配目标时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ef4dde99",
+      "game_id": "tn36-ef4dde99",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "程序执行后检查状态。",
+      "action_sequence": [],
+      "expectation": "位置、尺寸、旋转和颜色全部与目标一致时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+          "sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+          "symbol": "dimsufvezo commands, ytkjoffamq runner and Tn36 adapter",
+          "lines": [
+            2129,
+            2647
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tn36-ef4dde99:L2:deadline:0362de213ef8",
+      "format_version": 1,
+      "title": "背景周期左移形成点击时限",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ef4dde99",
+      "game_id": "tn36-ef4dde99",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "完成规定次数的点击操作。",
+      "action_sequence": [],
+      "expectation": "场景向左滚动；关键对象被边界吞没时 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+          "sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7",
+          "symbol": "dimsufvezo commands, ytkjoffamq runner and Tn36 adapter",
+          "lines": [
+            2129,
+            2647
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "contextmath:aime_2025:0:L3:expand_base_numerals:d5cd83c8e2c7",
+      "format_version": 1,
+      "title": "把两位 base-b 数展开为关于 b 的一次式",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2025:0",
+      "sample_scope": [
+        "aime_2025_sg:0",
+        "aime_2025_cs:0"
+      ],
+      "abstraction_level": 3,
+      "kind": "representation",
+      "trigger": "各位数字在 b>9 时均合法。",
+      "operation": "使用 (uv)_b=u·b+v 展开两个数。",
+      "expectation": "整除关系变为两个整数一次式之间的整除。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2025_sg-00000-of-00001.parquet",
+          "sha256": "1fe872c3ece382d946a08c3d61eb8fff18a40304cb60b96bf88d7ff81c340c83",
+          "row_id": 0,
+          "field": "ori_question",
+          "value_sha256": "a3145c72cb6b4a78a74d3e97d669d29a5eeb277efb9f6492e9873d0d3fbfd0c4",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2025_cs-00000-of-00001.parquet",
+          "sha256": "fb9272ac71c3fea21658c005034fa59342036c5f7c847d184f3b2bbe89b9c2b1",
+          "row_id": 0,
+          "field": "ori_question",
+          "value_sha256": "a3145c72cb6b4a78a74d3e97d669d29a5eeb277efb9f6492e9873d0d3fbfd0c4",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "base_expansion"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "contextmath:aime_2025:0:L3:reduce_divisibility:db64fb7f58e0",
+      "format_version": 1,
+      "title": "用线性组合把一次式整除化为常数整除",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2025:0",
+      "sample_scope": [
+        "aime_2025_sg:0",
+        "aime_2025_cs:0"
+      ],
+      "abstraction_level": 3,
+      "kind": "derivation",
+      "trigger": "若 d 整除 n，则 d 也整除 n 的任意整数线性组合。",
+      "operation": "从较大一次式减去下方一次式的适当整数倍。",
+      "expectation": "得到 b 加常数必须整除一个固定正整数。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "contextmath:aime_2025:0:L3:expand_base_numerals:d5cd83c8e2c7"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2025_sg-00000-of-00001.parquet",
+          "sha256": "1fe872c3ece382d946a08c3d61eb8fff18a40304cb60b96bf88d7ff81c340c83",
+          "row_id": 0,
+          "field": "ori_question",
+          "value_sha256": "a3145c72cb6b4a78a74d3e97d669d29a5eeb277efb9f6492e9873d0d3fbfd0c4",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2025_cs-00000-of-00001.parquet",
+          "sha256": "fb9272ac71c3fea21658c005034fa59342036c5f7c847d184f3b2bbe89b9c2b1",
+          "row_id": 0,
+          "field": "ori_question",
+          "value_sha256": "a3145c72cb6b4a78a74d3e97d669d29a5eeb277efb9f6492e9873d0d3fbfd0c4",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "divisibility_reduction"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "contextmath:aime_2025:0:L3:enumerate_bases:95bcf01d31f0",
+      "format_version": 1,
+      "title": "枚举固定整数因数并施加进制下界",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2025:0",
+      "sample_scope": [
+        "aime_2025_sg:0",
+        "aime_2025_cs:0"
+      ],
+      "abstraction_level": 3,
+      "kind": "constraint",
+      "trigger": "候选量是固定整数的正因数，且 b>9。",
+      "operation": "枚举因数、还原 b，并检查数字合法性与原整除关系。",
+      "expectation": "得到完整且无遗漏的合法进制集合。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "contextmath:aime_2025:0:L3:reduce_divisibility:db64fb7f58e0"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2025_sg-00000-of-00001.parquet",
+          "sha256": "1fe872c3ece382d946a08c3d61eb8fff18a40304cb60b96bf88d7ff81c340c83",
+          "row_id": 0,
+          "field": "ori_question",
+          "value_sha256": "a3145c72cb6b4a78a74d3e97d669d29a5eeb277efb9f6492e9873d0d3fbfd0c4",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2025_cs-00000-of-00001.parquet",
+          "sha256": "fb9272ac71c3fea21658c005034fa59342036c5f7c847d184f3b2bbe89b9c2b1",
+          "row_id": 0,
+          "field": "ori_question",
+          "value_sha256": "a3145c72cb6b4a78a74d3e97d669d29a5eeb277efb9f6492e9873d0d3fbfd0c4",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "valid_bases"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "contextmath:aime_2025:0:L3:sum_bases:294662c270bb",
+      "format_version": 1,
+      "title": "对全部合法进制求和",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2025:0",
+      "sample_scope": [
+        "aime_2025_sg:0",
+        "aime_2025_cs:0"
+      ],
+      "abstraction_level": 3,
+      "kind": "calculation",
+      "trigger": "合法进制集合已经穷尽。",
+      "operation": "每个合法 b 恰计一次后求和。",
+      "expectation": "得到题目要求的进制总和。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "contextmath:aime_2025:0:L3:enumerate_bases:95bcf01d31f0"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2025_sg-00000-of-00001.parquet",
+          "sha256": "1fe872c3ece382d946a08c3d61eb8fff18a40304cb60b96bf88d7ff81c340c83",
+          "row_id": 0,
+          "field": "ori_question",
+          "value_sha256": "a3145c72cb6b4a78a74d3e97d669d29a5eeb277efb9f6492e9873d0d3fbfd0c4",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2025_cs-00000-of-00001.parquet",
+          "sha256": "fb9272ac71c3fea21658c005034fa59342036c5f7c847d184f3b2bbe89b9c2b1",
+          "row_id": 0,
+          "field": "ori_question",
+          "value_sha256": "a3145c72cb6b4a78a74d3e97d669d29a5eeb277efb9f6492e9873d0d3fbfd0c4",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "base_sum"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

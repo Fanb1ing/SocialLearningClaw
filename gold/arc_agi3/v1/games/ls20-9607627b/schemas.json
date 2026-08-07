@@ -1,0 +1,337 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:ls20-9607627b:L2:move:df258f517a95",
+      "format_version": 1,
+      "title": "ACTION1–4 在迷宫网格中移动角色",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "9607627b",
+      "game_id": "ls20-9607627b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "目标格可通行。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "角色向上、下、左、右移动一格；墙和不匹配目标阻挡移动。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ls20/9607627b/ls20.py",
+          "sha256": "298c810da2850d557c95d92a2cbd846df29a45d7134e20888617bedf5dafcd92",
+          "symbol": "Ls20 movement, modifiers, targets, hazards and completion",
+          "lines": [
+            1765,
+            2060
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ls20-9607627b:L2:modifiers:6e4d5620b92d",
+      "format_version": 1,
+      "title": "三类修改格分别循环形状、颜色和旋转",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "9607627b",
+      "game_id": "ls20-9607627b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "角色进入对应修改格。",
+      "action_sequence": [],
+      "expectation": "当前携带物仅改变该修改格负责的一个属性，其余属性保持不变。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ls20/9607627b/ls20.py",
+          "sha256": "298c810da2850d557c95d92a2cbd846df29a45d7134e20888617bedf5dafcd92",
+          "symbol": "Ls20 movement, modifiers, targets, hazards and completion",
+          "lines": [
+            1765,
+            2060
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ls20-9607627b:L2:target:458793d3c8b5",
+      "format_version": 1,
+      "title": "目标要求形状、颜色、旋转三属性完全匹配",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "9607627b",
+      "game_id": "ls20-9607627b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "角色尝试进入目标格。",
+      "action_sequence": [],
+      "expectation": "三属性全部相同则目标被清除；任一属性不同则目标仍是阻挡。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ls20/9607627b/ls20.py",
+          "sha256": "298c810da2850d557c95d92a2cbd846df29a45d7134e20888617bedf5dafcd92",
+          "symbol": "Ls20 movement, modifiers, targets, hazards and completion",
+          "lines": [
+            1765,
+            2060
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ls20-9607627b:L2:time:cd1257f437a7",
+      "format_version": 1,
+      "title": "时间拾取物补充动作预算",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "9607627b",
+      "game_id": "ls20-9607627b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "角色进入时间拾取物所在格。",
+      "action_sequence": [],
+      "expectation": "拾取物消失，剩余步数增加到关卡规定值以内。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ls20/9607627b/ls20.py",
+          "sha256": "298c810da2850d557c95d92a2cbd846df29a45d7134e20888617bedf5dafcd92",
+          "symbol": "Ls20 movement, modifiers, targets, hazards and completion",
+          "lines": [
+            1765,
+            2060
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ls20-9607627b:L2:hazard:aae55b3ac7ff",
+      "format_version": 1,
+      "title": "移动危险物或陷阱会消耗生命并重置本关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "9607627b",
+      "game_id": "ls20-9607627b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "角色与危险对象重合或预算耗尽。",
+      "action_sequence": [],
+      "expectation": "生命减一并恢复关卡初始状态；生命耗尽时 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ls20/9607627b/ls20.py",
+          "sha256": "298c810da2850d557c95d92a2cbd846df29a45d7134e20888617bedf5dafcd92",
+          "symbol": "Ls20 movement, modifiers, targets, hazards and completion",
+          "lines": [
+            1765,
+            2060
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ls20-9607627b:L2:goal:e26388619e35",
+      "format_version": 1,
+      "title": "全部属性目标被清除时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "9607627b",
+      "game_id": "ls20-9607627b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "一次匹配目标完成。",
+      "action_sequence": [],
+      "expectation": "关卡中不再存在未满足目标时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ls20/9607627b/ls20.py",
+          "sha256": "298c810da2850d557c95d92a2cbd846df29a45d7134e20888617bedf5dafcd92",
+          "symbol": "Ls20 movement, modifiers, targets, hazards and completion",
+          "lines": [
+            1765,
+            2060
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ls20-9607627b:L2:fog:73b94f475f4a",
+      "format_version": 1,
+      "title": "后续关卡的可见区域随角色位置变化",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "9607627b",
+      "game_id": "ls20-9607627b",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "observation_semantics",
+      "trigger": "关卡启用局部可见/遮挡机制。",
+      "action_sequence": [],
+      "expectation": "角色附近信息可见，远处被遮挡；遮挡不改变底层碰撞规则。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ls20/9607627b/ls20.py",
+          "sha256": "298c810da2850d557c95d92a2cbd846df29a45d7134e20888617bedf5dafcd92",
+          "symbol": "Ls20 movement, modifiers, targets, hazards and completion",
+          "lines": [
+            1765,
+            2060
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "verification": {
+        "static": "passed",
+        "runtime": "not_required",
+        "review": "pending"
+      }
+    }
+  ]
+}

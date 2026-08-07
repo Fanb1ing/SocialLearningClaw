@@ -1,0 +1,224 @@
+{
+  "format_version": 1,
+  "requirements": [
+    {
+      "requirement_id": "observable_target_and_canvas",
+      "category": "observation",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:reference_pattern:2a9c1d74b4f9",
+        "arc_agi3:cd82-fb555c5d:L2:paint_canvas:5c0767d53a96"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "palette_controls",
+      "category": "control",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:palette_select:5238b6b05cf7"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "ACTION1_navigation",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:move_action1:2b08e67c10f7"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "ACTION2_navigation",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:move_action2:7fed96dbc083"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "ACTION3_navigation",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:move_action3:7917915ab38f"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "ACTION4_navigation",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:move_action4:ea07347fab10"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "ACTION5_all_eight_positions",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:paint_top_half:269f73d00959",
+        "arc_agi3:cd82-fb555c5d:L2:paint_top_right_triangle:70fb4a807d5f",
+        "arc_agi3:cd82-fb555c5d:L2:paint_right_half:b3b1ce70645c",
+        "arc_agi3:cd82-fb555c5d:L2:paint_bottom_right_triangle:fe5879fe14f4",
+        "arc_agi3:cd82-fb555c5d:L2:paint_bottom_half:cd8a02f2dea0",
+        "arc_agi3:cd82-fb555c5d:L2:paint_bottom_left_triangle:bd9c6896bda3",
+        "arc_agi3:cd82-fb555c5d:L2:paint_left_half:249279c8fe66",
+        "arc_agi3:cd82-fb555c5d:L2:paint_top_left_triangle:30cc456b6034"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "ACTION6_palette_or_edge_tool",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:palette_select:5238b6b05cf7",
+        "arc_agi3:cd82-fb555c5d:L2:edge_detail_paint:89373eafbcbf"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_1_goal",
+      "category": "goal",
+      "level_scope": [
+        1
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_2_goal",
+      "category": "goal",
+      "level_scope": [
+        2
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_3_goal",
+      "category": "goal",
+      "level_scope": [
+        3
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_4_goal",
+      "category": "goal",
+      "level_scope": [
+        4
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_5_goal",
+      "category": "goal",
+      "level_scope": [
+        5
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_6_goal",
+      "category": "goal",
+      "level_scope": [
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "action_budget",
+      "category": "hazard",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:action_budget_loss:c397ee61796b"
+      ],
+      "status": "covered"
+    }
+  ]
+}

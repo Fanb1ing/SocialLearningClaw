@@ -32,42 +32,69 @@ class IntPhys2Benchmark(BenchmarkAdapter):
         self.max_frames = max_frames
 
     def _metadata_path(self, split: str) -> Path:
-        if split != "debug":
-            raise ValueError("Only the locally prepared IntPhys2 debug split is supported")
-        return self.data_dir / "debug_metadata.csv"
+        if split == "debug":
+            official = self.data_dir / "Debug/metadata.csv"
+            return official if official.exists() else self.data_dir / "debug_metadata.csv"
+        if split == "main_300":
+            return self.data_dir / "Main/sample_300.csv"
+        raise ValueError("IntPhys2 split must be 'debug' or 'main_300'")
 
     def _videos_dir(self, split: str) -> Path:
-        return self.data_dir / ("Debug/Videos" if split == "debug" else f"{split}/Videos")
+        return self.data_dir / ("Debug/Videos" if split == "debug" else "Main/Videos")
+
+    def _preparation_manifest_path(self, split: str) -> Path | None:
+        if split == "main_300":
+            return self.data_dir / "Main/sample_300_manifest.json"
+        return None
 
     def load(self, split: str, max_samples: int = 0) -> List[BenchmarkSample]:
         import pandas as pd
 
         metadata_path = self._metadata_path(split)
         videos_dir = self._videos_dir(split)
+        manifest_path = self._preparation_manifest_path(split)
+        if manifest_path is not None and not manifest_path.is_file():
+            raise FileNotFoundError(
+                f"Missing pinned IntPhys2 preparation manifest: {manifest_path}. "
+                "Run scripts/prepare_intphys2_data.py first."
+            )
         rows = pd.read_csv(metadata_path).to_dict("records")
         samples: List[BenchmarkSample] = []
+        missing_videos: List[Path] = []
         for row in rows:
             path = videos_dir / Path(str(row["file_name"])).name
             if not path.exists():
+                missing_videos.append(path)
                 continue
-            label = 1 if "Possible" in str(row["type"]) else 0
-            samples.append(
-                BenchmarkSample(
-                    id=path.stem,
-                    prompt="Determine whether the video is physically plausible.",
-                    gold=label,
-                    media=[str(path)],
-                    metadata={
-                        "split": split,
-                        "condition": str(row.get("condition", "unknown")).lower(),
-                        "camera": str(row.get("Camera", "unknown")),
-                        "type": str(row.get("type", "")),
-                        "game": str(row.get("game_name", "")),
-                    },
+            sample_type = str(row["type"])
+            if sample_type.endswith("_Possible"):
+                label = 1
+            elif sample_type.endswith("_Impossible"):
+                label = 0
+            else:
+                raise ValueError(f"Unknown IntPhys2 type label: {sample_type!r}")
+            if not max_samples or len(samples) < max_samples:
+                samples.append(
+                    BenchmarkSample(
+                        id=path.stem,
+                        prompt="Determine whether the video is physically plausible.",
+                        gold=label,
+                        media=[str(path)],
+                        metadata={
+                            "split": split,
+                            "condition": str(row.get("condition", "unknown")).lower(),
+                            "camera": str(row.get("Camera", "unknown")),
+                            "type": sample_type,
+                            "game": str(row.get("game_name", "")),
+                        },
+                    )
                 )
+        if missing_videos:
+            preview = ", ".join(str(path) for path in missing_videos[:3])
+            raise FileNotFoundError(
+                f"IntPhys2 split {split!r} is incomplete: "
+                f"{len(missing_videos)} referenced videos are missing; examples: {preview}"
             )
-            if max_samples and len(samples) >= max_samples:
-                break
         return samples
 
     def extract_frame_data_urls(self, sample: BenchmarkSample) -> List[str]:
@@ -128,4 +155,8 @@ class IntPhys2Benchmark(BenchmarkAdapter):
         )
 
     def source_files(self, split: str) -> List[str]:
-        return [str(self._metadata_path(split))]
+        paths = [self._metadata_path(split)]
+        manifest_path = self._preparation_manifest_path(split)
+        if manifest_path is not None:
+            paths.append(manifest_path)
+        return [str(path) for path in paths]

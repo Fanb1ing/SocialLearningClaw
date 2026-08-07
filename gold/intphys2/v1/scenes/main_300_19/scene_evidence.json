@@ -1,0 +1,252 @@
+{
+  "format_version": 1,
+  "benchmark": "intphys2",
+  "scene_id": "main_300:19",
+  "split_aliases": [],
+  "condition": "continuity",
+  "game": "RotatingCup",
+  "camera": "Fixed",
+  "difficulty": "Easy",
+  "metadata_source": {
+    "path": "data/intphys2/Main/sample_300.csv",
+    "sha256": "41f7c5235424dc6cce757df682a7e1d05fab461242fe07ef4287e6be561ee0fc"
+  },
+  "metadata_aliases": [],
+  "clips": [
+    {
+      "type": "1_Possible",
+      "gold_label": 1,
+      "video_path": "data/intphys2/Main/Videos/d62b063856a3971c7c8e745d5a767853b36e0c0e42c1f01fd0702ba1fa06937c.mp4",
+      "video_sha256": "07d8b4de945789d63c06a6a9fcd22734e5102481fd38c86d1ac2820440ecab15",
+      "fps": 60.0,
+      "frame_count": 636,
+      "duration_seconds": 10.6,
+      "resolution": [
+        512,
+        512
+      ],
+      "sampled_frames": [
+        {
+          "frame_index": 0,
+          "time_seconds": 0.0,
+          "decoded_bgr_sha256": "b68ffb8e66ed9d1f49dc3aef256aa01a2e4f4e819156bbc115419c02967759a2"
+        },
+        {
+          "frame_index": 60,
+          "time_seconds": 1.0,
+          "decoded_bgr_sha256": "e92780d0c336c428b68dc77fea632e0598a7c12ddd38188896ed052f9e16e530"
+        },
+        {
+          "frame_index": 270,
+          "time_seconds": 4.5,
+          "decoded_bgr_sha256": "6401d298bd24b99aee862ce5f7ac7aa6b28eab301a7627b2e14e007a5a486a4e"
+        },
+        {
+          "frame_index": 450,
+          "time_seconds": 7.5,
+          "decoded_bgr_sha256": "e629e9ccc4e2d45f040675c3a06106a48d5d97e84c9cd7180f49dcbc769f84e3"
+        },
+        {
+          "frame_index": 510,
+          "time_seconds": 8.5,
+          "decoded_bgr_sha256": "f93ba5833f2d5895666fb3e14c384b354ac25defd17ffa0c591925a7c8400a1b"
+        },
+        {
+          "frame_index": 600,
+          "time_seconds": 10.0,
+          "decoded_bgr_sha256": "2def54d86fb19d47dc995f4bb9e7e1aff036960600a95e6dfef2c4997c9389ac"
+        }
+      ]
+    },
+    {
+      "type": "1_Impossible",
+      "gold_label": 0,
+      "video_path": "data/intphys2/Main/Videos/b6f4fec72d104937b74971714b52e7fc363c3066b284e0410a5749d3c796bbde.mp4",
+      "video_sha256": "0e8e9c4672dbe5e7b734bc4b81ba04a764584bb4a17ed5d619d036aa0063d7bc",
+      "fps": 60.0,
+      "frame_count": 636,
+      "duration_seconds": 10.6,
+      "resolution": [
+        512,
+        512
+      ],
+      "sampled_frames": [
+        {
+          "frame_index": 0,
+          "time_seconds": 0.0,
+          "decoded_bgr_sha256": "7484833157709dcc0506d13823fb4cca94fdcbd8c154e4e05960cee8d95232a0"
+        },
+        {
+          "frame_index": 60,
+          "time_seconds": 1.0,
+          "decoded_bgr_sha256": "22b0c443dcda95bf43f4acafca2e5da1ccd13a65c8527e0106ced14d36058a60"
+        },
+        {
+          "frame_index": 270,
+          "time_seconds": 4.5,
+          "decoded_bgr_sha256": "94bbbb6a2e27cec42894bf4945d509fa0ed20412a7f5b234f5c74da63f92befe"
+        },
+        {
+          "frame_index": 450,
+          "time_seconds": 7.5,
+          "decoded_bgr_sha256": "f281dbb3a1c1f04b8fa6e627f6f7125270f1e44409963369a877add813e017b2"
+        },
+        {
+          "frame_index": 510,
+          "time_seconds": 8.5,
+          "decoded_bgr_sha256": "9ab349dee5e4a81d2384469b99ad8fb910355c694fc655bfba8f59db8faf7608"
+        },
+        {
+          "frame_index": 600,
+          "time_seconds": 10.0,
+          "decoded_bgr_sha256": "c542ce7240696cfc8f76e7762f050c604ec74124a96223fda9e04e65d1cc2203"
+        }
+      ]
+    },
+    {
+      "type": "2_Possible",
+      "gold_label": 1,
+      "video_path": "data/intphys2/Main/Videos/19c71d123e53a3ab2f3f65ded20e927a5bd5f0eada5abee6af15cd7dc52e4e92.mp4",
+      "video_sha256": "8035797a5ec4051a73ee6b5bf457ce25ad0634314045493468a4be5371c3fa5b",
+      "fps": 60.0,
+      "frame_count": 636,
+      "duration_seconds": 10.6,
+      "resolution": [
+        512,
+        512
+      ],
+      "sampled_frames": [
+        {
+          "frame_index": 0,
+          "time_seconds": 0.0,
+          "decoded_bgr_sha256": "6e500a437ea4af38e0b0104bac30b7e8824f77720fb802b2ba362f7e20ebb95c"
+        },
+        {
+          "frame_index": 60,
+          "time_seconds": 1.0,
+          "decoded_bgr_sha256": "c427832e3bd69112a1bc78d40444c1af672880f18fb72f0fd4ac8b4e260cb32b"
+        },
+        {
+          "frame_index": 270,
+          "time_seconds": 4.5,
+          "decoded_bgr_sha256": "89d4ce65b11a06e962fa0e1147c5f83cfb487af5405c5ae6bc2f097e3ba64227"
+        },
+        {
+          "frame_index": 450,
+          "time_seconds": 7.5,
+          "decoded_bgr_sha256": "edf236cd32a7e7b74f794d9c5b0fe256aa76ef69f41f7ee10885c1190a14d740"
+        },
+        {
+          "frame_index": 510,
+          "time_seconds": 8.5,
+          "decoded_bgr_sha256": "70e03696d7f89bea69c252dbe651283a0fc7fc38188256c8a262545ac5c4b278"
+        },
+        {
+          "frame_index": 600,
+          "time_seconds": 10.0,
+          "decoded_bgr_sha256": "d92c4dfedf805d9bef231f35f47174c5db89c5db383931dbca607e41bb75c31b"
+        }
+      ]
+    },
+    {
+      "type": "2_Impossible",
+      "gold_label": 0,
+      "video_path": "data/intphys2/Main/Videos/14e890b24d1d9b891e22bf20bf5cdab37c43362bd2334ff8f9d96e1329b5dac4.mp4",
+      "video_sha256": "b1c1fa9cb92f6bd298ffda9bd106f53116c153cbabbf9d43c738b207df14b57a",
+      "fps": 60.0,
+      "frame_count": 636,
+      "duration_seconds": 10.6,
+      "resolution": [
+        512,
+        512
+      ],
+      "sampled_frames": [
+        {
+          "frame_index": 0,
+          "time_seconds": 0.0,
+          "decoded_bgr_sha256": "fdb09e18d0a231f38c80c54ed43bd8959fbf248fd0ebc6479e04d5190b7234a0"
+        },
+        {
+          "frame_index": 60,
+          "time_seconds": 1.0,
+          "decoded_bgr_sha256": "9f4b471792707ccfd58af965abdc7dc112e2e9a310be3f43ef1ad1f720ed1cd8"
+        },
+        {
+          "frame_index": 270,
+          "time_seconds": 4.5,
+          "decoded_bgr_sha256": "081a8de389a231eb793b1444266668d9e0df5625e86dc9874a570205dfb5add2"
+        },
+        {
+          "frame_index": 450,
+          "time_seconds": 7.5,
+          "decoded_bgr_sha256": "03ca937d93d623e4d64e63816cdae1bebe0a2b53e4717333e45413cb9e6cc809"
+        },
+        {
+          "frame_index": 510,
+          "time_seconds": 8.5,
+          "decoded_bgr_sha256": "5dca9069e2f652773e2e6cab8e4a0b11266dc071d1fca671a014dc72763603ac"
+        },
+        {
+          "frame_index": 600,
+          "time_seconds": 10.0,
+          "decoded_bgr_sha256": "752212629a9ff02acffd12eadae29cc2db851cc21b04a2bcd77c389edfa3c1dc"
+        }
+      ]
+    }
+  ],
+  "pair_assessments": [
+    {
+      "evidence_id": "intphys2:main_300:19:pair1",
+      "pair": 1,
+      "possible_clip": "1_Possible",
+      "impossible_clip": "1_Impossible",
+      "focus_frames": [
+        0,
+        60,
+        450,
+        510,
+        600
+      ],
+      "possible_observation": "蓝色方块遮挡前后都位于左侧杯位。",
+      "impossible_observation": "蓝色方块遮挡前位于左侧杯位，之后直接出现在右侧杯位。",
+      "condition_consistency": "matched",
+      "semantic_status": "provisional_review_pending"
+    },
+    {
+      "evidence_id": "intphys2:main_300:19:pair2",
+      "pair": 2,
+      "possible_clip": "2_Possible",
+      "impossible_clip": "2_Impossible",
+      "focus_frames": [
+        0,
+        60,
+        450,
+        510,
+        600
+      ],
+      "possible_observation": "蓝色方块遮挡前后都位于右侧杯位。",
+      "impossible_observation": "蓝色方块遮挡前位于右侧杯位，之后直接出现在左侧杯位。",
+      "condition_consistency": "matched",
+      "semantic_status": "provisional_review_pending"
+    }
+  ],
+  "contact_sheet": {
+    "path": "contact_sheet.jpg",
+    "sha256": "798363279f28f6ad33f46709ed430b7e1a5064b2dd8d507c6cbf54da6a80867b",
+    "columns": [
+      0,
+      60,
+      270,
+      450,
+      510,
+      600
+    ],
+    "rows": [
+      "1_Possible",
+      "1_Impossible",
+      "2_Possible",
+      "2_Impossible"
+    ]
+  },
+  "review": "pending"
+}

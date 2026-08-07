@@ -1,0 +1,42 @@
+{
+  "format_version": 1,
+  "problem_id": "aime_2024:67",
+  "generator": "scripts/generate_contextmath_gold.py",
+  "gold_answer_raw": "025",
+  "gold_answer_normalized": "25",
+  "derived_answer_normalized": "25",
+  "checks": [
+    {
+      "witness_id": "cs_first_exponent",
+      "description": "CS 第一指数解码",
+      "calculation": "log_11(25937424601)",
+      "observed": "10",
+      "expected": "10",
+      "passed": true
+    },
+    {
+      "witness_id": "cs_second_exponent",
+      "description": "CS 第二指数解码",
+      "calculation": "log_12(61917364224)",
+      "observed": "10",
+      "expected": "10",
+      "passed": true
+    },
+    {
+      "witness_id": "coupled_log_product",
+      "description": "相乘后对数比值互相抵消",
+      "calculation": "(x ln y/ln x)(4y ln x/ln y)=10^2",
+      "observed": "100",
+      "expected": "100",
+      "passed": true
+    },
+    {
+      "witness_id": "target_product",
+      "description": "由 4xy=100 得到乘积",
+      "calculation": "100/4",
+      "observed": "25",
+      "expected": "25",
+      "passed": true
+    }
+  ]
+}

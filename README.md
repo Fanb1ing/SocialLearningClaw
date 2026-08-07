@@ -59,7 +59,7 @@ outputs/                 Generated experiments; ignored by Git
 
 ## 安装
 
-要求 Python 3.11+。
+要求 Python 3.12+（当前 `arc-agi>=0.9.8` 的上游要求）。
 
 ```bash
 python -m venv .venv
@@ -89,14 +89,25 @@ python -m socialclaw.run_static \
 python -m socialclaw.run_static \
   --benchmark intphys2 \
   --method rag \
-  --split debug \
+  --split main_300 \
   --model anthropic/claude-opus-4.8 \
   --max-samples 17
 ```
 
 把 `--method` 替换为任一 baseline 或 `schema` 即可。Schema 状态会写入当前
 run 的 `schema/memory.json` 与 `schema/schema.json`。默认每题一次 attempt；如果研究 retry，所有对比方法必须显式使用相同的 `--max-attempts`。
-IntPhys2 默认预留开头 3 个视频给 ICL，因此当前 20 个本地视频最多评测其余 17 个；所有方法都会排除同一保留集。
+IntPhys2 支持完整 Debug 60 视频与固定的 Main 300 视频样本。默认预留当前
+split 的开头 3 个视频给 ICL；所有方法都会排除同一保留集。
+
+首次准备 IntPhys2 数据：
+
+```bash
+.venv/bin/python scripts/prepare_intphys2_data.py \
+  --main-samples 300 --seed 20260724 --workers 8
+```
+
+脚本默认固定 Hugging Face revision，并生成 `sample_300_manifest.json`；runner
+会拒绝缺少 manifest 或视频不完整的 `main_300`。
 
 ## 运行 ARC-AGI-3
 
@@ -114,6 +125,10 @@ python -m socialclaw.run_arc \
 ```bash
 bash scripts/run_all_baselines.sh
 ```
+
+仓库固定保存了当前 25 个 ARC 游戏版本，runner 使用 SDK offline mode；每个
+run 的 dataset fingerprint 来自对应本地 metadata 与环境源码。刷新官方库存需
+有效 ARC API key：`.venv/bin/python scripts/download_arc_games.py`。
 
 汇总：
 
@@ -146,4 +161,8 @@ python -m unittest discover -s tests -v
 - [Experiment protocol](docs/experiment_protocol.md)
 - [Result format](docs/results_format.md)
 - [Memory-grounded layered Schema](docs/schema_architecture.md)
+- [Gold Schema 构建方案](docs/gold_schema_generation.md)
+- [ARC-AGI-3 Gold Schema v1](gold/arc_agi3/v1/README.md)
+- [ContextMATH Gold Schema 第一批审核稿](gold/contextmath/v1/README.md)
+- [IntPhys2 Gold Schema 四类物理规则 pilot](gold/intphys2/v1/README.md)
 - [Historical baseline smoke results](docs/baseline_smoke_results.md)

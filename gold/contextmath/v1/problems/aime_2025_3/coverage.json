@@ -1,0 +1,37 @@
+{
+  "format_version": 1,
+  "problem_id": "aime_2025:3",
+  "requirements": [
+    {
+      "requirement_id": "sg_semantic_alignment",
+      "schema_ids": [],
+      "artifact": "surface_alignment.json",
+      "status": "complete"
+    },
+    {
+      "requirement_id": "cs_semantic_alignment",
+      "schema_ids": [],
+      "artifact": "surface_alignment.json",
+      "status": "complete"
+    },
+    {
+      "requirement_id": "necessary_reasoning_chain",
+      "schema_ids": [
+        "contextmath:aime_2025:3:L3:factor_quadratic:a6d15729c73b",
+        "contextmath:aime_2025:3:L3:zero_product_lines:c0ba23990af0",
+        "contextmath:aime_2025:3:L3:integer_parameterization:5f727856582d",
+        "contextmath:aime_2025:3:L3:union_count:7601d5aeab42"
+      ],
+      "artifact": "schemas.json",
+      "status": "complete"
+    },
+    {
+      "requirement_id": "executable_answer_check",
+      "schema_ids": [
+        "contextmath:aime_2025:3:L3:union_count:7601d5aeab42"
+      ],
+      "artifact": "witness.json",
+      "status": "complete"
+    }
+  ]
+}

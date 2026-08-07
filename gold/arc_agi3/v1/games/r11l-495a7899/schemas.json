@@ -1,0 +1,383 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:r11l-495a7899:L2:select:cd80bc69823d",
+      "format_version": 1,
+      "title": "ACTION6 点击部件将其选中",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "495a7899",
+      "game_id": "r11l-495a7899",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "点击命中可拖动部件。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "部件高亮并成为后续落点点击的移动对象。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:r11l-495a7899:L2:drag:ee0838d8126a",
+      "format_version": 1,
+      "title": "选中后点击空位置把部件中心移动到点击点",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "495a7899",
+      "game_id": "r11l-495a7899",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "目标位置不与固定阻挡重叠。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "部件移动到目标位置；与其关联的组合中心按所有子部件中心重新定位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:r11l-495a7899:L2:wall:e32566810f39",
+      "format_version": 1,
+      "title": "固定阻挡禁止放置",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "495a7899",
+      "game_id": "r11l-495a7899",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "拟放置位置使选中部件与墙/禁区重叠。",
+      "action_sequence": [],
+      "expectation": "移动不开始，部件保持原位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:r11l-495a7899:L2:compose:686eb82e9053",
+      "format_version": 1,
+      "title": "组合容器吸收接触的小彩色片段",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "495a7899",
+      "game_id": "r11l-495a7899",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "可组合图形与未吸收片段重合。",
+      "action_sequence": [],
+      "expectation": "片段颜色像素写入组合图形，片段从棋盘移除。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:r11l-495a7899:L2:target_match:a7e1b8dbdcf2",
+      "format_version": 1,
+      "title": "组合图形与目标按非零颜色集合匹配",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "495a7899",
+      "game_id": "r11l-495a7899",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "组合图形与目标重合。",
+      "action_sequence": [],
+      "expectation": "只有两者出现的非零颜色集合完全相等才算该目标满足。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:r11l-495a7899:L2:hazard:7462f1131005",
+      "format_version": 1,
+      "title": "组合图形接触危险区会回退并累计失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "495a7899",
+      "game_id": "r11l-495a7899",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "拖动终点使组合图形碰到危险对象。",
+      "action_sequence": [],
+      "expectation": "移动动画倒放到起点；累计五次后 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:r11l-495a7899:L2:goal:74adb28e1a49",
+      "format_version": 1,
+      "title": "所有规定目标保持匹配一段确认时间后过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "495a7899",
+      "game_id": "r11l-495a7899",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "每个目标都被对应组合图形覆盖且匹配。",
+      "action_sequence": [],
+      "expectation": "全部目标完成确认动画后进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:r11l-495a7899:L2:budget:30cd5d330c0d",
+      "format_version": 1,
+      "title": "60 次点击预算耗尽时失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "495a7899",
+      "game_id": "r11l-495a7899",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "累计 action 达到 60。",
+      "action_sequence": [],
+      "expectation": "游戏进入 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+          "sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0",
+          "symbol": "R11l piece selection, dragging, composition and target checks",
+          "lines": [
+            1404,
+            1849
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

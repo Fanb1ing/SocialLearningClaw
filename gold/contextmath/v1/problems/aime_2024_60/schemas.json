@@ -1,0 +1,258 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "contextmath:aime_2024:60:L3:total_time_model:d1fa2da85034",
+      "format_version": 1,
+      "title": "把总时长拆为行进时长与固定停留时长",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2024:60",
+      "sample_scope": [
+        "aime_2024_sg:60",
+        "aime_2024_cs:60"
+      ],
+      "abstraction_level": 3,
+      "kind": "representation",
+      "trigger": "同一路程在不同速度下完成，且每次含相同的固定停留时间。",
+      "operation": "对每种速度 v 建立 T=d/v+c；固定项 c 在各条件中相同。",
+      "expectation": "得到两条共享 d、c 和基础速度的精确方程。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2024_sg-00000-of-00001.parquet",
+          "sha256": "870c1f2183149c6fcf7e08314954442ac6c3d82c3ed6acf3cc2f03224a393a76",
+          "row_id": 60,
+          "field": "ori_question",
+          "value_sha256": "40de3e36fcb84aa58186509525206fca18fae251bef3cf8621d8adfabbefca89",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2024_cs-00000-of-00001.parquet",
+          "sha256": "2a4bad514cbf2b0b38726340e0add026fe4b2648997673b86eff9421cd0cc38a",
+          "row_id": 60,
+          "field": "ori_question",
+          "value_sha256": "40de3e36fcb84aa58186509525206fca18fae251bef3cf8621d8adfabbefca89",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "speed_equations"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "contextmath:aime_2024:60:L3:eliminate_stop:70e0ffbba389",
+      "format_version": 1,
+      "title": "用总时长之差消去共同停留时间",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2024:60",
+      "sample_scope": [
+        "aime_2024_sg:60",
+        "aime_2024_cs:60"
+      ],
+      "abstraction_level": 3,
+      "kind": "derivation",
+      "trigger": "两条 T=d/v+c 方程中的 c 相同。",
+      "operation": "两式相减，只保留 d/s-d/(s+Δv)=ΔT。",
+      "expectation": "把未知基础速度约束为一个一元方程。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "contextmath:aime_2024:60:L3:total_time_model:d1fa2da85034"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2024_sg-00000-of-00001.parquet",
+          "sha256": "870c1f2183149c6fcf7e08314954442ac6c3d82c3ed6acf3cc2f03224a393a76",
+          "row_id": 60,
+          "field": "ori_question",
+          "value_sha256": "40de3e36fcb84aa58186509525206fca18fae251bef3cf8621d8adfabbefca89",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2024_cs-00000-of-00001.parquet",
+          "sha256": "2a4bad514cbf2b0b38726340e0add026fe4b2648997673b86eff9421cd0cc38a",
+          "row_id": 60,
+          "field": "ori_question",
+          "value_sha256": "40de3e36fcb84aa58186509525206fca18fae251bef3cf8621d8adfabbefca89",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "speed_equations"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "contextmath:aime_2024:60:L3:positive_speed:a62c14a13230",
+      "format_version": 1,
+      "title": "求解速度方程并保留正根",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2024:60",
+      "sample_scope": [
+        "aime_2024_sg:60",
+        "aime_2024_cs:60"
+      ],
+      "abstraction_level": 3,
+      "kind": "constraint",
+      "trigger": "一元速度方程可能具有多个代数根。",
+      "operation": "精确因式分解或求根，并使用速度必须为正的定义域。",
+      "expectation": "唯一保留可物理解释的基础速度。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "contextmath:aime_2024:60:L3:eliminate_stop:70e0ffbba389"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2024_sg-00000-of-00001.parquet",
+          "sha256": "870c1f2183149c6fcf7e08314954442ac6c3d82c3ed6acf3cc2f03224a393a76",
+          "row_id": 60,
+          "field": "ori_question",
+          "value_sha256": "40de3e36fcb84aa58186509525206fca18fae251bef3cf8621d8adfabbefca89",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2024_cs-00000-of-00001.parquet",
+          "sha256": "2a4bad514cbf2b0b38726340e0add026fe4b2648997673b86eff9421cd0cc38a",
+          "row_id": 60,
+          "field": "ori_question",
+          "value_sha256": "40de3e36fcb84aa58186509525206fca18fae251bef3cf8621d8adfabbefca89",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "positive_root"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "contextmath:aime_2024:60:L3:recover_stop:87a0e4619b7f",
+      "format_version": 1,
+      "title": "回代恢复固定停留时长",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2024:60",
+      "sample_scope": [
+        "aime_2024_sg:60",
+        "aime_2024_cs:60"
+      ],
+      "abstraction_level": 3,
+      "kind": "calculation",
+      "trigger": "基础速度已经确定。",
+      "operation": "将基础速度代回任一总时长方程求 c，并用另一方程交叉检查。",
+      "expectation": "得到与两次观测都一致的固定停留时长。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "contextmath:aime_2024:60:L3:positive_speed:a62c14a13230"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2024_sg-00000-of-00001.parquet",
+          "sha256": "870c1f2183149c6fcf7e08314954442ac6c3d82c3ed6acf3cc2f03224a393a76",
+          "row_id": 60,
+          "field": "ori_question",
+          "value_sha256": "40de3e36fcb84aa58186509525206fca18fae251bef3cf8621d8adfabbefca89",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2024_cs-00000-of-00001.parquet",
+          "sha256": "2a4bad514cbf2b0b38726340e0add026fe4b2648997673b86eff9421cd0cc38a",
+          "row_id": 60,
+          "field": "ori_question",
+          "value_sha256": "40de3e36fcb84aa58186509525206fca18fae251bef3cf8621d8adfabbefca89",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "fixed_stop"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "contextmath:aime_2024:60:L3:target_time:47f87193c08d",
+      "format_version": 1,
+      "title": "代入目标速度并统一换算为分钟",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2024:60",
+      "sample_scope": [
+        "aime_2024_sg:60",
+        "aime_2024_cs:60"
+      ],
+      "abstraction_level": 3,
+      "kind": "calculation",
+      "trigger": "目标速度是基础速度加指定增量。",
+      "operation": "计算 d/(s+δ)+c，并在最后一步统一转换时间单位。",
+      "expectation": "得到题目要求的总分钟数。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "contextmath:aime_2024:60:L3:recover_stop:87a0e4619b7f"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2024_sg-00000-of-00001.parquet",
+          "sha256": "870c1f2183149c6fcf7e08314954442ac6c3d82c3ed6acf3cc2f03224a393a76",
+          "row_id": 60,
+          "field": "ori_question",
+          "value_sha256": "40de3e36fcb84aa58186509525206fca18fae251bef3cf8621d8adfabbefca89",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2024_cs-00000-of-00001.parquet",
+          "sha256": "2a4bad514cbf2b0b38726340e0add026fe4b2648997673b86eff9421cd0cc38a",
+          "row_id": 60,
+          "field": "ori_question",
+          "value_sha256": "40de3e36fcb84aa58186509525206fca18fae251bef3cf8621d8adfabbefca89",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "target_total"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

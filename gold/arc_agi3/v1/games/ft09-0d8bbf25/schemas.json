@@ -1,0 +1,284 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:ft09-0d8bbf25:L2:toggle:cda164dff0c9",
+      "format_version": 1,
+      "title": "ACTION6 点击单元按当前局部掩码循环颜色",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0d8bbf25",
+      "game_id": "ft09-0d8bbf25",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "点击可变色单元。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "掩码覆盖到的单元在关卡颜色序列中前进一步；未覆盖单元不变。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ft09/0d8bbf25/ft09.py",
+          "sha256": "aa5b54f48a29da9f276c3df0dc04de728002f523384ab868c85d56d819cd0783",
+          "symbol": "Ft09 toggle masks, clue constraints and goal",
+          "lines": [
+            2301,
+            2520
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ft09-0d8bbf25:L2:composite_mask:bea60dba0e08",
+      "format_version": 1,
+      "title": "复合按钮自身的颜色 6 像素定义翻色掩码",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0d8bbf25",
+      "game_id": "ft09-0d8bbf25",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "observation_semantics",
+      "trigger": "点击带局部图案的复合对象。",
+      "action_sequence": [],
+      "expectation": "相对中心为颜色 6 的像素决定哪些邻域格被同时翻色。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ft09/0d8bbf25/ft09.py",
+          "sha256": "aa5b54f48a29da9f276c3df0dc04de728002f523384ab868c85d56d819cd0783",
+          "symbol": "Ft09 toggle masks, clue constraints and goal",
+          "lines": [
+            2301,
+            2520
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "verification": {
+        "static": "passed",
+        "runtime": "not_required",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ft09-0d8bbf25:L2:clue_equal:edcceae7664b",
+      "format_version": 1,
+      "title": "线索的 0 像素要求对应邻格与中心同色",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0d8bbf25",
+      "game_id": "ft09-0d8bbf25",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "线索邻域中的对应位置存在棋盘格。",
+      "action_sequence": [],
+      "expectation": "该邻格颜色必须等于线索中心颜色。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ft09/0d8bbf25/ft09.py",
+          "sha256": "aa5b54f48a29da9f276c3df0dc04de728002f523384ab868c85d56d819cd0783",
+          "symbol": "Ft09 toggle masks, clue constraints and goal",
+          "lines": [
+            2301,
+            2520
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ft09-0d8bbf25:L2:clue_different:924a6a81ff64",
+      "format_version": 1,
+      "title": "线索的非 0 像素要求对应邻格与中心异色",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0d8bbf25",
+      "game_id": "ft09-0d8bbf25",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "线索邻域中的对应位置存在棋盘格。",
+      "action_sequence": [],
+      "expectation": "该邻格颜色必须不同于线索中心颜色。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ft09/0d8bbf25/ft09.py",
+          "sha256": "aa5b54f48a29da9f276c3df0dc04de728002f523384ab868c85d56d819cd0783",
+          "symbol": "Ft09 toggle masks, clue constraints and goal",
+          "lines": [
+            2301,
+            2520
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ft09-0d8bbf25:L2:goal:0395d712fce6",
+      "format_version": 1,
+      "title": "所有现存邻接约束同时成立时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0d8bbf25",
+      "game_id": "ft09-0d8bbf25",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "一次有效点击完成后。",
+      "action_sequence": [],
+      "expectation": "每个线索的八邻域都满足其同色/异色要求时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ft09/0d8bbf25/ft09.py",
+          "sha256": "aa5b54f48a29da9f276c3df0dc04de728002f523384ab868c85d56d819cd0783",
+          "symbol": "Ft09 toggle masks, clue constraints and goal",
+          "lines": [
+            2301,
+            2520
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ft09-0d8bbf25:L2:budget:9ac2c8cb96fd",
+      "format_version": 1,
+      "title": "有效点击耗尽步数时失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0d8bbf25",
+      "game_id": "ft09-0d8bbf25",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "剩余点击数为零且约束未全部满足。",
+      "action_sequence": [],
+      "expectation": "游戏进入 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ft09/0d8bbf25/ft09.py",
+          "sha256": "aa5b54f48a29da9f276c3df0dc04de728002f523384ab868c85d56d819cd0783",
+          "symbol": "Ft09 toggle masks, clue constraints and goal",
+          "lines": [
+            2301,
+            2520
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "format_version": 1,
+  "problem_id": "aime_2025:0",
+  "requirements": [
+    {
+      "requirement_id": "sg_semantic_alignment",
+      "schema_ids": [],
+      "artifact": "surface_alignment.json",
+      "status": "complete"
+    },
+    {
+      "requirement_id": "cs_semantic_alignment",
+      "schema_ids": [],
+      "artifact": "surface_alignment.json",
+      "status": "complete"
+    },
+    {
+      "requirement_id": "necessary_reasoning_chain",
+      "schema_ids": [
+        "contextmath:aime_2025:0:L3:expand_base_numerals:d5cd83c8e2c7",
+        "contextmath:aime_2025:0:L3:reduce_divisibility:db64fb7f58e0",
+        "contextmath:aime_2025:0:L3:enumerate_bases:95bcf01d31f0",
+        "contextmath:aime_2025:0:L3:sum_bases:294662c270bb"
+      ],
+      "artifact": "schemas.json",
+      "status": "complete"
+    },
+    {
+      "requirement_id": "executable_answer_check",
+      "schema_ids": [
+        "contextmath:aime_2025:0:L3:sum_bases:294662c270bb"
+      ],
+      "artifact": "witness.json",
+      "status": "complete"
+    }
+  ]
+}

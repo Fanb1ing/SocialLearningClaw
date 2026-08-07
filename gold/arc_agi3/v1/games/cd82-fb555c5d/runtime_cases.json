@@ -1,0 +1,234 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "case_id": "palette_select_color_0",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:palette_select:5238b6b05cf7"
+      ],
+      "passed": true,
+      "observed": {
+        "selected_color": 0
+      }
+    },
+    {
+      "case_id": "navigation_transition_table",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:move_action1:2b08e67c10f7",
+        "arc_agi3:cd82-fb555c5d:L2:move_action2:7fed96dbc083",
+        "arc_agi3:cd82-fb555c5d:L2:move_action3:7917915ab38f",
+        "arc_agi3:cd82-fb555c5d:L2:move_action4:ea07347fab10"
+      ],
+      "passed": true,
+      "observed": {
+        "1": {
+          "0": 0,
+          "1": 1,
+          "2": 1,
+          "3": 2,
+          "4": 4,
+          "5": 6,
+          "6": 7,
+          "7": 7
+        },
+        "2": {
+          "0": 0,
+          "1": 2,
+          "2": 3,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 5,
+          "7": 6
+        },
+        "3": {
+          "0": 7,
+          "1": 0,
+          "2": 2,
+          "3": 4,
+          "4": 5,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "4": {
+          "0": 1,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 3,
+          "5": 4,
+          "6": 6,
+          "7": 0
+        }
+      }
+    },
+    {
+      "case_id": "action5_region_0",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:paint_top_half:269f73d00959"
+      ],
+      "passed": true,
+      "observed": {
+        "position_index": 0,
+        "painted_cells": 50
+      }
+    },
+    {
+      "case_id": "action5_region_1",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:paint_top_right_triangle:70fb4a807d5f"
+      ],
+      "passed": true,
+      "observed": {
+        "position_index": 1,
+        "painted_cells": 55
+      }
+    },
+    {
+      "case_id": "action5_region_2",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:paint_right_half:b3b1ce70645c"
+      ],
+      "passed": true,
+      "observed": {
+        "position_index": 2,
+        "painted_cells": 50
+      }
+    },
+    {
+      "case_id": "action5_region_3",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:paint_bottom_right_triangle:fe5879fe14f4"
+      ],
+      "passed": true,
+      "observed": {
+        "position_index": 3,
+        "painted_cells": 55
+      }
+    },
+    {
+      "case_id": "action5_region_4",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:paint_bottom_half:cd8a02f2dea0"
+      ],
+      "passed": true,
+      "observed": {
+        "position_index": 4,
+        "painted_cells": 50
+      }
+    },
+    {
+      "case_id": "action5_region_5",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:paint_bottom_left_triangle:bd9c6896bda3"
+      ],
+      "passed": true,
+      "observed": {
+        "position_index": 5,
+        "painted_cells": 55
+      }
+    },
+    {
+      "case_id": "action5_region_6",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:paint_left_half:249279c8fe66"
+      ],
+      "passed": true,
+      "observed": {
+        "position_index": 6,
+        "painted_cells": 50
+      }
+    },
+    {
+      "case_id": "action5_region_7",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:paint_top_left_triangle:30cc456b6034"
+      ],
+      "passed": true,
+      "observed": {
+        "position_index": 7,
+        "painted_cells": 55
+      }
+    },
+    {
+      "case_id": "edge_region_0",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:edge_detail_paint:89373eafbcbf"
+      ],
+      "passed": true,
+      "observed": {
+        "position_index": 0,
+        "painted_cells": 12
+      }
+    },
+    {
+      "case_id": "edge_region_2",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:edge_detail_paint:89373eafbcbf"
+      ],
+      "passed": true,
+      "observed": {
+        "position_index": 2,
+        "painted_cells": 12
+      }
+    },
+    {
+      "case_id": "edge_region_4",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:edge_detail_paint:89373eafbcbf"
+      ],
+      "passed": true,
+      "observed": {
+        "position_index": 4,
+        "painted_cells": 12
+      }
+    },
+    {
+      "case_id": "edge_region_6",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:edge_detail_paint:89373eafbcbf"
+      ],
+      "passed": true,
+      "observed": {
+        "position_index": 6,
+        "painted_cells": 12
+      }
+    },
+    {
+      "case_id": "goal_ignores_diagonals",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66"
+      ],
+      "passed": true,
+      "observed": {
+        "state": "GameState.WIN"
+      }
+    },
+    {
+      "case_id": "goal_rejects_non_diagonal_mismatch",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66"
+      ],
+      "passed": true,
+      "observed": {
+        "state": "GameState.NOT_FINISHED",
+        "mismatch": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "case_id": "action_budget_game_over",
+      "schema_ids": [
+        "arc_agi3:cd82-fb555c5d:L2:action_budget_loss:c397ee61796b"
+      ],
+      "passed": true,
+      "observed": {
+        "state": "GameState.GAME_OVER",
+        "action_count": 100
+      }
+    }
+  ]
+}

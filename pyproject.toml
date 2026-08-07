@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "sociallearningclaw"
 version = "0.1.0"
 description = "Schema-learning agents evaluated on ARC-AGI-3, ContextMATH, and IntPhys2"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
   "arc-agi>=0.9.8",
   "arcengine>=0.9.3",

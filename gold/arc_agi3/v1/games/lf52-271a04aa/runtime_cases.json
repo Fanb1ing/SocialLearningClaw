@@ -1,0 +1,125 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "case_id": "all_levels_and_actions_smoke",
+      "schema_ids": [
+        "arc_agi3:lf52-271a04aa:L2:shift:c5415425bef6",
+        "arc_agi3:lf52-271a04aa:L2:select:736b115c3ad6",
+        "arc_agi3:lf52-271a04aa:L2:jump:2173c76e2ef6",
+        "arc_agi3:lf52-271a04aa:L2:type_match:aeacf2b78849",
+        "arc_agi3:lf52-271a04aa:L2:world_events:31ea492d8b10",
+        "arc_agi3:lf52-271a04aa:L2:goal:d429982df9da",
+        "arc_agi3:lf52-271a04aa:L2:undo:961ffe2cb021",
+        "arc_agi3:lf52-271a04aa:L2:budget:a8ab93b47e68"
+      ],
+      "passed": true,
+      "observed": {
+        "levels": [
+          {
+            "level": 1,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 2,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 3,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 4,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 5,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 6,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 7,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 8,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 9,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 10,
+            "shape": [
+              64,
+              64
+            ]
+          }
+        ],
+        "advertised_actions": [
+          {
+            "action": 1,
+            "frames": 2,
+            "state": "GameState.NOT_FINISHED"
+          },
+          {
+            "action": 2,
+            "frames": 2,
+            "state": "GameState.NOT_FINISHED"
+          },
+          {
+            "action": 3,
+            "frames": 2,
+            "state": "GameState.NOT_FINISHED"
+          },
+          {
+            "action": 4,
+            "frames": 2,
+            "state": "GameState.NOT_FINISHED"
+          },
+          {
+            "action": 6,
+            "frames": 16,
+            "state": "GameState.NOT_FINISHED"
+          },
+          {
+            "action": 7,
+            "frames": 2,
+            "state": "GameState.NOT_FINISHED"
+          }
+        ]
+      }
+    }
+  ]
+}
