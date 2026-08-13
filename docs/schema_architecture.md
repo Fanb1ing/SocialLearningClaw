@@ -29,6 +29,16 @@ The legacy `Concept`/`Relation` modules are retained as source history under
 
 ## Benchmark integration
 
+Benchmark-neutral trajectory foundation 和三个 ARC 示例 corpus 已实现数据合同、事件流、视觉
+资产去重、原子 recording、环境 replay 及离线 `MemoryRecord -> SchemaNode` 窗口归纳，但尚未替换
+本节描述的 active runner 路径。当前 `semantic_window_v1` 通过 benchmark profiler 提取视觉 diff，
+选择关键帧并审计 create/support/revise/contradict/skip；下一阶段加入定时管理，再把在线 ARC loop
+接到同一 recorder。详见
+[`trajectory_contract.md`](trajectory_contract.md) 和
+[`arc_trajectory_corpus.md`](arc_trajectory_corpus.md) 以及
+[`window_schema_induction.md`](window_schema_induction.md) 及
+[`arc_learned_schema_pipeline_plan.md`](arc_learned_schema_pipeline_plan.md)。
+
 - ContextMATH stores the full problem, model response, and binary evaluation.
 - IntPhys2 retrieves by the task plus non-label condition/camera/scene metadata;
   neither `gold` nor label-bearing `type` metadata enters Schema.
@@ -131,6 +141,12 @@ learned_state/
   schema.json
 ```
 
+Learned-vs-Gold evaluation is deliberately outside this runtime lifecycle.
+`scripts/evaluate_learned_schema.py` reads an immutable learned snapshot and an
+accepted Gold version into canonical read-only views, writes a separate report,
+and never updates Memory/Schema state. See
+[`schema_evaluation.md`](schema_evaluation.md).
+
 ## Main implementation files
 
 - `socialclaw/memory/models.py`: episode and event classes.
@@ -139,6 +155,10 @@ learned_state/
 - `socialclaw/schema/node.py`: layered node and evidence indexes.
 - `socialclaw/schema/layered_graph.py`: graph invariants and links.
 - `socialclaw/schema/induction.py`: structured LLM generation/fusion.
+- `socialclaw/schema/trajectory_pipeline.py`: frozen trajectory -> transition/window/episode Memory projection.
+- `socialclaw/schema/window_induction.py`: profiler/keyframe/proposal/validator/applier/audit pipeline.
+- `socialclaw/schema/evaluation.py`: evaluator-only canonical matching and metrics.
+- `socialclaw/schema/gold_loader.py`: accepted Gold loader, never imported by induction or runners.
 - `socialclaw/schema/manager.py`: learning, feedback, masking, decay, merge.
 - `socialclaw/schema/system.py`: complete stack factory.
 - `socialclaw/methods/schema.py`: benchmark-neutral binary-feedback lifecycle.

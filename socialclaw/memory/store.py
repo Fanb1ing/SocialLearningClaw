@@ -48,6 +48,14 @@ class JsonMemoryStore(MemoryStore):
         self.save()
         return result
 
+    def put_many(self, records: Iterable[MemoryRecord]) -> List[MemoryRecord]:
+        """Atomically persist a batch without rewriting the snapshot per item."""
+        values = list(records)
+        for record in values:
+            MemoryStore.put(self, record)
+        self.save()
+        return values
+
     def delete(self, memory_id: str) -> bool:
         deleted = super().delete(memory_id)
         if deleted:

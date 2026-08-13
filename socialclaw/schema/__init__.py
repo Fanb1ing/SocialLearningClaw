@@ -6,12 +6,19 @@ from .layered_storage import LayeredSchemaStorage
 from .manager import SchemaManagementConfig, SchemaManager, SchemaMatch
 from .node import MemoryIndex, RelatedSchemaIndex, SchemaNode, SchemaStatus
 from .system import build_schema_system
+from .window_induction import (
+    ARCVisualTransitionProfiler,
+    ProposalOperation,
+    WindowSchemaInductionScheduler,
+)
 
 __all__ = [
     "LLMSchemaGenerator",
+    "ARCVisualTransitionProfiler",
     "LayeredSchemaGraph",
     "LayeredSchemaStorage",
     "MemoryIndex",
+    "ProposalOperation",
     "RelatedSchemaIndex",
     "SchemaGenerator",
     "SchemaManagementConfig",
@@ -20,5 +27,6 @@ __all__ = [
     "SchemaNode",
     "SchemaProposal",
     "SchemaStatus",
+    "WindowSchemaInductionScheduler",
     "build_schema_system",
 ]

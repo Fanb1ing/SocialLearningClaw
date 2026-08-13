@@ -24,6 +24,7 @@ socialclaw/
   dataset/               ARC-AGI-3 environment wrapper and shared types
   memory_agents/         Reflexion / ExPeL / A-MEM / TGM
   memory/                新架构的 episode/knowledge/skill 记忆与持久化
+  trajectory/            通用单步/多步任务轨迹合同、source 和原子 recorder
   methods/               静态 benchmark 的方法生命周期控制器
   schema/                分层 Schema、自动归纳、检索、反馈和维护
   experiment.py          Protocol, budget, manifest, result types
@@ -161,7 +162,16 @@ python -m unittest discover -s tests -v
 - [Experiment protocol](docs/experiment_protocol.md)
 - [Result format](docs/results_format.md)
 - [Memory-grounded layered Schema](docs/schema_architecture.md)
+- [通用任务轨迹合同](docs/trajectory_contract.md)
+- [ARC 可靠轨迹语料（Phase B）](docs/arc_trajectory_corpus.md)
+- [三游戏 Trajectory -> Memory -> Schema 原型](docs/trajectory_schema_prototype.md)
+- [Window/keyframe Schema 归纳（Phase D）](docs/window_schema_induction.md)
+- [Learned Schema vs Gold Schema 评测](docs/schema_evaluation.md)
+- [本次开发总览：ARC 轨迹、视觉资产与 Memory](docs/session_trajectory_memory_summary.md)
+- [本次开发总览：Schema 生成与 learned-vs-Gold 评测](docs/session_schema_evaluation_summary.md)
+- [ARC learned Schema 全流程开发方案](docs/arc_learned_schema_pipeline_plan.md)
 - [Gold Schema 构建方案](docs/gold_schema_generation.md)
+- [Ground Truth Schema 本轮总结与下次升级指南](docs/ground_truth_schema_session_takeaways.md)
 - [ARC-AGI-3 Gold Schema v1](gold/arc_agi3/v1/README.md)
 - [ContextMATH Gold Schema 第一批审核稿](gold/contextmath/v1/README.md)
 - [IntPhys2 Gold Schema 四类物理规则 pilot](gold/intphys2/v1/README.md)
