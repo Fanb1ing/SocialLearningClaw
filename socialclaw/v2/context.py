@@ -101,13 +101,25 @@ def cognition_view(graph: EFPSGraph) -> Dict[str, Any]:
         schemas.append(
             {
                 "schema_id": item.schema_id,
-                "name": item.name,
-                "role_bindings": item.role_bindings,
-                "preconditions": item.preconditions,
-                "action_pattern": item.action_pattern,
-                "expected_changes": item.expected_changes,
-                "invariants": item.invariants,
-                "boundary_conditions": item.boundary_conditions,
+                "prototype_id": item.prototype_id,
+                "action": item.action,
+                "output": item.output,
+                "support_evidence_ids": item.support_evidence_ids,
+                "counter_evidence_ids": item.counter_evidence_ids,
+                "confidence": item.confidence,
+                "status": item.status.value,
+            }
+        )
+    insights = []
+    for item in graph.insights.values():
+        cited_evidence.update(item.support_evidence_ids)
+        cited_evidence.update(item.counter_evidence_ids)
+        insights.append(
+            {
+                "insight_id": item.insight_id,
+                "kind": item.kind.value,
+                "statement": item.statement,
+                "scope": item.scope,
                 "support_evidence_ids": item.support_evidence_ids,
                 "counter_evidence_ids": item.counter_evidence_ids,
                 "confidence": item.confidence,
@@ -116,7 +128,7 @@ def cognition_view(graph: EFPSGraph) -> Dict[str, Any]:
         )
     return {
         "view_policy": (
-            "read-only current Entity features, Prototype memberships, Schemas, "
+            "read-only current Entity features, Prototype memberships, Schema triples, Insights, "
             "and node-cited Evidence summaries; redundant relation edges, full "
             "assertion histories, and artifact bytes omitted"
         ),
@@ -147,6 +159,7 @@ def cognition_view(graph: EFPSGraph) -> Dict[str, Any]:
             for item in graph.prototypes.values()
         ],
         "schemas": schemas,
+        "insights": insights,
         "evidence": [
             {
                 "evidence_id": item.evidence_id,

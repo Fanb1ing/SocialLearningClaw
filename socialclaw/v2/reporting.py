@@ -125,7 +125,8 @@ def _schema_surface(cognition: Dict[str, Any]) -> str:
     if not values:
         return "空（Schema=0）"
     return "；".join(
-        f"{item.get('schema_id')}:{_short(item.get('name'), 80)}"
+        f"{item.get('schema_id')}:"
+        f"{item.get('prototype_id')} → {_short(item.get('action'), 80)} → {_short(item.get('output'), 100)}"
         for item in values
     )
 
@@ -161,6 +162,7 @@ def _cognition_lines(cognition: Dict[str, Any]) -> List[str]:
         f"- Entity 输入（{len(entity_text)}）：`{entity_text}`",
         f"- Prototype 输入（{len(prototypes or [])}）：`{prototypes or []}`",
         f"- Schema 输入（{len(cognition.get('schemas_sent') or [])}）：`{cognition.get('schemas_sent') or []}`",
+        f"- 全局 Insight/Rule 输入（{len(cognition.get('insights_sent') or [])}）：`{cognition.get('insights_sent') or []}`",
         f"- Evidence 摘要输入（{len(evidence or [])}）：`{evidence or []}`",
     ]
 
@@ -255,12 +257,21 @@ def _update_lines(output: Dict[str, Any]) -> List[str]:
     )
     schemas = output.get("schema_updates") or []
     schema_names = [
-        f"{item.get('operation')}:{item.get('schema_id') or _short(item.get('name'), 80)}"
+        f"{item.get('operation')}:{item.get('schema_id') or _short(item.get('prototype'), 60)}"
         for item in schemas
     ]
     lines.append(
         f"- Schema proposal：{len(schemas)} 个"
         + (f"（{'；'.join(schema_names)}）" if schema_names else "")
+    )
+    insights = output.get("insight_updates") or []
+    insight_names = [
+        f"{item.get('operation')}:{item.get('insight_id') or _short(item.get('statement'), 100)}"
+        for item in insights
+    ]
+    lines.append(
+        f"- Insight/Rule proposal：{len(insights)} 个"
+        + (f"（{'；'.join(insight_names)}）" if insight_names else "")
     )
     discarded = output.get("discarded_inferences") or []
     lines.append(
@@ -399,7 +410,7 @@ def build_process_markdown(timeline: Dict[str, Any]) -> str:
         "```text",
         "公开画面 → Explore 子 Agent 生成 probe → Main Agent 选动作",
         "→ 环境执行 → 产生 before/action/after Evidence",
-        "→ Update 子 Agent 提图更新 → validator 提交 EFPS transaction",
+            "→ Update 子 Agent 提图更新 → validator 提交 EFPS/Insight transaction",
         "```",
         "",
     ]
@@ -425,7 +436,7 @@ def build_process_markdown(timeline: Dict[str, Any]) -> str:
                 "本报告不重复全量 system/user prompt。实际 instruction profile 为：`"
                 + "`、`".join((timeline.get("instruction_profiles") or {}).keys())
                 + "`；完整机器审计输入仍在 `timeline.json`。下面逐步保留 Agent 实际获得的"
-                "公开状态、动作合同、预算、最近 transition，以及 Entity–Feature–Prototype–Schema 摘要。",
+                "公开状态、动作合同、预算、最近 transition，以及 EFPS 与全局 Insight 摘要。",
                 "",
             ]
         )
@@ -447,7 +458,8 @@ def build_process_markdown(timeline: Dict[str, Any]) -> str:
             output = event["agent_calls"]["update_agent"].get("output") or {}
             lines.append(
                 f"| 0 | reset → Update：{len(output.get('entities') or [])} Entity，"
-                f"{len(output.get('prototypes') or [])} Prototype | 无动作 | "
+                f"{len(output.get('prototypes') or [])} Prototype，"
+                f"{len(output.get('insight_updates') or [])} Insight proposals | 无动作 | "
                 f"{_image_link(observation, '初始图')} |"
             )
             continue
@@ -471,7 +483,8 @@ def build_process_markdown(timeline: Dict[str, Any]) -> str:
         lines.append(
             f"| {step} | Explore：{exploration_label} → Main："
             f"{decision.get('decision_mode')} → Update："
-            f"{len(update_output.get('schema_updates') or [])} Schema proposals | "
+            f"{len(update_output.get('schema_updates') or [])} Schema，"
+            f"{len(update_output.get('insight_updates') or [])} Insight proposals | "
             f"`{_action(decision.get('action'))}` / "
             f"{_compact_result(transition.get('result') or {})} | "
             f"{_image_link(before, '前')} / {_image_link(after, '后')} |"
@@ -506,7 +519,7 @@ def build_process_markdown(timeline: Dict[str, Any]) -> str:
                     f"- public state：`{observation.get('public_state')}`",
                     f"- Evidence：`{update_input.get('evidence_id')}`",
                     f"- Evidence 可解引用内容：`{_evidence_text(initial_evidence)}`",
-                    f"- EFPS：revision={cognition.get('revision')}，counts={cognition.get('counts')}，Schema=空",
+                    f"- EFPS/Insight：revision={cognition.get('revision')}，counts={cognition.get('counts')}",
                     *_cognition_lines(cognition),
                     *_actual_call_input_lines(call, include_text=False),
                 ]
@@ -621,6 +634,8 @@ def build_process_markdown(timeline: Dict[str, Any]) -> str:
                 f"- selected action：`{_action(decision.get('action'))}`",
                 f"- schemas used：`{decision.get('schema_ids') or []}`",
                 f"- schema prediction：{_short(decision.get('schema_prediction'), 400)}",
+                f"- insights used：`{decision.get('insight_ids') or []}`",
+                f"- insight application：{_short(decision.get('insight_application'), 400)}",
                 f"- exploration hypothesis：{_short(decision.get('exploration_hypothesis'), 280)}",
                 f"- rationale：{_short(decision.get('rationale'), 320)}",
                 "",

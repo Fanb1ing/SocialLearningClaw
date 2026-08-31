@@ -4,10 +4,10 @@
 
 当前开发主线位于 `socialclaw.v2`，只面向 ARC-AGI-3。它不修改或导入 V1 的
 `SchemaManager`/`LayeredSchemaGraph`，而是在真实环境循环中维护一个 typed
-Entity–Feature–Prototype–Schema graph：
+Entity–Feature–Prototype–Schema graph 和独立的全局 Insight/Rule 记忆：
 
 ```text
-raw public image + public action contracts + read-only EFPS
+raw public image + public action contracts + read-only EFPS/Insights
                     |                         |
                     v                         v
           exploration model child      main model Agent
@@ -28,8 +28,12 @@ raw public image + public action contracts + read-only EFPS
 任何 operation 失败都不修改当前图。所有 evidence 指向 durable trajectory observation/action/
 result 和内容寻址 grid/PNG，并可通过 `EFPSGraph.resolve_evidence` 由 ID 取回完整公开记录。每次
 action 后，Update 还必须将像素差分归属为 Entity 级变化；无法归属时显式记录为 unassigned，而不把
-cell 数量当作语义。V2 没有确定性语义 perception：第一次 Entity、Feature 和 Prototype
-也由 Update 模型从原始画面提出；没有 transition 时 validator 禁止创建动作 Schema。
+cell 数量当作语义。Schema 的语义核心严格为一个 `Prototype → Action → Output` 三元组，validator
+要求一个已存 Prototype、一个公开 action pattern 和一个非空可观察 output；适用范围、障碍规律、
+通关条件、跨动作机制或策略不能再混入 Schema 字段，而是进入独立的 Evidence-grounded Insight。
+Insight 可被创建、支持、反证和修订，并可由 Main 以 `insight` 决策模式直接使用。V2 没有确定性语义
+perception：第一次 Entity、Feature、Prototype 和 Insight 也由 Update 模型从公开画面/transition
+提出；没有 transition 时 validator 仍禁止创建动作 Schema。
 
 同一 runtime 接受任意完整 ARC game ID，但 game ID 只用于评测 harness 创建环境，不进入 Agent
 认知 payload。V2 不导入 Gold loader、游戏源码、专用 policy、坐标、goal mask、environment
@@ -44,9 +48,9 @@ Agent 视觉和人类审查视觉是两个 artifact：`agent_view` 是公开 64�
 512×512 的无辅助线 RGB 映射，`review_view` 则是同尺寸、每 8 cell 加线的定位图。模型调用只能
 选 `agent_view`。`logical_grid_sha256` 仅用于持久完整性/去重，不进入认知 prompt。默认模型输入是
 Markdown 描述：当前公开状态、动作合同、最近 3 条 Entity 级 transition、全部 Entity/Prototype/
-Schema 的紧凑目录；不发送整图 JSON、完整 Evidence 历史或重复 artifact 元数据。Main、Exploration、
+Schema/Insight 的紧凑目录；不发送整图 JSON、完整 Evidence 历史或重复 artifact 元数据。Main、Exploration、
 Update 均可调用只读 `read_cognition(command, id, feature_id?)`，以固定命令和精确 ID 读取 Feature
-历史、typed Relation、Schema 证据链、公开 Evidence 和 agent-visible PNG。该工具不做自然语言
+历史、typed Relation、Schema/Insight 证据链、公开 Evidence 和 agent-visible PNG。该工具不做自然语言
 检索、排名、总结或二次 LLM 推理。历史 Evidence 图像不再自动附加到每次请求。在线 runner 每个完整 cognitive step
 原子覆盖 partial timeline/graph/process checkpoint，成功完成后清理；外部 provider 中断时保留最后
 完整步骤，避免昂贵模型输出只留在内存中。最终 token 报告区分逻辑 Agent 调用、工具续轮和纠错重试，
@@ -57,16 +61,17 @@ FeatureDefinition 只定义共享名称/类型；实体实例的可读描述持�
 V2 多关循环以公开 `levels_completed/level_delta` 判断边界。当 `level_delta > 0` 时，更新 phase 为
 `public_level_boundary`：上一关完成是动作的终止效果，after 画面作为下一关的新当前场景读取；旧关卡
 中未被明确识别为持续存在的 active Entity 会以同一 Evidence 标记为 disappeared。可复用 Prototype、
-Schema、Feature 历史和 Evidence 不清空，因此 Main 下一步在新画面上继续使用同一认知图。
+Schema、Insight、Feature 历史和 Evidence 不清空，因此 Main 下一步在新画面上继续使用同一认知库。
 `stop_after_levels` 是累计关数，`max_steps` 是每关独立动作上限；只有公开关卡完成才为下一关
 建立新的完整预算。任何游戏进入公开 `GAME_OVER` 后，runtime 默认重开当前关，写入非 Agent action
 的 `ENV_RESET` 和 Update-only 场景重对齐，但不会退回本关已消耗的 action。可显式关闭恢复；
 Level 通过率与本关超时仍按原预算统计。
 
-正式实验的模型逻辑调用可以由 `RecordedVisionModel` 冻结回放。它在每次返回响应前校验当前
+模型逻辑调用可以由 `RecordedVisionModel` 冻结回放。它在每次返回响应前校验当前
 instructions、文本 payload 和图片序列哈希，然后重新执行环境、EFPS transaction、validator、
 trajectory replay 和报告生成。该模式用于字节级 artifact 复现，不计作新的在线模型 trial；
-入口与期望哈希见 `experiments/v2_formal_20260830/`。
+2026-08-30 的冻结包使用重构前角色型 Schema，当前三元组 Schema/Insight 合同会被哈希校验拒绝，
+不能将旧响应重放后冒充新实现实验。新合同完成在线实验后应建立新的冻结包。
 
 ## Separation of concerns
 

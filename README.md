@@ -1,7 +1,7 @@
 # SocialLearningClaw
 
 SocialLearningClaw 是一个研究 Agent Schema Learning 的实验仓库。当前开发主线是 ARC-only
-Version 2：以 Entity–Feature–Prototype–Schema（EFPS）typed graph 表达主体认知，主 Agent
+Version 2：以 Entity–Feature–Prototype–Schema（EFPS）typed graph 加全局 Insight/Rule 表达主体认知，主 Agent
 同时负责 orchestrator、planning 和行动，并按需调用更新与探索子 Agent。
 
 旧的三 benchmark layered-Schema 系统已冻结为 V1，完整回退快照位于
@@ -121,7 +121,7 @@ split 的开头 3 个视频给 ICL；所有方法都会排除同一保留集。
 
 ### Version 2：无游戏规则的通用视觉 Agent
 
-V2 从空 EFPS 图启动。Main 和 Update 使用结构化视觉输出，Exploration 只返回一段给 Main 的文本
+V2 从空 EFPS/Insight 认知库启动。Main 和 Update 使用结构化视觉输出，Exploration 只返回一段给 Main 的文本
 建议；认知 Agent只接收
 原始公开画面、公开状态、SDK 动作参数合同、公开转移差异和只读 EFPS，不接收 game ID 对应的
 规则、目标、对象标签、专用坐标、goal mask、Gold、源码或预制路线：
@@ -137,18 +137,20 @@ V2 从空 EFPS 图启动。Main 和 Update 使用结构化视觉输出，Explora
 每次运行生成按时刻展开的 `process.md`，
 直接列出触发、Agent输入/输出、动作前后 PNG、公开 transition 和 EFPS 图增量；`timeline.json` 作为
 机器审计源，另保留最终 graph 和 replay 所需 trajectory/grid/PNG。不再保存重复
-summary/evidence/manifest 或每 revision snapshot。实现与真实结果见
-[V2 三游戏正式实验与确定性复现](experiments/v2_formal_20260830/README.md)。早期 20 步原型审查已移至
+summary/evidence/manifest 或每 revision snapshot。旧 Schema 合同下的历史真实结果见
+[2026-08-30 三游戏实验](experiments/v2_formal_20260830/README.md)；它不能代表当前三元组 Schema/Insight 实现。早期 20 步原型审查已移至
 [历史文档](docs/archive/v2_cd82_level1_prototype.md)。
 最新实现与 token 对比见
 [V2 认知输入精简与按需检索](docs/v2_cognition_retrieval_design.md)。
 
 每个 action 后，Update 必须比较 before/after 图片，把公开像素差分解释为具体 Entity 的
 `appeared/disappeared/moved/state_changed/feature_changed`；无法归属的变化必须显式保留为
-`unassigned_visual_changes`。默认 prompt 只放最近 3 条 transition，以及所有 Entity、Prototype、
-Schema 的紧凑自然语言目录；不再把整张图、完整 Evidence 历史或 artifact 元数据逐步重复发送。
+`unassigned_visual_changes`。Schema 的语义严格是一个带证据的
+`Prototype → Action → Output` 三元组；墙阻挡、通关条件、跨动作机制或策略等不适合该三元组的知识
+保存为独立的全局 Insight/Rule。默认 prompt 只放最近 3 条 transition，以及所有 Entity、Prototype、
+Schema、Insight 的紧凑自然语言目录；不再把整张图、完整 Evidence 历史或 artifact 元数据逐步重复发送。
 三个 Agent 都可按需调用只读 `read_cognition(command, id, feature_id?)`。它只接受固定命令和精确
-持久 ID，直接返回保存的节点、Feature 历史、Relation、Evidence 或 agent-visible artifact；不做自然
+持久 ID，直接返回保存的节点（含 `get_insight`）、Feature 历史、Relation、Evidence 或 agent-visible artifact；不做自然
 语言检索、相似度排序、摘要或二次 LLM 推理。`get_evidence` 返回动作、公开 result、Entity 变化和带
 `before/after/current` phase 的 observation 引用；`get_artifact` 会把精确保存的公开 PNG 重新附给
 Agent，且不会暴露仅供人类审查的辅助线图片或内部环境数组。
@@ -167,8 +169,8 @@ checkpoint；成功结束后自动删除，模型/API
 `GAME_OVER` 时默认重开当前关，但已经消耗的本关动作不会退回；可用 `--no-reset-on-game-over` 关闭。
 发生公开 level boundary 时，Update 把上一关
 完成本身作为终止动作效果，并把 after 图像作为下一关的新场景重新观察，不会把整幅换关画面误学成
-该动作的普通视觉效果。未在新场景中重新识别的旧 Entity 会退出默认可见目录；Prototype、Schema 和
-Evidence 图继续跨关保留。
+该动作的普通视觉效果。未在新场景中重新识别的旧 Entity 会退出默认可见目录；Prototype、Schema、
+Insight 和 Evidence 继续跨关保留。
 
 运行结束还会写入 `token_usage.json` 与 `token_usage.md`：前者逐逻辑调用、逐 provider request 记录
 精确 input/output token、图片和工具调用，后者给人类阅读 Agent/Step 分布。prompt 各 section 的字符数
@@ -218,16 +220,13 @@ python scripts/summarize_static.py \
 python -m unittest discover -s tests -v
 ```
 
-三游戏正式结果可以在无 API key 条件下重新执行并逐文件校验：
-
-```bash
-.venv/bin/python scripts/reproduce_v2_formal_20260830.py
-```
+`experiments/v2_formal_20260830/` 保留重构前角色型 Schema 的冻结历史输入和结果哈希。当前三元组
+Schema/Insight 合同会使其输入哈希校验主动失败，避免把旧模型响应伪装成新实现结果；新合同需另开实验。
 
 详细说明从 [文档索引](docs/README.md) 开始：
 
 - [Version 2 EFPS 完整开发方案](docs/version2_efps_development_plan.md)
-- [V2 三游戏正式实验与确定性复现](experiments/v2_formal_20260830/README.md)
+- [旧 Schema 合同下的 V2 三游戏实验](experiments/v2_formal_20260830/README.md)
 - [V2 通用 Agent 的早期 CD82 Level 1 测试（历史）](docs/archive/v2_cd82_level1_prototype.md)
 - [V2 认知输入精简与按需检索](docs/v2_cognition_retrieval_design.md)
 - [V1 冻结归档与回退说明](archive/version1_20260824/README.md)

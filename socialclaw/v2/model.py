@@ -139,6 +139,12 @@ class RecordedVisionModel:
         return copy.deepcopy(self._payload.get("experiment_config") or {})
 
     @property
+    def cognition_contract_version(self) -> int:
+        # Transcripts created before the explicit field used the role-binding
+        # Schema contract, now designated contract 2.
+        return int(self._payload.get("cognition_contract_version", 2))
+
+    @property
     def episode_created_at(self) -> str | None:
         value = self._payload.get("episode_created_at")
         return str(value) if value else None

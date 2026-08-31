@@ -64,7 +64,8 @@ def render_cognition_catalog(graph: EFPSGraph) -> str:
     lines = [
         f"EFPS revision {graph.revision}; {len(visible_entities)} currently visible Entities "
         f"({len(graph.entities)} stored), "
-        f"{len(graph.prototypes)} Prototypes, {len(graph.schemas)} Schemas.",
+        f"{len(graph.prototypes)} Prototypes, {len(graph.schemas)} Schemas, "
+        f"{len(graph.insights)} global Insights.",
         "Entities (currently visible):",
     ]
     if not visible_entities:
@@ -111,24 +112,28 @@ def render_cognition_catalog(graph: EFPSGraph) -> str:
     if not graph.schemas:
         lines.append("- none")
     for schema in graph.schemas.values():
-        bindings = []
-        for role, prototype_ids in schema.role_bindings.items():
-            names = [
-                f"{item}:{graph.prototypes[item].name}"
-                if item in graph.prototypes
-                else item
-                for item in prototype_ids
-            ]
-            bindings.append(f"{role} -> {', '.join(names)}")
+        prototype_name = (
+            graph.prototypes[schema.prototype_id].name
+            if schema.prototype_id in graph.prototypes
+            else "unknown"
+        )
         lines.append(
-            f"- {schema.schema_id} — {schema.name}; status={schema.status.value}; "
-            f"confidence={schema.confidence:.2f}; roles={'; '.join(bindings) or 'none'}; "
-            f"when={_clean('; '.join(schema.preconditions), 220) or 'unspecified'}; "
-            f"action={_value(schema.action_pattern, 140)}; "
-            f"expect={_clean('; '.join(schema.expected_changes), 220) or 'unspecified'}; "
-            f"boundaries={_clean('; '.join(schema.boundary_conditions), 180) or 'none'}; "
+            f"- {schema.schema_id}; status={schema.status.value}; confidence={schema.confidence:.2f}; "
+            f"triple=({schema.prototype_id}:{prototype_name}) -> "
+            f"{_value(schema.action, 140)} -> {_clean(schema.output, 240)}; "
             f"support={_refs(schema.support_evidence_ids)}; "
             f"counter={_refs(schema.counter_evidence_ids)}"
+        )
+    lines.append("Global Insights/Rules (all current insights):")
+    if not graph.insights:
+        lines.append("- none")
+    for insight in graph.insights.values():
+        lines.append(
+            f"- {insight.insight_id} — [{insight.kind.value}] {_clean(insight.statement, 280)}; "
+            f"scope={_clean(insight.scope, 100)}; status={insight.status.value}; "
+            f"confidence={insight.confidence:.2f}; "
+            f"support={_refs(insight.support_evidence_ids)}; "
+            f"counter={_refs(insight.counter_evidence_ids)}"
         )
     return "\n".join(lines)
 
@@ -225,7 +230,7 @@ def decision_sections(
                 "On-demand memory",
                 "Use read_cognition(command, id, optional feature_id) only with an exact "
                 "ID copied from this catalog. Commands: get_entity, get_prototype, "
-                "get_schema, get_evidence, get_feature_history, get_relations, "
+                "get_schema, get_insight, get_evidence, get_feature_history, get_relations, "
                 "get_artifact. It returns stored JSON records; get_artifact attaches the "
                 "saved public PNG. It does no natural-language search or summarization.",
             ),
@@ -284,12 +289,14 @@ def update_sections(
         sections["Decision context relevant to learning"] = (
             f"mode={decision.get('decision_mode')}; schemas_used={decision.get('schema_ids')}; "
             f"schema_prediction={_clean(decision.get('schema_prediction'), 10000) or 'none'}; "
+            f"insights_used={decision.get('insight_ids')}; "
+            f"insight_application={_clean(decision.get('insight_application'), 10000) or 'none'}; "
             f"exploration_hypothesis={_clean(decision.get('exploration_hypothesis'), 10000) or 'none'}"
         )
     sections["Current learned cognition"] = render_cognition_catalog(graph)
     sections["On-demand memory"] = (
         "Use read_cognition(command, id, optional feature_id) only with an exact stored "
-        "ID. Commands: get_entity, get_prototype, get_schema, get_evidence, "
+        "ID. Commands: get_entity, get_prototype, get_schema, get_insight, get_evidence, "
         "get_feature_history, get_relations, get_artifact. Results are stored JSON "
         "records; get_artifact attaches an agent-visible saved public PNG. There is no "
         "natural-language search, ranking, or summarization."
@@ -399,6 +406,13 @@ def read_cognition(
             if item is not None
             else _not_found(command, item_id)
         )
+    if command == "get_insight":
+        item = graph.insights.get(item_id)
+        return (
+            _json_result(command, item_id, record=to_dict(item))
+            if item is not None
+            else _not_found(command, item_id)
+        )
     if command == "get_evidence":
         item = graph.evidence.get(item_id)
         return (
@@ -423,6 +437,7 @@ def read_cognition(
             *graph.feature_assertions,
             *graph.prototypes,
             *graph.schemas,
+            *graph.insights,
         }
         return (
             _json_result(command, item_id, records=_relations_for(graph, item_id))
@@ -532,7 +547,7 @@ def cognition_tool(
     return ModelTool(
         name="read_cognition",
         description=(
-            "Perform one exact read from the learned EFPS/Evidence store. Supply a fixed "
+            "Perform one exact read from the learned EFPS/Insight/Evidence store. Supply a fixed "
             "command and an exact ID copied from the catalog. There is no natural-language "
             "search, similarity ranking, summarization, or hidden inference. get_artifact "
             "returns the exact stored agent-visible public PNG when available."
@@ -546,6 +561,7 @@ def cognition_tool(
                         "get_entity",
                         "get_prototype",
                         "get_schema",
+                        "get_insight",
                         "get_evidence",
                         "get_feature_history",
                         "get_relations",
@@ -554,7 +570,7 @@ def cognition_tool(
                 },
                 "id": {
                     "type": "string",
-                    "description": "Exact Entity/Prototype/Schema/Evidence/artifact ID.",
+                    "description": "Exact Entity/Prototype/Schema/Insight/Evidence/artifact ID.",
                 },
                 "feature_id": {
                     "type": "string",

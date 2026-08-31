@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 
 from .utils import load_dotenv
+from .v2.efps import COGNITION_CONTRACT_VERSION
 from .v2.model import OpenAICompatibleVisionModel, RecordedVisionModel
 from .v2.runtime import run_arc_online
 
@@ -78,6 +79,12 @@ def main() -> None:
     args = parser.parse_args()
     if args.recorded_transcript:
         model = RecordedVisionModel(args.recorded_transcript)
+        if model.cognition_contract_version != COGNITION_CONTRACT_VERSION:
+            raise SystemExit(
+                "Recorded transcript cognition contract does not match current source: "
+                f"recorded={model.cognition_contract_version}, "
+                f"current={COGNITION_CONTRACT_VERSION}"
+            )
         expected = model.experiment_config
         actual = {
             "game_id": args.game_id,

@@ -11,6 +11,9 @@ from .models import (
     FeatureAssertion,
     FeatureDefinition,
     FeatureKind,
+    Insight,
+    InsightKind,
+    InsightStatus,
     Prototype,
     Relation,
     RelationType,
@@ -20,6 +23,9 @@ from .models import (
     to_dict,
 )
 from .operations import GraphOperation, OperationKind, TransactionResult
+
+
+COGNITION_CONTRACT_VERSION = 3
 
 
 def _unique(values: Iterable[str]) -> List[str]:
@@ -36,6 +42,7 @@ class EFPSGraph:
     feature_assertions: Dict[str, FeatureAssertion] = field(default_factory=dict)
     prototypes: Dict[str, Prototype] = field(default_factory=dict)
     schemas: Dict[str, Schema] = field(default_factory=dict)
+    insights: Dict[str, Insight] = field(default_factory=dict)
     relations: Dict[str, Relation] = field(default_factory=dict)
     revision: int = 0
     audit_log: List[Dict[str, Any]] = field(default_factory=list)
@@ -292,16 +299,9 @@ class EFPSGraph:
         if kind == OperationKind.CREATE_SCHEMA:
             schema = Schema(
                 schema_id=str(payload["schema_id"]),
-                name=str(payload["name"]),
-                role_bindings={
-                    str(role): _unique(ids)
-                    for role, ids in dict(payload.get("role_bindings") or {}).items()
-                },
-                preconditions=[str(item) for item in payload.get("preconditions", [])],
-                action_pattern=dict(payload.get("action_pattern") or {}),
-                expected_changes=[str(item) for item in payload.get("expected_changes", [])],
-                invariants=[str(item) for item in payload.get("invariants", [])],
-                boundary_conditions=[str(item) for item in payload.get("boundary_conditions", [])],
+                prototype_id=str(payload["prototype_id"]),
+                action=dict(payload.get("action") or {}),
+                output=" ".join(str(payload.get("output") or "").split()),
                 support_evidence_ids=evidence_ids,
                 counter_evidence_ids=[],
                 confidence=float(payload.get("confidence", 0.55)),
@@ -309,17 +309,14 @@ class EFPSGraph:
             )
             if schema.schema_id in self.schemas:
                 raise ValueError(f"Schema already exists: {schema.schema_id}")
+            self._require(self.prototypes, schema.prototype_id, "prototype")
             self.schemas[schema.schema_id] = schema
-            for role, prototype_ids in schema.role_bindings.items():
-                for prototype_id in prototype_ids:
-                    self._require(self.prototypes, prototype_id, "prototype")
-                    self._upsert_relation(
-                        RelationType.BINDS_ROLE_TO,
-                        schema.schema_id,
-                        prototype_id,
-                        evidence_ids,
-                        metadata={"role": role},
-                    )
+            self._upsert_relation(
+                RelationType.TAKES_PROTOTYPE,
+                schema.schema_id,
+                schema.prototype_id,
+                evidence_ids,
+            )
             return
         if kind == OperationKind.ADD_SCHEMA_SUPPORT:
             schema = self._require(self.schemas, str(payload["schema_id"]), "schema")
@@ -339,46 +336,29 @@ class EFPSGraph:
             return
         if kind == OperationKind.REVISE_SCHEMA:
             schema = self._require(self.schemas, str(payload["schema_id"]), "schema")
-            if "role_bindings" in payload:
-                role_bindings = {
-                    str(role): _unique(ids)
-                    for role, ids in dict(payload["role_bindings"] or {}).items()
-                }
-                if not role_bindings or any(not ids for ids in role_bindings.values()):
-                    raise ValueError(
-                        f"Schema {schema.schema_id} requires Prototype role bindings"
-                    )
-                for prototype_ids in role_bindings.values():
-                    for prototype_id in prototype_ids:
-                        self._require(self.prototypes, prototype_id, "prototype")
+            if "prototype_id" in payload:
+                prototype_id = str(payload["prototype_id"])
+                self._require(self.prototypes, prototype_id, "prototype")
                 self.relations = {
                     key: relation
                     for key, relation in self.relations.items()
                     if not (
-                        relation.relation_type == RelationType.BINDS_ROLE_TO
+                        relation.relation_type
+                        in {RelationType.TAKES_PROTOTYPE, RelationType.BINDS_ROLE_TO}
                         and relation.source_id == schema.schema_id
                     )
                 }
-                schema.role_bindings = role_bindings
-                for role, prototype_ids in role_bindings.items():
-                    for prototype_id in prototype_ids:
-                        self._upsert_relation(
-                            RelationType.BINDS_ROLE_TO,
-                            schema.schema_id,
-                            prototype_id,
-                            evidence_ids,
-                            metadata={"role": role},
-                        )
-            for field_name in (
-                "preconditions",
-                "expected_changes",
-                "invariants",
-                "boundary_conditions",
-            ):
-                if field_name in payload:
-                    setattr(schema, field_name, [str(item) for item in payload[field_name]])
-            if "action_pattern" in payload:
-                schema.action_pattern = dict(payload["action_pattern"])
+                schema.prototype_id = prototype_id
+                self._upsert_relation(
+                    RelationType.TAKES_PROTOTYPE,
+                    schema.schema_id,
+                    prototype_id,
+                    evidence_ids,
+                )
+            if "action" in payload:
+                schema.action = dict(payload["action"])
+            if "output" in payload:
+                schema.output = " ".join(str(payload["output"]).split())
             schema.support_evidence_ids = _unique(
                 [*schema.support_evidence_ids, *evidence_ids]
             )
@@ -386,6 +366,62 @@ class EFPSGraph:
             schema.status = SchemaStatus.REVISED
             schema.revision_count += 1
             schema.confidence = min(0.95, schema.confidence + 0.05)
+            return
+        if kind == OperationKind.CREATE_INSIGHT:
+            insight = Insight(
+                insight_id=str(payload["insight_id"]),
+                kind=InsightKind(str(payload.get("kind", InsightKind.OTHER.value))),
+                statement=" ".join(str(payload.get("statement") or "").split()),
+                scope=" ".join(str(payload.get("scope") or "global").split()),
+                support_evidence_ids=evidence_ids,
+                counter_evidence_ids=[],
+                confidence=float(payload.get("confidence", 0.5)),
+                metadata=dict(payload.get("metadata") or {}),
+            )
+            if insight.insight_id in self.insights:
+                raise ValueError(f"Insight already exists: {insight.insight_id}")
+            self.insights[insight.insight_id] = insight
+            return
+        if kind == OperationKind.ADD_INSIGHT_SUPPORT:
+            insight = self._require(
+                self.insights, str(payload["insight_id"]), "insight"
+            )
+            insight.support_evidence_ids = _unique(
+                [*insight.support_evidence_ids, *evidence_ids]
+            )
+            insight.confidence = min(
+                0.95, insight.confidence + 0.08 * len(evidence_ids)
+            )
+            insight.metadata.update(dict(payload.get("metadata") or {}))
+            return
+        if kind == OperationKind.ADD_INSIGHT_COUNTEREVIDENCE:
+            insight = self._require(
+                self.insights, str(payload["insight_id"]), "insight"
+            )
+            insight.counter_evidence_ids = _unique(
+                [*insight.counter_evidence_ids, *evidence_ids]
+            )
+            insight.confidence = max(
+                0.05, insight.confidence - 0.12 * len(evidence_ids)
+            )
+            return
+        if kind == OperationKind.REVISE_INSIGHT:
+            insight = self._require(
+                self.insights, str(payload["insight_id"]), "insight"
+            )
+            if "kind" in payload:
+                insight.kind = InsightKind(str(payload["kind"]))
+            if "statement" in payload:
+                insight.statement = " ".join(str(payload["statement"]).split())
+            if "scope" in payload:
+                insight.scope = " ".join(str(payload["scope"]).split())
+            insight.support_evidence_ids = _unique(
+                [*insight.support_evidence_ids, *evidence_ids]
+            )
+            insight.metadata.update(dict(payload.get("metadata") or {}))
+            insight.status = InsightStatus.REVISED
+            insight.revision_count += 1
+            insight.confidence = min(0.95, insight.confidence + 0.05)
             return
         raise ValueError(f"Unsupported graph operation: {kind}")
 
@@ -482,24 +518,39 @@ class EFPSGraph:
             counter = set(schema.counter_evidence_ids)
             if not support or (support | counter) - evidence_ids:
                 raise ValueError(f"Schema {schema.schema_id} has invalid evidence")
-            if not schema.action_pattern:
-                raise ValueError(f"Schema {schema.schema_id} has no action pattern")
-            if not schema.role_bindings or any(
-                not prototype_ids
-                for prototype_ids in schema.role_bindings.values()
-            ):
+            self._require(self.prototypes, schema.prototype_id, "prototype")
+            if not schema.action or not str(schema.action.get("name") or ""):
+                raise ValueError(f"Schema {schema.schema_id} has no action")
+            if not schema.output:
+                raise ValueError(f"Schema {schema.schema_id} has no output")
+            if not 0.0 <= schema.confidence <= 1.0:
+                raise ValueError(f"Schema {schema.schema_id} has invalid confidence")
+            input_edges = [
+                relation
+                for relation in self.relations.values()
+                if relation.relation_type == RelationType.TAKES_PROTOTYPE
+                and relation.source_id == schema.schema_id
+            ]
+            if len(input_edges) != 1 or input_edges[0].target_id != schema.prototype_id:
                 raise ValueError(
-                    f"Schema {schema.schema_id} requires Prototype role bindings"
+                    f"Schema {schema.schema_id} requires exactly one Prototype input edge"
                 )
-            for prototype_ids in schema.role_bindings.values():
-                for prototype_id in prototype_ids:
-                    self._require(self.prototypes, prototype_id, "prototype")
+        for insight in self.insights.values():
+            support = set(insight.support_evidence_ids)
+            counter = set(insight.counter_evidence_ids)
+            if not support or (support | counter) - evidence_ids:
+                raise ValueError(f"Insight {insight.insight_id} has invalid evidence")
+            if not insight.statement:
+                raise ValueError(f"Insight {insight.insight_id} has no statement")
+            if not 0.0 <= insight.confidence <= 1.0:
+                raise ValueError(f"Insight {insight.insight_id} has invalid confidence")
         all_nodes = {
             *self.entities,
             *self.feature_definitions,
             *self.feature_assertions,
             *self.prototypes,
             *self.schemas,
+            *self.insights,
         }
         endpoints = {
             RelationType.HAS_FEATURE: (set(self.entities), set(self.feature_assertions)),
@@ -510,6 +561,7 @@ class EFPSGraph:
             RelationType.INSTANCE_OF: (set(self.entities), set(self.prototypes)),
             RelationType.DEFINED_BY: (set(self.prototypes), set(self.feature_definitions)),
             RelationType.EXCLUDES: (set(self.prototypes), set(self.feature_definitions)),
+            RelationType.TAKES_PROTOTYPE: (set(self.schemas), set(self.prototypes)),
             RelationType.BINDS_ROLE_TO: (set(self.schemas), set(self.prototypes)),
         }
         for relation in self.relations.values():
@@ -529,14 +581,15 @@ class EFPSGraph:
             "feature_assertions": len(self.feature_assertions),
             "prototypes": len(self.prototypes),
             "schemas": len(self.schemas),
+            "insights": len(self.insights),
             "relations": len(self.relations),
             "revision": self.revision,
         }
 
     def to_dict(self) -> Dict[str, Any]:
         return {
-            "format_version": 2,
-            "architecture": "entity-feature-prototype-schema",
+            "format_version": COGNITION_CONTRACT_VERSION,
+            "architecture": "entity-feature-prototype-schema-plus-insight",
             "revision": self.revision,
             "evidence": {key: to_dict(value) for key, value in sorted(self.evidence.items())},
             "entities": {key: to_dict(value) for key, value in sorted(self.entities.items())},
@@ -548,14 +601,91 @@ class EFPSGraph:
             },
             "prototypes": {key: to_dict(value) for key, value in sorted(self.prototypes.items())},
             "schemas": {key: to_dict(value) for key, value in sorted(self.schemas.items())},
+            "insights": {key: to_dict(value) for key, value in sorted(self.insights.items())},
             "relations": {key: to_dict(value) for key, value in sorted(self.relations.items())},
             "audit_log": copy.deepcopy(self.audit_log),
         }
 
     @classmethod
     def from_dict(cls, payload: Dict[str, Any]) -> "EFPSGraph":
-        if int(payload.get("format_version", 0)) != 2:
+        format_version = int(payload.get("format_version", 0))
+        if format_version not in {2, 3}:
             raise ValueError("Unsupported EFPS graph format")
+        schema_payloads = payload.get("schemas", {})
+        schemas: Dict[str, Schema] = {}
+        for key, value in schema_payloads.items():
+            if format_version == 3:
+                schemas[key] = Schema(
+                    **{**value, "status": SchemaStatus(value["status"])}
+                )
+                continue
+            role_bindings = dict(value.get("role_bindings") or {})
+            prototype_id = next(
+                (
+                    str(prototype_id)
+                    for prototype_ids in role_bindings.values()
+                    for prototype_id in prototype_ids
+                ),
+                "",
+            )
+            legacy_action = dict(value.get("action_pattern") or {})
+            action = {
+                "name": str(
+                    legacy_action.get("name") or legacy_action.get("action") or ""
+                ),
+                "arguments": dict(legacy_action.get("arguments") or {}),
+            }
+            output = "; ".join(
+                str(item) for item in value.get("expected_changes") or []
+            ) or "No explicit output was stored in graph format 2."
+            schemas[key] = Schema(
+                schema_id=str(value["schema_id"]),
+                prototype_id=prototype_id,
+                action=action,
+                output=output,
+                support_evidence_ids=list(value.get("support_evidence_ids") or []),
+                counter_evidence_ids=list(value.get("counter_evidence_ids") or []),
+                confidence=float(value.get("confidence", 0.55)),
+                status=SchemaStatus(value.get("status", "active")),
+                revision_count=int(value.get("revision_count", 0)),
+                metadata={
+                    **dict(value.get("metadata") or {}),
+                    "migrated_from_format_2": {
+                        "name": value.get("name"),
+                        "role_bindings": role_bindings,
+                        "preconditions": value.get("preconditions") or [],
+                        "invariants": value.get("invariants") or [],
+                        "boundary_conditions": value.get("boundary_conditions") or [],
+                    },
+                },
+            )
+        relations = {}
+        for key, value in payload.get("relations", {}).items():
+            relation_type = RelationType(value["relation_type"])
+            if format_version == 2 and relation_type == RelationType.BINDS_ROLE_TO:
+                continue
+            relations[key] = Relation(
+                **{**value, "relation_type": relation_type}
+            )
+        if format_version == 2:
+            for schema in schemas.values():
+                relation_id = stable_id(
+                    "relation",
+                    {
+                        "type": RelationType.TAKES_PROTOTYPE.value,
+                        "source": schema.schema_id,
+                        "target": schema.prototype_id,
+                        "role": "",
+                    },
+                )
+                relations[relation_id] = Relation(
+                    relation_id=relation_id,
+                    relation_type=RelationType.TAKES_PROTOTYPE,
+                    source_id=schema.schema_id,
+                    target_id=schema.prototype_id,
+                    evidence_ids=list(schema.support_evidence_ids),
+                    metadata={"migrated_from_format_2": True},
+                )
         return cls(
             evidence={key: EvidenceRecord(**value) for key, value in payload.get("evidence", {}).items()},
             entities={
@@ -571,17 +701,21 @@ class EFPSGraph:
                 for key, value in payload.get("feature_assertions", {}).items()
             },
             prototypes={key: Prototype(**value) for key, value in payload.get("prototypes", {}).items()},
-            schemas={
-                key: Schema(**{**value, "status": SchemaStatus(value["status"])})
-                for key, value in payload.get("schemas", {}).items()
+            schemas=schemas,
+            insights={
+                key: Insight(
+                    **{
+                        **value,
+                        "kind": InsightKind(value["kind"]),
+                        "status": InsightStatus(value["status"]),
+                    }
+                )
+                for key, value in payload.get("insights", {}).items()
             },
-            relations={
-                key: Relation(**{**value, "relation_type": RelationType(value["relation_type"])})
-                for key, value in payload.get("relations", {}).items()
-            },
+            relations=relations,
             revision=int(payload.get("revision", 0)),
             audit_log=list(payload.get("audit_log", [])),
         )
 
 
-__all__ = ["EFPSGraph"]
+__all__ = ["COGNITION_CONTRACT_VERSION", "EFPSGraph"]

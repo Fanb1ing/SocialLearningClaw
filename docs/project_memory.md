@@ -1185,3 +1185,30 @@ three-game batch. Verification: compileall, all 99 tests, `git diff --check`,
 and the full no-API three-game hash-verifying reproduction passed. Follow-up:
 no formal run reached Level 2 and none triggered a real GAME_OVER, so online
 cross-level behavior and repeated-reset behavior still need future trials.
+
+## 2026-08-31 — Schema triples and global Insight memory
+
+Corrected the V2 cognitive contract. A Schema's semantic content is now exactly
+one evidence-grounded `Prototype -> Action -> Output` triple (`prototype_id`,
+public action name/arguments, and non-empty observable output). Removed active
+role bindings, preconditions, invariants, expected-change lists, and boundary
+conditions from the Schema model. Graph contract/format 3 validates exactly one
+`TAKES_PROTOTYPE` edge per Schema and can migrate persisted format-2 role-based
+graphs into triples while retaining retired fields only as migration metadata.
+
+Added independent global `Insight` memory for rules, constraints, candidate goal
+conditions, mechanics, strategies, and other cross-action knowledge. Insights
+have create/support/counterevidence/revise operations, kind/scope/confidence/
+status, and mandatory durable support Evidence. All Insights appear as concise
+text in every Agent's default cognition, are available through exact
+`get_insight`, and remain across levels/resets. Main can cite stored Insight IDs
+in a dedicated `insight` decision mode without pretending they are Schemas; a
+Schema decision may also cite complementary Insights. Timeline receipts,
+process/report output, counts, and final graph persistence now include Insights.
+
+Marked the 2026-08-30 frozen three-game transcript as cognition contract 2.
+Current contract-3 code rejects it before environment execution so historical
+role-based responses cannot be presented as results of the new implementation;
+a new online experiment/frozen bundle is required later. No game experiment was
+run for this task. Verification: compileall, all 102 repository tests, focused
+triple/Insight/migration/Main-decision tests, and `git diff --check` passed.

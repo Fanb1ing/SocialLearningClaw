@@ -209,7 +209,8 @@ def cognition_input_receipt(
     source_fields = [
         "entities: id,label,bbox,status,current feature assertions,evidence_ids",
         "prototypes: id,name,defining features,members,evidence_ids",
-        "schemas: full conditions,action,expected changes,boundaries,confidence,evidence_ids",
+        "schemas: Prototype-Action-Output triple,confidence,evidence_ids",
+        "insights: kind,statement,scope,confidence,evidence_ids",
         "evidence: kind,step,action,result,Entity semantic changes,artifact_ids",
     ]
     if "relations" in view:
@@ -229,14 +230,16 @@ def cognition_input_receipt(
         "schemas_sent": [
             {
                 "schema_id": item.get("schema_id"),
-                "name": item.get("name"),
-                "action_pattern": item.get("action_pattern"),
+                "prototype_id": item.get("prototype_id"),
+                "action": item.get("action"),
+                "output": item.get("output"),
                 "confidence": item.get("confidence"),
                 "support_evidence_ids": item.get("support_evidence_ids"),
                 "counter_evidence_ids": item.get("counter_evidence_ids"),
             }
             for item in view.get("schemas") or []
         ],
+        "insights_sent": copy.deepcopy(view.get("insights") or []),
         "evidence_sent": copy.deepcopy(view.get("evidence") or []),
         "full_view_saved_elsewhere": False,
         "full_state_source": "cognition/graph.json plus audit_log and assertion histories",
@@ -567,6 +570,8 @@ def run_arc_online(
             decision_metadata={
                 "decision_mode": decision.decision_mode,
                 "schema_prediction": decision.schema_prediction,
+                "insight_ids": decision.insight_ids,
+                "insight_application": decision.insight_application,
                 "exploration_hypothesis": decision.exploration_hypothesis,
                 "model_calls": 2,
             },
@@ -969,7 +974,7 @@ def _report(summary: Dict[str, Any], events: List[Dict[str, Any]]) -> str:
         if event["step"] == 0:
             after = event["cognitive_update"]["counts_after"]
             rows.append(
-                f"| 0 | 初始画面 | Update 子 Agent 形成首批观察概念 | - | {after['entities']} | {after['prototypes']} | {after['schemas']} |"
+                f"| 0 | 初始画面 | Update 子 Agent 形成首批观察概念 | - | {after['entities']} | {after['prototypes']} | {after['schemas']} | {after['insights']} |"
             )
             continue
         decision = event["decision"]
@@ -978,10 +983,11 @@ def _report(summary: Dict[str, Any], events: List[Dict[str, Any]]) -> str:
         hypothesis = (
             decision["schema_prediction"]
             if decision["schema_prediction"] is not None
-            else decision["exploration_hypothesis"]
+            else decision.get("insight_application")
+            or decision["exploration_hypothesis"]
         )
         rows.append(
-            "| {step} | {action} | {mode}: {hypothesis} | changed={changed}, level_delta={delta} | {entities} | {prototypes} | {schemas} |".format(
+            "| {step} | {action} | {mode}: {hypothesis} | changed={changed}, level_delta={delta} | {entities} | {prototypes} | {schemas} | {insights} |".format(
                 step=event["step"],
                 action=decision["action"]["name"],
                 mode=decision["decision_mode"],
@@ -991,6 +997,7 @@ def _report(summary: Dict[str, Any], events: List[Dict[str, Any]]) -> str:
                 entities=after["entities"],
                 prototypes=after["prototypes"],
                 schemas=after["schemas"],
+                insights=after["insights"],
             )
         )
     return "\n".join(
@@ -1014,8 +1021,8 @@ def _report(summary: Dict[str, Any], events: List[Dict[str, Any]]) -> str:
             "- 输入边界：原始公开画面、公开环境状态、SDK 公开动作参数合同、公开转移差异、只读 EFPS。",
             "- 未提供：目标、对象标签、动作语义、Gold、游戏源码、专用坐标、goal mask 或路线。",
             "",
-            "| Step | 动作 | 当时的 Agent 预测/假设 | 公开结果 | Entity | Prototype | Schema |",
-            "|---:|---|---|---|---:|---:|---:|",
+            "| Step | 动作 | 当时的 Agent 预测/假设 | 公开结果 | Entity | Prototype | Schema | Insight |",
+            "|---:|---|---|---|---:|---:|---:|---:|",
             *rows,
             "",
             "逐时刻的人类可读输入、输出、触发原因和图片索引在 `process.md`；"

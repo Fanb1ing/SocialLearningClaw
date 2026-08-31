@@ -1,5 +1,6 @@
 {
   "format_version": 1,
+  "cognition_contract_version": 2,
   "description": "Byte-verifiable replay manifest for the three formal 2026-08-30 V2 runs.",
   "required_packages": {
     "arc-agi": "0.9.8",

@@ -26,6 +26,7 @@ class RecordedVisionModelTests(unittest.TestCase):
         )
         transcript = {
             "format_version": 1,
+            "cognition_contract_version": 3,
             "model": "recorded/model",
             "episode_created_at": "2026-08-30T00:00:00+00:00",
             "experiment_config": {"game_id": "fixture-v1"},
@@ -53,6 +54,7 @@ class RecordedVisionModelTests(unittest.TestCase):
             self.assertEqual(result.data, {"answer": 1})
             self.assertEqual(result.usage["total_tokens"], 3)
             self.assertEqual(model.experiment_config["game_id"], "fixture-v1")
+            self.assertEqual(model.cognition_contract_version, 3)
             model.assert_exhausted()
 
     def test_rejects_changed_runtime_input(self) -> None:

@@ -2,7 +2,7 @@
 
 日期：2026-08-29；实现更新：2026-08-30
 
-当前状态：紧凑 Markdown 输入、全部 EFPS 核心节点目录、精确只读
+当前状态：紧凑 Markdown 输入、全部 EFPS 核心节点与全局 Insight 目录、精确只读
 `read_cognition`、工具调用审计和逐 provider request token 统计已经实现。2026-08-30 的首次紧凑
 实验仍使用下文记录的旧 `query_cognition` 模糊检索；审计发现其会在指定 ID 后继续补足 top-k，现已
 删除。下面第 5 节中建议的图操作工具与 hypothesis registry 仍是后续优化，不是本轮实现的一部分。
@@ -76,7 +76,8 @@ EFPS 继续作为完整、可回退、Evidence-grounded 的持久认知库。Age
 |---|---|---|
 | `get_entity` | Entity ID | Entity、其 FeatureAssertions、相邻 typed Relations |
 | `get_prototype` | Prototype ID | Prototype、引用的 FeatureDefinitions、相邻 Relations |
-| `get_schema` | Schema ID | 完整 Schema，包括 Prototype role bindings 与证据 ID |
+| `get_schema` | Schema ID | 完整 `Prototype → Action → Output` 三元组与正反证据 ID |
+| `get_insight` | Insight ID | 全局 rule/constraint/goal/mechanic/strategy、范围、置信度与正反证据 ID |
 | `get_evidence` | Evidence ID | action/result、语义变化、未归属变化、带 phase 的公开观察引用和 agent-view artifact IDs |
 | `get_feature_history` | Entity ID | 该 Entity 保存的 FeatureAssertions；可用 `feature_id` 精确过滤 |
 | `get_relations` | EFPS 节点 ID | 与该节点相连的原始 typed Relation records |
@@ -150,7 +151,8 @@ Evidence grounding。
 | FeatureDefinition | ID、名称、类型、证据 | 通常不单独发送 | 定义详情 |
 | FeatureAssertion | 当前值、置信度、证据；历史留在审计 | 合并进相关 Entity 一行 | 完整历史 |
 | Prototype | 定义特征、成员、证据 | 所有 Prototype 一行，含成员关系与重要定义 Feature | 完整置信度和证据 |
-| Schema | 完整条件、action、变化、边界、正反 Evidence | 所有 Schema 一行，相关 Schema 展开 | 完整 Schema 与证据链 |
+| Schema | Prototype、action、output、正反 Evidence | 所有 Schema 一行显示完整三元组 | 完整 Schema 与证据链 |
+| Insight | 类型、全局陈述、范围、置信度、正反 Evidence | 所有 Insight 一行 | 完整 Insight 与证据链 |
 | Relation | 保留为图索引或由节点引用重建 | 重要关系内联为自然语言 | 完整邻域和底层边 |
 | Audit log | 完整保存 | 不发送 | 人类审计/回放 |
 
@@ -160,10 +162,10 @@ Artifact metadata 应集中存储并由 ID 引用，不应在每个认知视图�
 当前 Relation 是 EFPS 节点之间的类型边：Entity `HAS_FEATURE` 某个
 FeatureAssertion，FeatureAssertion `ASSERTS_FEATURE` 某个 FeatureDefinition，
 Entity `INSTANCE_OF` Prototype，Prototype `DEFINED_BY`/`EXCLUDES` Feature，
-Schema `BINDS_ROLE_TO` Prototype。它们不是都应删除；应保留关系语义，但避免把
+Schema `TAKES_PROTOTYPE` Prototype。Insight 是全局命题，不为了图形整齐而制造虚假端点边。
+这些关系不是都应删除；应保留关系语义，但避免把
 可由节点字段重建的 relation_id、metadata、重复 Evidence 数组整表发送。默认文本
-把重要边内联到节点，例如“entity_x 属于 prototype_p”或“schema_s 的 target role
-绑定 prototype_p”。
+把重要边内联到节点，例如“entity_x 属于 prototype_p”或“schema_s 以 prototype_p 为输入”。
 
 Main 的 goal hypotheses 冗余发生在跨步骤：旧 prompt 要求每一步重新输出完整列表，
 同一假设又随 Main decision 进入 Update 输入、timeline 和报告。新设计应建立持久的
@@ -218,8 +220,9 @@ Update 全部输出 54,079 tokens。最后一项混合了场景、transition 语
 - 三个 Agent 的 system prompt 统一说明 EFPS、Evidence、工具命令/参数/返回值；
 - 新报告在时间线前记录实际 system instructions，并审计每次精确读取参数、原始返回值和图片；
 - 默认目录仅列当前可见 Entity，省略冗余 `status=active` 及空的 optional/excludes；
-- Schema 创建和修订必须具有有效 Prototype role binding，translator 与 graph validator 双重拒绝
-  直接绑定 Entity 或空角色 Schema；
+- Schema 创建和修订必须形成完整的 `Prototype → Action → Output` 三元组，translator 与 graph
+  validator 双重拒绝直接绑定 Entity、缺失 Prototype 或缺失 Output；
+- 不符合三元组的全局规律进入 Evidence-grounded Insight，并通过 `get_insight` 精确读取；
 - Update 的 Main decision 学习上下文不再截断为 220 字符。
 
 该修订已通过本地结构和 runtime 测试，但尚未用昂贵的真实 provider 重跑 CD82，因此新的 token

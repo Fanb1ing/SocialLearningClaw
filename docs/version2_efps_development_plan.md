@@ -20,7 +20,8 @@ Version 2 不再继续扩展这一多层结构。项目后续只研究 ARC-AGI-3
 主体把已有 Schema 应用于新的情景和对象；结果符合预期时发生同化，结果不能由当前认知解释时
 发生顺应。
 
-Version 2 的核心认知对象为 Entity、Feature、Prototype 和 Schema，以下统称 EFPS：
+Version 2 的核心类型图对象为 Entity、Feature、Prototype 和 Schema，以下统称 EFPS；另设不受
+Schema 三元组格式限制的全局 Insight/Rule：
 
 ```text
 具体 ARC observation
@@ -31,11 +32,11 @@ Feature assertions
         ↓
 Prototype membership
         ↓
-Schema operates on Prototype roles
+Schema = Prototype → Action → Output
+        ↕
+global Insight / Rule / Goal condition
         ↓
-Prototype roles bind to current Entities
-        ↓
-Concrete ARC action
+Concrete ARC action and prediction
 ```
 
 ## 2. 已确认的重构原则
@@ -44,7 +45,7 @@ Concrete ARC action
 2. 复用稳定的 ARC 环境、Trajectory、视觉资产、replay、coverage 和实验记录能力。
 3. 在 `socialclaw.v2` 下建立独立实现，不让 V2 运行路径依赖旧 layered Schema。
 4. 不再沿用 `SchemaNode.level`、父子层级、相似边等多层 Schema 语义。
-5. 所有 learned Schema 及其关键关系仍必须引用持久 evidence ID，可以回到 trajectory、动作、
+5. 所有 learned Schema、Insight 及其关键关系仍必须引用持久 evidence ID，可以回到 trajectory、动作、
    observation、环境结果和无损视觉资产。
 6. 主 Agent 本身就是 orchestrator。它负责理解当前任务、维护整体执行状态、规划和选择动作，并
    根据需要调用更新子 Agent与探索子 Agent；不存在第四个独立 orchestrator Agent。
@@ -100,25 +101,41 @@ Prototype 是主体根据共享关键 Feature 把多个 Entity 视为等价后�
 - Entity memberships 与置信度；
 - 支持、反例和最近修订证据；
 - split/merge lineage，仅用于审计，不形成新的 active 多层 Schema；
-- 被哪些 Schema role 使用。
+- 被哪些 Schema 作为输入 Prototype 使用。
 
 一个 Entity 可以在不同认知角色下属于多个 Prototype，例如同时属于“红色方块”和“可推动障碍物”。
 更新系统必须避免仅因为出现一个新 Entity 就创建一个同名 Prototype。
 
 ### 3.4 Schema
 
-Schema 对 Prototype 进行操作，执行时才把 Prototype role 映射到具体 Entity。Schema 至少包含：
+Schema 的语义定义严格是一个三元组：
 
-- 可复用的角色，如 actor、target、tool、obstacle；
-- 每个角色允许绑定的 Prototype；
-- 前置条件和适用情景；
-- 参数化 action pattern 或短计划；
-- 预期的 Entity/Feature/关系变化；
-- 不变量、失败边界和 counterevidence；
-- 置信度、支持次数和持久 evidence IDs。
+```text
+(input Prototype, public Action pattern, observable Output)
+```
 
-Schema 不能停留在“`ACTION3` 使 grid 变化”这一层。它应表达为什么当前 Prototype 组合满足
-前置条件、行动如何实例化到 Entity，以及预期哪些结构发生变化。
+- `prototype_id`：动作所作用或适用的一个输入类型；具体 Entity 只能经 Prototype membership 使用它；
+- `action`：公开 action 名和参数模式；
+- `output`：该 action 在该 Prototype 上产生的可观察结果。
+
+`schema_id`、置信度、状态、修订次数、正反 Evidence ID 和审计 metadata 是三元组的管理字段，
+不是额外语义槽。Schema 不再存 role bindings、preconditions、invariants 或 boundary conditions。
+一个 transition 涉及多个对象时，应为主要输入选择明确 Prototype，并把跨对象约束保存为 Insight，
+而不是把 Schema 扩回任意规则容器。
+
+### 3.5 全局 Insight / Rule
+
+Insight 保存不能自然表达为一个 `Prototype → Action → Output` 的可复用认识，例如：
+
+- constraint：撞到某类墙时不能进入被占据位置；
+- goal：某种公开状态变化可能表示关卡完成条件；
+- mechanic：多个动作共享的资源、开关或状态机制；
+- strategy：基于多条 Schema 组合出的行动原则；
+- rule/other：其他由公开 Evidence 支持、可被反证和修订的全局陈述。
+
+每个 Insight 保存 `kind`、`statement`、`scope`、confidence、status、support/counter Evidence IDs。
+它不是游戏手册或隐藏事实；初始时为空，只能由 Update 根据 Agent 已获得的公开 Evidence 提出。
+Main 可以引用 Insight ID 进入 `insight` 决策模式，或与 Schema 一起使用。
 
 ## 4. EFPS 关系图
 
@@ -129,11 +146,11 @@ Entity --HAS_FEATURE--> FeatureAssertion
 Entity --INSTANCE_OF--> Prototype
 Prototype --DEFINED_BY--> FeatureDefinition
 Prototype --EXCLUDES--> FeatureDefinition
-Schema --BINDS_ROLE_TO--> Prototype
-Schema --REQUIRES_FEATURE--> FeatureDefinition
-Schema --PREDICTS_FEATURE_CHANGE--> FeatureDefinition
+Schema --TAKES_PROTOTYPE--> Prototype
 Schema --SUPPORTED_BY--> Evidence
 Schema --CONTRADICTED_BY--> Evidence
+Insight --SUPPORTED_BY--> Evidence
+Insight --CONTRADICTED_BY--> Evidence
 ```
 
 关系必须是类型安全的，并由 validator 阻止 dangling reference、错误端点、无证据 Schema 和非法
@@ -147,7 +164,7 @@ transaction 提交，任何一项失败都整体回滚。
 当环境反馈可以由已有认知解释时：
 
 - 把新观察到的 Entity 映射到已有 Prototype；
-- 支持已有 Feature assertion 或 Schema；
+- 支持已有 Feature assertion、Schema 或 Insight；
 - 更新置信度、使用统计和有效范围；
 - 不无理由增加 Entity、Prototype 或 Schema。
 
@@ -158,10 +175,10 @@ transaction 提交，任何一项失败都整体回滚。
 1. 检查 Entity segmentation/tracking 是否错误；
 2. 修正 Entity 与 Prototype 的 membership；
 3. 新增、撤销或限定 Feature assertion；
-4. 收紧已有 Schema 的前置条件或适用 Prototype；
+4. 修订已有 Schema 三元组，或把条件/范围修订为 Insight；
 5. 在有区分 Feature 与多组证据时分化 Prototype；
-6. 修改 Schema–Prototype role 关系；
-7. 只有现有结构无法解释时才创建新 Prototype 或 Schema。
+6. 修改 Schema 的输入 Prototype；
+7. 只有现有结构无法解释时才创建新 Prototype、Schema 或 Insight。
 
 更新操作采用固定枚举：
 
@@ -170,11 +187,12 @@ ADD_ENTITY / UPDATE_ENTITY / RETIRE_ENTITY
 ADD_FEATURE_ASSERTION / REVISE_FEATURE_ASSERTION / RETRACT_FEATURE_ASSERTION
 LINK_ENTITY_PROTOTYPE / UNLINK_ENTITY_PROTOTYPE
 CREATE_PROTOTYPE / REVISE_PROTOTYPE / SPLIT_PROTOTYPE / MERGE_PROTOTYPE
-CREATE_SCHEMA / REVISE_SCHEMA / LINK_SCHEMA_PROTOTYPE
-ADD_SUPPORT / ADD_COUNTEREVIDENCE / SKIP
+CREATE_SCHEMA / REVISE_SCHEMA / ADD_SCHEMA_SUPPORT / ADD_SCHEMA_COUNTEREVIDENCE
+CREATE_INSIGHT / REVISE_INSIGHT / ADD_INSIGHT_SUPPORT / ADD_INSIGHT_COUNTEREVIDENCE
+SKIP
 ```
 
-创建 Prototype 或 Schema 的 proposal 必须同时给出：现有结构为什么不足、预计解决什么预测错误、
+创建 Prototype、Schema 或 Insight 的 proposal 必须同时给出：现有结构为什么不足、预计解决什么预测错误、
 引用哪些证据，以及为什么更小的修改不够。
 
 ## 6. Agent 组织方式
@@ -183,10 +201,10 @@ ADD_SUPPORT / ADD_COUNTEREVIDENCE / SKIP
 
 主 Agent 是唯一控制环境动作和总体流程的 Agent。它负责：
 
-- 接收当前 observation、可用动作、历史和相关 EFPS 子图；
+- 接收当前 observation、可用动作、历史和 EFPS/Insight 认知；
 - 判断当前目标和认知状态；
 - 从 Prototype-level Schema 形成 plan；
-- 将 Schema roles 绑定到当前 Entity；
+- 检查当前 Entity 是否属于 Schema 的输入 Prototype；
 - 预测动作结果并执行下一动作；
 - 比较预测与真实结果；
 - 判断是继续执行、调用更新子 Agent，还是调用探索子 Agent；
@@ -196,22 +214,22 @@ ADD_SUPPORT / ADD_COUNTEREVIDENCE / SKIP
 
 ```json
 {
-  "goal": "...",
-  "schemas_considered": ["schema_x"],
-  "bindings": {"actor": "entity_1", "target": "entity_7"},
-  "plan": [{"schema_id": "schema_x", "expected_effect": "..."}],
-  "next_action": {"name": "ACTION3", "arguments": {}},
-  "prediction": "...",
-  "delegate": "none|update|explore",
-  "confidence": 0.72,
-  "brief_rationale": "..."
+  "goal_hypotheses": [{"text": "...", "confidence": 0.72, "evidence_ids": []}],
+  "decision_mode": "explore|schema|insight",
+  "selected_action": {"name": "ACTION3", "arguments": {}},
+  "schemas_used": ["schema_x"],
+  "schema_prediction": "...",
+  "insights_used": ["insight_y"],
+  "insight_application": "...",
+  "exploration_hypothesis": null,
+  "rationale": "..."
 }
 ```
 
 ### 6.2 更新子 Agent
 
 更新子 Agent 没有环境行动权限。它接收 pre/post observation、实际 action、主 Agent 的 prediction、
-使用过的 Schema/bindings、当前相关 EFPS 子图和持久 evidence IDs，返回同化/顺应 proposal。
+使用过的 Schema/Insight、当前 EFPS/Insight 认知和持久 evidence IDs，返回同化/顺应 proposal。
 
 主 Agent只决定是否调用和是否接受其建议；真正的合法性、证据闭包和原子应用由确定性代码保证。
 
@@ -259,7 +277,7 @@ priority = expected_information_gain
 - ARC baseline loop 继续作为 V1 对照保存，但 V2 production package 不导入它。
 
 ARC Gold v1 保留为历史机制级对照，不能直接宣称为 V2 EFPS Gold；它缺少系统的 Entity、Feature、
-Prototype membership 和 Schema role binding 标注。
+Prototype membership、Schema 三元组和全局 Insight 标注。
 
 ## 8. 建议目录
 
@@ -334,10 +352,10 @@ reset Level 1
 ### Phase 3：主 Agent planning/reasoning 完善
 
 - 从相关 EFPS 子图构造 prompt，不注入完整图；
-- 显式输出 Prototype role → Entity binding；
+- 显式检查 Schema 输入 Prototype 对当前 Entity 的适用性；
 - 支持短计划、结果预测、计划继续/重规划；
 - 避免重复 no-effect action；
-- 记录所用 Schema、binding、prediction 和子 Agent 调用原因。
+- 记录所用 Schema/Insight、prediction/application 和子 Agent 调用原因。
 
 ### Phase 4：探索子 Agent 完善
 
@@ -349,12 +367,12 @@ reset Level 1
 ### Phase 5：从 Level 1 向完整游戏扩展
 
 扩展顺序建议：CD82 Level 1 → CD82 全六关 → SK48 → TU93 → 其他 ARC 游戏。每次扩展都检查
-Prototype 和 Schema 是否跨关卡复用，避免退化为每关重新建图。
+Prototype、Schema 和 Insight 是否跨关卡复用，避免退化为每关重新建图。
 
 ### Phase 6：V2 评测
 
 至少记录：Entity tracking consistency、Feature 稳定性、Prototype 数量与复用率、split/merge 次数、
-Schema prediction accuracy、Schema 跨关卡复用率、unexplained transition rate、graph edit rate、
+Schema prediction accuracy、Schema/Insight 跨关卡复用率、Insight 反证率、unexplained transition rate、graph edit rate、
 exploration information gain、actions-to-win 和 evidence closure。
 
 现有 trajectory/replay 用于精确复现在线失败和做回归，不作为“必须先离线完成”的开发门槛。

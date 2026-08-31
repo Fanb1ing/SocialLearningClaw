@@ -16,6 +16,10 @@ class OperationKind(str, Enum):
     ADD_SCHEMA_SUPPORT = "add_schema_support"
     ADD_SCHEMA_COUNTEREVIDENCE = "add_schema_counterevidence"
     REVISE_SCHEMA = "revise_schema"
+    CREATE_INSIGHT = "create_insight"
+    ADD_INSIGHT_SUPPORT = "add_insight_support"
+    ADD_INSIGHT_COUNTEREVIDENCE = "add_insight_counterevidence"
+    REVISE_INSIGHT = "revise_insight"
     SKIP = "skip"
 
 

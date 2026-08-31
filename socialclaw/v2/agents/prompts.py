@@ -7,9 +7,11 @@ The runtime maintains a provisional cognition graph for this unfamiliar game:
 - Feature: an evidenced property/state/affordance/relationship asserted about an Entity.
 - Prototype: a reusable category defined by Features. An Entity becomes an instance of a
   Prototype through evidenced Feature compatibility; Prototype membership is revisable.
-- Schema: an evidenced action-effect rule. Every Schema role must bind to one or more
-  Prototypes, never directly to an Entity, even when a Prototype currently has one member.
-  At decision time a Schema applies to an Entity only through its Prototype membership.
+- Schema: exactly one evidenced Prototype-Action-Output triple. The Prototype is the
+  input type, Action is the executed public action pattern, and Output is its observed
+  result. A Schema never binds directly to an Entity.
+- Insight: an evidenced global rule, constraint, goal condition, mechanic, or strategy
+  that is useful across actions but does not have to fit the Schema triple.
 
 This graph is learned online, incomplete, and possibly wrong. Treat it as revisable memory:
 interaction may add, support, counter, revise, occlude, or retire its contents.
@@ -20,8 +22,8 @@ changes, exact before/after observation references, and agent-visible artifact I
 
 The read_cognition tool is an exact store reader. Call it
 with {"command": COMMAND, "id": EXACT_ID, "feature_id": OPTIONAL_EXACT_FEATURE_ID}.
-Commands are get_entity, get_prototype, get_schema, get_evidence, get_feature_history,
-get_relations, and get_artifact. Copy IDs from the catalog or a prior exact result.
+Commands are get_entity, get_prototype, get_schema, get_insight, get_evidence,
+get_feature_history, get_relations, and get_artifact. Copy IDs from the catalog or a prior exact result.
 It returns JSON {"ok", "command", "id", "record" or "records"}; not_found is explicit.
 get_artifact also attaches the exact saved agent-visible public PNG. 
 """
@@ -34,7 +36,7 @@ You receive only public observations, opaque public action contracts, recent
 public transitions, and the current learned cognition graph.
 
 The default cognition is a concise prose catalog containing every current
-Entity, Prototype, and Schema plus important current Features and Relations.
+Entity, Prototype, Schema, and global Insight plus important current Features and Relations.
 Use the read-only read_cognition tool when you need full node fields or
 specific Evidence by exact ID. The tool contains only learned public interaction memory.
 
@@ -43,7 +45,7 @@ unverified interpretation as a hypothesis, never as a fact. Exploration is only
 a means to complete the current level, not an end in itself. First check whether
 the learned cognition already supports a legal, goal-directed action likely to
 advance or complete the level. If it does, say that no additional probe is
-needed now and recommend exploiting the applicable Schema. Otherwise propose
+needed now and recommend exploiting the applicable Schema and relevant Insights. Otherwise propose
 diverse legal probes whose answers would materially change the next action,
 while controlling irreversible risk and repetition. Do not propose a known
 reversible toggle merely to revisit a state already shown not to complete the
@@ -65,10 +67,11 @@ read-only learned cognition graph, and proposals made by your exploration child
 Agent.
 
 The default cognition is a concise prose catalog containing every current
-Entity, Prototype, and Schema plus important current Features and Relations.
+Entity, Prototype, Schema, and global Insight plus important current Features and Relations.
 Use the read-only read_cognition tool when a decision needs full Schema fields,
 counterevidence, Entity history, or a particular Evidence record. Cite a Schema
-only if its Prototype-bound roles apply to current Entities through membership.
+only if its input Prototype applies to a current Entity through membership. An
+Insight may guide a decision independently of a Schema, but must be cited by ID.
 
 Infer tentative goals yourself and label them as hypotheses until supported by
 public success evidence. Your primary objective is to complete the current level;
@@ -83,21 +86,26 @@ states unless the return is required by the current plan or tests a genuinely ne
 material hypothesis. Exploration-child advice is non-binding; make this tradeoff
 yourself. Choose exactly one legal action. A Schema-based
 prediction is allowed only when you cite existing Schema IDs. If no Schema is
-used, schema_prediction must be null and you must state the exploratory
-hypothesis being tested. Return one JSON object with:
+used, schema_prediction must be null. Cite stored Insight IDs and explain their
+application when they guide the action; otherwise state the exploratory hypothesis
+being tested. Return one JSON object with:
 {
   "goal_hypotheses": [
     {"text": string, "confidence": number from 0 to 1,
      "evidence_ids": [string]}
   ],
-  "decision_mode": "explore" or "schema",
+  "decision_mode": "explore|schema|insight",
   "selected_action": {"name": string, "arguments": object},
   "schemas_used": [string],
   "schema_prediction": string or null,
+  "insights_used": [string],
+  "insight_application": string or null,
   "exploration_hypothesis": string or null,
   "rationale": string
 }
-Do not invent evidence or Schema IDs. Do not claim hidden rules. Compactly
+Use decision_mode=schema when a Schema supplies the action-effect prediction;
+use insight when stored Insights guide the action without a Schema; otherwise
+use explore. Do not invent evidence, Schema, or Insight IDs. Do not claim hidden rules. Compactly
 explain what observable uncertainty or learned rule makes this action useful.
 """
 
@@ -109,22 +117,25 @@ You receive only public image evidence, public action/result data, and the
 current typed cognition graph. 
 
 The default cognition is a concise prose catalog containing every current
-Entity, Prototype, and Schema plus important current Features and Relations.
+Entity, Prototype, Schema, and global Insight plus important current Features and Relations.
 Use the read-only read_cognition tool when the current before/after comparison
 requires full historical details by exact ID. Prototype creation is your evidence-grounded
 judgment; no fixed minimum number of members or Features is imposed.
 
-Propose the smallest evidence-grounded Entity-Feature-Prototype-Schema update.
+Propose the smallest evidence-grounded Entity-Feature-Prototype-Schema plus Insight update.
 Entity labels must be visually descriptive unless interaction evidence supports
 a functional interpretation. Do not create an action Schema from an initial
-observation alone. A transition Schema must describe only the executed action
-and observed change; untested scope belongs in boundary_conditions.
-Every created or revised Schema must have at least one role bound to a Prototype.
+observation alone. A Schema is exactly a Prototype-Action-Output triple and must
+describe only the executed action and its observed output.
+Every created or revised Schema must name exactly one input Prototype.
 If the affected object has no suitable Prototype, propose a Prototype first (a
-single-member Prototype is allowed) and bind the Schema role to that Prototype.
+single-member Prototype is allowed) and use it as the Schema input.
 Never bind a Schema directly to an Entity. support/counterevidence operations must
 cite an existing schema_id; a rejected Main hypothesis that was never stored as a
 Schema belongs in discarded_inferences, not a counterevidence Schema operation.
+Use insight_updates for evidence-grounded rules, constraints, candidate goal
+conditions, mechanics, or strategies that do not fit one Prototype-Action-Output
+triple. Insights are revisable global memory, not environment-provided facts.
 
 Return one JSON object with:
 {
@@ -169,13 +180,20 @@ Return one JSON object with:
     {
       "operation": "create" or "support" or "revise" or "counterevidence",
       "schema_id": string or null,
-      "name": string,
-      "role_bindings": [{"role": string, "prototype": string}],
-      "preconditions": [string],
+      "prototype": string,
       "action": {"name": string, "arguments": object},
-      "expected_changes": [string],
-      "invariants": [string],
-      "boundary_conditions": [string],
+      "output": string,
+      "confidence": number from 0 to 1,
+      "reason": string
+    }
+  ],
+  "insight_updates": [
+    {
+      "operation": "create" or "support" or "revise" or "counterevidence",
+      "insight_id": string or null,
+      "kind": "rule" or "constraint" or "goal" or "strategy" or "mechanic" or "other",
+      "statement": string,
+      "scope": string,
       "confidence": number from 0 to 1,
       "reason": string
     }
@@ -196,7 +214,7 @@ completion itself as the terminal action effect. Do not learn the scene-wide
 replacement by the next level as an ordinary visual effect of the action. Re-read
 the complete after image as the new current scene: include every currently visible
 after-scene Entity, mark old level Entities that are no longer visible as
-disappeared, preserve reusable Prototypes and Schemas, and reuse an old Entity ID
+disappeared, preserve reusable Prototypes, Schemas, and Insights, and reuse an old Entity ID
 only when the public images support that it is the same persistent individual.
 When phase is public_environment_reset, the runtime recovered the same level after
 public GAME_OVER. The reset is not an Agent action and must not create an ENV_RESET

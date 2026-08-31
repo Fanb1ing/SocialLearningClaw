@@ -12,6 +12,7 @@ from socialclaw.v2.agents.prompts import (
     MAIN_INSTRUCTIONS,
     UPDATE_INSTRUCTIONS,
 )
+from socialclaw.v2.efps import COGNITION_CONTRACT_VERSION
 
 
 INSTRUCTIONS = {
@@ -93,6 +94,7 @@ def main() -> None:
 
     payload = {
         "format_version": 1,
+        "cognition_contract_version": COGNITION_CONTRACT_VERSION,
         "description": (
             "Frozen logical model calls for deterministic environment/cognition replay; "
             "not a fresh provider evaluation."

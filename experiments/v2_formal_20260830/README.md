@@ -1,13 +1,18 @@
 # V2 三游戏正式实验：可校验复现包
 
+> 历史合同说明（2026-08-31）：本包冻结的是重构前的 role-binding Schema 实现。当前主线已经把
+> Schema 收紧为 `Prototype → Action → Output` 三元组并新增全局 Insight，因此当前代码会在冻结
+> prompt/payload 哈希校验处拒绝这批旧响应。保留本目录用于审计旧结果，不能把它当作当前实现的新
+> 实验；需要在新合同上重新在线运行后建立新的转录和 manifest。
+
 这个目录冻结 2026-08-30 的 CD82、SK48、TU93 三次正式实验。每关最多 30 个
 Agent action，不限制关数；如果出现公开 `GAME_OVER`，runtime 会重开当前关，
 但不会重置该关的 30 步预算。三次实验都在 Level 1 用完 30 步，因此本批没有
 实际触发 reset，也没有进入 Level 2。
 
-## 一条命令复现
+## 原合同下的复现命令（需要对应的旧源码版本）
 
-仓库要求 Python 3.12+。从全新 clone 开始：
+对应的 contract-v2 旧源码要求 Python 3.12+。切到该源码版本后：
 
 ```bash
 python3.12 -m venv .venv
@@ -16,7 +21,7 @@ python3.12 -m venv .venv
 .venv/bin/python scripts/reproduce_v2_formal_20260830.py
 ```
 
-最后一条命令不读取 `.env`、不需要 API key、也不访问网络。它会：
+在 contract-v2 源码下，最后一条命令不读取 `.env`、不需要 API key、也不访问网络。它会：
 
 1. 校验三份冻结模型转录与仓库内游戏环境源码指纹；
 2. 重新执行真实 ARC 环境、EFPS 更新、validator、trajectory replay 和报告生成；

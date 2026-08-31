@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -11,6 +12,7 @@ from socialclaw.v2.efps import (
     GraphOperation,
     OperationKind,
 )
+from socialclaw.v2.cognition import read_cognition, render_cognition_catalog
 
 
 class EFPSGraphTests(unittest.TestCase):
@@ -133,30 +135,158 @@ class EFPSGraphTests(unittest.TestCase):
             1,
         )
 
-    def test_schema_requires_a_prototype_role_binding(self) -> None:
+    def test_schema_is_a_complete_prototype_action_output_triple(self) -> None:
+        self.graph.apply_transaction(
+            [
+                GraphOperation(
+                    OperationKind.CREATE_PROTOTYPE,
+                    {
+                        "prototype_id": "prototype_1",
+                        "name": "movable object",
+                    },
+                    [self.evidence.evidence_id],
+                    "create input type",
+                )
+            ],
+            actor="update_child_agent",
+            step=0,
+            mode="accommodation",
+            summary="create prototype",
+        )
         before = self.graph.to_dict()
-        with self.assertRaisesRegex(ValueError, "requires Prototype role bindings"):
+        with self.assertRaisesRegex(ValueError, "has no output"):
             self.graph.apply_transaction(
                 [
                     GraphOperation(
                         OperationKind.CREATE_SCHEMA,
                         {
                             "schema_id": "schema_invalid",
-                            "name": "entity_bound_rule",
-                            "role_bindings": {},
-                            "action_pattern": {"action": "ACTION1", "arguments": {}},
-                            "expected_changes": ["the observed object changes"],
+                            "prototype_id": "prototype_1",
+                            "action": {"name": "ACTION1", "arguments": {}},
+                            "output": "",
                         },
                         [self.evidence.evidence_id],
-                        "Schemas may not omit their Prototype type role",
+                        "Schemas may not omit the Output component",
                     )
                 ],
                 actor="update_child_agent",
                 step=1,
                 mode="accommodation",
-                summary="reject a Schema without a Prototype role",
+                summary="reject an incomplete Schema triple",
             )
         self.assertEqual(self.graph.to_dict(), before)
+
+        self.graph.apply_transaction(
+            [
+                GraphOperation(
+                    OperationKind.CREATE_SCHEMA,
+                    {
+                        "schema_id": "schema_1",
+                        "prototype_id": "prototype_1",
+                        "action": {"name": "ACTION1", "arguments": {}},
+                        "output": "the movable object shifts right",
+                    },
+                    [self.evidence.evidence_id],
+                    "observed triple",
+                )
+            ],
+            actor="update_child_agent",
+            step=1,
+            mode="accommodation",
+            summary="create complete Schema triple",
+        )
+        schema = self.graph.schemas["schema_1"]
+        self.assertEqual(schema.prototype_id, "prototype_1")
+        self.assertEqual(schema.action["name"], "ACTION1")
+        self.assertEqual(schema.output, "the movable object shifts right")
+
+    def test_global_insight_is_evidence_grounded_and_revisable(self) -> None:
+        self.graph.apply_transaction(
+            [
+                GraphOperation(
+                    OperationKind.CREATE_INSIGHT,
+                    {
+                        "insight_id": "insight_1",
+                        "kind": "constraint",
+                        "statement": "An obstacle blocks movement into its cell.",
+                        "scope": "global",
+                        "confidence": 0.6,
+                    },
+                    [self.evidence.evidence_id],
+                    "observed failed movement",
+                )
+            ],
+            actor="update_child_agent",
+            step=1,
+            mode="accommodation",
+            summary="learn global constraint",
+        )
+        insight = self.graph.insights["insight_1"]
+        self.assertEqual(insight.kind.value, "constraint")
+        self.assertEqual(insight.support_evidence_ids, ["evidence_1"])
+        self.assertEqual(self.graph.counts()["insights"], 1)
+        lookup = json.loads(
+            read_cognition(
+                self.graph, command="get_insight", item_id="insight_1"
+            )
+        )
+        self.assertTrue(lookup["ok"])
+        self.assertEqual(lookup["record"]["kind"], "constraint")
+        catalog = render_cognition_catalog(self.graph)
+        self.assertIn("Global Insights/Rules", catalog)
+        self.assertIn("An obstacle blocks movement", catalog)
+
+    def test_format_two_schema_migrates_to_triple(self) -> None:
+        self.graph.apply_transaction(
+            [
+                GraphOperation(
+                    OperationKind.CREATE_PROTOTYPE,
+                    {"prototype_id": "prototype_1", "name": "button"},
+                    [self.evidence.evidence_id],
+                    "legacy prototype",
+                )
+            ],
+            actor="update_child_agent",
+            step=0,
+            mode="accommodation",
+            summary="create prototype",
+        )
+        payload = self.graph.to_dict()
+        payload["format_version"] = 2
+        payload.pop("insights")
+        payload["schemas"] = {
+            "schema_old": {
+                "schema_id": "schema_old",
+                "name": "press changes button",
+                "role_bindings": {"target": ["prototype_1"]},
+                "preconditions": [],
+                "action_pattern": {"action": "ACTION1", "arguments": {}},
+                "expected_changes": ["button changes color"],
+                "invariants": [],
+                "boundary_conditions": [],
+                "support_evidence_ids": ["evidence_1"],
+                "counter_evidence_ids": [],
+                "confidence": 0.6,
+                "status": "active",
+                "revision_count": 0,
+                "metadata": {},
+            }
+        }
+        payload["relations"]["legacy_binding"] = {
+            "relation_id": "legacy_binding",
+            "relation_type": "binds_role_to",
+            "source_id": "schema_old",
+            "target_id": "prototype_1",
+            "evidence_ids": ["evidence_1"],
+            "metadata": {"role": "target"},
+        }
+        restored = EFPSGraph.from_dict(payload)
+        restored.validate()
+        schema = restored.schemas["schema_old"]
+        self.assertEqual(schema.prototype_id, "prototype_1")
+        self.assertEqual(schema.action["name"], "ACTION1")
+        self.assertEqual(schema.output, "button changes color")
+        self.assertEqual(restored.to_dict()["format_version"], 3)
 
 
 if __name__ == "__main__":

@@ -5,9 +5,9 @@
 
 ## 当前 V2 主线
 
-- [V2 三游戏正式实验与确定性复现](../experiments/v2_formal_20260830/README.md)：
-  当前可提交、可逐文件哈希校验的 CD82/SK48/TU93 实验入口；
-- [Architecture](architecture.md)：Agent 权限、EFPS、证据、每关预算、GAME_OVER 恢复；
+- [2026-08-30 三游戏历史实验](../experiments/v2_formal_20260830/README.md)：
+  角色型 Schema 合同的冻结记录；当前三元组 Schema/Insight 代码不得把它当作新实现结果；
+- [Architecture](architecture.md)：Agent 权限、EFPS 三元组 Schema、全局 Insight、证据、每关预算和 GAME_OVER 恢复；
 - [Version 2 EFPS 开发方案](version2_efps_development_plan.md)：类型图和纵向开发路线；
 - [认知输入精简与精确读取](v2_cognition_retrieval_design.md)：`read_cognition` 工具与 token 审计设计；
 - [Project memory](project_memory.md)：跨会话简要开发记录，不是运行规范。

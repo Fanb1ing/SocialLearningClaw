@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from socialclaw.dataset.arc_agi3 import arc_environment_fingerprint
+from socialclaw.v2.efps import COGNITION_CONTRACT_VERSION
 from socialclaw.v2.model import RecordedVisionModel
 from socialclaw.v2.runtime import run_arc_online
 
@@ -97,6 +98,14 @@ def main() -> None:
     args = parser.parse_args()
 
     manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    expected_contract = int(manifest["cognition_contract_version"])
+    if expected_contract != COGNITION_CONTRACT_VERSION:
+        raise SystemExit(
+            "This frozen experiment uses cognition contract "
+            f"{expected_contract}, but the current source uses contract "
+            f"{COGNITION_CONTRACT_VERSION}. Refusing to present historical model "
+            "responses as a result of the new Schema/Insight implementation."
+        )
     _verify_package_versions(manifest["required_packages"])
     output_root = args.output_root.resolve()
     output_root.mkdir(parents=True, exist_ok=True)

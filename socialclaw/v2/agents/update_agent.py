@@ -13,6 +13,7 @@ from .validation import bounded_probability
 
 _FEATURE_KINDS = {"intrinsic", "state", "affordance", "relational"}
 _ENTITY_STATUSES = {"active", "occluded", "disappeared"}
+_INSIGHT_KINDS = {"rule", "constraint", "goal", "strategy", "mechanic", "other"}
 
 
 def _clean_name(value: Any) -> str:
@@ -135,6 +136,9 @@ class UpdateAgent:
             OperationKind.CREATE_SCHEMA,
             OperationKind.REVISE_SCHEMA,
             OperationKind.ADD_SCHEMA_COUNTEREVIDENCE,
+            OperationKind.CREATE_INSIGHT,
+            OperationKind.REVISE_INSIGHT,
+            OperationKind.ADD_INSIGHT_COUNTEREVIDENCE,
         }
         mode = (
             "accommodation"
@@ -200,8 +204,9 @@ class UpdateAgent:
         prototype_by_name = {
             item.name.casefold(): item.prototype_id for item in graph.prototypes.values()
         }
-        schema_by_name = {
-            item.name.casefold(): item.schema_id for item in graph.schemas.values()
+        insight_by_statement = {
+            item.statement.casefold(): item.insight_id
+            for item in graph.insights.values()
         }
         local_entities: Dict[str, str] = {}
 
@@ -402,6 +407,95 @@ class UpdateAgent:
                             )
                         )
 
+        for raw in output.get("insight_updates") or []:
+            if not isinstance(raw, dict):
+                continue
+            operation = str(raw.get("operation") or "").lower()
+            requested_id = str(raw.get("insight_id") or "")
+            statement = _clean_name(raw.get("statement"))
+            insight_id = (
+                requested_id
+                if requested_id in graph.insights
+                else insight_by_statement.get(statement.casefold())
+                if statement
+                else None
+            )
+            kind = str(raw.get("kind") or "other").lower()
+            if kind not in _INSIGHT_KINDS:
+                kind = "other"
+            scope = _clean_name(raw.get("scope")) or "global"
+            if operation == "create" and insight_id:
+                operations.append(
+                    GraphOperation(
+                        OperationKind.ADD_INSIGHT_SUPPORT,
+                        {"insight_id": insight_id},
+                        evidence,
+                        _clean_name(raw.get("reason"))
+                        or "The current evidence repeats an existing Insight.",
+                    )
+                )
+            elif operation == "create" and not insight_id and statement:
+                insight_id = stable_id(
+                    "insight",
+                    {"kind": kind, "statement": statement.casefold(), "scope": scope.casefold()},
+                )
+                insight_by_statement[statement.casefold()] = insight_id
+                operations.append(
+                    GraphOperation(
+                        OperationKind.CREATE_INSIGHT,
+                        {
+                            "insight_id": insight_id,
+                            "kind": kind,
+                            "statement": statement,
+                            "scope": scope,
+                            "confidence": bounded_probability(
+                                raw.get("confidence"), default=0.5
+                            ),
+                            "metadata": {"agent_generated": True},
+                        },
+                        evidence,
+                        _clean_name(raw.get("reason"))
+                        or "Update Agent proposed a global evidenced Insight.",
+                    )
+                )
+            elif insight_id and operation == "support":
+                operations.append(
+                    GraphOperation(
+                        OperationKind.ADD_INSIGHT_SUPPORT,
+                        {"insight_id": insight_id},
+                        evidence,
+                        _clean_name(raw.get("reason"))
+                        or "The current evidence supports an existing Insight.",
+                    )
+                )
+            elif insight_id and operation == "counterevidence":
+                operations.append(
+                    GraphOperation(
+                        OperationKind.ADD_INSIGHT_COUNTEREVIDENCE,
+                        {"insight_id": insight_id},
+                        evidence,
+                        _clean_name(raw.get("reason"))
+                        or "The current evidence contradicts an existing Insight.",
+                    )
+                )
+            elif insight_id and operation == "revise" and statement:
+                operations.append(
+                    GraphOperation(
+                        OperationKind.REVISE_INSIGHT,
+                        {
+                            "insight_id": insight_id,
+                            "kind": kind,
+                            "statement": statement,
+                            "scope": scope,
+                        },
+                        evidence,
+                        _clean_name(raw.get("reason"))
+                        or "The current evidence requires revising an Insight.",
+                    )
+                )
+            else:
+                warnings.append("Discarded an unresolved Insight update.")
+
         if executed_action is None:
             if output.get("schema_updates"):
                 warnings.append(
@@ -414,71 +508,69 @@ class UpdateAgent:
             if not isinstance(raw, dict):
                 continue
             operation = str(raw.get("operation") or "").lower()
-            name = _clean_name(raw.get("name"))
             requested_id = str(raw.get("schema_id") or "")
-            schema_id = (
-                requested_id if requested_id in graph.schemas else schema_by_name.get(name.casefold())
-            )
-            action_pattern = raw.get("action") or {}
-            if not isinstance(action_pattern, dict):
-                action_pattern = {}
-            if str(action_pattern.get("name") or "") != executed_name:
+            schema_id = requested_id if requested_id in graph.schemas else None
+            raw_action = raw.get("action") or {}
+            if not isinstance(raw_action, dict):
+                raw_action = {}
+            if str(raw_action.get("name") or "") != executed_name:
                 warnings.append(
                     "Discarded a Schema update whose action did not match the evidenced action."
                 )
                 continue
             normalized_action = {
-                "action": executed_name,
-                "arguments": dict(action_pattern.get("arguments") or {}),
+                "name": executed_name,
+                "arguments": dict(raw_action.get("arguments") or {}),
             }
-            role_bindings: Dict[str, List[str]] = {}
-            for binding in raw.get("role_bindings") or []:
-                if not isinstance(binding, dict):
-                    continue
-                role = _clean_name(binding.get("role"))
-                target = str(binding.get("prototype") or "")
-                prototype_id = (
-                    target
-                    if target in graph.prototypes or target in prototype_by_name.values()
-                    else prototype_by_name.get(target.casefold())
-                )
-                if role and prototype_id:
-                    role_bindings.setdefault(role, []).append(prototype_id)
-            if operation == "revise" and schema_id and not role_bindings:
-                role_bindings = {
-                    role: list(prototype_ids)
-                    for role, prototype_ids in graph.schemas[
-                        schema_id
-                    ].role_bindings.items()
-                }
+            target = str(raw.get("prototype") or "")
+            prototype_id = (
+                target
+                if target in graph.prototypes or target in prototype_by_name.values()
+                else prototype_by_name.get(target.casefold())
+            )
+            if operation == "revise" and schema_id and not prototype_id:
+                prototype_id = graph.schemas[schema_id].prototype_id
+            output_text = _clean_name(raw.get("output"))
+            if operation == "revise" and schema_id and not output_text:
+                output_text = graph.schemas[schema_id].output
             common = {
-                "role_bindings": role_bindings,
-                "preconditions": [str(item) for item in raw.get("preconditions") or []],
-                "action_pattern": normalized_action,
-                "expected_changes": [str(item) for item in raw.get("expected_changes") or []],
-                "invariants": [str(item) for item in raw.get("invariants") or []],
-                "boundary_conditions": [
-                    str(item) for item in raw.get("boundary_conditions") or []
-                ],
+                "prototype_id": prototype_id,
+                "action": normalized_action,
+                "output": output_text,
             }
-            if operation in {"create", "revise"} and not role_bindings:
+            if operation in {"create", "revise"} and not prototype_id:
                 warnings.append(
-                    "Discarded a Schema update without a resolved Prototype role binding."
+                    "Discarded a Schema update without a resolved input Prototype."
                 )
                 continue
-            if operation == "create" and not schema_id and name:
+            if operation in {"create", "revise"} and not output_text:
+                warnings.append("Discarded a Schema update without an observed Output.")
+                continue
+            if operation == "create" and not schema_id:
                 schema_id = stable_id(
                     "schema",
-                    {"name": name.casefold(), "action": normalized_action},
+                    {
+                        "prototype_id": prototype_id,
+                        "action": normalized_action,
+                        "output": output_text.casefold(),
+                    },
                 )
-                schema_by_name[name.casefold()] = schema_id
+                if schema_id in graph.schemas:
+                    operations.append(
+                        GraphOperation(
+                            OperationKind.ADD_SCHEMA_SUPPORT,
+                            {"schema_id": schema_id},
+                            evidence,
+                            _clean_name(raw.get("reason"))
+                            or "The transition repeats an existing Schema triple.",
+                        )
+                    )
+                    continue
                 operations.append(
                     GraphOperation(
                         OperationKind.CREATE_SCHEMA,
                         {
                             "schema_id": schema_id,
-                            "name": name,
-                            "role_bindings": role_bindings,
                             **common,
                             "confidence": bounded_probability(
                                 raw.get("confidence"), default=0.55

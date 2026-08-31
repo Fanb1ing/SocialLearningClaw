@@ -1,4 +1,4 @@
-from .graph import EFPSGraph
+from .graph import COGNITION_CONTRACT_VERSION, EFPSGraph
 from .models import (
     Entity,
     EntityStatus,
@@ -6,6 +6,9 @@ from .models import (
     FeatureAssertion,
     FeatureDefinition,
     FeatureKind,
+    Insight,
+    InsightKind,
+    InsightStatus,
     Prototype,
     Relation,
     RelationType,
@@ -18,6 +21,7 @@ from .storage import EFPSGraphStorage
 
 __all__ = [
     "EFPSGraph",
+    "COGNITION_CONTRACT_VERSION",
     "EFPSGraphStorage",
     "Entity",
     "EntityStatus",
@@ -26,6 +30,9 @@ __all__ = [
     "FeatureDefinition",
     "FeatureKind",
     "GraphOperation",
+    "Insight",
+    "InsightKind",
+    "InsightStatus",
     "OperationKind",
     "Prototype",
     "Relation",

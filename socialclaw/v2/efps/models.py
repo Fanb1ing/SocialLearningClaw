@@ -33,12 +33,30 @@ class SchemaStatus(str, Enum):
     RETIRED = "retired"
 
 
+class InsightKind(str, Enum):
+    RULE = "rule"
+    CONSTRAINT = "constraint"
+    GOAL = "goal"
+    STRATEGY = "strategy"
+    MECHANIC = "mechanic"
+    OTHER = "other"
+
+
+class InsightStatus(str, Enum):
+    ACTIVE = "active"
+    REVISED = "revised"
+    RETIRED = "retired"
+
+
 class RelationType(str, Enum):
     HAS_FEATURE = "has_feature"
     ASSERTS_FEATURE = "asserts_feature"
     INSTANCE_OF = "instance_of"
     DEFINED_BY = "defined_by"
     EXCLUDES = "excludes"
+    TAKES_PROTOTYPE = "takes_prototype"
+    # Read-only migration support for graph format 2. New transactions never
+    # create this relation type.
     BINDS_ROLE_TO = "binds_role_to"
 
 
@@ -110,17 +128,27 @@ class Prototype:
 @dataclass
 class Schema:
     schema_id: str
-    name: str
-    role_bindings: Dict[str, List[str]]
-    preconditions: List[str]
-    action_pattern: Dict[str, Any]
-    expected_changes: List[str]
-    invariants: List[str]
-    boundary_conditions: List[str]
+    prototype_id: str
+    action: Dict[str, Any]
+    output: str
     support_evidence_ids: List[str]
     counter_evidence_ids: List[str]
     confidence: float = 0.55
     status: SchemaStatus = SchemaStatus.ACTIVE
+    revision_count: int = 0
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class Insight:
+    insight_id: str
+    kind: InsightKind
+    statement: str
+    scope: str
+    support_evidence_ids: List[str]
+    counter_evidence_ids: List[str]
+    confidence: float = 0.5
+    status: InsightStatus = InsightStatus.ACTIVE
     revision_count: int = 0
     metadata: Dict[str, Any] = field(default_factory=dict)
 
@@ -150,6 +178,9 @@ __all__ = [
     "FeatureAssertion",
     "FeatureDefinition",
     "FeatureKind",
+    "Insight",
+    "InsightKind",
+    "InsightStatus",
     "Prototype",
     "Relation",
     "RelationType",

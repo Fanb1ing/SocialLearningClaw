@@ -222,17 +222,22 @@ class _FakeModel:
                     {
                         "operation": "create",
                         "schema_id": None,
-                        "name": "ACTION1 changes part of the visible grid",
-                        "role_bindings": [
-                            {"role": "affected_region", "prototype": "visual region"}
-                        ],
-                        "preconditions": ["the observed grid state"],
+                        "prototype": "visual region",
                         "action": {"name": "ACTION1", "arguments": {}},
-                        "expected_changes": ["at least one visible cell changes"],
-                        "invariants": [],
-                        "boundary_conditions": ["only one starting state is evidenced"],
+                        "output": "at least one visible cell changes",
                         "confidence": 0.55,
                         "reason": "The before/after images ground this action effect.",
+                    }
+                ],
+                "insight_updates": [
+                    {
+                        "operation": "create",
+                        "insight_id": None,
+                        "kind": "mechanic",
+                        "statement": "The observed action can alter part of the visible field.",
+                        "scope": "current game",
+                        "confidence": 0.55,
+                        "reason": "The public transition directly supports this mechanic.",
                     }
                 ],
                 "discarded_inferences": [],
@@ -749,6 +754,7 @@ class GenericARCOnlineTests(unittest.TestCase):
             self.assertEqual(summary["actions"], 1)
             self.assertEqual(summary["model_calls"], 4)
             self.assertEqual(summary["final_cognition"]["schemas"], 1)
+            self.assertEqual(summary["final_cognition"]["insights"], 1)
 
             timeline = json.loads((output / "timeline.json").read_text())
             first_action = timeline["events"][1]
@@ -767,6 +773,7 @@ class GenericARCOnlineTests(unittest.TestCase):
             ]
             self.assertIn("entities_sent", cognition_receipt)
             self.assertIn("evidence_sent", cognition_receipt)
+            self.assertIn("insights_sent", cognition_receipt)
             self.assertEqual(first_action["decision"]["schema_ids"], [])
             self.assertIsNone(first_action["decision"]["schema_prediction"])
             self.assertTrue(first_action["decision"]["exploration_hypothesis"])
@@ -783,6 +790,17 @@ class GenericARCOnlineTests(unittest.TestCase):
             self.assertIsInstance(
                 first_action["agent_calls"]["exploration_agent"]["output"], str
             )
+            graph = json.loads(
+                (output / "cognition" / "graph.json").read_text()
+            )
+            self.assertEqual(graph["format_version"], 3)
+            schema = next(iter(graph["schemas"].values()))
+            self.assertEqual(
+                {"prototype_id", "action", "output"},
+                {"prototype_id", "action", "output"} & set(schema),
+            )
+            self.assertNotIn("role_bindings", schema)
+            self.assertEqual(len(graph["insights"]), 1)
             self.assertIn("evidence", timeline["input_catalog"])
             transition = first_action["environment_transition"]
             self.assertEqual(
@@ -1076,6 +1094,7 @@ class GenericARCOnlineTests(unittest.TestCase):
             self.assertIn("Entity 输入", process)
             self.assertIn("Prototype 输入", process)
             self.assertIn("Schema 输入", process)
+            self.assertIn("全局 Insight/Rule 输入", process)
             self.assertIn("GAME_OVER 后恢复当前 Level", process)
             self.assertIn("actions_used': 1", process)
 

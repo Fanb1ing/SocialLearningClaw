@@ -51,6 +51,8 @@ class MainDecision:
     decision_mode: str
     schema_ids: List[str]
     schema_prediction: str | None
+    insight_ids: List[str]
+    insight_application: str | None
     exploration_hypothesis: str | None
     rationale: str
     audit: AgentCallAudit
@@ -62,6 +64,8 @@ class MainDecision:
             "decision_mode": self.decision_mode,
             "schema_ids": list(self.schema_ids),
             "schema_prediction": self.schema_prediction,
+            "insight_ids": list(self.insight_ids),
+            "insight_application": self.insight_application,
             "exploration_hypothesis": self.exploration_hypothesis,
             "rationale": self.rationale,
         }

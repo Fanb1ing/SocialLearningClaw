@@ -49,7 +49,11 @@ class MainAgent:
         schema_ids = known_ids(
             result.data.get("schemas_used") or [], graph.schemas
         )
+        insight_ids = known_ids(
+            result.data.get("insights_used") or [], graph.insights
+        )
         schema_prediction = result.data.get("schema_prediction")
+        insight_application = result.data.get("insight_application")
         if schema_ids:
             if not isinstance(schema_prediction, str) or not schema_prediction.strip():
                 raise ValueError(
@@ -57,8 +61,29 @@ class MainAgent:
                 )
             decision_mode = "schema"
             exploration_hypothesis = None
+            if insight_ids and (
+                not isinstance(insight_application, str)
+                or not insight_application.strip()
+            ):
+                raise ValueError(
+                    "Main Agent cited an Insight without insight_application"
+                )
+            if not insight_ids:
+                insight_application = None
+        elif insight_ids:
+            schema_prediction = None
+            exploration_hypothesis = None
+            if (
+                not isinstance(insight_application, str)
+                or not insight_application.strip()
+            ):
+                raise ValueError(
+                    "Main Agent cited an Insight without insight_application"
+                )
+            decision_mode = "insight"
         else:
             schema_prediction = None
+            insight_application = None
             decision_mode = "explore"
             exploration_hypothesis = result.data.get("exploration_hypothesis")
             if not isinstance(exploration_hypothesis, str) or not exploration_hypothesis.strip():
@@ -100,6 +125,10 @@ class MainAgent:
             schema_ids=schema_ids,
             schema_prediction=str(schema_prediction).strip()
             if schema_prediction is not None
+            else None,
+            insight_ids=insight_ids,
+            insight_application=str(insight_application).strip()
+            if insight_application is not None
             else None,
             exploration_hypothesis=str(exploration_hypothesis).strip()
             if exploration_hypothesis is not None
