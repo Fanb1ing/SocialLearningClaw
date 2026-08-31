@@ -1,0 +1,182 @@
+{
+  "format_version": 1,
+  "source": "ARC Prize Foundation ARC-AGI-3 API",
+  "arc_agi_sdk": "0.9.8",
+  "games": [
+    {
+      "game_id": "ar25-0c556536",
+      "metadata": "third_party/arc_agi3_games/ar25/0c556536/metadata.json",
+      "metadata_sha256": "af0c4b3f48588cc71493a8f00741b01214a05be77942fbd0b5f0ee0188d1425f",
+      "source": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+      "source_sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272"
+    },
+    {
+      "game_id": "bp35-0a0ad940",
+      "metadata": "third_party/arc_agi3_games/bp35/0a0ad940/metadata.json",
+      "metadata_sha256": "736c1c13845426f4fe40f460f23006b6fa59a5c80e03c29ea8975335709da896",
+      "source": "third_party/arc_agi3_games/bp35/0a0ad940/bp35.py",
+      "source_sha256": "e9aecb52c629c3e742276c2db04b81f91555051d8617b6cbc58bac410824867f"
+    },
+    {
+      "game_id": "cd82-fb555c5d",
+      "metadata": "third_party/arc_agi3_games/cd82/fb555c5d/metadata.json",
+      "metadata_sha256": "8448da584a1a32e1fc71b48787e9b0e217a566b6b1a0fc01cf605c7cc5cb9ba4",
+      "source": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+      "source_sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb"
+    },
+    {
+      "game_id": "cn04-2fe56bfb",
+      "metadata": "third_party/arc_agi3_games/cn04/2fe56bfb/metadata.json",
+      "metadata_sha256": "60e891046c780c0f238539c523fb6750a06d199eccc1edff6618d218932f4d69",
+      "source": "third_party/arc_agi3_games/cn04/2fe56bfb/cn04.py",
+      "source_sha256": "29977e145a0374b5842d360507f045029c3f4b22373612152e713c14691e01dc"
+    },
+    {
+      "game_id": "dc22-fdcac232",
+      "metadata": "third_party/arc_agi3_games/dc22/fdcac232/metadata.json",
+      "metadata_sha256": "c2010806299da021440f6d28f61bf3f74040778591248bcb4c2a2f005997221e",
+      "source": "third_party/arc_agi3_games/dc22/fdcac232/dc22.py",
+      "source_sha256": "74abe3523bd6bc8a0948991caa0ca71855e38542ba2123653a03485e064f252e"
+    },
+    {
+      "game_id": "ft09-0d8bbf25",
+      "metadata": "third_party/arc_agi3_games/ft09/0d8bbf25/metadata.json",
+      "metadata_sha256": "c36419101a89badff84b4c1de516ae0b82fe21dcb1e154881384c60da464223e",
+      "source": "third_party/arc_agi3_games/ft09/0d8bbf25/ft09.py",
+      "source_sha256": "aa5b54f48a29da9f276c3df0dc04de728002f523384ab868c85d56d819cd0783"
+    },
+    {
+      "game_id": "g50t-5849a774",
+      "metadata": "third_party/arc_agi3_games/g50t/5849a774/metadata.json",
+      "metadata_sha256": "5738e90c465f7b9a84947c70beeafdb5e2d8ba52e503e08a53f00c19e64cbbc6",
+      "source": "third_party/arc_agi3_games/g50t/5849a774/g50t.py",
+      "source_sha256": "6f21f2065744e484ac38534f940158034e69f39add3b10a3d9fd258de7293aa9"
+    },
+    {
+      "game_id": "ka59-38d34dbb",
+      "metadata": "third_party/arc_agi3_games/ka59/38d34dbb/metadata.json",
+      "metadata_sha256": "0db22c0daafc1dba90cb43d6c64c0f3260fc1ec48a232a6549c4b0ab9722c11d",
+      "source": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+      "source_sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e"
+    },
+    {
+      "game_id": "lf52-271a04aa",
+      "metadata": "third_party/arc_agi3_games/lf52/271a04aa/metadata.json",
+      "metadata_sha256": "551310fe3ef45105a1a878d35579d969e37e240f1df6a73cbb21cfa291d918d1",
+      "source": "third_party/arc_agi3_games/lf52/271a04aa/lf52.py",
+      "source_sha256": "a6b01973a0905a447f6b92d77745719ebb001f9f94ff5bb0076200ef16839030"
+    },
+    {
+      "game_id": "lp85-305b61c3",
+      "metadata": "third_party/arc_agi3_games/lp85/305b61c3/metadata.json",
+      "metadata_sha256": "1701f531197d6992a9ea7be4b800e2a4e83b910099c4a56c7e46494373ad9df7",
+      "source": "third_party/arc_agi3_games/lp85/305b61c3/lp85.py",
+      "source_sha256": "7d10baec7dd29d07e574bd47ee1ec7912542a72632077a5446798221f41c4ae9"
+    },
+    {
+      "game_id": "ls20-9607627b",
+      "metadata": "third_party/arc_agi3_games/ls20/9607627b/metadata.json",
+      "metadata_sha256": "66a53ac238daa8ac167024b8d8b3843836b7b0c7d16c4fe53a2c063f2492b011",
+      "source": "third_party/arc_agi3_games/ls20/9607627b/ls20.py",
+      "source_sha256": "298c810da2850d557c95d92a2cbd846df29a45d7134e20888617bedf5dafcd92"
+    },
+    {
+      "game_id": "m0r0-492f87ba",
+      "metadata": "third_party/arc_agi3_games/m0r0/492f87ba/metadata.json",
+      "metadata_sha256": "1a203b6ce4b7876bf0c67e7ca315010474ec88f7d0ecb9744448b6eca0b84ade",
+      "source": "third_party/arc_agi3_games/m0r0/492f87ba/m0r0.py",
+      "source_sha256": "fc3954236f712759c2a5baaada09bb3244e217e022086dc9ec8f6e6fe101d797"
+    },
+    {
+      "game_id": "r11l-495a7899",
+      "metadata": "third_party/arc_agi3_games/r11l/495a7899/metadata.json",
+      "metadata_sha256": "a234a5c2c80afe8cd030a6d385b5210a227a66ffee2e7e491407481ce6bb234b",
+      "source": "third_party/arc_agi3_games/r11l/495a7899/r11l.py",
+      "source_sha256": "95d58ebaa8c758e905821bb4f5881d47166c8f5aec158bfea7585902c01040d0"
+    },
+    {
+      "game_id": "re86-8af5384d",
+      "metadata": "third_party/arc_agi3_games/re86/8af5384d/metadata.json",
+      "metadata_sha256": "2d5c2634a1512c62b9f3fba896ea144114d276969c056ae753f4eb9c9b00260c",
+      "source": "third_party/arc_agi3_games/re86/8af5384d/re86.py",
+      "source_sha256": "cf3c1520e17f0b70e7a3cea0e680601a591befce306b4dd1926c735a7d3b65e8"
+    },
+    {
+      "game_id": "s5i5-18d95033",
+      "metadata": "third_party/arc_agi3_games/s5i5/18d95033/metadata.json",
+      "metadata_sha256": "d6f44c4cf5f5a8c9ce9c04550de0458ceec1a2c1d8fe63f226f9267231056b1f",
+      "source": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+      "source_sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34"
+    },
+    {
+      "game_id": "sb26-7fbdac44",
+      "metadata": "third_party/arc_agi3_games/sb26/7fbdac44/metadata.json",
+      "metadata_sha256": "cd1b4e621703bab3b77c1b2608afe1dba0d55919a2020a39d59fc5447facda25",
+      "source": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+      "source_sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3"
+    },
+    {
+      "game_id": "sc25-635fd71a",
+      "metadata": "third_party/arc_agi3_games/sc25/635fd71a/metadata.json",
+      "metadata_sha256": "3428f9555a49fc5f17349775081c17d64d341f26fef1f0d485b747c131525018",
+      "source": "third_party/arc_agi3_games/sc25/635fd71a/sc25.py",
+      "source_sha256": "871a507cf340d1e4a3271205a71bb5433f20c2b0e427f7ce40da47060cdd4392"
+    },
+    {
+      "game_id": "sk48-d8078629",
+      "metadata": "third_party/arc_agi3_games/sk48/d8078629/metadata.json",
+      "metadata_sha256": "25c0024ec78f4a168439a8222b57b2cdb30c5d659489c1a3e0383d15084d08de",
+      "source": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+      "source_sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3"
+    },
+    {
+      "game_id": "sp80-589a99af",
+      "metadata": "third_party/arc_agi3_games/sp80/589a99af/metadata.json",
+      "metadata_sha256": "9fe3c9c2213c8fee7956f9bf35a61a791507fc6176143cd686c539a158789a2b",
+      "source": "third_party/arc_agi3_games/sp80/589a99af/sp80.py",
+      "source_sha256": "2306d62311a3cc027250217d86cb4e012898edc7647a7c291ade23f36c9b9715"
+    },
+    {
+      "game_id": "su15-1944f8ab",
+      "metadata": "third_party/arc_agi3_games/su15/1944f8ab/metadata.json",
+      "metadata_sha256": "3cdf7a592a9377ebed051fa07617687e9799316558a58295821e08de49c99ba8",
+      "source": "third_party/arc_agi3_games/su15/1944f8ab/su15.py",
+      "source_sha256": "a5f91f7c963d6ca6447dae0ab21342b48a3f511601c40dfa8e972bdc59b4651e"
+    },
+    {
+      "game_id": "tn36-ef4dde99",
+      "metadata": "third_party/arc_agi3_games/tn36/ef4dde99/metadata.json",
+      "metadata_sha256": "5ce36ce87e7013d7fa33420e52436ad2560ae59851379dae07442cbebd20e7f9",
+      "source": "third_party/arc_agi3_games/tn36/ef4dde99/tn36.py",
+      "source_sha256": "43c30052cdeb230017eb1ec23877050d96297756b86071417868ec61138c9fb7"
+    },
+    {
+      "game_id": "tr87-cd924810",
+      "metadata": "third_party/arc_agi3_games/tr87/cd924810/metadata.json",
+      "metadata_sha256": "1f37fcde61814cb77564a71a875b9d5aa806322e8f89810c002914bab43869de",
+      "source": "third_party/arc_agi3_games/tr87/cd924810/tr87.py",
+      "source_sha256": "3274657a6499af5c7a52390d58a5c5441497ed70b84388e418fdfa6c9601e305"
+    },
+    {
+      "game_id": "tu93-0768757b",
+      "metadata": "third_party/arc_agi3_games/tu93/0768757b/metadata.json",
+      "metadata_sha256": "cbd259c723cf8cc3c135ac4bafbd08e17cc530133ecced71d58dc3a4cd935eee",
+      "source": "third_party/arc_agi3_games/tu93/0768757b/tu93.py",
+      "source_sha256": "80e41888f9f7b1a0c03e02c0aff3814e0fd68eb5b35ef22bb3649c87fc60a23f"
+    },
+    {
+      "game_id": "vc33-5430563c",
+      "metadata": "third_party/arc_agi3_games/vc33/5430563c/metadata.json",
+      "metadata_sha256": "76f4b47aae04107cb3054d5dbaca92b7f8fb232399a6c710c8d1d71d409210ee",
+      "source": "third_party/arc_agi3_games/vc33/5430563c/vc33.py",
+      "source_sha256": "8afa9f55054b2a2460b6c44ec5c66e120f6d6f4c2289e24d50832a68d1e3fcfd"
+    },
+    {
+      "game_id": "wa30-ee6fef47",
+      "metadata": "third_party/arc_agi3_games/wa30/ee6fef47/metadata.json",
+      "metadata_sha256": "7cef19c5d3463b3734008665ad43a1edfc53f35ee78f0c46c61e13c7e5808958",
+      "source": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+      "source_sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477"
+    }
+  ]
+}

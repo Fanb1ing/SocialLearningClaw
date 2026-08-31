@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "scene_count": 4,
+  "unique_clip_count": 16,
+  "schema_count": 8,
+  "condition_counts": {
+    "permanence": 2,
+    "immutability": 2,
+    "continuity": 2,
+    "solidity": 2
+  },
+  "pair_assessment_count": 8,
+  "metadata_and_hash_checks": "passed",
+  "visual_semantics": "provisional_review_pending",
+  "errors": []
+}

@@ -1,0 +1,74 @@
+{
+  "format_version": 1,
+  "judge": "structured_arc_proxy_v1",
+  "learned_count": 50,
+  "gold_count": 37,
+  "strict_learned_precision": 0.0,
+  "strict_gold_recall": 0.0,
+  "graded_learned_precision": 0.562367,
+  "graded_gold_recall": 0.415135,
+  "graded_semantic_f1": 0.477663,
+  "partially_covered_gold_count": 24,
+  "supported_learned_count": 44,
+  "unmatched_gold_count": 13,
+  "unmatched_learned_count": 6,
+  "split_gold_count": 22,
+  "overmerged_learned_count": 11,
+  "contradiction_count": 0,
+  "contradiction_rate": 0.0,
+  "evidence_traceability": 1.0,
+  "evidence_reference_count": 2090,
+  "resolved_evidence_reference_count": 2090,
+  "alignment_relation_counts": {
+    "learned_broader": 60,
+    "learned_narrower": 31,
+    "partial": 2
+  },
+  "action_signature_gold_count": 27,
+  "action_signature_recall": 1.0,
+  "by_gold_kind": {
+    "action_effect": {
+      "gold_count": 23,
+      "graded_recall": 0.584348,
+      "partial_coverage": 0.913043
+    },
+    "goal": {
+      "gold_count": 3,
+      "graded_recall": 0.64,
+      "partial_coverage": 1.0
+    },
+    "hazard": {
+      "gold_count": 7,
+      "graded_recall": 0.0,
+      "partial_coverage": 0.0
+    },
+    "observation_semantics": {
+      "gold_count": 4,
+      "graded_recall": 0.0,
+      "partial_coverage": 0.0
+    }
+  },
+  "per_game": {
+    "cd82-fb555c5d": {
+      "learned_count": 18,
+      "gold_count": 18,
+      "graded_learned_precision": 0.531018,
+      "graded_gold_recall": 0.533333,
+      "partial_gold_coverage": 0.833333
+    },
+    "sk48-d8078629": {
+      "learned_count": 16,
+      "gold_count": 10,
+      "graded_learned_precision": 0.52,
+      "graded_gold_recall": 0.448,
+      "partial_gold_coverage": 0.7
+    },
+    "tu93-0768757b": {
+      "learned_count": 16,
+      "gold_count": 9,
+      "graded_learned_precision": 0.64,
+      "graded_gold_recall": 0.142222,
+      "partial_gold_coverage": 0.222222
+    }
+  }
+}

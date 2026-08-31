@@ -629,3 +629,559 @@ cross-checked all counts against current JSON outputs, ran compileall and
 Unfinished work remains unchanged: generation v2 semantics first, Phase E
 maintenance deferred, SK48 trajectory v2, human alignment calibration, and
 online Agent integration.
+
+## 2026-08-24 — Version 2 EFPS redesign and reuse audit
+
+Reviewed `0824version2plan.md`, the complete project memory, and the current
+ARC runner, environment wrapper, Agent transport, trajectory/asset stack,
+Memory/layered-Schema implementation, corpus/replay tooling, evaluator, and
+tests. The proposed Version 2 is ARC-only and redefines Schema around a typed
+Entity-Feature-Prototype-Schema relation graph, with separate acting/planning,
+graph-update, and novelty-driven exploration responsibilities.
+
+The recommended migration freezes the current repository as Version 1 before
+implementation. ARC environment/fingerprinting, normalized trajectories,
+atomic recording, content-addressed grid/PNG evidence, replay/coverage, and
+experiment provenance are the strongest direct-reuse candidates. The current
+`SchemaNode`/layered graph/manager/induction path, static benchmark runners,
+and Schema-coupled parts of `arc_runner.py` should be archived rather than
+carried into Version 2; proposal validation/auditing and evidence provenance
+remain useful design patterns. No business code or user input file was
+changed. Verification: source/document inspection, clean baseline execution
+of all 79 offline tests, and working-tree review. Follow-up: create the V1
+archive/manifest first, then implement and validate the EFPS graph contract
+before writing Agent prompts or online update behavior.
+
+## 2026-08-24 — V1 frozen and revised EFPS plan saved
+
+Saved the user-approved Version 2 design in
+`docs/version2_efps_development_plan.md`. The main Agent is now explicitly the
+orchestrator/planner/actor and may call update and exploration child Agents;
+the first vertical slice will co-develop the EFPS graph and main Agent on
+CD82 Level 1, while trajectory replay remains a debugging tool rather than an
+offline prerequisite.
+
+Created the non-importable V1 rollback snapshot at
+`archive/version1_20260824/`, pinned to commit
+`7c785777775e0b379235d0719ae177c01c5698ef`. It copies 1,739 files
+(45,808,048 bytes) covering source, tests, scripts, configs, docs, Gold,
+vendored ARC games, three trajectory corpora, review outputs, smoke results,
+ContextMATH data, and IntPhys2 metadata/manifests. `FILE_INVENTORY.md`
+describes and hashes every copied file; `MANIFEST.sha256` verifies the archive.
+Large IntPhys2 videos, legacy data, and legacy outputs remain in place and are
+represented by a 25,737-file external SHA-256 list. Credentials, `.venv`,
+caches, and private host settings were excluded.
+
+Verification: the archive manifest passed all 1,744 entries, placeholder-only
+credential references were inspected, cache/secret files were absent, and all
+79 repository tests passed after archiving. No V1 business file was moved or
+deleted. Follow-up: begin the `socialclaw.v2` CD82 Level 1 vertical slice with
+the minimal EFPS models/graph and child-Agent protocols.
+
+## 2026-08-24 — V2 CD82 Level 1 online cognitive-growth slice
+
+Implemented the first independent `socialclaw.v2` vertical slice without
+modifying the frozen V1 Schema implementation. V2 now has evidence-grounded
+Entity/Feature/Prototype/Schema models, typed relations, validated atomic graph
+transactions, rollback, revision snapshots, and separate main/update/explore
+Agent components. The main Agent is the orchestrator/planner/actor and the only
+component that chooses environment actions; child Agents only return proposals.
+
+The real offline CD82 environment now runs from an empty cognitive graph and
+stops after Level 1. A controlled, source-guided bootstrap actor uses six safe
+exploration-child calls and nine update-child calls over nine public actions.
+It forms 5 Entities, 10 Feature definitions, 16 assertions, 3 Prototypes,
+5 learned Schemas, and 32 typed relations across 19 graph revisions. Repeated
+top painting and two palette instances are assimilated into existing Schemas;
+new navigation cases and the final top-to-bottom paint transfer accommodate
+and generalize existing cognition. All 10 evidence records resolve to the
+durable trajectory and content-addressed visual assets.
+
+Generated the ignored review package at
+`outputs/review/v2_cd82_level1_zero_start/`, including a Chinese report,
+timeline, final graph, 19 snapshots, evidence catalog, normalized episode,
+lossless grids and PNGs. Verification: Level 1 completed in 9 actions; fresh
+environment replay matched all 9 steps; 20 unique artifact refs, graph types,
+Schema evidence closure and snapshot counts passed; compileall, CLI help,
+`git diff --check`, and all 83 repository tests passed. Network calls and Gold
+Schema reads were zero. Documentation and README now distinguish the V2 main
+line from the frozen V1.
+
+Known boundary: the current perception adapter contains CD82 Level 1 visual
+primitives and the deterministic actor follows a controlled safe-probe
+curriculum. It validates online EFPS evolution, not general autonomous visual
+reasoning. Follow-up: replace the bootstrap actor with a structured multimodal
+model main Agent under the same child-Agent/evidence/transaction contracts,
+then extend persistent cognition through CD82 Levels 2–6.
+
+## 2026-08-27 — V2 CD82 prototype claim and information-flow audit
+
+Audited the V2 prototype after user review. The successful Level 1 run is a
+CD82-specific integration fixture, not evidence of general autonomous
+learning: perception fixes CD82 regions, colors, roles, positions, and the
+goal mask; the main/exploration policies encode the goal and safe action
+curriculum; and the update child deterministically maps CD82 actions to
+handwritten Schema families. Step-1 `goal` is designer-provided, while its
+`prediction` is a hardcoded exploration hypothesis rather than a Schema-based
+prediction. Future timelines should represent an unknown/tentative goal and
+separate `schema_prediction` from `exploration_hypothesis` with provenance.
+
+Confirmed that the update child proposes Schema operations and the runtime
+commits them. Human-reviewable pre/post PNG and lossless grid artifacts exist
+for every transition, but current Agents consume parsed CD82 state rather than
+Evidence records or images. The main Agent receives the full EFPS graph object
+but only reads Schemas in its decision code. The graph currently has five node
+types and four instantiated edge types; Evidence is an audit catalog rather
+than a graph endpoint. `EXCLUDES` is declared but not materialized, and a
+FeatureAssertion-to-FeatureDefinition connection is stored as a field rather
+than an explicit edge. Verification was source, timeline, graph, episode, and
+artifact-resolution inspection; no runtime code changed and tests were not
+rerun. Follow-up: redesign the information boundary and replace all
+game-specific cognition/policy logic before presenting the run as a general
+learning result.
+
+## 2026-08-27 — Game-agnostic V2 visual Agent and honest CD82 run
+
+Removed the CD82-specific V2 perception, goal, exploration curriculum, action
+branches, coordinates, goal mask, and route. V2 now uses one injected
+structured-vision model protocol for a Main orchestrator/actor plus Exploration
+and Update child Agents. Cognitive inputs contain only the raw public image,
+public environment fields, SDK action-argument contracts, raw full-grid deltas,
+recent public transitions, and a read-only EFPS view. The model generates all
+goal hypotheses, exploration hypotheses, Entities, Features, Prototypes, and
+Schemas. Without a cited existing Schema, Main validation forces
+`schema_prediction=null`. Static tests prohibit privileged/game-specific V2
+imports; game ID remains only in the environment harness.
+
+Replaced the CD82 entry with generic `run_arc_online(game_id, model, ...)` and
+reduced output to `report.md`, an input-audited `timeline.json`, one final
+`cognition/graph.json`, and replay-required trajectory/grid/PNG evidence.
+Timeline deduplicates public observations and action contracts, stores hashed
+cognition-view receipts, and records each Agent's image inputs, model output,
+usage, selected action, public result, and graph transaction. No duplicate
+summary/evidence/manifest or revision snapshots are written. FeatureAssertion
+to FeatureDefinition is now an explicit edge and Prototype exclusions are
+materialized.
+
+The first real zero-prior run used `anthropic/claude-opus-4.8` on
+`cd82-fb555c5d`, stopped honestly at the 20-step limit, and completed 0 levels.
+It made 61 model calls, formed 21 Evidence, 19 Entities, 35 Feature definitions,
+50 assertions, 2 Prototypes, 10 Schemas, and 117 relations; all Schema evidence
+closed and all 20 transitions replayed. It learned local ACTION3/4 movement and
+ACTION5 change correlations but misread the scene/goal, missed useful click
+coordinates, repeated low-information actions, and produced some conflicting
+state-specific Schemas. The run used about 1.286M tokens, so acting views were
+subsequently compacted by omitting redundant relation edges and limiting
+attached Schema evidence to one image; the run was not relabeled as a success.
+
+Verification: all 83 tests, compileall, CLI help, `git diff --check`, forbidden
+dependency/game-ID scans, timeline reference resolution, first-step epistemic
+checks, Schema evidence closure, artifact SHA-256 checks, and 20/20 replay
+passed. Review output:
+`outputs/review/v2_generic_cd82_level1_opus48/`. Follow-up: solve generic
+coordinate grounding, repeated-probe suppression, Schema conflict/consolidation,
+and executable multi-step planning before another Level 1 run.
+
+## 2026-08-27 — Human-readable chronological Agent audit
+
+Added `socialclaw.v2.reporting.build_process_markdown` and wired every V2 ARC
+run to emit `process.md` beside `timeline.json`. The document starts with a
+Step 0–20 overview table and then records, in order, each trigger, public image
+and state, action contracts, EFPS receipt and recent public transitions,
+Exploration/Main outputs, selected action, before/after PNG, public result,
+Update proposal, and validator graph delta. “Recent public transitions” is
+defined as at most the previous eight public action/result/Evidence summaries;
+it contains no hidden goal, Gold, source, or post-hoc interpretation.
+
+Generated the audit for
+`outputs/review/v2_generic_cd82_level1_opus48/process.md`: 21 chronological
+sections, 156 image links covering 17 content-addressed PNGs, with no missing
+targets. Added runtime/test/docs coverage. Verification: 4 V2 tests and all 83
+repository tests passed; compileall and `git diff --check` passed. Follow-up:
+none for the reporting task; the cognition/planning limitations from the prior
+entry remain.
+
+## 2026-08-27 — Semantic transitions, resolvable Evidence, prose exploration
+
+Replaced pixel-only recent transition history with an evidence-grounded
+semantic path. After every action, Update must return `transition_analysis`
+that attributes visible differences to existing/new Entity IDs using
+appeared/disappeared/moved/state_changed/feature_changed. A changed grid with
+neither an Entity change nor explicit `unassigned_visual_changes` is rejected;
+an unchanged grid cannot assert Entity changes. The normalized result is stored
+on the durable Evidence record and passed with each of the last eight public
+transitions to the next Exploration/Main decision.
+
+Added `EFPSGraph.resolve_evidence(evidence_id)` and
+`annotate_evidence(...)`. Evidence now resolves to its action, public result,
+semantic summary, Entity changes, unassigned changes, before/after observation
+fingerprints, and artifact IDs. Timeline deduplicates these records in
+`input_catalog.evidence`; refs are storage compression only, while the live
+Agent payload contains the expanded Evidence. A two-step integration test
+confirms the next Exploration call receives both semantic change and resolved
+Evidence content.
+
+Exploration now uses a non-JSON `generate_text` model call and returns one prose
+advice paragraph to Main; the requested “You have no game...” sentence was
+removed from its prompt. The requested “No goal or action meaning is supplied
+to you.” sentence was removed from Main. Main/Update remain structured. Updated
+the chronological reporter for prose advice, Entity semantics, and Evidence
+resolution. The existing Opus48 run predates semantic transition fields, so
+its regenerated `process.md` marks all 20 action steps as legacy-missing rather
+than inventing post-hoc inputs.
+
+Verification: 7 V2 tests and all 86 repository tests passed; compileall, CLI
+help, prompt regression checks, and `git diff --check` passed. Follow-up: the
+next real model run is required to evaluate the new Entity-attribution quality;
+the historical Opus48 decision sequence was intentionally not rewritten.
+
+## 2026-08-29 — Annotated audit fixes and interrupted semantic rerun
+
+Answered all 22 user annotations directly beside their original locations in
+`outputs/review/v2_generic_cd82_level1_opus48/process.md`. Source/SDK checks
+confirmed that ACTION1–4 directions are not public; ACTION6 uses display x as
+left-to-right column and y as top-to-bottom row; cognition view hashes were
+post-run audit fields rather than Agent inputs; `palette` was a model-generated
+hypothesis, not a prompt/source leak; the bottom yellow CD82 row is a hidden
+source-defined 100-action budget indicator; Update proposes operations while
+the deterministic graph transaction commits them; and the apparent repeated
+red Entity was an upsert of an existing ID, not a duplicate creation.
+
+Fixed the main visual-boundary defect found by review. The prior V2 sent a
+512x512 image with artificial 8-cell gridlines to the model, which plausibly
+caused the false 2x2-block segmentation. `PublicARCSession` now stores a raw
+64x64 no-overlay `agent_view` used exclusively for model image inputs and a
+separate 512x512 guided `review_view` for human Markdown links. ACTION6's
+public contract now states the generic x/y display convention. Schema visual
+support now attaches the same Evidence's raw before/after pair, not only its
+after image.
+
+Expanded Evidence records with resolvable artifact descriptors and expanded
+cognition receipts with the actual Entity, Prototype, Schema, and Evidence
+summaries sent to Agents; relations, full assertion history, audit log, and
+artifact bytes remain omitted. The reporter distinguishes new Entity
+candidates from existing Entity upserts, identifies view hashes as audit-only,
+shows raw Agent versus guided review images, explains runtime scheduling and
+goal hypotheses, and renders full Evidence/EFPS input summaries. Fixed the
+legacy empty `unassigned_visual_changes` display.
+
+Attempted the requested fresh Opus48 CD82 Level 1 run in
+`outputs/review/v2_generic_cd82_level1_opus48_semantic_20260829/`. It executed
+8 actions, then OpenRouter returned HTTP 402 during the Step 9 Main call; only
+the OpenRouter key is configured. The directory has `failure.md` and an
+unfinished 8-step trajectory, but no final timeline/graph and is explicitly
+not an experiment result. The observed artifact metadata confirms Agent images
+were 64x64/no-overlay and review images 512x512/guided. Added per-complete-step
+partial timeline/graph/process checkpoints for future costly runs; successful
+runs delete them, provider failures retain the last complete cognitive state.
+
+Verification: 8 V2 tests and all 87 repository tests passed; compileall and
+`git diff --check` passed. Unfinished follow-up: replenish OpenRouter credit,
+then rerun from Step 0 into a new output directory and audit the complete new
+`process.md`, semantic transitions, Evidence resolution, image roles, replay,
+and token usage.
+
+## 2026-08-29 — Complete post-review CD82 rerun
+
+After OpenRouter credit was restored, performed fresh Step-0 runs with the
+generic V2 Agent. Two intermediate runs were safely retained as incomplete
+checkpoints: one stopped at Step 12 after a truncated Update JSON response, and
+one stopped after Step 1 when Update asserted an Entity change for an unchanged
+public grid. Added two game-agnostic reliability guards without weakening
+evidence validation: structured JSON receives one compact regeneration attempt
+after parse failure, and Update receives one correction attempt after a
+semantic evidence-constraint violation by re-reading the public result already
+present in its original input.
+Both attempts aggregate token usage; a second failure still aborts before graph
+commit. Added regression tests for both paths.
+
+The final clean run is
+`outputs/review/v2_generic_cd82_level1_opus48_semantic_complete3_20260829/`.
+It completed the configured 20-action budget and produced final `process.md`,
+`report.md`, `timeline.json`, `cognition/graph.json`, and a replayable trajectory.
+It did not solve Level 1: `public_levels_completed=0`, so the result is a
+complete failed exploration record rather than a successful gameplay claim.
+Final cognition contains 21 Evidence records, 7 Entities, 18 Feature
+definitions, 24 Feature assertions, 1 Prototype, 16 Schemas, and 58 Relations.
+Replay passed all 20 steps; forbidden-read counters are all zero. Steps 13 and
+19 each used one semantic correction retry.
+
+Audit verification found 21 chronological sections, 161 valid local Markdown
+links with no missing targets, no leftover partial files, and 93 model image
+attachments all resolving to 64x64 no-overlay `agent_view` artifacts; guided
+`review_view` assets remained human-only. Model usage was 1,566,590 input and
+69,925 output tokens (1,636,515 total). Verification: 10 V2 tests and all 89
+repository tests passed; compileall and `git diff --check` passed. Follow-up:
+human review of the new `process.md`; the main behavioral limitation is failure
+to infer and complete Level 1 within 20 actions, and the rapidly growing prompt
+size should be optimized before larger experiments.
+
+## 2026-08-29 — EFPS prompt-cost audit and retrieval design
+
+Answered the new artifact annotation directly in the completed run's
+`process.md`. Clarified that an Evidence record's three artifact roles are a
+durable storage inventory, not three model inputs: only the 64x64 no-overlay
+`agent_view` is sent to cognitive Agents; `review_view` is human-only and
+`environment_state` is an NPY used for deterministic diff/integrity/replay.
+Updated future reporting to state this boundary beside every expanded Evidence.
+
+Clarified the Update correction path. `public_result` is the same public
+transition delta already supplied on the first attempt, derived by the runtime
+from the environment response and before/after observation; it is not Gold,
+source-derived, or newly injected knowledge. Removed the misleading
+"authoritative" wording and duplicated result from the retry instruction. The
+retry now explicitly says no new observation or external fact is provided.
+
+Audited the 1,636,515-token run: 1,566,590 input and 69,925 output tokens.
+Main used 609,537 input tokens (38.91%), Exploration 589,635 (37.64%), and
+Update 367,418 (23.45%). Stored cognition-receipt character volume is 62.10%
+Evidence, 25.07% Entity/current Features, 8.69% summarized Schema, and 1.29%
+Prototype; this is only a proxy because prior logs lack field-level provider
+token attribution and the live Schema payload was fuller than the receipt.
+Update output is dominated by Schema updates (39.24%), transition analysis
+(26.33%), and Entities (21.94%); Main output is dominated by repeated goal
+hypotheses (41.22%) and rationale (33.29%).
+
+Added `docs/v2_cognition_retrieval_design.md`. The design separates full durable
+EFPS storage from a small prose working set and proposes a read-only
+`query_cognition` tool with top-k retrieval and explicit Evidence resolution.
+Default inputs become Agent-specific summaries; full nodes, history, and raw
+before/after images are retrieved only when needed. It also identifies fields
+that stay durable but leave default prompts, replaces full-dict JSON input with
+descriptive Markdown, proposes constrained graph-operation tools for Update,
+and adds per-section request instrumentation. No live retrieval protocol was
+implemented in this review task because it changes the Agent contract and
+requires a separately verified experiment. Verification: 10 V2 tests,
+compileall, annotation/explanation counts, and `git diff --check` passed.
+Follow-up: implement the retrieval contract, field-level usage instrumentation,
+and compact Agent I/O, then rerun the same 20-step configuration for comparison.
+
+## 2026-08-29 — Completed second annotated review and narrowed compaction policy
+
+The follow-up review used 13 bracketed annotations, not only the single
+`【标注：...】` form previously matched. Added explanations directly beside all
+13 markers in the completed run's `process.md` (12 new plus the prior artifact
+answer). Verified the initial public grid rather than trusting model labels.
+The Step-0 Update had materially incorrect visual Entities/bboxes: it conflated
+the large upper-left composite, merged/mislocated two upper markers, and split
+the central open-bottom red/white frame plus lower black rectangle incorrectly.
+The provider JSON was valid and parsed losslessly; the primary input defect was
+shrinking the no-overlay Agent image to 64x64, compounded by unconstrained
+visual descriptions. Future `agent_view` is now a 512x512 nearest-neighbor
+render with no overlay; `review_view` remains a separate same-size guided image.
+
+Removed `logical_grid_sha256` from the model-facing observation receipt while
+retaining it in durable observation/artifact state. Future reporting labels the
+guided image as human-only rather than placing it ambiguously under Agent input.
+Clarified in the historical process that artifact IDs are not images, current
+Agents cannot dereference them, full Evidence descriptors sometimes did bloat
+text prompts, and only explicitly attached `agent_view` data reached the model.
+Also documented unsupported Main evidence citations, the difference between
+hypothesis confidence and action utility, and that Entity transition semantics
+were generated by Update rather than deterministic runtime.
+
+Revised `docs/v2_cognition_retrieval_design.md` after user feedback. Compaction
+must not hide whole node classes: every Entity, Prototype, and Schema remains in
+the default prompt as a short descriptive line; important current Features and
+important Relations also remain. Only full Feature history, raw relation-edge
+records, repeated artifact metadata, and full Evidence details move behind
+retrieval. Important relations are rendered inline (Entity features/Prototype
+membership/Schema role bindings). Proposed a persistent hypothesis registry so
+Main emits hypothesis deltas instead of repeating the full list every step and
+links the selected action to a hypothesis/utility rationale. Verification: all
+13 annotations have explanations, 10 V2 tests and all 89 repository tests
+passed, compileall and `git diff --check` passed. Follow-up: implement the
+prose renderer, read-only cognition tool, hypothesis registry, pixel-grounded
+Entity checks, and per-field usage instrumentation before the next live run.
+
+## 2026-08-30 — EFPSGraph data-structure review
+
+Reviewed the current V2 EFPS models, graph implementation, storage, tests, and
+architecture docs to answer its concrete representation. `EFPSGraph` is a
+custom in-memory typed directed property graph implemented as per-type ID maps
+plus a `Relation` edge map, with a separate durable Evidence registry,
+revision/audit metadata, copy-validate-commit transactions, and JSON snapshots;
+it is not a general graph-library object or the V1 layered Schema graph.
+Noted that the implemented edge enum currently has six EFPS relation types,
+while Schema support/counterevidence remain ID fields rather than materialized
+relation edges. Verification was read-only source inspection; no tests were run
+and no business code was changed. Follow-up: continue answering the user's V2
+code questions.
+
+## 2026-08-30 — Compact EFPS prompts, retrieval tool, and fresh CD82 run
+
+Implemented compact Markdown cognition inputs for Main, Exploration, and
+Update. Every current Entity, Prototype, and Schema remains visible as concise
+prose with important current Features and inline typed Relations; full
+Evidence history, artifact metadata, raw relation tables, and graph JSON are
+not sent by default. The recent-transition window is three semantic
+Entity-level summaries. Added a read-only `query_cognition` tool with type/ID/
+action filters and summary/decision/evidence detail modes; it reads only the
+learned EFPS and durable public Evidence, returns at most 10 records/8,000
+characters, and is capped at two tool rounds per logical call. At the cap the
+model is forced to answer from existing results instead of aborting.
+
+Added exact audit data for actual prompt text/sections, tool arguments/results,
+per-provider-round usage, images, and logical calls. Final runs now write
+`token_usage.json` and `token_usage.md`, including Agent/step/request-phase
+breakdowns. Provider tokens cannot be allocated exactly to fields, so section
+composition is reported only as characters/UTF-8 bytes. Removed automatic
+historical Evidence image attachments; current required public images stay
+attached, and Evidence details/artifact IDs are queryable. Prototype creation
+is Update LLM judgment with no minimum-member/Feature/repetition rule.
+
+Fixed a live-audit defect where an instance-specific FeatureDefinition
+description (for example a green object's `color`) appeared beside other
+entities sharing that feature name. Instance descriptions now persist on
+FeatureAssertion, survive updates/history/storage, and are used by both prose
+catalogs and retrieval. Old graphs load with an empty assertion description.
+
+The final fresh run is
+`outputs/review/v2_generic_cd82_level1_opus48_compact_retrieval_assertions_20260830/`.
+It completed 20 actions but did not pass Level 1. Final cognition has 21
+Evidence, 9 Entities, 24 FeatureDefinitions, 33 FeatureAssertions (all with
+assertion descriptions), 1 Prototype, 8 Schemas, and 71 Relations. Replay and
+graph validation passed; all Evidence IDs resolve; 123 process links resolve;
+no partial files remain; Agent input scans found no game ID, review view,
+logical grid hash, goal mask, or precomputed route. Forbidden-read counters
+are zero.
+
+Usage was 1,042,741 input + 97,378 output = 1,140,119 tokens across 61 logical
+calls, 130 provider requests, and 67 cognition queries. Versus the previous
+1,636,515-token run, input fell 33.44% and total fell 30.33%, while output rose
+39.26%. First requests consumed 406,224 tokens; additional tool/retry requests
+consumed 733,895, so query policy remains the main cost bottleneck. Default
+learned-cognition text was 79.53% of default section characters; this is not a
+provider token share. Verification: all 91 repository tests passed, compileall,
+`git diff --check`, replay, graph validation, Evidence resolution, prompt-boundary
+scan, and Markdown-link checks passed. Removed two non-final runs created
+during development. Follow-up: reduce unnecessary Main/Update queries, add a
+persistent Main hypothesis registry, and improve exploration efficiency; the
+generic Agent still fails to complete Level 1 within 20 actions.
+
+## 2026-08-30 — Exact cognition-read protocol after process review
+
+Explained every new `【标注：】`/`【标记：】` inline in
+`outputs/review/v2_generic_cd82_level1_opus48_compact_retrieval_assertions_20260830/process.md`,
+clearly labeling additions as later audit commentary. The review confirmed that
+the old lexical query used no extra LLM but treated exact IDs as ranking boosts
+and then filled top-k with unrelated records; Update's Main-decision context was
+also genuinely truncated at 220 characters.
+
+Replaced the fuzzy interface with deterministic
+`read_cognition(command, id, feature_id?)`. Fixed commands now read one exact
+Entity, Prototype, Schema, Evidence, Feature history, relation neighborhood, or
+agent-visible artifact without search, ranking, summarization, or inference.
+Evidence records now carry phase-labeled `current/before/after`
+`observation_refs`; `get_artifact` can attach the exact stored public PNG to the
+next model request while rejecting review-only images and environment arrays.
+Prompts document EFPS/Evidence and the full tool contract; reports include the
+actual system instructions and returned tool images. Default catalogs show only
+visible Entities, omit redundant active status and empty Prototype options, and
+Update receives the full decision hypothesis.
+
+Enforced the design rule that every Schema role binds a Prototype, never an
+Entity: prompts require it, the Update translator discards unresolved/empty
+bindings, and graph validation rejects and rolls back invalid Schema
+transactions. Rejected unstored Main hypotheses are now directed to discarded
+inferences instead of fake counterevidence operations. Updated README,
+architecture, and retrieval-design documentation. Verification: compileall,
+all 92 repository tests, focused artifact-image transport and Schema rollback
+tests, and `git diff --check` passed. No real-provider CD82 rerun was started;
+new token usage and gameplay behavior remain to be measured in the next live
+review run.
+
+## 2026-08-30 — Goal-directed choice, multi-level boundary, and 10-step smoke
+
+Applied the two newest inline review notes. Kept one-step repetition for a
+falsifiable reversibility/boundary test. Revised Main and Exploration prompts so
+level completion is primary, exploration is only instrumental, predictable
+action effect is separated from goal utility, known goal-directed Schemas are
+preferred, and reversible states are not revisited without a new material
+hypothesis or plan requirement. Added implementation notes beside both new
+markers in the reviewed historical `process.md`.
+
+Made multi-level execution explicit. Positive public `level_delta` now selects
+the `public_level_boundary` Update phase: completion is the prior action's
+terminal effect and the after image is treated as the next level's new scene,
+not a scene-wide ordinary action effect. Prior active Entities not reidentified
+in that new scene are evidence-groundedly marked disappeared; new same-label
+objects receive new Entity IDs unless Update explicitly cites a persistent old
+ID. Prototypes, Schemas, Feature history, and Evidence remain continuous.
+Documented that `stop_after_levels` is cumulative while `max_steps` is global.
+
+Verification: compileall, `git diff --check`, and all 93 repository tests passed.
+The V2 two-level fixture completed two boundaries in two actions and presented
+the Level 2 Entity to the second Main call; the real CD82 public-environment test
+continued through all six levels. A real zero-prior Opus 4.8 smoke run at
+`outputs/review/v2_generic_cd82_level1_opus48_goal_directed_exact_read_smoke10_20260830/`
+ran the full 10-action budget without completing Level 1. It produced 11
+Evidence, 9 Entities, 3 Prototypes, 6 Prototype-bound Schemas, 101 Relations,
+and 724,136 total tokens across 81 provider requests and 47 exact reads. All
+tool reads succeeded, 4 stored images were returned, replay passed 10/10, graph
+validation passed, 63 process links resolved, forbidden-read counters were
+zero, and no partial files remained. First seven decisions explored unknown
+semantics; the final three used learned Schemas for goal-configuration attempts.
+The failed sandbox-network initialization directory was moved recoverably to
+`/tmp/socialclaw_failed_cd82_smoke10_20260830` before the successful output was
+given the final directory name. Follow-up: formal multi-level model behavior is
+ready to run, but the Agent's CD82 goal inference still did not solve Level 1
+within 10 actions and exact-read continuation rounds remain token-heavy.
+
+## 2026-08-30 — Per-level budgets, recoverable GAME_OVER, and three-game formal run
+
+Changed V2 ARC execution so `--max-step`/`--max-steps` is an independent Agent
+action budget for each level. Passing a level resets only that budget;
+`--stop-after-levels all` continues until public WIN or the first failed level.
+Added optional public GAME_OVER recovery for TU93: runtime reset is audited as
+an `ENV_RESET` trajectory event, is not an Agent action, preserves the current
+public level, does not refund consumed actions, triggers an Update-only scene
+realignment, and is supported by replay. Main receives used/remaining per-level
+budget. Compact process reports omit full prompts while retaining public input,
+EFPS summaries, exact cognition reads, outputs, images, and token statistics.
+
+Added a final tool-free structured-output transport repair after two invalid
+JSON responses; all attempt usage remains charged and semantic validators are
+unchanged. Two concurrent provider-format interruptions were retained as
+incomplete checkpoints and excluded from results; final experiments were run
+serially from empty cognition. CD82, SK48, and TU93 each failed Level 1 at its
+30-action limit, for 0/1 pass rate each. Token totals were 2,748,352,
+2,871,771, and 2,612,454 respectively (8,232,577 combined). TU93 never reached
+public GAME_OVER, so its formal run had zero resets; reset behavior was covered
+by a same-level budget fixture and a real public-environment level-preservation
+check. All three 30-step trajectories replayed exactly, every learned Schema
+Evidence ID resolved, compact reports retained EFPS, and all report image links
+resolved. Verification: compileall, `git diff --check`, and all 97 tests passed.
+Follow-up: the generic Agent still lacks efficient goal inference and planning;
+formal online multi-level continuation remains behaviorally unobserved because
+no game passed Level 1 within budget.
+
+## 2026-08-31 — All-game GAME_OVER recovery and committed formal-run replay
+
+Generalized the previous recovery option: every V2 game now defaults to
+same-level recovery after public `GAME_OVER`; `--no-reset-on-game-over` is the
+explicit opt-out. The reset remains an audited, non-Agent `ENV_RESET`, does not
+refund the current level's action budget, and triggers only Update-side scene
+realignment. A generic fixture now verifies the default rather than a TU93-only
+configuration. Removed the `process.md` introductory section headed “先解释：
+什么是…”, while retaining each step's actual recent-transition input.
+
+Added a Git-tracked deterministic reproduction bundle under
+`experiments/v2_formal_20260830/`: three compressed audited logical model
+transcripts, environment/transcript fingerprints, expected summaries, exact
+result-log SHA-256 values, critical dependency versions, and a single replay
+command. `RecordedVisionModel` validates instructions, payload, and image hashes
+for every frozen call, then the normal environment, EFPS validator, trajectory
+replay, and report code run unchanged. A clean three-game replay matched
+`process.md`, `report.md`, `timeline.json`, both token reports, and final graph
+byte-for-byte: CD82/SK48/TU93 remained 0/1 at 30 actions with 2,748,352 /
+2,871,771 / 2,612,454 tokens. This is artifact reproduction, not a new provider
+trial; fresh online temperature-zero calls are not promised to be identical.
+
+Organized current documentation through `docs/README.md`, moved the original
+V2 design input and early CD82 prototype report into `docs/archive/`, and
+documented why two provider-interrupted partial runs led to a clean serial
+three-game batch. Verification: compileall, all 99 tests, `git diff --check`,
+and the full no-API three-game hash-verifying reproduction passed. Follow-up:
+no formal run reached Level 2 and none triggered a real GAME_OVER, so online
+cross-level behavior and repeated-reset behavior still need future trials.

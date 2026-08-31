@@ -1,0 +1,335 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:tr87-cd924810:L2:examples:a998d19c4f2f",
+      "format_version": 1,
+      "title": "分隔符两侧的序列定义翻译规则",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "cd924810",
+      "game_id": "tr87-cd924810",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "observation_semantics",
+      "trigger": "上方存在若干输入序列、输出序列对。",
+      "action_sequence": [],
+      "expectation": "每对示例把左侧连续符号序列映射到右侧连续符号序列；符号的随机朝向不改变其类别。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tr87/cd924810/tr87.py",
+          "sha256": "3274657a6499af5c7a52390d58a5c5441497ed70b84388e418fdfa6c9601e305",
+          "symbol": "Tr87 rule selection, symbol cycling and translation matcher",
+          "lines": [
+            901,
+            1121
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "verification": {
+        "static": "passed",
+        "runtime": "not_required",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tr87-cd924810:L2:select:0f3861e50671",
+      "format_version": 1,
+      "title": "ACTION3/4 在可编辑符号或规则侧之间循环选择",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "cd924810",
+      "game_id": "tr87-cd924810",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "处于正常编辑状态。",
+      "action_sequence": [
+        {
+          "action": "ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "选择标记向前/向后循环；普通关选择下方输出符号，规则编辑关可选择示例任一侧序列。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tr87/cd924810/tr87.py",
+          "sha256": "3274657a6499af5c7a52390d58a5c5441497ed70b84388e418fdfa6c9601e305",
+          "symbol": "Tr87 rule selection, symbol cycling and translation matcher",
+          "lines": [
+            901,
+            1121
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tr87-cd924810:L2:cycle:16fb667139e4",
+      "format_version": 1,
+      "title": "ACTION1/2 循环当前选中符号的类别",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "cd924810",
+      "game_id": "tr87-cd924810",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "已有选中符号或选中规则序列。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2",
+          "arguments": {}
+        }
+      ],
+      "expectation": "符号类别按固定字典向前/向后循环；选中规则序列时整段各符号同步循环。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tr87/cd924810/tr87.py",
+          "sha256": "3274657a6499af5c7a52390d58a5c5441497ed70b84388e418fdfa6c9601e305",
+          "symbol": "Tr87 rule selection, symbol cycling and translation matcher",
+          "lines": [
+            901,
+            1121
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tr87-cd924810:L2:translate:7d27a0fe1c20",
+      "format_version": 1,
+      "title": "输入序列按示例规则从左到右分段翻译",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "cd924810",
+      "game_id": "tr87-cd924810",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "检查下方输入和候选输出。",
+      "action_sequence": [],
+      "expectation": "从输入当前位置寻找可匹配的规则左侧，追加其右侧并继续，直到完整消耗输入。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tr87/cd924810/tr87.py",
+          "sha256": "3274657a6499af5c7a52390d58a5c5441497ed70b84388e418fdfa6c9601e305",
+          "symbol": "Tr87 rule selection, symbol cycling and translation matcher",
+          "lines": [
+            901,
+            1121
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tr87-cd924810:L2:tree:45a7b494b063",
+      "format_version": 1,
+      "title": "树翻译关会把规则输出继续作为另一规则输入",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "cd924810",
+      "game_id": "tr87-cd924810",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "关卡启用 tree_translation。",
+      "action_sequence": [],
+      "expectation": "第一次翻译产生的每个符号序列还需找到下一条规则并再次翻译。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tr87/cd924810/tr87.py",
+          "sha256": "3274657a6499af5c7a52390d58a5c5441497ed70b84388e418fdfa6c9601e305",
+          "symbol": "Tr87 rule selection, symbol cycling and translation matcher",
+          "lines": [
+            901,
+            1121
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tr87-cd924810:L2:double:a81c2c37fec4",
+      "format_version": 1,
+      "title": "双重翻译关要求通过中间规则链得到最终输出",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "cd924810",
+      "game_id": "tr87-cd924810",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "关卡启用 double_translation。",
+      "action_sequence": [],
+      "expectation": "规则可先经连接关系扩展，再用其输出匹配另一规则左侧并得到最终右侧。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tr87/cd924810/tr87.py",
+          "sha256": "3274657a6499af5c7a52390d58a5c5441497ed70b84388e418fdfa6c9601e305",
+          "symbol": "Tr87 rule selection, symbol cycling and translation matcher",
+          "lines": [
+            901,
+            1121
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:tr87-cd924810:L2:goal:63e5472ed0bd",
+      "format_version": 1,
+      "title": "候选输出等于完整翻译结果时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "cd924810",
+      "game_id": "tr87-cd924810",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "ACTION1/2 修改后执行规则匹配。",
+      "action_sequence": [],
+      "expectation": "输入被规则完整分解且候选输出逐项等于推导输出时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/tr87/cd924810/tr87.py",
+          "sha256": "3274657a6499af5c7a52390d58a5c5441497ed70b84388e418fdfa6c9601e305",
+          "symbol": "Tr87 rule selection, symbol cycling and translation matcher",
+          "lines": [
+            901,
+            1121
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

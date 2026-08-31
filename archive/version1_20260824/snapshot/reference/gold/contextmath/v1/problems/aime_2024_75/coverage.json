@@ -1,0 +1,36 @@
+{
+  "format_version": 1,
+  "problem_id": "aime_2024:75",
+  "requirements": [
+    {
+      "requirement_id": "sg_semantic_alignment",
+      "schema_ids": [],
+      "artifact": "surface_alignment.json",
+      "status": "complete"
+    },
+    {
+      "requirement_id": "cs_semantic_alignment",
+      "schema_ids": [],
+      "artifact": "surface_alignment.json",
+      "status": "complete"
+    },
+    {
+      "requirement_id": "necessary_reasoning_chain",
+      "schema_ids": [
+        "contextmath:aime_2024:75:L3:incidence_count:7b0d24f26272",
+        "contextmath:aime_2024:75:L3:excess_ownership:3ffe8bf08f9a",
+        "contextmath:aime_2024:75:L3:solve_four:7cf0e99e0dbf"
+      ],
+      "artifact": "schemas.json",
+      "status": "complete"
+    },
+    {
+      "requirement_id": "executable_answer_check",
+      "schema_ids": [
+        "contextmath:aime_2024:75:L3:solve_four:7cf0e99e0dbf"
+      ],
+      "artifact": "witness.json",
+      "status": "complete"
+    }
+  ]
+}

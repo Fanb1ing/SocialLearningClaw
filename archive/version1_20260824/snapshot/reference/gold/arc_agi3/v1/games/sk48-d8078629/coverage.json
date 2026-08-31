@@ -1,0 +1,255 @@
+{
+  "format_version": 1,
+  "requirements": [
+    {
+      "requirement_id": "reference_goal_sequences",
+      "category": "observation",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:reference_sequences:fb15e407fc94"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "chain_selection",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:select_chain:871966b91bae"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "direction_mapping",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:direction_controls:841d9c2467c8"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "chain_extension",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:extend_chain:28d1acb0abd2"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "chain_retraction",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:retract_chain:ecbe9a6fc8bf"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "chain_translation",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:translate_chain:bfc4d96bf7c6"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "recursive_push",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "undo",
+      "category": "action",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:undo_move:9482c4b0402a"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "movement_budget",
+      "category": "hazard",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:movement_budget:396f53ed58b2"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_1_goal",
+      "category": "goal",
+      "level_scope": [
+        1
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:goal_sequences_match:9f6a5e9399fb"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_2_goal",
+      "category": "goal",
+      "level_scope": [
+        2
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:goal_sequences_match:9f6a5e9399fb"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_3_goal",
+      "category": "goal",
+      "level_scope": [
+        3
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:goal_sequences_match:9f6a5e9399fb"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_4_goal",
+      "category": "goal",
+      "level_scope": [
+        4
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:goal_sequences_match:9f6a5e9399fb"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_5_goal",
+      "category": "goal",
+      "level_scope": [
+        5
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:goal_sequences_match:9f6a5e9399fb"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_6_goal",
+      "category": "goal",
+      "level_scope": [
+        6
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:goal_sequences_match:9f6a5e9399fb"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_7_goal",
+      "category": "goal",
+      "level_scope": [
+        7
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:goal_sequences_match:9f6a5e9399fb"
+      ],
+      "status": "covered"
+    },
+    {
+      "requirement_id": "level_8_goal",
+      "category": "goal",
+      "level_scope": [
+        8
+      ],
+      "schema_ids": [
+        "arc_agi3:sk48-d8078629:L2:goal_sequences_match:9f6a5e9399fb"
+      ],
+      "status": "covered"
+    }
+  ]
+}

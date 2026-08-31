@@ -1,0 +1,358 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "format_version": 1,
+      "benchmark": "intphys2",
+      "benchmark_version": "debug_plus_pinned_main_300",
+      "condition": "permanence",
+      "trigger": "目标物体及其容器经历一段暂时遮挡，且没有可见的进入、离开或销毁事件。",
+      "expectation": "遮挡前存在的物体在遮挡后仍应存在；遮挡前不存在的物体不能在遮挡后凭空出现。",
+      "violation_signatures": [
+        "可见物体进入遮挡后永久消失。",
+        "遮挡结束后出现此前不存在且无进入路径的物体。"
+      ],
+      "constraints": [
+        "异常判断需要正面视觉证据，不能仅由事件罕见或标签名称推出。"
+      ],
+      "exceptions": [
+        "存在可见的进入、离开、属性改变、转移路径或外部碰撞体时，需按该因果证据重新判断。"
+      ],
+      "source_evidence": [
+        "intphys2:debug:3:pair1",
+        "intphys2:debug:3:pair2"
+      ],
+      "visual_evidence_ids": [
+        "intphys2:debug:3:pair1",
+        "intphys2:debug:3:pair2"
+      ],
+      "verification": {
+        "metadata": "passed",
+        "visual": "provisional",
+        "review": "pending"
+      },
+      "schema_id": "intphys2:permanence:L1:invariant:0fa77b135873",
+      "title": "遮挡不会创造或抹除物体",
+      "scene_scope": [
+        "debug:3"
+      ],
+      "abstraction_level": 1,
+      "kind": "physical_invariant",
+      "relations": {
+        "parents": [],
+        "members": [
+          "intphys2:permanence:L3:debug_3:896ba2395bb2"
+        ]
+      }
+    },
+    {
+      "format_version": 1,
+      "benchmark": "intphys2",
+      "benchmark_version": "debug_plus_pinned_main_300",
+      "condition": "permanence",
+      "trigger": "目标物体及其容器经历一段暂时遮挡，且没有可见的进入、离开或销毁事件。",
+      "expectation": "遮挡前存在的物体在遮挡后仍应存在；遮挡前不存在的物体不能在遮挡后凭空出现。",
+      "violation_signatures": [
+        "可见物体进入遮挡后永久消失。",
+        "遮挡结束后出现此前不存在且无进入路径的物体。"
+      ],
+      "constraints": [
+        "异常判断需要正面视觉证据，不能仅由事件罕见或标签名称推出。"
+      ],
+      "exceptions": [
+        "存在可见的进入、离开、属性改变、转移路径或外部碰撞体时，需按该因果证据重新判断。"
+      ],
+      "source_evidence": [
+        "intphys2:debug:3:pair1",
+        "intphys2:debug:3:pair2"
+      ],
+      "visual_evidence_ids": [
+        "intphys2:debug:3:pair1",
+        "intphys2:debug:3:pair2"
+      ],
+      "verification": {
+        "metadata": "passed",
+        "visual": "provisional",
+        "review": "pending"
+      },
+      "schema_id": "intphys2:permanence:L3:debug_3:896ba2395bb2",
+      "title": "debug:3 的成对视觉判别规则",
+      "scene_scope": [
+        "debug:3"
+      ],
+      "abstraction_level": 3,
+      "kind": "scene_discriminant",
+      "relations": {
+        "parents": [
+          "intphys2:permanence:L1:invariant:0fa77b135873"
+        ],
+        "members": []
+      }
+    },
+    {
+      "format_version": 1,
+      "benchmark": "intphys2",
+      "benchmark_version": "debug_plus_pinned_main_300",
+      "condition": "immutability",
+      "trigger": "同一球体进入暂时遮挡，期间没有可见的涂色、替换或变形过程。",
+      "expectation": "球体重新出现时应保持遮挡前可识别的颜色属性。",
+      "violation_signatures": [
+        "蓝色球在无遮挡的因果过程下变为红色。",
+        "红色球在无遮挡的因果过程下变为蓝色。"
+      ],
+      "constraints": [
+        "异常判断需要正面视觉证据，不能仅由事件罕见或标签名称推出。"
+      ],
+      "exceptions": [
+        "存在可见的进入、离开、属性改变、转移路径或外部碰撞体时，需按该因果证据重新判断。"
+      ],
+      "source_evidence": [
+        "intphys2:main_300:21:pair1",
+        "intphys2:main_300:21:pair2"
+      ],
+      "visual_evidence_ids": [
+        "intphys2:main_300:21:pair1",
+        "intphys2:main_300:21:pair2"
+      ],
+      "verification": {
+        "metadata": "passed",
+        "visual": "provisional",
+        "review": "pending"
+      },
+      "schema_id": "intphys2:immutability:L1:invariant:2debe7263cf1",
+      "title": "暂时遮挡不改变物体的稳定属性",
+      "scene_scope": [
+        "main_300:21"
+      ],
+      "abstraction_level": 1,
+      "kind": "physical_invariant",
+      "relations": {
+        "parents": [],
+        "members": [
+          "intphys2:immutability:L3:main_300_21:5f5737245e54"
+        ]
+      }
+    },
+    {
+      "format_version": 1,
+      "benchmark": "intphys2",
+      "benchmark_version": "debug_plus_pinned_main_300",
+      "condition": "immutability",
+      "trigger": "同一球体进入暂时遮挡，期间没有可见的涂色、替换或变形过程。",
+      "expectation": "球体重新出现时应保持遮挡前可识别的颜色属性。",
+      "violation_signatures": [
+        "蓝色球在无遮挡的因果过程下变为红色。",
+        "红色球在无遮挡的因果过程下变为蓝色。"
+      ],
+      "constraints": [
+        "异常判断需要正面视觉证据，不能仅由事件罕见或标签名称推出。"
+      ],
+      "exceptions": [
+        "存在可见的进入、离开、属性改变、转移路径或外部碰撞体时，需按该因果证据重新判断。"
+      ],
+      "source_evidence": [
+        "intphys2:main_300:21:pair1",
+        "intphys2:main_300:21:pair2"
+      ],
+      "visual_evidence_ids": [
+        "intphys2:main_300:21:pair1",
+        "intphys2:main_300:21:pair2"
+      ],
+      "verification": {
+        "metadata": "passed",
+        "visual": "provisional",
+        "review": "pending"
+      },
+      "schema_id": "intphys2:immutability:L3:main_300_21:5f5737245e54",
+      "title": "main_300:21 的成对视觉判别规则",
+      "scene_scope": [
+        "main_300:21"
+      ],
+      "abstraction_level": 3,
+      "kind": "scene_discriminant",
+      "relations": {
+        "parents": [
+          "intphys2:immutability:L1:invariant:2debe7263cf1"
+        ],
+        "members": []
+      }
+    },
+    {
+      "format_version": 1,
+      "benchmark": "intphys2",
+      "benchmark_version": "debug_plus_pinned_main_300",
+      "condition": "continuity",
+      "trigger": "蓝色方块在两个空间分离的杯位之一进入遮挡，且没有可见的跨杯通道或转移过程。",
+      "expectation": "方块重新可见时仍应位于遮挡前的同一杯位；若换到另一杯位，必须存在连续转移路径。",
+      "violation_signatures": [
+        "方块由左杯消失并直接在右杯出现。",
+        "方块由右杯消失并直接在左杯出现。"
+      ],
+      "constraints": [
+        "异常判断需要正面视觉证据，不能仅由事件罕见或标签名称推出。"
+      ],
+      "exceptions": [
+        "存在可见的进入、离开、属性改变、转移路径或外部碰撞体时，需按该因果证据重新判断。"
+      ],
+      "source_evidence": [
+        "intphys2:main_300:19:pair1",
+        "intphys2:main_300:19:pair2"
+      ],
+      "visual_evidence_ids": [
+        "intphys2:main_300:19:pair1",
+        "intphys2:main_300:19:pair2"
+      ],
+      "verification": {
+        "metadata": "passed",
+        "visual": "provisional",
+        "review": "pending"
+      },
+      "schema_id": "intphys2:continuity:L1:invariant:7d57fb598943",
+      "title": "物体不能在分离容器之间无路径换位",
+      "scene_scope": [
+        "main_300:19"
+      ],
+      "abstraction_level": 1,
+      "kind": "physical_invariant",
+      "relations": {
+        "parents": [],
+        "members": [
+          "intphys2:continuity:L3:main_300_19:ba4942d06f65"
+        ]
+      }
+    },
+    {
+      "format_version": 1,
+      "benchmark": "intphys2",
+      "benchmark_version": "debug_plus_pinned_main_300",
+      "condition": "continuity",
+      "trigger": "蓝色方块在两个空间分离的杯位之一进入遮挡，且没有可见的跨杯通道或转移过程。",
+      "expectation": "方块重新可见时仍应位于遮挡前的同一杯位；若换到另一杯位，必须存在连续转移路径。",
+      "violation_signatures": [
+        "方块由左杯消失并直接在右杯出现。",
+        "方块由右杯消失并直接在左杯出现。"
+      ],
+      "constraints": [
+        "异常判断需要正面视觉证据，不能仅由事件罕见或标签名称推出。"
+      ],
+      "exceptions": [
+        "存在可见的进入、离开、属性改变、转移路径或外部碰撞体时，需按该因果证据重新判断。"
+      ],
+      "source_evidence": [
+        "intphys2:main_300:19:pair1",
+        "intphys2:main_300:19:pair2"
+      ],
+      "visual_evidence_ids": [
+        "intphys2:main_300:19:pair1",
+        "intphys2:main_300:19:pair2"
+      ],
+      "verification": {
+        "metadata": "passed",
+        "visual": "provisional",
+        "review": "pending"
+      },
+      "schema_id": "intphys2:continuity:L3:main_300_19:ba4942d06f65",
+      "title": "main_300:19 的成对视觉判别规则",
+      "scene_scope": [
+        "main_300:19"
+      ],
+      "abstraction_level": 3,
+      "kind": "scene_discriminant",
+      "relations": {
+        "parents": [
+          "intphys2:continuity:L1:invariant:7d57fb598943"
+        ],
+        "members": []
+      }
+    },
+    {
+      "format_version": 1,
+      "benchmark": "intphys2",
+      "benchmark_version": "debug_plus_pinned_main_300",
+      "condition": "solidity",
+      "trigger": "大型箱体下落到平台上的固定落点；该落点可能有或没有一个可见黄色方块。",
+      "expectation": "存在黄色方块时，箱体不能占据同一空间并应出现相应碰撞响应；不存在方块时，不应受到来自空位置的碰撞冲量。",
+      "violation_signatures": [
+        "箱体在可见黄色方块所在位置保持直立落下，缺少排斥或碰撞响应。",
+        "落点没有黄色方块时，箱体却发生与撞击方块相似的倾转。"
+      ],
+      "constraints": [
+        "异常判断需要正面视觉证据，不能仅由事件罕见或标签名称推出。"
+      ],
+      "exceptions": [
+        "存在可见的进入、离开、属性改变、转移路径或外部碰撞体时，需按该因果证据重新判断。"
+      ],
+      "source_evidence": [
+        "intphys2:debug:1:pair1",
+        "intphys2:debug:1:pair2"
+      ],
+      "visual_evidence_ids": [
+        "intphys2:debug:1:pair1",
+        "intphys2:debug:1:pair2"
+      ],
+      "verification": {
+        "metadata": "passed",
+        "visual": "provisional",
+        "review": "pending"
+      },
+      "schema_id": "intphys2:solidity:L1:invariant:f02093044552",
+      "title": "碰撞响应必须与可见实体接触一致",
+      "scene_scope": [
+        "debug:1"
+      ],
+      "abstraction_level": 1,
+      "kind": "physical_invariant",
+      "relations": {
+        "parents": [],
+        "members": [
+          "intphys2:solidity:L3:debug_1:6277533a2ad4"
+        ]
+      }
+    },
+    {
+      "format_version": 1,
+      "benchmark": "intphys2",
+      "benchmark_version": "debug_plus_pinned_main_300",
+      "condition": "solidity",
+      "trigger": "大型箱体下落到平台上的固定落点；该落点可能有或没有一个可见黄色方块。",
+      "expectation": "存在黄色方块时，箱体不能占据同一空间并应出现相应碰撞响应；不存在方块时，不应受到来自空位置的碰撞冲量。",
+      "violation_signatures": [
+        "箱体在可见黄色方块所在位置保持直立落下，缺少排斥或碰撞响应。",
+        "落点没有黄色方块时，箱体却发生与撞击方块相似的倾转。"
+      ],
+      "constraints": [
+        "异常判断需要正面视觉证据，不能仅由事件罕见或标签名称推出。"
+      ],
+      "exceptions": [
+        "存在可见的进入、离开、属性改变、转移路径或外部碰撞体时，需按该因果证据重新判断。"
+      ],
+      "source_evidence": [
+        "intphys2:debug:1:pair1",
+        "intphys2:debug:1:pair2"
+      ],
+      "visual_evidence_ids": [
+        "intphys2:debug:1:pair1",
+        "intphys2:debug:1:pair2"
+      ],
+      "verification": {
+        "metadata": "passed",
+        "visual": "provisional",
+        "review": "pending"
+      },
+      "schema_id": "intphys2:solidity:L3:debug_1:6277533a2ad4",
+      "title": "debug:1 的成对视觉判别规则",
+      "scene_scope": [
+        "debug:1",
+        "main_300:1"
+      ],
+      "abstraction_level": 3,
+      "kind": "scene_discriminant",
+      "relations": {
+        "parents": [
+          "intphys2:solidity:L1:invariant:f02093044552"
+        ],
+        "members": []
+      }
+    }
+  ]
+}

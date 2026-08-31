@@ -1,0 +1,763 @@
+{
+  "baseline": "tgm",
+  "model": "claude-opus-4.8",
+  "embed_model": "BAAI/bge-small-en-v1.5",
+  "top_k_meta": 3,
+  "splits": {
+    "aime_2024_sg": {
+      "accuracy": 90.0,
+      "n_correct": 9,
+      "n_total": 10,
+      "records": [
+        {
+          "id": 60,
+          "gold": "204",
+          "predicted": "204",
+          "correct": true,
+          "n_query_nodes": 1,
+          "n_path_nodes": 1,
+          "n_meta_nodes": 1,
+          "last_meta_id": "m_3b02d84c8f"
+        },
+        {
+          "id": 61,
+          "gold": "113",
+          "predicted": "113",
+          "correct": true,
+          "n_query_nodes": 2,
+          "n_path_nodes": 2,
+          "n_meta_nodes": 2,
+          "last_meta_id": "m_4072fdf5a7"
+        },
+        {
+          "id": 62,
+          "gold": "371",
+          "predicted": null,
+          "correct": false,
+          "n_query_nodes": 3,
+          "n_path_nodes": 3,
+          "n_meta_nodes": 3,
+          "last_meta_id": "m_3861d52c75"
+        },
+        {
+          "id": 63,
+          "gold": "385",
+          "predicted": "385",
+          "correct": true,
+          "n_query_nodes": 4,
+          "n_path_nodes": 3,
+          "n_meta_nodes": 4,
+          "last_meta_id": "m_6e194f8c92"
+        },
+        {
+          "id": 64,
+          "gold": "110",
+          "predicted": "110",
+          "correct": true,
+          "n_query_nodes": 5,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 5,
+          "last_meta_id": "m_9dd0fed37b"
+        },
+        {
+          "id": 65,
+          "gold": "104",
+          "predicted": "104",
+          "correct": true,
+          "n_query_nodes": 6,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 6,
+          "last_meta_id": "m_1126307e57"
+        },
+        {
+          "id": 66,
+          "gold": "721",
+          "predicted": "721",
+          "correct": true,
+          "n_query_nodes": 7,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 7,
+          "last_meta_id": "m_cfa92fa4b9"
+        },
+        {
+          "id": 67,
+          "gold": "025",
+          "predicted": "25",
+          "correct": true,
+          "n_query_nodes": 8,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 8,
+          "last_meta_id": "m_1636aa7e4c"
+        },
+        {
+          "id": 68,
+          "gold": "809",
+          "predicted": "809",
+          "correct": true,
+          "n_query_nodes": 9,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 9,
+          "last_meta_id": "m_7e0e0b1789"
+        },
+        {
+          "id": 69,
+          "gold": "116",
+          "predicted": "116",
+          "correct": true,
+          "n_query_nodes": 10,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 10,
+          "last_meta_id": "m_090dfab065"
+        }
+      ]
+    },
+    "aime_2024_cs": {
+      "accuracy": 90.0,
+      "n_correct": 9,
+      "n_total": 10,
+      "records": [
+        {
+          "id": 60,
+          "gold": "204",
+          "predicted": "204",
+          "correct": true,
+          "n_query_nodes": 11,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 11,
+          "last_meta_id": "m_69acaed762"
+        },
+        {
+          "id": 61,
+          "gold": "113",
+          "predicted": "113",
+          "correct": true,
+          "n_query_nodes": 12,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 11,
+          "last_meta_id": "m_4072fdf5a7"
+        },
+        {
+          "id": 62,
+          "gold": "371",
+          "predicted": "363",
+          "correct": false,
+          "n_query_nodes": 13,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 12,
+          "last_meta_id": "m_c21a3929be"
+        },
+        {
+          "id": 63,
+          "gold": "385",
+          "predicted": "385",
+          "correct": true,
+          "n_query_nodes": 14,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 12,
+          "last_meta_id": "m_6e194f8c92"
+        },
+        {
+          "id": 64,
+          "gold": "110",
+          "predicted": "110",
+          "correct": true,
+          "n_query_nodes": 15,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 12,
+          "last_meta_id": "m_9dd0fed37b"
+        },
+        {
+          "id": 65,
+          "gold": "104",
+          "predicted": "104",
+          "correct": true,
+          "n_query_nodes": 16,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 12,
+          "last_meta_id": "m_1126307e57"
+        },
+        {
+          "id": 66,
+          "gold": "721",
+          "predicted": "721",
+          "correct": true,
+          "n_query_nodes": 17,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 13,
+          "last_meta_id": "m_bdda4b0752"
+        },
+        {
+          "id": 67,
+          "gold": "025",
+          "predicted": "25",
+          "correct": true,
+          "n_query_nodes": 18,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 14,
+          "last_meta_id": "m_3ed017f5f9"
+        },
+        {
+          "id": 68,
+          "gold": "809",
+          "predicted": "809",
+          "correct": true,
+          "n_query_nodes": 19,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 14,
+          "last_meta_id": "m_7e0e0b1789"
+        },
+        {
+          "id": 69,
+          "gold": "116",
+          "predicted": "116",
+          "correct": true,
+          "n_query_nodes": 20,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 14,
+          "last_meta_id": "m_090dfab065"
+        }
+      ]
+    },
+    "aime_2025_sg": {
+      "accuracy": 70.0,
+      "n_correct": 7,
+      "n_total": 10,
+      "records": [
+        {
+          "id": 0,
+          "gold": "70",
+          "predicted": "70",
+          "correct": true,
+          "n_query_nodes": 21,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 15,
+          "last_meta_id": "m_3ee18cba45"
+        },
+        {
+          "id": 1,
+          "gold": "588",
+          "predicted": "588",
+          "correct": true,
+          "n_query_nodes": 22,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 16,
+          "last_meta_id": "m_41c91883cb"
+        },
+        {
+          "id": 2,
+          "gold": "16",
+          "predicted": "16",
+          "correct": true,
+          "n_query_nodes": 23,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 17,
+          "last_meta_id": "m_a1c8c2c836"
+        },
+        {
+          "id": 3,
+          "gold": "117",
+          "predicted": "117",
+          "correct": true,
+          "n_query_nodes": 24,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 18,
+          "last_meta_id": "m_e9d58a6b34"
+        },
+        {
+          "id": 4,
+          "gold": "279",
+          "predicted": "279",
+          "correct": true,
+          "n_query_nodes": 25,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 18,
+          "last_meta_id": "m_3ee18cba45"
+        },
+        {
+          "id": 5,
+          "gold": "504",
+          "predicted": "504",
+          "correct": true,
+          "n_query_nodes": 26,
+          "n_path_nodes": 4,
+          "n_meta_nodes": 19,
+          "last_meta_id": "m_36c4a8f540"
+        },
+        {
+          "id": 6,
+          "gold": "821",
+          "predicted": "12",
+          "correct": false,
+          "n_query_nodes": 27,
+          "n_path_nodes": 5,
+          "n_meta_nodes": 20,
+          "last_meta_id": "m_fdecb5267b"
+        },
+        {
+          "id": 7,
+          "gold": "77",
+          "predicted": "78",
+          "correct": false,
+          "n_query_nodes": 28,
+          "n_path_nodes": 5,
+          "n_meta_nodes": 21,
+          "last_meta_id": "m_4a1e744556"
+        },
+        {
+          "id": 8,
+          "gold": "62",
+          "predicted": "34",
+          "correct": false,
+          "n_query_nodes": 29,
+          "n_path_nodes": 5,
+          "n_meta_nodes": 22,
+          "last_meta_id": "m_38cc78a50a"
+        },
+        {
+          "id": 9,
+          "gold": "81",
+          "predicted": "81",
+          "correct": true,
+          "n_query_nodes": 30,
+          "n_path_nodes": 5,
+          "n_meta_nodes": 23,
+          "last_meta_id": "m_8aeb63970b"
+        }
+      ]
+    },
+    "aime_2025_cs": {
+      "accuracy": 70.0,
+      "n_correct": 7,
+      "n_total": 10,
+      "records": [
+        {
+          "id": 0,
+          "gold": "70",
+          "predicted": "70",
+          "correct": true,
+          "n_query_nodes": 31,
+          "n_path_nodes": 5,
+          "n_meta_nodes": 23,
+          "last_meta_id": "m_3ee18cba45"
+        },
+        {
+          "id": 1,
+          "gold": "588",
+          "predicted": "588",
+          "correct": true,
+          "n_query_nodes": 32,
+          "n_path_nodes": 5,
+          "n_meta_nodes": 23,
+          "last_meta_id": "m_41c91883cb"
+        },
+        {
+          "id": 2,
+          "gold": "16",
+          "predicted": "16",
+          "correct": true,
+          "n_query_nodes": 33,
+          "n_path_nodes": 5,
+          "n_meta_nodes": 23,
+          "last_meta_id": "m_a1c8c2c836"
+        },
+        {
+          "id": 3,
+          "gold": "117",
+          "predicted": "117",
+          "correct": true,
+          "n_query_nodes": 34,
+          "n_path_nodes": 5,
+          "n_meta_nodes": 23,
+          "last_meta_id": "m_e9d58a6b34"
+        },
+        {
+          "id": 4,
+          "gold": "279",
+          "predicted": "279",
+          "correct": true,
+          "n_query_nodes": 35,
+          "n_path_nodes": 5,
+          "n_meta_nodes": 23,
+          "last_meta_id": "m_3ee18cba45"
+        },
+        {
+          "id": 5,
+          "gold": "504",
+          "predicted": "504",
+          "correct": true,
+          "n_query_nodes": 36,
+          "n_path_nodes": 5,
+          "n_meta_nodes": 23,
+          "last_meta_id": "m_41c91883cb"
+        },
+        {
+          "id": 6,
+          "gold": "821",
+          "predicted": "949",
+          "correct": false,
+          "n_query_nodes": 37,
+          "n_path_nodes": 6,
+          "n_meta_nodes": 23,
+          "last_meta_id": "m_fdecb5267b"
+        },
+        {
+          "id": 7,
+          "gold": "77",
+          "predicted": "77",
+          "correct": true,
+          "n_query_nodes": 38,
+          "n_path_nodes": 6,
+          "n_meta_nodes": 23,
+          "last_meta_id": "m_bdda4b0752"
+        },
+        {
+          "id": 8,
+          "gold": "62",
+          "predicted": null,
+          "correct": false,
+          "n_query_nodes": 39,
+          "n_path_nodes": 6,
+          "n_meta_nodes": 23,
+          "last_meta_id": "m_c21a3929be"
+        },
+        {
+          "id": 9,
+          "gold": "81",
+          "predicted": "126",
+          "correct": false,
+          "n_query_nodes": 40,
+          "n_path_nodes": 6,
+          "n_meta_nodes": 23,
+          "last_meta_id": "m_8aeb63970b"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "aime_2024_sg": 90.0,
+    "aime_2024_cs": 90.0,
+    "aime_2025_sg": 70.0,
+    "aime_2025_cs": 70.0
+  },
+  "n_query_nodes": 40,
+  "n_path_nodes": 6,
+  "n_meta_nodes": 23,
+  "final_meta_cognitions": [
+    {
+      "id": "m_3b02d84c8f",
+      "summary": "For rate-time-distance problems with a fixed additive overhead (e.g., stops/rest included in total time), model total time as travel_time + constant_overhead, then eliminate the constant by subtracting equations from two scenarios to solve for the unknown rate before back-solving.",
+      "principles": [
+        "Separate variable components (travel time = distance/speed) from fixed components (constant overhead) explicitly in each equation.",
+        "When two scenarios share the same fixed overhead, subtract the equations to cancel it and isolate the rate-dependent terms.",
+        "Convert all time units to a single consistent unit (e.g., hours) early; carefully translate mixed formats like '2 hours 24 minutes' to decimals before computing.",
+        "After finding the rate, back-substitute into one original equation to recover the fixed overhead, then apply both to the queried scenario.",
+        "Solve resulting quadratics carefully and select the physically meaningful (positive) root."
+      ],
+      "confidence": 0.78,
+      "evidence_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "id": "m_4072fdf5a7",
+      "summary": "For circle-geometry problems where two tangents from an external point touch at two triangle vertices and a cevian from the third vertex is extended, recognize the tangent intersection as the pole of the opposite side, making the cevian the symmedian from that vertex; use symmedian and power-of-a-point relations to find chord lengths. / For word problems that encode numeric quantities via trivia clues and then pose a circle-geometry configuration, first decode each clue to a number, confirm the resulting triangle side lengths, then translate the optical/tangent setup into standard geometry: two tangents from an external point make that point the pole of the chord joining the tangency points,",
+      "principles": [
+        "First parse the configuration precisely: identify which points lie on the circle, which are external, and what tangency/intersection conditions define auxiliary points.",
+        "Key structural cue: the intersection of tangents at two vertices is the pole of the chord joining them, and a line from the third vertex through that pole is the symmedian from that vertex.",
+        "Recall the symmedian ratio: the symmedian from a vertex divides the opposite side in the ratio of the squares of the two adjacent sides.",
+        "For the length along a symmedian chord to its second circle intersection, combine power-of-a-point with the symmedian division and use the law of cosines / Stewart's theorem to compute needed distances.",
+        "When the answer is requested as a reduced fraction m/n with m+n, keep exact rational arithmetic throughout and verify the fraction is fully reduced before summing."
+      ],
+      "confidence": 0.71,
+      "evidence_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "id": "m_3861d52c75",
+      "summary": "For counting/probability problems that resemble a known competition problem, do not shortcut to a recalled answer; re-derive the count from the problem's exact conditions and verify against the stated answer format before committing.",
+      "principles": [
+        "Never substitute a remembered answer for an actual computation; recalled values are frequently misremembered or belong to a subtly different problem variant.",
+        "Translate the narrative condition precisely into set/combinatorial language: 'a rotation exists mapping every blue position onto an originally-red position' means there is a cyclic shift k with (B+k) disjoint from B.",
+        "Count systematically by number of blue elements (cases 0..n), and for each count enumerate configurations admitting a valid disjoint rotation, using inclusion-exclusion or complementary counting to avoid double counting.",
+        "Distinguish 'rotations of a fixed labeled configuration' from 'colorings up to symmetry'—here each of the 2^n colorings is equally likely and rotations are the tool, not a quotient.",
+        "After computing the probability, reduce the fraction fully to lowest terms and re-read the question to confirm what quantity is requested (e.g., numerator+denominator)."
+      ],
+      "confidence": 0.6,
+      "evidence_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "id": "m_6e194f8c92",
+      "summary": "For narrative/word problems that obscure a composed-function equation (e.g., nested absolute values with periodic inner functions), translate each described processing step into explicit function notation, reconstruct the full system of equations, then count solutions/intersections by exploiting periodicity and piecewise structure rather than recalling a memorized result. / For narrative word problems that encode composed functions with piecewise-linear 'W-shaped' transformations applied to periodic signals, decode each described graph feature into explicit function notation before computing, then count intersections using periodicity and symmetry.",
+      "principles": [
+        "Decompose story-driven steps literally: each phrase like 'distance from half a unit' maps to an absolute-value operation (|value - c|), and 'multiply by 4' scales the outer function; build f and g compositions incrementally.",
+        "Carefully extract the frequency/period from cues such as 'two full cycles per lap' or 'three cycles', translating them into the argument's coefficient (e.g., sin(2πkx)) before analyzing behavior.",
+        "For intersection-counting between two implicit curves y=F(x) and x=G(y), analyze the range and monotonic pieces of each composed function over one period, count crossings per subinterval, then multiply by symmetry/period counts.",
+        "Re-derive the count from the problem's exact frequencies and transformations even when it resembles a known competition problem; a recalled answer may not match altered parameters.",
+        "Verify the final count against expected structure (e.g., product of piece counts, symmetry) and sanity-check magnitude before committing."
+      ],
+      "confidence": 0.71,
+      "evidence_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "id": "m_9dd0fed37b",
+      "summary": "For problems asking for the least prime p with p^2 dividing a polynomial value (e.g., n^4+1) and then the smallest n achieving it, first constrain p using order/congruence conditions, verify the smallest candidate lifts via Hensel, then find the minimal root modulo p^2 and take the least positive residue. / For narrative word problems that disguise a number-theory task about the least prime p whose square divides a polynomial value f(n), first strip the story to recover f(n) from the given data points, then apply order/congruence constraints to bound candidate primes, verify lifting via Hensel, and return the minimal positive n satisfying p^2 | f(n).",
+      "principles": [
+        "Strip away narrative framing and restate the task as a precise number-theoretic condition (e.g., p^2 | n^4+1) before computing.",
+        "For divisibility by p^2 of expressions like n^k+1, use multiplicative order constraints to restrict which primes are possible (e.g., n^4 = -1 forces order 8, so p = 1 mod 8), and test candidate primes in increasing order.",
+        "Confirm a mod-p solution lifts to mod-p^2 using Hensel's lemma: check the derivative is nonzero mod p at the root; only then is the smaller prime valid.",
+        "To get the smallest n, enumerate all roots mod p^2 (lift each mod-p root) and choose the least positive residue, rather than assuming the mod-p root is smallest.",
+        "Verify the final n by direct substitution into the original divisibility condition before answering."
+      ],
+      "confidence": 0.7350000000000001,
+      "evidence_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "id": "m_1126307e57",
+      "summary": "For 3D tetrahedron problems where opposite edges are pairwise equal (isosceles/orthocentric tetrahedron), embed it in a rectangular box whose face diagonals are the edges to quickly recover volume and congruent-face areas, then compute the inradius as 3V/A_total. / For 3D word problems that encode edge lengths via trivia/baseline clues and describe an inscribed sphere in a tetrahedron with pairwise-equal opposite edges, decode each clue to a length, recognize the isosceles tetrahedron, embed it in a rectangular box to get volume and congruent face areas, then compute the inradius as r = 3V/A_total, reducing the final radius expression to the requested form.",
+      "principles": [
+        "Detect the isosceles tetrahedron signature: three pairs of equal opposite edges (AB=CD, AC=BD, BC=AD); this unlocks the box-embedding trick.",
+        "Set box dimensions p,q,r from face-diagonal equations p^2+q^2, p^2+r^2, q^2+r^2 equal to the squared edge lengths; sum all three and halve to get p^2+q^2+r^2, then subtract each equation to isolate individual squares.",
+        "For such tetrahedra, volume = (1/3) of the enclosing box volume (equivalently V = pqr/3), and all four faces are congruent, so total surface area = 4 x (one face area).",
+        "Compute a triangle's area from squared side lengths with Area = (1/4)sqrt(2a^2b^2+2b^2c^2+2c^2a^2 - a^4 - b^4 - c^4) to avoid messy Heron radicals.",
+        "The point equidistant from all four faces is the incenter; its distance is the inradius r = 3V / (total surface area); simplify the resulting radical to the required m*sqrt(n)/p form with gcd(m,p)=1 and n squarefree before summing."
+      ],
+      "confidence": 0.7849999999999999,
+      "evidence_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "id": "m_cfa92fa4b9",
+      "summary": "For 'smallest enclosing sphere of any shape satisfying fixed surface area and volume' problems, reduce to a rectangular box, express the enclosing radius via the space diagonal, and optimize the sum-of-squares of edges over the feasible constraint set by finding the extremal parameter where two dimensions coincide.",
+      "principles": [
+        "Translate 'smallest sphere enclosing any qualifying container' into maximizing the box's space diagonal, since r^2 = (a^2+b^2+c^2)/4 for a rectangular box.",
+        "Use symmetric-function identities: a^2+b^2+c^2 = (a+b+c)^2 - 2(ab+bc+ca), so with fixed surface area (ab+bc+ca) and volume (abc), the problem reduces to finding the extreme value of s = a+b+c.",
+        "Treat a,b,c as roots of the cubic t^3 - s t^2 + (ab+bc+ca) t - abc = 0, and note that feasibility boundaries (extremal s) occur when two roots coincide (a double root), collapsing the system to solvable equations.",
+        "At the double-root boundary, substitute to derive a single-variable polynomial, find rational roots by testing small integer/divisor candidates, and factor to isolate the relevant physical (positive) solution.",
+        "Verify the chosen extremum actually corresponds to the maximum (not minimum) diagonal and yields valid positive dimensions before computing r^2, then reduce the fraction to lowest terms and report the requested combination of numerator and denominator."
+      ],
+      "confidence": 0.79,
+      "evidence_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "id": "m_1636aa7e4c",
+      "summary": "For word problems that disguise logarithmic equations, translate each described 'logarithm of a power' phrase into explicit log notation, apply the power rule to expose the log term, and exploit the reciprocal relationship between log_b(x) and log_x(b) to combine the two equations into a single product relation.",
+      "principles": [
+        "Carefully map narrative phrases to notation: 'log with base A of B raised to C' becomes log_A(B^C) = C*log_A(B).",
+        "Use the power rule to reduce each equation to a coefficient times a base-change log term.",
+        "When two equations involve log_b(x) and log_x(b), remember these are reciprocals; multiplying the equations can eliminate the individual logs and directly yield the product of the two unknowns.",
+        "Track domain constraints (e.g., both variables > 1) to confirm a valid, unique solution.",
+        "Verify the final relation dimensionally/algebraically before committing, and respect the required answer format (e.g., zero-padded integers)."
+      ],
+      "confidence": 0.75,
+      "evidence_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "id": "m_7e0e0b1789",
+      "summary": "For narrative/word problems describing a two-player turn-based game where players remove a fixed set of quantities and the player taking the last unit wins, model it as a combinatorial game using P-positions (losing for the mover) and N-positions (winning for the mover), then count target positions in the requested range. / For narrative word problems that disguise a two-player subtraction/combinatorial game, strip the story to identify the allowed moves and win condition, then compute winning/losing (N/P) positions via base-case recursion to find a periodic pattern, and count qualifying values within the stated range.",
+      "principles": [
+        "Strip away the story framing and identify the core game rules: allowed move sizes, the winning condition (last-move-wins vs misère), and who moves first.",
+        "Define positions recursively: a position is a loss for the mover (P-position) if every legal move leads to a win for the opponent (N-position); it is an N-position if some move leads to a P-position.",
+        "Compute P/N status starting from the base case (0 remaining = loss for the mover), building up incrementally and rechecking early terms carefully to avoid off-by-one errors.",
+        "Search for a periodic pattern in the P-positions; once a stable period emerges, verify it on several consecutive values before extrapolating.",
+        "Carefully map the question to the right positions: 'second player wins' means counting starting positions that are P-positions (losses for the first mover)."
+      ],
+      "confidence": 0.78,
+      "evidence_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "id": "m_090dfab065",
+      "summary": "For conditional probability word problems disguised in a narrative (e.g., overlap between two random selections), strip the story to identify the underlying combinatorial structure, then compute P(A|B) = P(A and B)/P(B) by counting favorable outcomes via hypergeometric case-splitting. / For narrative word problems that disguise a hypergeometric/lottery probability question, first decode each trivia clue into its numeric value (pool size, pick count), then compute a conditional probability by counting outcomes with exact-match combinatorics before reducing the fraction and answering the requested numerator+denominator sum.",
+      "principles": [
+        "Translate narrative selections into set-overlap counts: fix one party's choice and count how the other's random choice overlaps using C(k,i)*C(n-k,size-i) for exactly i matches.",
+        "For 'given B, probability of A' where A implies B (special outcome is a subset of qualifying outcome), the conditional probability simplifies to count(A)/count(B), and shared denominators (total ways) cancel.",
+        "Enumerate all overlap cases meeting the threshold (e.g., at least 2 matches) by summing exactly-i-match counts; double-check case boundaries so no overlap level is omitted or double-counted.",
+        "Reduce the resulting fraction and confirm numerator and denominator are coprime before forming the requested sum or transformed answer.",
+        "Do not rely on recognizing a 'classic' problem to recall the answer; re-derive counts from the exact stated batch size, selection size, and threshold, then verify."
+      ],
+      "confidence": 0.7950000000000002,
+      "evidence_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "id": "m_69acaed762",
+      "summary": "For narrative word problems that encode numeric constants via mini-puzzles (factorial divisibility, largest square below a bound, quadratic roots, calendar facts) feeding a rate-time-distance model with fixed overhead, first decode each clue into an explicit number with units, then set up travel_time + constant_overhead equations and subtract scenarios to solve for the base rate, and finally re-apply the model with the modified parameter requested.",
+      "principles": [
+        "Decode each embedded clue independently into a concrete value with correct units before assembling equations; keep hours-vs-minutes consistent by converting early.",
+        "Watch for the smallest/largest qualifier: 'smallest n with n! divisible by 8' means test factorials sequentially; 'largest square below X' means the greatest perfect square under the bound.",
+        "Translate verbal quadratic descriptions literally (e.g., 'square it minus itself minus two') into a polynomial, factor, and select the root matching stated sign/context (positive speed).",
+        "Model total time as travel_time (distance/speed) + fixed_overhead; eliminate the unknown overhead and base speed by subtracting the two given scenarios.",
+        "The final question often changes one decoded parameter (e.g., speed increment set to one-fourth); re-substitute into the solved model rather than reusing an earlier scenario's answer."
+      ],
+      "confidence": 0.8,
+      "evidence_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "id": "m_c21a3929be",
+      "summary": "Failed: predicted '363', which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking. / Failed: predicted None, which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking.",
+      "principles": [
+        "Failed: predicted '363', which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking.",
+        "Failed: predicted None, which was wrong. Build a future strategy that improves problem parsing, equation setup, arithmetic verification, or answer checking."
+      ],
+      "confidence": 0.42500000000000004,
+      "evidence_count": 2,
+      "reward_sum": -2.0
+    },
+    {
+      "id": "m_bdda4b0752",
+      "summary": "Solved correctly with final answer 721. Preserve the useful reasoning path. / Solved correctly with final answer 77. Preserve the useful reasoning path.",
+      "principles": [
+        "Solved correctly with final answer 721. Preserve the useful reasoning path.",
+        "Solved correctly with final answer 77. Preserve the useful reasoning path."
+      ],
+      "confidence": 0.65,
+      "evidence_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "id": "m_3ed017f5f9",
+      "summary": "For narrative word problems that encode a system of exponential equations, first decode any trivia/embedded constants into numeric exponents, then translate each described relation into explicit equations with variables, take logarithms to linearize, and eliminate the log terms to isolate the requested product or combination.",
+      "principles": [
+        "Decode embedded numeric clues (e.g., 'exponent turning 11 into N') by testing small integer powers before setting up the main system.",
+        "Carefully map narrative phrasing to exact equation structure: identify which quantity is the base, which is the exponent, and note multipliers like 'four times the reflectivity'.",
+        "Take natural logs of each exponential equation to convert products of variables into linear relations in ln(base).",
+        "When ln(base) appears as a common factor and base > 1 guarantees it is nonzero, divide it out to simplify—but always state that assumption explicitly.",
+        "Aim to combine the equations to directly yield the requested quantity (e.g., a product r*b) rather than solving for each variable separately."
+      ],
+      "confidence": 0.76,
+      "evidence_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "id": "m_3ee18cba45",
+      "summary": "For narrative word problems that disguise base-b digit-string divisibility tasks, decode each numeral into its base-b polynomial form, reduce the divisibility condition to a divisor constraint on a constant, then enumerate valid bases respecting digit-legality bounds. / For word problems that disguise a permutation-counting task with a divisibility condition, strip the narrative to recover the core structure (permutations of a digit set forming a number divisible by k), then decompose the divisibility rule into independent constraints and count valid arrangements combinatorially. / For narrative-disguised number-theory problems where a 'cascading digit display' or odometer counts events, rec",
+      "principles": [
+        "Strip the story to its core: identify that phrases like 'the number N interpreted in a setting/base' mean converting the digit string to sum(digit_i * b^i).",
+        "Translate each described quantity into an explicit polynomial in the base b before doing any arithmetic.",
+        "For 'X divides Y' conditions, use the division/subtraction trick: express Y as q*X + r so that X | Y reduces to X | r (a constant), turning the problem into finding divisors of that constant.",
+        "Apply all validity constraints explicitly: base must exceed the largest digit appearing, plus any problem-stated lower bound (e.g., >9); intersect these when filtering candidate bases.",
+        "Enumerate divisors of the constant, map each back to a base value, and discard those violating the constraints before summing."
+      ],
+      "confidence": 0.7132812500000001,
+      "evidence_count": 4,
+      "reward_sum": 4.0
+    },
+    {
+      "id": "m_41c91883cb",
+      "summary": "For narrative geometry problems where markers are placed at cumulative distances along two rays from a common vertex, encode each point as a scalar multiple of that ray's unit vector, express mirrored/reflected points via P' = 2*center - point, then compute all polygon areas with the vector shoelace formula so the unknown ray-angle factor (|u x v|) cancels using the given reference area. / For narrative-disguised geometry problems where travel times or distances lay out collinear points along two rays from a common origin, model each ray with a direction vector, place points by cumulative distance, decode 'mirror/reflection' clues as point reflections (M = 2*center - source), then compute th",
+      "principles": [
+        "Convert cumulative segment distances into absolute positions along each ray before assigning vectors; misreading 'from X to Y' as absolute rather than incremental is a common error.",
+        "Set both rays sharing the origin vertex as scalar multiples of unit vectors u and v; every point is a*u or b*v, and reflections become 2*center - point.",
+        "Use the vector shoelace formula (Area = 1/2 |sum of consecutive cross products|); same-ray cross products vanish, isolating the shared factor k = |u x v|.",
+        "Solve for the unknown angle factor k from the given reference-region area, then substitute it into the target polygon's area expression so k cancels or is determined exactly.",
+        "Keep vertices in the stated traversal order for the shoelace sum, and take absolute value; verify the polygon is simple (non-self-intersecting) or decompose if needed."
+      ],
+      "confidence": 0.6781250000000001,
+      "evidence_count": 3,
+      "reward_sum": 3.0
+    },
+    {
+      "id": "m_a1c8c2c836",
+      "summary": "For counting problems that partition n labeled items into distinct groups under strict size-ordering constraints (e.g., group A > group B > group C, each nonempty), first enumerate all valid integer size triples, then sum the multinomial coefficients for each triple, and finally apply any requested modular reduction. / For narrative-disguised combinatorics problems specifying a strictly decreasing positive sequence with a fixed total and 'labeled/distinguishable' units, carefully separate the count of ordered value-tuples from any labeling multiplicities implied by wording, and re-derive the fixed total from the given constraints rather than assuming a large canonical value.",
+      "principles": [
+        "Separate the problem into two stages: (1) find all admissible size compositions satisfying the sum and strict inequality/positivity constraints, (2) count assignments for each composition.",
+        "Enumerate size tuples systematically by fixing the smallest group first and increasing others, explicitly checking each inequality (strict '>' excludes equality) to avoid missing or double-counting cases.",
+        "Because the groups are distinct/labeled (named project types), use the multinomial coefficient n!/(a!b!c!) per size tuple; do NOT divide by symmetry factors since ordered inequality already fixes which count goes to which labeled group.",
+        "Verify each multinomial arithmetic step independently and re-add the sum before applying the final modulo.",
+        "Apply the requested modular reduction only as the last step on the total, and confirm the answer matches the required output format."
+      ],
+      "confidence": 0.735,
+      "evidence_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "id": "m_e9d58a6b34",
+      "summary": "For narrative word problems that hide a homogeneous quadratic (or higher) Diophantine form over a bounded integer grid, factor the form into linear factors, count integer solutions for each factor within the bounds, and subtract shared solutions to avoid double-counting. / For narrative-disguised number theory problems that reduce to a homogeneous quadratic in two integer variables over a bounded range, translate each described physical quantity into its exact term, form the equation, factor the quadratic into linear factors, and count integer solutions per factor branch while enforcing divisibility and range constraints—then merge branches with careful overlap handling.",
+      "principles": [
+        "Strip the story to the exact equation and the exact integer bounds (e.g., -N to N inclusive) before doing any algebra.",
+        "For a homogeneous quadratic like a*x^2 + b*x*y + c*y^2 = 0, seek a factorization (px+qy)(rx+sy)=0 by matching product and cross-term coefficients; verify all three coefficient conditions.",
+        "For each linear factor, express one variable as a proportion of the other, introduce a parameter to enforce integrality (require the needed divisibility), then intersect the two bound constraints to get the parameter range.",
+        "Count parameter values inclusively (upper - lower + 1) and double-check both endpoint constraints, taking the tighter bound.",
+        "Explicitly compute the overlap: solutions satisfying both factors simultaneously (often only the origin) must be subtracted once so it is not counted twice."
+      ],
+      "confidence": 0.725,
+      "evidence_count": 2,
+      "reward_sum": 2.0
+    },
+    {
+      "id": "m_36c4a8f540",
+      "summary": "For word problems describing a symmetric quadrilateral (two parallel walls, equal slanted sides) with a circle touching every boundary, model it as an isosceles trapezoid with an inscribed circle and exploit tangential and symmetry relations to recover the parallel-side lengths.",
+      "principles": [
+        "Decode narrative geometry cues: 'two parallel walls' plus 'equal-length sloped sides' means isosceles trapezoid; 'circle centered and touching each boundary' means an inscribed (tangential) circle.",
+        "Interpret the given radial distance carefully—'distance from center to edge' is the inradius r, and for a circle inscribed between two parallel sides the height equals the diameter, h = 2r.",
+        "Use the trapezoid area formula Area = ((a+b)/2)*h to get the sum of parallel sides, and the tangential-quadrilateral property (opposite sides sum equal) to relate the legs: a+b = 2c.",
+        "Relate the leg to height and half-difference of parallel sides via c^2 = h^2 + ((a-b)/2)^2 to obtain a-b; combine with a+b to solve both lengths.",
+        "When asked for the sum of squares, prefer the identity a^2+b^2 = ((a+b)^2 + (a-b)^2)/2 to avoid solving each side and to reduce arithmetic error."
+      ],
+      "confidence": 0.78,
+      "evidence_count": 1,
+      "reward_sum": 1.0
+    },
+    {
+      "id": "m_fdecb5267b",
+      "summary": "For probability problems disguised as narrative that resemble known competition setups, do not stop at identifying the winning configuration; complete the full conditional-probability computation and verify by counting favorable outcomes over total outcomes, then reduce the fraction and match the requested output format (e.g., numerator+denominator). / For probability problems about random pairings/matchings where an item's rank within its pair determines a sorted position, carefully define the correct event, distinguish 'contains item X' from 'item X occupies the extreme sorted slot', and compute via clean conditional or symmetry arguments—then verify by an independent method before reducin",
+      "principles": [
+        "Re-read the ordering/placement rule literally: 'the last item' is often determined by a max element, but confirm which element forces last placement and what condition on the target element that implies.",
+        "Do not report an intermediate quantity as the answer; check whether the task asks for a probability, a reduced fraction, or a sum of numerator and denominator, and compute through to that final form.",
+        "For pairing/matching probabilities, count total pairings and favorable pairings explicitly (e.g., using conditional reasoning on where the largest element goes), rather than asserting a single forced pairing.",
+        "The last module containing L does NOT require the target component to be paired with L; the target could be the larger element of an earlier-ranked module or appear in the last module in other ways—enumerate cases carefully.",
+        "After deriving a fraction, verify gcd=1, sanity-check the magnitude (a probability must lie in [0,1]), and only then form the requested combined value."
+      ],
+      "confidence": 0.575,
+      "evidence_count": 2,
+      "reward_sum": -2.0
+    },
+    {
+      "id": "m_4a1e744556",
+      "summary": "For grid/coordinate word problems combining an equidistance locus with a fixed-distance circle, carefully decode each labeled point's coordinates (distinguishing avenue vs. street axes), recognize the equidistant set as a perpendicular bisector, and translate the 'exactly one valid location' condition into a tangency (or single-intersection) requirement solved via discriminant, then complete all arithmetic and reduce the requested fraction before answering.",
+      "principles": [
+        "Explicitly assign axes: fix which named unit (e.g., 'avenue') is x and which (e.g., 'street') is y, then re-read each location's clue and write its exact (x,y); watch for the same variable k appearing in different coordinate slots for different points.",
+        "The set of points equidistant from two fixed points is their perpendicular bisector; intersect it with the given circle rather than guessing.",
+        "'Exactly one location' usually means the line is tangent to the circle: set the discriminant of the substituted quadratic to zero (or set distance-from-center = radius) to solve for the parameter.",
+        "A quadratic-in-k tangency condition often yields multiple valid k values; use Vieta's formulas to get the exact sum of roots as a fraction instead of solving numerically, which avoids rounding.",
+        "Do not skip verification: substitute each candidate k back to confirm a single real intersection, reduce m/n to lowest terms, and confirm you report the requested combination (e.g., m+n)."
+      ],
+      "confidence": 0.55,
+      "evidence_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "id": "m_38cc78a50a",
+      "summary": "For rotated-conic intersection problems, set up the rotation correctly, solve the full polynomial system, and select the intersection point that matches ALL stated regional constraints (sign, quadrant, uniqueness) before extracting the requested closed-form value and reducing the final fraction.",
+      "principles": [
+        "Decode the geometry precisely: 'squaring horizontal distance minus 4' means y = x^2 - 4; confirm the base equation before rotating.",
+        "For rotation intersections, a point on both curves satisfies the original equation AND its inverse-rotated image satisfies it too; substitute carefully and keep exact symbolic (radical) coefficients rather than decimals.",
+        "Expand the resulting polynomial completely; rotation of a parabola typically yields a degree-4 system, so expect multiple intersection roots and do not stop at the first candidate.",
+        "Use the region conditions ('right of pillar' => x>0, 'below ground' => y<0, 'only intersection in that region') to filter and confirm you selected the unique correct root—these constraints disambiguate among several solutions.",
+        "After finding the height, back-substitute the value into both curve equations to verify it truly is a common intersection point (the missed-verification step is the likely failure cause)."
+      ],
+      "confidence": 0.55,
+      "evidence_count": 1,
+      "reward_sum": -1.0
+    },
+    {
+      "id": "m_8aeb63970b",
+      "summary": "For narrative-disguised combinatorics problems that map onto a known competition structure (e.g., a Sudoku-like band count), first re-derive the exact count from the stated constraints, factor it into prime powers, then carefully re-read what final scalar the problem actually requests (a weighted/derived function of the exponents), rather than reporting the raw count. / For narrative-disguised combinatorics that maps to a known structure (e.g., Sudoku first-band counting on a 3-block grid), re-derive the count from the stated constraints, factor it fully into prime powers, then re-read the exact final scalar requested rather than reporting the count or a partial factor sum.",
+      "principles": [
+        "Decode the narrative into its precise combinatorial structure and confirm each constraint (rows/lines contain all symbols; blocks contain all symbols) before recalling any formula.",
+        "When a setup resembles a famous count, verify the formula by re-derivation instead of relying on a half-remembered constant; the classic 3x9 Sudoku band count is 9! x 56 x 6^6, which factors into primes.",
+        "Fully factor the resulting number into distinct prime powers, listing each prime and its exponent explicitly.",
+        "Parse the FINAL requested quantity literally: phrases like 'weighted sum of the powers scaled by their prime factors' define a specific arithmetic combination of exponents/primes, not the count itself.",
+        "Compute the requested aggregate (e.g., sum over primes of prime x exponent, or sum of exponents) exactly as worded, then sanity-check the magnitude against the problem's expected answer format."
+      ],
+      "confidence": 0.575,
+      "evidence_count": 2,
+      "reward_sum": 0.0
+    }
+  ]
+}

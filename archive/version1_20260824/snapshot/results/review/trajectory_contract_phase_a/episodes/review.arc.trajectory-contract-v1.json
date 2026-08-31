@@ -1,0 +1,333 @@
+{
+  "format_version": 1,
+  "episode": {
+    "episode_id": "review.arc.trajectory-contract-v1",
+    "benchmark": "arc_agi3",
+    "task_id": "synthetic-review-level-1",
+    "split": "review",
+    "actor": "scripted_policy",
+    "evidence_tier": "synthetic",
+    "initial_observation": {
+      "text": "Synthetic grid state: initial",
+      "structured": {
+        "grid_shape": [
+          2,
+          2
+        ],
+        "logical_grid_sha256": "73f8b5966fd3a933d44138461472b127ca99cee2a563ba0844074af2b3da2831",
+        "nonzero_cells": 1
+      },
+      "artifacts": [
+        {
+          "artifact_id": "artifact_130e6063292af65689a2",
+          "role": "environment_state",
+          "media_type": "application/x.numpy.ndarray",
+          "relative_path": "grids/73f8b5966fd3a933d44138461472b127ca99cee2a563ba0844074af2b3da2831.npy",
+          "sha256": "130e6063292af65689a267b85e9092e097e5bea4e61a6bb076de4070da821b3f",
+          "size_bytes": 136,
+          "metadata": {
+            "dtype": "<i2",
+            "label": "initial",
+            "logical_sha256": "73f8b5966fd3a933d44138461472b127ca99cee2a563ba0844074af2b3da2831",
+            "shape": [
+              2,
+              2
+            ]
+          }
+        },
+        {
+          "artifact_id": "artifact_daf64f5c892260efcb76",
+          "role": "agent_view",
+          "media_type": "image/png",
+          "relative_path": "images/daf64f5c892260efcb76be993e4b59f3472dfa46a1093ecea2a2af2fc102f220.png",
+          "sha256": "daf64f5c892260efcb76be993e4b59f3472dfa46a1093ecea2a2af2fc102f220",
+          "size_bytes": 116,
+          "metadata": {
+            "height": 48,
+            "label": "initial",
+            "mode": "RGB",
+            "renderer": "trajectory-contract-demo-v1",
+            "width": 48
+          }
+        }
+      ],
+      "metadata": {}
+    },
+    "provenance": {
+      "network_calls": 0,
+      "policy": "fixed_action_script",
+      "scenario_id": "move_then_block"
+    },
+    "steps": [
+      {
+        "step_index": 0,
+        "observation": {
+          "text": "Synthetic grid state: initial",
+          "structured": {
+            "grid_shape": [
+              2,
+              2
+            ],
+            "logical_grid_sha256": "73f8b5966fd3a933d44138461472b127ca99cee2a563ba0844074af2b3da2831",
+            "nonzero_cells": 1
+          },
+          "artifacts": [
+            {
+              "artifact_id": "artifact_130e6063292af65689a2",
+              "role": "environment_state",
+              "media_type": "application/x.numpy.ndarray",
+              "relative_path": "grids/73f8b5966fd3a933d44138461472b127ca99cee2a563ba0844074af2b3da2831.npy",
+              "sha256": "130e6063292af65689a267b85e9092e097e5bea4e61a6bb076de4070da821b3f",
+              "size_bytes": 136,
+              "metadata": {
+                "dtype": "<i2",
+                "label": "initial",
+                "logical_sha256": "73f8b5966fd3a933d44138461472b127ca99cee2a563ba0844074af2b3da2831",
+                "shape": [
+                  2,
+                  2
+                ]
+              }
+            },
+            {
+              "artifact_id": "artifact_daf64f5c892260efcb76",
+              "role": "agent_view",
+              "media_type": "image/png",
+              "relative_path": "images/daf64f5c892260efcb76be993e4b59f3472dfa46a1093ecea2a2af2fc102f220.png",
+              "sha256": "daf64f5c892260efcb76be993e4b59f3472dfa46a1093ecea2a2af2fc102f220",
+              "size_bytes": 116,
+              "metadata": {
+                "height": 48,
+                "label": "initial",
+                "mode": "RGB",
+                "renderer": "trajectory-contract-demo-v1",
+                "width": 48
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        "available_actions": [
+          {
+            "name": "ACTION1",
+            "arguments": {},
+            "metadata": {}
+          },
+          {
+            "name": "ACTION4",
+            "arguments": {},
+            "metadata": {}
+          }
+        ],
+        "action": {
+          "name": "ACTION4",
+          "arguments": {},
+          "metadata": {}
+        },
+        "result": {
+          "observation": {
+            "text": "Synthetic grid state: moved_down",
+            "structured": {
+              "grid_shape": [
+                2,
+                2
+              ],
+              "logical_grid_sha256": "5243e8f52b65037f3323e715d33fa82908a7dc561ba9868594fc54f0f2c739d7",
+              "nonzero_cells": 1
+            },
+            "artifacts": [
+              {
+                "artifact_id": "artifact_384a80604b5c203bbf82",
+                "role": "environment_state",
+                "media_type": "application/x.numpy.ndarray",
+                "relative_path": "grids/5243e8f52b65037f3323e715d33fa82908a7dc561ba9868594fc54f0f2c739d7.npy",
+                "sha256": "384a80604b5c203bbf82208d9e7b6c7c04987dae319eeed2d87cc4561ee45de9",
+                "size_bytes": 136,
+                "metadata": {
+                  "dtype": "<i2",
+                  "label": "moved_down",
+                  "logical_sha256": "5243e8f52b65037f3323e715d33fa82908a7dc561ba9868594fc54f0f2c739d7",
+                  "shape": [
+                    2,
+                    2
+                  ]
+                }
+              },
+              {
+                "artifact_id": "artifact_73456b2b51ebb5b7b161",
+                "role": "agent_view",
+                "media_type": "image/png",
+                "relative_path": "images/73456b2b51ebb5b7b161a395c7deaa22f9389f8041df633dfd5a62336d553058.png",
+                "sha256": "73456b2b51ebb5b7b161a395c7deaa22f9389f8041df633dfd5a62336d553058",
+                "size_bytes": 118,
+                "metadata": {
+                  "height": 48,
+                  "label": "moved_down",
+                  "mode": "RGB",
+                  "renderer": "trajectory-contract-demo-v1",
+                  "width": 48
+                }
+              }
+            ],
+            "metadata": {}
+          },
+          "environment_status": "PLAYING",
+          "state_delta": {
+            "changed_cells": 2,
+            "grid_changed": true
+          },
+          "metadata": {}
+        },
+        "decision": {
+          "response": "{\"action\":\"ACTION4\"}",
+          "rationale": "deterministic scripted move",
+          "retrieved_schema_ids": [],
+          "claimed_schema_ids": [],
+          "metadata": {
+            "source": "demo_policy"
+          }
+        },
+        "metadata": {}
+      },
+      {
+        "step_index": 1,
+        "observation": {
+          "text": "Synthetic grid state: moved_down",
+          "structured": {
+            "grid_shape": [
+              2,
+              2
+            ],
+            "logical_grid_sha256": "5243e8f52b65037f3323e715d33fa82908a7dc561ba9868594fc54f0f2c739d7",
+            "nonzero_cells": 1
+          },
+          "artifacts": [
+            {
+              "artifact_id": "artifact_384a80604b5c203bbf82",
+              "role": "environment_state",
+              "media_type": "application/x.numpy.ndarray",
+              "relative_path": "grids/5243e8f52b65037f3323e715d33fa82908a7dc561ba9868594fc54f0f2c739d7.npy",
+              "sha256": "384a80604b5c203bbf82208d9e7b6c7c04987dae319eeed2d87cc4561ee45de9",
+              "size_bytes": 136,
+              "metadata": {
+                "dtype": "<i2",
+                "label": "moved_down",
+                "logical_sha256": "5243e8f52b65037f3323e715d33fa82908a7dc561ba9868594fc54f0f2c739d7",
+                "shape": [
+                  2,
+                  2
+                ]
+              }
+            },
+            {
+              "artifact_id": "artifact_73456b2b51ebb5b7b161",
+              "role": "agent_view",
+              "media_type": "image/png",
+              "relative_path": "images/73456b2b51ebb5b7b161a395c7deaa22f9389f8041df633dfd5a62336d553058.png",
+              "sha256": "73456b2b51ebb5b7b161a395c7deaa22f9389f8041df633dfd5a62336d553058",
+              "size_bytes": 118,
+              "metadata": {
+                "height": 48,
+                "label": "moved_down",
+                "mode": "RGB",
+                "renderer": "trajectory-contract-demo-v1",
+                "width": 48
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        "available_actions": [
+          {
+            "name": "ACTION1",
+            "arguments": {},
+            "metadata": {}
+          },
+          {
+            "name": "ACTION4",
+            "arguments": {},
+            "metadata": {}
+          }
+        ],
+        "action": {
+          "name": "ACTION1",
+          "arguments": {},
+          "metadata": {}
+        },
+        "result": {
+          "observation": {
+            "text": "Synthetic grid state: moved_down",
+            "structured": {
+              "grid_shape": [
+                2,
+                2
+              ],
+              "logical_grid_sha256": "5243e8f52b65037f3323e715d33fa82908a7dc561ba9868594fc54f0f2c739d7",
+              "nonzero_cells": 1
+            },
+            "artifacts": [
+              {
+                "artifact_id": "artifact_384a80604b5c203bbf82",
+                "role": "environment_state",
+                "media_type": "application/x.numpy.ndarray",
+                "relative_path": "grids/5243e8f52b65037f3323e715d33fa82908a7dc561ba9868594fc54f0f2c739d7.npy",
+                "sha256": "384a80604b5c203bbf82208d9e7b6c7c04987dae319eeed2d87cc4561ee45de9",
+                "size_bytes": 136,
+                "metadata": {
+                  "dtype": "<i2",
+                  "label": "moved_down",
+                  "logical_sha256": "5243e8f52b65037f3323e715d33fa82908a7dc561ba9868594fc54f0f2c739d7",
+                  "shape": [
+                    2,
+                    2
+                  ]
+                }
+              },
+              {
+                "artifact_id": "artifact_73456b2b51ebb5b7b161",
+                "role": "agent_view",
+                "media_type": "image/png",
+                "relative_path": "images/73456b2b51ebb5b7b161a395c7deaa22f9389f8041df633dfd5a62336d553058.png",
+                "sha256": "73456b2b51ebb5b7b161a395c7deaa22f9389f8041df633dfd5a62336d553058",
+                "size_bytes": 118,
+                "metadata": {
+                  "height": 48,
+                  "label": "moved_down",
+                  "mode": "RGB",
+                  "renderer": "trajectory-contract-demo-v1",
+                  "width": 48
+                }
+              }
+            ],
+            "metadata": {}
+          },
+          "environment_status": "PLAYING",
+          "state_delta": {
+            "grid_changed": false,
+            "reason": "blocked"
+          },
+          "metadata": {}
+        },
+        "decision": {
+          "response": "{\"action\":\"ACTION1\"}",
+          "rationale": "deterministic blocked-action probe",
+          "retrieved_schema_ids": [],
+          "claimed_schema_ids": [],
+          "metadata": {
+            "source": "demo_policy"
+          }
+        },
+        "metadata": {}
+      }
+    ],
+    "terminal_outcome": {
+      "status": "TIMEOUT",
+      "success": false,
+      "reward": null,
+      "details": "Synthetic two-step review episode ended by scenario budget.",
+      "metadata": {}
+    },
+    "metadata": {},
+    "created_at": "2026-08-13T13:29:00.145982Z"
+  }
+}

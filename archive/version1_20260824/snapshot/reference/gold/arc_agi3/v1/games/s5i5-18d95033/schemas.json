@@ -1,0 +1,303 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:s5i5-18d95033:L2:rotate:190375a7ccc1",
+      "format_version": 1,
+      "title": "ACTION6 点击颜色按钮旋转该色全部线段",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "18d95033",
+      "game_id": "s5i5-18d95033",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "点击颜色选择按钮。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "该颜色的每条线段绕其锚点旋转 90°；子部件随父部件递归变换。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+          "sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+          "symbol": "S5i5 group rotation, resizing, collision rollback and goal",
+          "lines": [
+            2026,
+            2247
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:s5i5-18d95033:L2:resize:cb4bce34792a",
+      "format_version": 1,
+      "title": "ACTION6 点击条形控件两侧缩短或延长关联线段",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "18d95033",
+      "game_id": "s5i5-18d95033",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "点击长度控件中心左/右侧。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "关联线段长度减少/增加一个单位，依朝向保持锚点并移动其子部件。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+          "sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+          "symbol": "S5i5 group rotation, resizing, collision rollback and goal",
+          "lines": [
+            2026,
+            2247
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:s5i5-18d95033:L2:hierarchy:39630e6b42d8",
+      "format_version": 1,
+      "title": "父线段变换递归携带所有子部件",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "18d95033",
+      "game_id": "s5i5-18d95033",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "父线段被旋转、伸缩或平移。",
+      "action_sequence": [],
+      "expectation": "所有直接和间接子部件保持相对连接关系同步变换。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+          "sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+          "symbol": "S5i5 group rotation, resizing, collision rollback and goal",
+          "lines": [
+            2026,
+            2247
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:s5i5-18d95033:L2:rollback:dab2218f06e8",
+      "format_version": 1,
+      "title": "变换导致线段互撞时整次操作回滚",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "18d95033",
+      "game_id": "s5i5-18d95033",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "变换后任意两条主线段发生碰撞。",
+      "action_sequence": [],
+      "expectation": "所有受影响线段和子部件恢复到操作前的位置、朝向与长度。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+          "sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+          "symbol": "S5i5 group rotation, resizing, collision rollback and goal",
+          "lines": [
+            2026,
+            2247
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:s5i5-18d95033:L2:goal:522cbf17b7a0",
+      "format_version": 1,
+      "title": "每个目标点都被端点对象精确覆盖时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "18d95033",
+      "game_id": "s5i5-18d95033",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "一次无碰撞变换完成。",
+      "action_sequence": [],
+      "expectation": "所有目标点坐标都有端点对象位于同一坐标时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+          "sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+          "symbol": "S5i5 group rotation, resizing, collision rollback and goal",
+          "lines": [
+            2026,
+            2247
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:s5i5-18d95033:L2:budget:455ed2757fae",
+      "format_version": 1,
+      "title": "有效点击耗尽步数时失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "18d95033",
+      "game_id": "s5i5-18d95033",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "剩余步数为零且目标未满足。",
+      "action_sequence": [],
+      "expectation": "游戏进入 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/s5i5/18d95033/s5i5.py",
+          "sha256": "341f85bac1fb5ca7a3315a367405c3c993a57ce4dd0ff01cc8aaa72bf6c6ed34",
+          "symbol": "S5i5 group rotation, resizing, collision rollback and goal",
+          "lines": [
+            2026,
+            2247
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "format_version": 1,
+  "problem_id": "aime_2024:60",
+  "generator": "scripts/generate_contextmath_gold.py",
+  "gold_answer_raw": "204",
+  "gold_answer_normalized": "204",
+  "derived_answer_normalized": "204",
+  "checks": [
+    {
+      "witness_id": "cs_standard_time",
+      "description": "CS 标准总时长解码",
+      "calculation": "min{n: 8 divides n!}",
+      "observed": "4",
+      "expected": "4",
+      "passed": true
+    },
+    {
+      "witness_id": "cs_fast_time",
+      "description": "CS 加速总时长解码",
+      "calculation": "max{k^2: k^2 < 150}",
+      "observed": "144",
+      "expected": "144",
+      "passed": true
+    },
+    {
+      "witness_id": "cs_increment",
+      "description": "CS 正速度增量解码",
+      "calculation": "u^2-u-2=0 的正根",
+      "observed": "0",
+      "expected": "0",
+      "passed": true
+    },
+    {
+      "witness_id": "speed_equations",
+      "description": "候选基础速度满足两条总时长方程的差",
+      "calculation": "9/s-9/(s+2)=8/5",
+      "observed": "8/5",
+      "expected": "8/5",
+      "passed": true
+    },
+    {
+      "witness_id": "positive_root",
+      "description": "速度方程的两个精确根中仅保留正根",
+      "calculation": "(2s-5)(2s+9)=0",
+      "observed": "(Fraction(-9, 2), Fraction(5, 2))",
+      "expected": "(Fraction(-9, 2), Fraction(5, 2))",
+      "passed": true
+    },
+    {
+      "witness_id": "fixed_stop",
+      "description": "共同停留时长",
+      "calculation": "4-9/(5/2)",
+      "observed": "2/5",
+      "expected": "2/5",
+      "passed": true
+    },
+    {
+      "witness_id": "target_total",
+      "description": "目标速度下总分钟数",
+      "calculation": "60*(9/(s+1/2)+stop)",
+      "observed": "204",
+      "expected": "204",
+      "passed": true
+    }
+  ]
+}

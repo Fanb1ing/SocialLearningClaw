@@ -1,0 +1,10 @@
+# Versions that can affect the vendored ARC environment, frame rendering, IDs,
+# validated graph serialization, or byte-level result-log hashes.
+arc-agi==0.9.8
+arc-agi-core==0.1.14
+arcengine==0.9.3
+numpy==2.4.4
+pillow==12.2.0
+pydantic==2.13.4
+pydantic-core==2.46.4
+svg.py==1.10.0

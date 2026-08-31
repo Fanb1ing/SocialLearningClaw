@@ -1,0 +1,29 @@
+{
+  "format_version": 1,
+  "algorithm": "semantic_window_v1",
+  "memory_count": 2545,
+  "transition_count": 2068,
+  "window_count": 333,
+  "keyframe_count": 138,
+  "schema_count": 50,
+  "schema_source_transition_count": 2064,
+  "schema_negative_transition_count": 25,
+  "uncited_transition_count": 4,
+  "schema_counts_by_game": {
+    "cd82-fb555c5d": 18,
+    "sk48-d8078629": 16,
+    "tu93-0768757b": 16
+  },
+  "proposal_counts": {
+    "create": 50,
+    "revise": 22,
+    "skip": 4,
+    "support": 1175
+  },
+  "accepted_proposal_count": 1251,
+  "applied_proposal_count": 1247,
+  "rejected_proposal_count": 0,
+  "network_calls": 0,
+  "gold_schema_reads": 0,
+  "verified_keyframe_artifact_count": 192
+}

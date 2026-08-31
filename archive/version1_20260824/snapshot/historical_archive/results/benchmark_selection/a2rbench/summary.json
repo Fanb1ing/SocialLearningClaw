@@ -1,0 +1,14 @@
+{
+  "metric": "Exact Match Accuracy (%) \u2014 match predicted final_answer to answer_ciphertext",
+  "our_results": {
+    "claude-opus-4.8": 88.88888888888889,
+    "gemini-2.5-flash": 50.0
+  },
+  "paper_info": {
+    "gemini-2.5-flash": "in paper (Answerer_Gemini_Flash)",
+    "human": 68.5,
+    "top_model": 39.8
+  },
+  "n_samples": 18,
+  "note": "72 total validated problems; sampled 20 balanced across task_type \u00d7 dim"
+}

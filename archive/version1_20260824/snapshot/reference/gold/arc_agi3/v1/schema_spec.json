@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "socialclaw.gold_schema.v1",
+  "title": "SocialLearningClaw Gold Schema v1",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "format_version",
+    "title",
+    "benchmark",
+    "benchmark_version",
+    "game_id",
+    "level_scope",
+    "abstraction_level",
+    "kind",
+    "trigger",
+    "action_sequence",
+    "expectation",
+    "constraints",
+    "exceptions",
+    "relations",
+    "source_evidence",
+    "runtime_evidence",
+    "verification"
+  ],
+  "properties": {
+    "format_version": {
+      "const": 1
+    },
+    "benchmark": {
+      "const": "arc_agi3"
+    },
+    "abstraction_level": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "kind": {
+      "enum": [
+        "observation_semantics",
+        "action_precondition",
+        "action_effect",
+        "state_transition",
+        "constraint",
+        "hazard",
+        "goal"
+      ]
+    },
+    "level_scope": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "action_sequence": {
+      "type": "array"
+    },
+    "constraints": {
+      "type": "array"
+    },
+    "exceptions": {
+      "type": "array"
+    },
+    "source_evidence": {
+      "type": "array",
+      "minItems": 1
+    },
+    "runtime_evidence": {
+      "type": "array"
+    }
+  }
+}

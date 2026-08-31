@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sociallearningclaw"
+version = "0.1.0"
+description = "Schema-learning agents evaluated on ARC-AGI-3, ContextMATH, and IntPhys2"
+requires-python = ">=3.12"
+dependencies = [
+  "arc-agi>=0.9.8",
+  "arcengine>=0.9.3",
+  "httpx>=0.27.0",
+  "huggingface_hub>=0.23.0",
+  "sentence-transformers>=3.0.0",
+  "rich>=13.0.0",
+  "numpy>=1.24.0",
+  "openai>=2.0.0",
+  "opencv-python-headless>=4.10.0",
+  "pandas>=2.2.0",
+  "pillow>=10.0.0",
+  "pyarrow>=17.0.0",
+  "python-dotenv>=1.0.0",
+  "requests>=2.32.0",
+]
+
+[project.scripts]
+sc-run-static = "socialclaw.run_static:main"
+sc-run-arc = "socialclaw.run_arc:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["socialclaw*"]

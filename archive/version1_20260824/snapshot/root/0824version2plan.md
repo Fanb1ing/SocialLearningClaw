@@ -1,0 +1,21 @@
+最近我跟老师把现在的项目又重新重构了一下，对schema的定义有了新的理解，另外也对怎么设计schema系统有了新的想法，所以需要重构Version2的原型机。
+
+
+schema的定义和皮亚杰的认知发展理论对齐，是一系列可以被主体视为等价的行动中可重复、可迁移和可泛化的组织结构。主体可以把同一个schema应用在不同的情景和物体上，如果符合schema的变化那么就是同化，如果不符合schema的变化那就是顺应。在对该情景/物体应用schema的过程中，主体不断完善对该情景/物体的认知和理解。
+
+我和老师理清了“schema作用的物体”，这里有三个概念：entity-feature-prototype，以玩ARC-AGI-3游戏为例，entity就是游戏中具体的某个观察到的物体，feature就是该物体的属性（比如形状、颜色、条纹这种自身固有属性，也包括可移动、可交互等主体和他交互时的属性，还包括对周围邻居造成伤害、阻挡前进物体等该物体和某类其他物体交互时的属性），prototype就是由具体的entity通过找相同的feature抽象出的一类的原型机（比如红色方块的各个entity有）
+
+
+我们在应用schema的时候，直接操作的entity,但是schema记录的都是对prototype进行操作，比如一个prototype之下有5个entity，我们记录schema的时候知道该schema能够操作的prototype，而无需用五倍的空间存储entity。在落实操作的时候会找到prototype下映射的entity。
+
+在获得ARC环境反馈之后我们有几个能改的地方：1. 改prototype和entity之间的映射关系；2.改schema和prototype之间的关系，比如分化新的prototype、新增feature
+
+
+现在项目代码是包括3个benchmark的，之后我们只在arc-agi-3上做；现在的计划是重构Version2的原型机，主要包括以下几个方面：
+1. 调整entity-feature-prototype-schema的定义和设计,可能多层图结构就不用了，直接用entity-feature-prototype-schema的关系图就可以了；
+2. 规划agent使用entity-feature-prototype-schema的方式，设计清楚prompt,让agent具备planning、reasoning能力；
+3. 设计一个schema和prototype更新agent,让agent能够在观察到环境-行为-结果后，从“如无必要无增实体”的原则出发更新schema和prototype的定义和关系，或者更新entity-feature-prototype的关系图；
+4. 设计一个探索agent,在比较新的环境（比如出现 新的entity/action/不能解释的现象）能够根据新事物的相似性确定最有可能探索的方向
+
+我需要你看一下现在的代码能不能复用，就先看ARC和我们自己的method,把现在所有的代码进行存档，把能复用的部分复制出来 直接复用  
+

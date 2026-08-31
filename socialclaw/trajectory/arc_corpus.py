@@ -74,6 +74,23 @@ def replay_arc_episode(root: str | Path, episode: TrajectoryEpisode) -> Dict[str
         errors.append("initial observation differs from a fresh reset")
 
     for step in episode.steps:
+        if step.action.name == "ENV_RESET" and step.metadata.get("runtime_recovery"):
+            raw = env.reset()
+            actual = np.asarray(raw.frame[-1])
+            expected = adapter.load_grid(step.result.observation)
+            if not np.array_equal(actual, expected):
+                errors.append(f"step {step.step_index}: reset grid differs")
+                break
+            actual_status = str(
+                getattr(raw.state, "value", raw.state)
+            ).removeprefix("GameState.")
+            if actual_status != step.result.environment_status:
+                errors.append(
+                    f"step {step.step_index}: reset status {actual_status} != "
+                    f"{step.result.environment_status}"
+                )
+                break
+            continue
         available = {item.name: item for item in env.get_available_actions(raw)}
         if step.action.name not in available:
             errors.append(f"step {step.step_index}: action is unavailable")

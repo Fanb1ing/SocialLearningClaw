@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "socialclaw.intphys2_gold_schema.v1",
+  "title": "SocialLearningClaw IntPhys2 Gold Schema v1",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "format_version",
+    "title",
+    "benchmark",
+    "benchmark_version",
+    "condition",
+    "scene_scope",
+    "abstraction_level",
+    "kind",
+    "trigger",
+    "expectation",
+    "violation_signatures",
+    "constraints",
+    "exceptions",
+    "relations",
+    "source_evidence",
+    "visual_evidence_ids",
+    "verification"
+  ],
+  "properties": {
+    "format_version": {
+      "const": 1
+    },
+    "benchmark": {
+      "const": "intphys2"
+    },
+    "condition": {
+      "enum": [
+        "permanence",
+        "immutability",
+        "continuity",
+        "solidity"
+      ]
+    },
+    "abstraction_level": {
+      "enum": [
+        1,
+        3
+      ]
+    },
+    "kind": {
+      "enum": [
+        "physical_invariant",
+        "scene_discriminant"
+      ]
+    },
+    "source_evidence": {
+      "type": "array",
+      "minItems": 2
+    },
+    "visual_evidence_ids": {
+      "type": "array",
+      "minItems": 2
+    }
+  }
+}

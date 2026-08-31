@@ -1,0 +1,156 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "contextmath:aime_2024:67:L3:expand_log_power:69a8bc97e17e",
+      "format_version": 1,
+      "title": "把幂的对数写成自然对数比值",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2024:67",
+      "sample_scope": [
+        "aime_2024_sg:67",
+        "aime_2024_cs:67"
+      ],
+      "abstraction_level": 3,
+      "kind": "representation",
+      "trigger": "底数和真数均大于 1，两个对数都有定义。",
+      "operation": "使用 log_a(b^c)=c ln(b)/ln(a) 展开两条等式。",
+      "expectation": "得到 x·ln(y)/ln(x) 与 4y·ln(x)/ln(y) 两个表达式。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2024_sg-00000-of-00001.parquet",
+          "sha256": "870c1f2183149c6fcf7e08314954442ac6c3d82c3ed6acf3cc2f03224a393a76",
+          "row_id": 67,
+          "field": "ori_question",
+          "value_sha256": "43afc8d2eb636c35477cc9ac8f1db3563134d10673beb9fb808c45dbc3021e51",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2024_cs-00000-of-00001.parquet",
+          "sha256": "2a4bad514cbf2b0b38726340e0add026fe4b2648997673b86eff9421cd0cc38a",
+          "row_id": 67,
+          "field": "ori_question",
+          "value_sha256": "43afc8d2eb636c35477cc9ac8f1db3563134d10673beb9fb808c45dbc3021e51",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "coupled_log_product"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "contextmath:aime_2024:67:L3:cancel_log_ratios:aeefb755f3d0",
+      "format_version": 1,
+      "title": "相乘耦合等式以消去互逆对数比",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2024:67",
+      "sample_scope": [
+        "aime_2024_sg:67",
+        "aime_2024_cs:67"
+      ],
+      "abstraction_level": 3,
+      "kind": "derivation",
+      "trigger": "两个展开式分别等于已知常数。",
+      "operation": "将两式相乘；ln(y)/ln(x) 与 ln(x)/ln(y) 相消。",
+      "expectation": "直接得到只含 xy 的方程，且无需分别求 x、y。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "contextmath:aime_2024:67:L3:expand_log_power:69a8bc97e17e"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2024_sg-00000-of-00001.parquet",
+          "sha256": "870c1f2183149c6fcf7e08314954442ac6c3d82c3ed6acf3cc2f03224a393a76",
+          "row_id": 67,
+          "field": "ori_question",
+          "value_sha256": "43afc8d2eb636c35477cc9ac8f1db3563134d10673beb9fb808c45dbc3021e51",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2024_cs-00000-of-00001.parquet",
+          "sha256": "2a4bad514cbf2b0b38726340e0add026fe4b2648997673b86eff9421cd0cc38a",
+          "row_id": 67,
+          "field": "ori_question",
+          "value_sha256": "43afc8d2eb636c35477cc9ac8f1db3563134d10673beb9fb808c45dbc3021e51",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "coupled_log_product"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "contextmath:aime_2024:67:L3:solve_product:339111f01a96",
+      "format_version": 1,
+      "title": "从乘积方程直接求目标量",
+      "benchmark": "contextmath",
+      "benchmark_version": "local_aime_2024_2025",
+      "problem_id": "aime_2024:67",
+      "sample_scope": [
+        "aime_2024_sg:67",
+        "aime_2024_cs:67"
+      ],
+      "abstraction_level": 3,
+      "kind": "calculation",
+      "trigger": "消元后方程只含目标 xy。",
+      "operation": "除去已知系数并保持精确有理数运算。",
+      "expectation": "得到题目所求乘积。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "contextmath:aime_2024:67:L3:cancel_log_ratios:aeefb755f3d0"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "data/contextmath/aime_2024_sg-00000-of-00001.parquet",
+          "sha256": "870c1f2183149c6fcf7e08314954442ac6c3d82c3ed6acf3cc2f03224a393a76",
+          "row_id": 67,
+          "field": "ori_question",
+          "value_sha256": "43afc8d2eb636c35477cc9ac8f1db3563134d10673beb9fb808c45dbc3021e51",
+          "variant": "sg"
+        },
+        {
+          "path": "data/contextmath/aime_2024_cs-00000-of-00001.parquet",
+          "sha256": "2a4bad514cbf2b0b38726340e0add026fe4b2648997673b86eff9421cd0cc38a",
+          "row_id": 67,
+          "field": "ori_question",
+          "value_sha256": "43afc8d2eb636c35477cc9ac8f1db3563134d10673beb9fb808c45dbc3021e51",
+          "variant": "cs"
+        }
+      ],
+      "witness_ids": [
+        "target_product"
+      ],
+      "verification": {
+        "source": "passed",
+        "executable": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "format_version": 1,
+  "problem_id": "aime_2025:0",
+  "generator": "scripts/generate_contextmath_gold.py",
+  "gold_answer_raw": "70",
+  "gold_answer_normalized": "70",
+  "derived_answer_normalized": "70",
+  "checks": [
+    {
+      "witness_id": "base_expansion",
+      "description": "两位数按进制展开",
+      "calculation": "17_b=b+7; 97_b=9b+7",
+      "observed": "('b+7', '9b+7')",
+      "expected": "('b+7', '9b+7')",
+      "passed": true
+    },
+    {
+      "witness_id": "divisibility_reduction",
+      "description": "线性组合将整除条件化为常数",
+      "calculation": "9(b+7)-(9b+7)=56",
+      "observed": "56",
+      "expected": "56",
+      "passed": true
+    },
+    {
+      "witness_id": "valid_bases",
+      "description": "枚举 56 的因数并施加 b>9",
+      "calculation": "b+7 divides 56",
+      "observed": "[21, 49]",
+      "expected": "[21, 49]",
+      "passed": true
+    },
+    {
+      "witness_id": "base_sum",
+      "description": "汇总全部合法进制",
+      "calculation": "21+49",
+      "observed": "70",
+      "expected": "70",
+      "passed": true
+    }
+  ]
+}

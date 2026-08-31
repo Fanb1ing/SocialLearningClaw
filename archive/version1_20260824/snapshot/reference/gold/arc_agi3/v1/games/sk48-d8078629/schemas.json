@@ -1,0 +1,573 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:sk48-d8078629:L2:reference_sequences:fb15e407fc94",
+      "format_version": 1,
+      "title": "场外同色链条给出各目标链条需要覆盖的颜色序列",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "d8078629",
+      "game_id": "sk48-d8078629",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "observation_semantics",
+      "trigger": "一条场内链头与底部场外链头具有相同颜色。",
+      "action_sequence": [],
+      "expectation": "两者组成目标对；场外链条从第二节开始覆盖的彩色方块，按链方向给出场内链条最终需要覆盖的有序颜色序列。没有同色场外链的链条不参与目标比较。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.on_set_level / Sk48.gvtmoopqgy",
+          "lines": [
+            656,
+            703
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.gvtmoopqgy",
+          "lines": [
+            842,
+            859
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "verification": {
+        "static": "passed",
+        "runtime": "not_required",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sk48-d8078629:L2:select_chain:871966b91bae",
+      "format_version": 1,
+      "title": "ACTION6 点击可控链头可切换当前活动链条",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "d8078629",
+      "game_id": "sk48-d8078629",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "ACTION6 点击另一条带可点击外框的场内链头，或它的同色场外参考链头。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {
+            "target_role": "chain_head"
+          }
+        }
+      ],
+      "expectation": "该链条成为当前活动链条；场上位置和剩余移动预算不变。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.step / Sk48.crbbymputr",
+          "lines": [
+            746,
+            755
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.crbbymputr",
+          "lines": [
+            818,
+            840
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "select_second_chain"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sk48-d8078629:L2:direction_controls:841d9c2467c8",
+      "format_version": 1,
+      "title": "ACTION1–4 分别请求上、下、左、右移动",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "d8078629",
+      "game_id": "sk48-d8078629",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "当前活动链条可接受方向输入。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "四个 action 分别映射到上、下、左、右一个 6×6 网格单位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.ghcqtpzzlq",
+          "lines": [
+            973,
+            982
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "direction_mapping"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sk48-d8078629:L2:extend_chain:28d1acb0abd2",
+      "format_version": 1,
+      "title": "沿链头朝向移动会把活动链条伸长一节",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "d8078629",
+      "game_id": "sk48-d8078629",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "方向输入与链头朝向一致，最前端下一格不越界且不是墙。",
+      "action_sequence": [
+        {
+          "action": "direction_of_chain",
+          "arguments": {}
+        }
+      ],
+      "expectation": "链条前端前进一格，并在链头原位置补入一节，因此总长度增加 1。",
+      "constraints": [
+        "前端下一格被边界或墙阻挡时，链条不伸长。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.hgivzuhjvj",
+          "lines": [
+            768,
+            785
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "extend_and_wall_block"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sk48-d8078629:L2:retract_chain:ecbe9a6fc8bf",
+      "format_version": 1,
+      "title": "逆链头朝向移动会把活动链条缩短一节",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "d8078629",
+      "game_id": "sk48-d8078629",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "方向输入与链头朝向相反，且链条长度大于 1。",
+      "action_sequence": [
+        {
+          "action": "opposite_direction",
+          "arguments": {}
+        }
+      ],
+      "expectation": "靠近链头的一节被移除，其余链节后退一格，链条总长度减少 1。",
+      "constraints": [
+        "链条最短保留 1 节；继续反向输入不会再缩短。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.hgivzuhjvj",
+          "lines": [
+            786,
+            791
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "retract_and_minimum_length"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sk48-d8078629:L2:translate_chain:bfc4d96bf7c6",
+      "format_version": 1,
+      "title": "在轨道位置横向于链头移动会平移整条活动链",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "d8078629",
+      "game_id": "sk48-d8078629",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "方向与链头朝向垂直，链头旁存在对应灰色轨道，且整条链可平移。",
+      "action_sequence": [
+        {
+          "action": "perpendicular_direction",
+          "arguments": {}
+        }
+      ],
+      "expectation": "链头和全部链节沿输入方向平移一个网格单位，链长不变。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.hgivzuhjvj",
+          "lines": [
+            792,
+            808
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "perpendicular_translation",
+        "push_block_cascade"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+      "format_version": 1,
+      "title": "链条移动会递归推动路径上的彩色方块和相容链段",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "d8078629",
+      "game_id": "sk48-d8078629",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动链条的目标位置被彩色方块或其他链段占据。",
+      "action_sequence": [
+        {
+          "action": "movement_action",
+          "arguments": {}
+        }
+      ],
+      "expectation": "可沿同一方向移动的接触对象会被递归推动一格；推动可形成连续方块级联。任一对象遇到边界、墙或不相容的交叉链段时，整次平移被阻止。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.bnrdrdiakd / Sk48.qzvlbxkjgk",
+          "lines": [
+            893,
+            971
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "push_block_cascade"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sk48-d8078629:L2:undo_move:9482c4b0402a",
+      "format_version": 1,
+      "title": "ACTION7 撤销最近一次完成的棋盘移动",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "d8078629",
+      "game_id": "sk48-d8078629",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "至少已有一次完成的方向移动快照。",
+      "action_sequence": [
+        {
+          "action": "ACTION7",
+          "arguments": {}
+        }
+      ],
+      "expectation": "所有链头、链节长度和彩色方块恢复到上一个移动快照。",
+      "constraints": [
+        "撤销不返还已消耗的移动预算，也不撤销单纯的链条选择。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.uqclctlhyh",
+          "lines": [
+            870,
+            891
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "undo_board_move"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sk48-d8078629:L2:goal_sequences_match:9f6a5e9399fb",
+      "format_version": 1,
+      "title": "所有目标链覆盖的颜色序列匹配各自参考序列即可过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "d8078629",
+      "game_id": "sk48-d8078629",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "一次棋盘移动完成后。",
+      "action_sequence": [],
+      "expectation": "对每一对同色场内/场外链条，场内链节覆盖的彩色方块序列必须至少包含参考链要求的全部位置，且逐项颜色相同；全部目标对同时满足时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "arc_agi3:sk48-d8078629:L2:reference_sequences:fb15e407fc94"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.gvtmoopqgy / Sk48.step",
+          "lines": [
+            842,
+            859
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.step",
+          "lines": [
+            709,
+            744
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "goal_sequence_comparison"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sk48-d8078629:L2:movement_budget:396f53ed58b2",
+      "format_version": 1,
+      "title": "方向输入消耗有限移动预算，耗尽时失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "d8078629",
+      "game_id": "sk48-d8078629",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "执行 ACTION1–4，包括未产生位移的受阻输入。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "每次方向输入消耗 1 点预算；预算降到 0 且尚未满足目标时 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [
+        "ACTION6 切换链条和 ACTION7 撤销不消耗该预算。"
+      ],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.hgivzuhjvj / Sk48.step",
+          "lines": [
+            768,
+            770
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/sk48/d8078629/sk48.py",
+          "sha256": "b6ca05eed7ba81fe5a6a26c58410fa7daddf2039d3d1c42f600aaf9f6f0111e3",
+          "symbol": "Sk48.step",
+          "lines": [
+            740,
+            765
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "movement_budget_loss",
+        "select_second_chain"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

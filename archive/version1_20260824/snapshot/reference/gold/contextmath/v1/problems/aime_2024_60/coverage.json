@@ -1,0 +1,38 @@
+{
+  "format_version": 1,
+  "problem_id": "aime_2024:60",
+  "requirements": [
+    {
+      "requirement_id": "sg_semantic_alignment",
+      "schema_ids": [],
+      "artifact": "surface_alignment.json",
+      "status": "complete"
+    },
+    {
+      "requirement_id": "cs_semantic_alignment",
+      "schema_ids": [],
+      "artifact": "surface_alignment.json",
+      "status": "complete"
+    },
+    {
+      "requirement_id": "necessary_reasoning_chain",
+      "schema_ids": [
+        "contextmath:aime_2024:60:L3:total_time_model:d1fa2da85034",
+        "contextmath:aime_2024:60:L3:eliminate_stop:70e0ffbba389",
+        "contextmath:aime_2024:60:L3:positive_speed:a62c14a13230",
+        "contextmath:aime_2024:60:L3:recover_stop:87a0e4619b7f",
+        "contextmath:aime_2024:60:L3:target_time:47f87193c08d"
+      ],
+      "artifact": "schemas.json",
+      "status": "complete"
+    },
+    {
+      "requirement_id": "executable_answer_check",
+      "schema_ids": [
+        "contextmath:aime_2024:60:L3:target_time:47f87193c08d"
+      ],
+      "artifact": "witness.json",
+      "status": "complete"
+    }
+  ]
+}

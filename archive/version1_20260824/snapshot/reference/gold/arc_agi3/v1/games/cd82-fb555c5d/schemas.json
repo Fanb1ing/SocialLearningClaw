@@ -1,0 +1,945 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:reference_pattern:2a9c1d74b4f9",
+      "format_version": 1,
+      "title": "左上 10×10 图案是当前关卡的目标图案",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "observation_semantics",
+      "trigger": "每个 level 的初始画面左上方出现一个独立的 10×10 彩色图案。",
+      "action_sequence": [],
+      "expectation": "该图案保持不变，并作为中央偏下 10×10 画布的目标参考。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.wvrremwltt",
+          "lines": [
+            740,
+            753
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "levels",
+          "lines": [
+            257,
+            361
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "verification": {
+        "static": "passed",
+        "runtime": "not_required",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:paint_canvas:5c0767d53a96",
+      "format_version": 1,
+      "title": "中央偏下的黑色 10×10 方块是可绘制画布",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "observation_semantics",
+      "trigger": "画面中央偏下存在初始颜色全为 0 的 10×10 方块。",
+      "action_sequence": [],
+      "expectation": "ACTION5 和后四关的边缘点击工具只修改这块画布；目标图案本身不被修改。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "sprites['xytrjjbyib']",
+          "lines": [
+            234,
+            249
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.rtjwayrycq",
+          "lines": [
+            709,
+            738
+          ]
+        },
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.coublenfir",
+          "lines": [
+            613,
+            628
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "verification": {
+        "static": "passed",
+        "runtime": "not_required",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:palette_select:5238b6b05cf7",
+      "format_version": 1,
+      "title": "点击调色板按钮会切换当前绘制颜色",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "ACTION6 的坐标落在一个顶部调色板按钮内。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {
+            "target_role": "palette_button"
+          }
+        }
+      ],
+      "expectation": "当前颜色变为该按钮中心的颜色，颜色指示条移动到该按钮下方，活动工具同步改色。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.qbiojckwxl",
+          "lines": [
+            551,
+            572
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "palette_select_color_0"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:move_action1:2b08e67c10f7",
+      "format_version": 1,
+      "title": "ACTION1 在八位置环上移动活动工具",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动工具位于右、右下、左下或左侧。",
+      "action_sequence": [
+        {
+          "action": "ACTION1",
+          "arguments": {}
+        }
+      ],
+      "expectation": "位置分别变为右上、右、左、左上；其他位置保持不变。",
+      "constraints": [
+        "工具不能移出八个外围位置，也不能进入中央位置。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.nqhfiooufi",
+          "lines": [
+            531,
+            549
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "navigation_transition_table"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:move_action2:7fed96dbc083",
+      "format_version": 1,
+      "title": "ACTION2 在八位置环上移动活动工具",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动工具位于右上、右、左或左上。",
+      "action_sequence": [
+        {
+          "action": "ACTION2",
+          "arguments": {}
+        }
+      ],
+      "expectation": "位置分别变为右、右下、左下、左；其他位置保持不变。",
+      "constraints": [
+        "工具不能移出八个外围位置，也不能进入中央位置。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.nqhfiooufi",
+          "lines": [
+            531,
+            549
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "navigation_transition_table"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:move_action3:7917915ab38f",
+      "format_version": 1,
+      "title": "ACTION3 在八位置环上移动活动工具",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动工具位于上、右上、右下或下方。",
+      "action_sequence": [
+        {
+          "action": "ACTION3",
+          "arguments": {}
+        }
+      ],
+      "expectation": "位置分别变为左上、上、下、左下；其他位置保持不变。",
+      "constraints": [
+        "工具不能移出八个外围位置，也不能进入中央位置。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.nqhfiooufi",
+          "lines": [
+            531,
+            549
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "navigation_transition_table"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:move_action4:ea07347fab10",
+      "format_version": 1,
+      "title": "ACTION4 在八位置环上移动活动工具",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动工具位于上、下、左下或左上。",
+      "action_sequence": [
+        {
+          "action": "ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "位置分别变为右上、右下、下、上；其他位置保持不变。",
+      "constraints": [
+        "工具不能移出八个外围位置，也不能进入中央位置。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.nqhfiooufi",
+          "lines": [
+            531,
+            549
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "navigation_transition_table"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:paint_top_half:269f73d00959",
+      "format_version": 1,
+      "title": "ACTION5 使用顶部工具填充对应区域",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动绘制工具位于顶部位置，当前选中颜色为 C。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "画布第 0–4 行的全部 50 个单元格被设为颜色 C，区域外的画布单元格保持原值；工具动画后返回原位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.nlvliaznao / Cd82.hhjooisvrs / Cd82.rtjwayrycq",
+          "lines": [
+            673,
+            738
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "action5_region_0"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:paint_top_right_triangle:70fb4a807d5f",
+      "format_version": 1,
+      "title": "ACTION5 使用右上工具填充对应区域",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动绘制工具位于右上位置，当前选中颜色为 C。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "每行从主对角线单元格到最右侧的上/右三角区域被设为颜色 C，区域外的画布单元格保持原值；工具动画后返回原位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.nlvliaznao / Cd82.hhjooisvrs / Cd82.rtjwayrycq",
+          "lines": [
+            673,
+            738
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "action5_region_1"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:paint_right_half:b3b1ce70645c",
+      "format_version": 1,
+      "title": "ACTION5 使用右侧工具填充对应区域",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动绘制工具位于右侧位置，当前选中颜色为 C。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "画布第 5–9 列的全部 50 个单元格被设为颜色 C，区域外的画布单元格保持原值；工具动画后返回原位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.nlvliaznao / Cd82.hhjooisvrs / Cd82.rtjwayrycq",
+          "lines": [
+            673,
+            738
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "action5_region_2"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:paint_bottom_right_triangle:fe5879fe14f4",
+      "format_version": 1,
+      "title": "ACTION5 使用右下工具填充对应区域",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动绘制工具位于右下位置，当前选中颜色为 C。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "每行从副对角线单元格到最右侧的下/右三角区域被设为颜色 C，区域外的画布单元格保持原值；工具动画后返回原位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.nlvliaznao / Cd82.hhjooisvrs / Cd82.rtjwayrycq",
+          "lines": [
+            673,
+            738
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "action5_region_3"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:paint_bottom_half:cd8a02f2dea0",
+      "format_version": 1,
+      "title": "ACTION5 使用底部工具填充对应区域",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动绘制工具位于底部位置，当前选中颜色为 C。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "画布第 5–9 行的全部 50 个单元格被设为颜色 C，区域外的画布单元格保持原值；工具动画后返回原位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.nlvliaznao / Cd82.hhjooisvrs / Cd82.rtjwayrycq",
+          "lines": [
+            673,
+            738
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "action5_region_4"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:paint_bottom_left_triangle:bd9c6896bda3",
+      "format_version": 1,
+      "title": "ACTION5 使用左下工具填充对应区域",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动绘制工具位于左下位置，当前选中颜色为 C。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "每行从最左侧到主对角线单元格的下/左三角区域被设为颜色 C，区域外的画布单元格保持原值；工具动画后返回原位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.nlvliaznao / Cd82.hhjooisvrs / Cd82.rtjwayrycq",
+          "lines": [
+            673,
+            738
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "action5_region_5"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:paint_left_half:249279c8fe66",
+      "format_version": 1,
+      "title": "ACTION5 使用左侧工具填充对应区域",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动绘制工具位于左侧位置，当前选中颜色为 C。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "画布第 0–4 列的全部 50 个单元格被设为颜色 C，区域外的画布单元格保持原值；工具动画后返回原位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.nlvliaznao / Cd82.hhjooisvrs / Cd82.rtjwayrycq",
+          "lines": [
+            673,
+            738
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "action5_region_6"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:paint_top_left_triangle:30cc456b6034",
+      "format_version": 1,
+      "title": "ACTION5 使用左上工具填充对应区域",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动绘制工具位于左上位置，当前选中颜色为 C。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "每行从最左侧到副对角线单元格的上/左三角区域被设为颜色 C，区域外的画布单元格保持原值；工具动画后返回原位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.nlvliaznao / Cd82.hhjooisvrs / Cd82.rtjwayrycq",
+          "lines": [
+            673,
+            738
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "action5_region_7"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:edge_detail_paint:89373eafbcbf",
+      "format_version": 1,
+      "title": "点击正方向小工具只填充相邻的 12 格区域",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动工具位于上、右、下或左侧，同色小工具可见，当前颜色为 C。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {
+            "target_role": "edge_detail_tool"
+          }
+        }
+      ],
+      "expectation": "点击上、右、下、左小工具时，分别把 rows 0–2/cols 3–6、rows 3–6/cols 7–9、rows 7–9/cols 3–6、rows 3–6/cols 0–2 这四个相邻 12 格区域设为 C；其余画布单元格保持原值。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.gfjfyvajah / Cd82.jgclfnjrnk / Cd82.coublenfir",
+          "lines": [
+            574,
+            628
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "edge_region_0",
+        "edge_region_2",
+        "edge_region_4",
+        "edge_region_6"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66",
+      "format_version": 1,
+      "title": "画布在忽略两条对角线后匹配目标即可过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "一次 ACTION5 或有效小工具绘制动画结束后。",
+      "action_sequence": [],
+      "expectation": "比较画布与左上目标图案的全部非对角线单元格；若完全相同则进入下一关，第 6 关满足时游戏 WIN。主对角线和副对角线上的单元格不参与比较。",
+      "constraints": [
+        "仅忽略坐标满足 row=col 或 row+col=9 的单元格。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": [
+          "arc_agi3:cd82-fb555c5d:L2:reference_pattern:2a9c1d74b4f9",
+          "arc_agi3:cd82-fb555c5d:L2:paint_canvas:5c0767d53a96"
+        ]
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.wvrremwltt",
+          "lines": [
+            740,
+            753
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "goal_ignores_diagonals",
+        "goal_rejects_non_diagonal_mismatch"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:cd82-fb555c5d:L2:action_budget_loss:c397ee61796b",
+      "format_version": 1,
+      "title": "达到 100 次 action 时游戏失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "fb555c5d",
+      "game_id": "cd82-fb555c5d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "当前累计 action_count 达到 100。",
+      "action_sequence": [],
+      "expectation": "环境调用 lose()，状态变为 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/cd82/fb555c5d/cd82.py",
+          "sha256": "dafeabff60a3a99b5c93629f8da0d8f555b873ef16a522247d6197b1b3addbcb",
+          "symbol": "Cd82.step",
+          "lines": [
+            630,
+            635
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "action_budget_game_over"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:bp35-0a0ad940:L2:horizontal:77d5ace4fa5b",
+      "format_version": 1,
+      "title": "ACTION3/4 分别向左/右尝试移动",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0a0ad940",
+      "game_id": "bp35-0a0ad940",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "角色处于可操作状态。",
+      "action_sequence": [
+        {
+          "action": "ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "角色朝相应方向走一格；实体阻挡时原地播放碰撞反馈。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/bp35/0a0ad940/bp35.py",
+          "sha256": "e9aecb52c629c3e742276c2db04b81f91555051d8617b6cbc58bac410824867f",
+          "symbol": "uakietkqfso mechanics and Bp35 action adapter",
+          "lines": [
+            4032,
+            4565
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:bp35-0a0ad940:L2:gravity:6e5abf2903ac",
+      "format_version": 1,
+      "title": "每次横向移动后沿当前重力方向坠落",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0a0ad940",
+      "game_id": "bp35-0a0ad940",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "角色进入下方/上方连续空格。",
+      "action_sequence": [],
+      "expectation": "角色持续移动到当前重力方向上的首个支撑面；镜头跟随最终高度。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/bp35/0a0ad940/bp35.py",
+          "sha256": "e9aecb52c629c3e742276c2db04b81f91555051d8617b6cbc58bac410824867f",
+          "symbol": "uakietkqfso mechanics and Bp35 action adapter",
+          "lines": [
+            4032,
+            4565
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:bp35-0a0ad940:L2:gravity_switch:eb9db3904b40",
+      "format_version": 1,
+      "title": "点击重力装置会反转重力",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0a0ad940",
+      "game_id": "bp35-0a0ad940",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "ACTION6 点击可见的重力切换装置。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "重力方向上下反转，装置消失，角色沿新方向坠落。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/bp35/0a0ad940/bp35.py",
+          "sha256": "e9aecb52c629c3e742276c2db04b81f91555051d8617b6cbc58bac410824867f",
+          "symbol": "uakietkqfso mechanics and Bp35 action adapter",
+          "lines": [
+            4032,
+            4565
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:bp35-0a0ad940:L2:world_switch:0a478e94284c",
+      "format_version": 1,
+      "title": "点击机关会切换同组平台状态",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0a0ad940",
+      "game_id": "bp35-0a0ad940",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "ACTION6 点击开关、可消除块或生长机关。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "同标识对象在其状态序列间切换，可能生成/移除相邻支撑，并立即重新结算坠落。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/bp35/0a0ad940/bp35.py",
+          "sha256": "e9aecb52c629c3e742276c2db04b81f91555051d8617b6cbc58bac410824867f",
+          "symbol": "uakietkqfso mechanics and Bp35 action adapter",
+          "lines": [
+            4032,
+            4565
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:bp35-0a0ad940:L2:spike:c9827429a712",
+      "format_version": 1,
+      "title": "落到尖刺会失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0a0ad940",
+      "game_id": "bp35-0a0ad940",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "重力坠落的落点是尖刺。",
+      "action_sequence": [],
+      "expectation": "角色播放受击过程后进入 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/bp35/0a0ad940/bp35.py",
+          "sha256": "e9aecb52c629c3e742276c2db04b81f91555051d8617b6cbc58bac410824867f",
+          "symbol": "uakietkqfso mechanics and Bp35 action adapter",
+          "lines": [
+            4032,
+            4565
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:bp35-0a0ad940:L2:goal:6c2882420d0e",
+      "format_version": 1,
+      "title": "接触宝石或出口即完成关卡",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0a0ad940",
+      "game_id": "bp35-0a0ad940",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "横向移动或坠落终点命中宝石/出口。",
+      "action_sequence": [],
+      "expectation": "当前关完成；最终关满足时 WIN。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/bp35/0a0ad940/bp35.py",
+          "sha256": "e9aecb52c629c3e742276c2db04b81f91555051d8617b6cbc58bac410824867f",
+          "symbol": "uakietkqfso mechanics and Bp35 action adapter",
+          "lines": [
+            4032,
+            4565
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:bp35-0a0ad940:L2:undo:e0bde4868ffe",
+      "format_version": 1,
+      "title": "ACTION7 撤销最近一次世界操作",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0a0ad940",
+      "game_id": "bp35-0a0ad940",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "存在内部撤销快照。",
+      "action_sequence": [
+        {
+          "action": "ACTION7",
+          "arguments": {}
+        }
+      ],
+      "expectation": "恢复角色、重力与机关状态到上一快照。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/bp35/0a0ad940/bp35.py",
+          "sha256": "e9aecb52c629c3e742276c2db04b81f91555051d8617b6cbc58bac410824867f",
+          "symbol": "uakietkqfso mechanics and Bp35 action adapter",
+          "lines": [
+            4032,
+            4565
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

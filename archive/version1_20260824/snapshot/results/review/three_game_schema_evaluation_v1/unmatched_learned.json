@@ -1,0 +1,340 @@
+[
+  {
+    "schema_id": "schema_35ff352355b61d96",
+    "source": "learned",
+    "game_id": "cd82-fb555c5d",
+    "kind": "constraint",
+    "levels": [
+      1
+    ],
+    "actions": [
+      "ACTION6"
+    ],
+    "roles": [
+      "edge_detail_tool"
+    ],
+    "concepts": [
+      "blocked",
+      "no_effect",
+      "tool"
+    ],
+    "effect_class": "no_effect",
+    "trigger": "In cd82-fb555c5d, when ACTION6 on edge_detail_tool is used in an observed blocked or already-satisfied context; other observed contexts produce different outcomes",
+    "expectation": "The task grid remains unchanged; UI counters may still advance",
+    "text": "[Context/Perception: In cd82-fb555c5d, when ACTION6 on edge_detail_tool is used in an observed blocked or already-satisfied context; other observed contexts produce different outcomes] [Action/Execution: ACTION6 on edge_detail_tool] [Expectation: The task grid remains unchanged; UI counters may still advance] In cd82-fb555c5d, when ACTION6 on edge_detail_tool is used in an observed blocked or already-satisfied context; other observed contexts produce different outcomes The task grid remains unchanged; UI counters may still advance",
+    "evidence_ids": [
+      "memory_transition_05b1ef4c8f752c7b",
+      "memory_transition_0b032b71cb886c0d",
+      "memory_transition_17a2902f8e1ce978",
+      "memory_transition_17ff4e62116e16ed",
+      "memory_transition_198a72555cde50f6",
+      "memory_transition_b252caf243d9635b",
+      "memory_transition_c3afc73e230a3e59"
+    ],
+    "metadata": {
+      "game_id": "cd82-fb555c5d",
+      "action_name": "ACTION6",
+      "target_role": "edge_detail_tool",
+      "base_key": "cd82-fb555c5d|ACTION6|edge_detail_tool",
+      "effect_class": "no_effect",
+      "region": "none",
+      "change_scale": "none",
+      "level": 1,
+      "keyframe_memory_ids": [
+        "memory_transition_198a72555cde50f6"
+      ],
+      "algorithm": "semantic_window_v1",
+      "semantic_key": "cd82-fb555c5d|ACTION6|edge_detail_tool|no_effect|none|none",
+      "support_count": 5,
+      "level_scope": [
+        1
+      ],
+      "schema_kind": "constraint",
+      "paired_effect_classes": [
+        "effect",
+        "level_completion"
+      ],
+      "negative_keyframe_memory_ids": [
+        "memory_transition_05b1ef4c8f752c7b",
+        "memory_transition_b252caf243d9635b"
+      ]
+    }
+  },
+  {
+    "schema_id": "schema_41985149d3410205",
+    "source": "learned",
+    "game_id": "cd82-fb555c5d",
+    "kind": "constraint",
+    "levels": [
+      1
+    ],
+    "actions": [
+      "ACTION6"
+    ],
+    "roles": [
+      "palette_button"
+    ],
+    "concepts": [
+      "blocked",
+      "no_effect",
+      "palette"
+    ],
+    "effect_class": "no_effect",
+    "trigger": "In cd82-fb555c5d, when ACTION6 on palette_button is used in an observed blocked or already-satisfied context; other observed contexts produce different outcomes",
+    "expectation": "The task grid remains unchanged; UI counters may still advance",
+    "text": "[Context/Perception: In cd82-fb555c5d, when ACTION6 on palette_button is used in an observed blocked or already-satisfied context; other observed contexts produce different outcomes] [Action/Execution: ACTION6 on palette_button] [Expectation: The task grid remains unchanged; UI counters may still advance] In cd82-fb555c5d, when ACTION6 on palette_button is used in an observed blocked or already-satisfied context; other observed contexts produce different outcomes The task grid remains unchanged; UI counters may still advance",
+    "evidence_ids": [
+      "memory_transition_1ed032ebba4afcdd",
+      "memory_transition_34e51108798f282d",
+      "memory_transition_4928d04b5e25d4c4",
+      "memory_transition_52a9263f1ca8a431",
+      "memory_transition_52ec0b2b1bff7663",
+      "memory_transition_55005d16294ad0e4",
+      "memory_transition_97afaad911b6af7a",
+      "memory_transition_bdd79f9c9bbedd98",
+      "memory_transition_cc482f83beb0ba0b"
+    ],
+    "metadata": {
+      "game_id": "cd82-fb555c5d",
+      "action_name": "ACTION6",
+      "target_role": "palette_button",
+      "base_key": "cd82-fb555c5d|ACTION6|palette_button",
+      "effect_class": "no_effect",
+      "region": "none",
+      "change_scale": "none",
+      "level": 1,
+      "keyframe_memory_ids": [
+        "memory_transition_34e51108798f282d"
+      ],
+      "algorithm": "semantic_window_v1",
+      "semantic_key": "cd82-fb555c5d|ACTION6|palette_button|no_effect|none|none",
+      "support_count": 8,
+      "level_scope": [
+        1
+      ],
+      "schema_kind": "constraint",
+      "paired_effect_classes": [
+        "effect"
+      ],
+      "negative_keyframe_memory_ids": [
+        "memory_transition_55005d16294ad0e4"
+      ]
+    }
+  },
+  {
+    "schema_id": "schema_bee376c67bf45d49",
+    "source": "learned",
+    "game_id": "cd82-fb555c5d",
+    "kind": "constraint",
+    "levels": [
+      1
+    ],
+    "actions": [
+      "ACTION6"
+    ],
+    "roles": [
+      "background"
+    ],
+    "concepts": [
+      "blocked",
+      "no_effect"
+    ],
+    "effect_class": "no_effect",
+    "trigger": "In cd82-fb555c5d, when ACTION6 on background is used in an observed blocked or already-satisfied context",
+    "expectation": "The task grid remains unchanged; UI counters may still advance",
+    "text": "[Context/Perception: In cd82-fb555c5d, when ACTION6 on background is used in an observed blocked or already-satisfied context] [Action/Execution: ACTION6 on background] [Expectation: The task grid remains unchanged; UI counters may still advance] In cd82-fb555c5d, when ACTION6 on background is used in an observed blocked or already-satisfied context The task grid remains unchanged; UI counters may still advance",
+    "evidence_ids": [
+      "memory_transition_113eb139561d35b4",
+      "memory_transition_1e483157f746e922",
+      "memory_transition_429103c950b38968",
+      "memory_transition_452187328f18471e",
+      "memory_transition_5b4c227a3b1519ca",
+      "memory_transition_6805acf84b9f518b",
+      "memory_transition_7bbb0acef0326e4d",
+      "memory_transition_8b602fd0b734e648",
+      "memory_transition_c791ae647efab697"
+    ],
+    "metadata": {
+      "game_id": "cd82-fb555c5d",
+      "action_name": "ACTION6",
+      "target_role": "background",
+      "base_key": "cd82-fb555c5d|ACTION6|background",
+      "effect_class": "no_effect",
+      "region": "none",
+      "change_scale": "none",
+      "level": 1,
+      "keyframe_memory_ids": [
+        "memory_transition_c791ae647efab697"
+      ],
+      "algorithm": "semantic_window_v1",
+      "semantic_key": "cd82-fb555c5d|ACTION6|background|no_effect|none|none",
+      "support_count": 9,
+      "level_scope": [
+        1
+      ],
+      "schema_kind": "constraint",
+      "paired_effect_classes": []
+    }
+  },
+  {
+    "schema_id": "schema_ea1e2112dc4454cf",
+    "source": "learned",
+    "game_id": "sk48-d8078629",
+    "kind": "constraint",
+    "levels": [
+      1
+    ],
+    "actions": [
+      "ACTION6"
+    ],
+    "roles": [
+      "sampled_screen"
+    ],
+    "concepts": [
+      "blocked",
+      "no_effect"
+    ],
+    "effect_class": "no_effect",
+    "trigger": "In sk48-d8078629, when ACTION6 on sampled_screen is used in an observed blocked or already-satisfied context",
+    "expectation": "The task grid remains unchanged; UI counters may still advance",
+    "text": "[Context/Perception: In sk48-d8078629, when ACTION6 on sampled_screen is used in an observed blocked or already-satisfied context] [Action/Execution: ACTION6 on sampled_screen] [Expectation: The task grid remains unchanged; UI counters may still advance] In sk48-d8078629, when ACTION6 on sampled_screen is used in an observed blocked or already-satisfied context The task grid remains unchanged; UI counters may still advance",
+    "evidence_ids": [
+      "memory_transition_0e2e1f8a0e324833",
+      "memory_transition_35256f6f051d234f",
+      "memory_transition_4c8f20e0ac9eec45",
+      "memory_transition_5001440fb28cc6f6",
+      "memory_transition_6bdc9a4b541e2ab3",
+      "memory_transition_88b624b2b8503740",
+      "memory_transition_95850e8e8a48795a",
+      "memory_transition_a7fed8b025f3190d",
+      "memory_transition_d191758deb9cd7ed",
+      "memory_transition_f38aee0ba6e501dd",
+      "memory_transition_fab25f98840ac283"
+    ],
+    "metadata": {
+      "game_id": "sk48-d8078629",
+      "action_name": "ACTION6",
+      "target_role": "sampled_screen",
+      "base_key": "sk48-d8078629|ACTION6|sampled_screen",
+      "effect_class": "no_effect",
+      "region": "none",
+      "change_scale": "none",
+      "level": 1,
+      "keyframe_memory_ids": [
+        "memory_transition_a7fed8b025f3190d"
+      ],
+      "algorithm": "semantic_window_v1",
+      "semantic_key": "sk48-d8078629|ACTION6|sampled_screen|no_effect|none|none",
+      "support_count": 11,
+      "level_scope": [
+        1
+      ],
+      "schema_kind": "constraint",
+      "paired_effect_classes": []
+    }
+  },
+  {
+    "schema_id": "schema_6c290ea6d312f1cf",
+    "source": "learned",
+    "game_id": "sk48-d8078629",
+    "kind": "constraint",
+    "levels": [
+      1
+    ],
+    "actions": [
+      "ACTION7"
+    ],
+    "roles": [],
+    "concepts": [
+      "blocked",
+      "no_effect"
+    ],
+    "effect_class": "no_effect",
+    "trigger": "In sk48-d8078629, when ACTION7 is used in an observed blocked or already-satisfied context; other observed contexts produce different outcomes",
+    "expectation": "The task grid remains unchanged; UI counters may still advance",
+    "text": "[Context/Perception: In sk48-d8078629, when ACTION7 is used in an observed blocked or already-satisfied context; other observed contexts produce different outcomes] [Action/Execution: ACTION7] [Expectation: The task grid remains unchanged; UI counters may still advance] In sk48-d8078629, when ACTION7 is used in an observed blocked or already-satisfied context; other observed contexts produce different outcomes The task grid remains unchanged; UI counters may still advance",
+    "evidence_ids": [
+      "memory_transition_0e513b4fb0558cfc",
+      "memory_transition_2f553485fe8fc4e3",
+      "memory_transition_5bde8ec57089f0c0",
+      "memory_transition_6802c24fbc19b9fa",
+      "memory_transition_7dd51c9efadf6720",
+      "memory_transition_b245a2f4711386ca"
+    ],
+    "metadata": {
+      "game_id": "sk48-d8078629",
+      "action_name": "ACTION7",
+      "target_role": "",
+      "base_key": "sk48-d8078629|ACTION7|none",
+      "effect_class": "no_effect",
+      "region": "none",
+      "change_scale": "none",
+      "level": 1,
+      "keyframe_memory_ids": [
+        "memory_transition_b245a2f4711386ca"
+      ],
+      "algorithm": "semantic_window_v1",
+      "semantic_key": "sk48-d8078629|ACTION7|none|no_effect|none|none",
+      "support_count": 5,
+      "level_scope": [
+        1
+      ],
+      "schema_kind": "constraint",
+      "paired_effect_classes": [
+        "effect"
+      ],
+      "negative_keyframe_memory_ids": [
+        "memory_transition_7dd51c9efadf6720"
+      ]
+    }
+  },
+  {
+    "schema_id": "schema_447cb1c8c4a9318f",
+    "source": "learned",
+    "game_id": "sk48-d8078629",
+    "kind": "constraint",
+    "levels": [
+      1
+    ],
+    "actions": [
+      "ACTION6"
+    ],
+    "roles": [
+      "background"
+    ],
+    "concepts": [
+      "blocked",
+      "no_effect"
+    ],
+    "effect_class": "no_effect",
+    "trigger": "In sk48-d8078629, when ACTION6 on background is used in an observed blocked or already-satisfied context",
+    "expectation": "The task grid remains unchanged; UI counters may still advance",
+    "text": "[Context/Perception: In sk48-d8078629, when ACTION6 on background is used in an observed blocked or already-satisfied context] [Action/Execution: ACTION6 on background] [Expectation: The task grid remains unchanged; UI counters may still advance] In sk48-d8078629, when ACTION6 on background is used in an observed blocked or already-satisfied context The task grid remains unchanged; UI counters may still advance",
+    "evidence_ids": [
+      "memory_transition_27a603f941bd0bc1",
+      "memory_transition_4d8abc8ad86dcfb8",
+      "memory_transition_c3f343ba243e8905"
+    ],
+    "metadata": {
+      "game_id": "sk48-d8078629",
+      "action_name": "ACTION6",
+      "target_role": "background",
+      "base_key": "sk48-d8078629|ACTION6|background",
+      "effect_class": "no_effect",
+      "region": "none",
+      "change_scale": "none",
+      "level": 1,
+      "keyframe_memory_ids": [
+        "memory_transition_4d8abc8ad86dcfb8"
+      ],
+      "algorithm": "semantic_window_v1",
+      "semantic_key": "sk48-d8078629|ACTION6|background|no_effect|none|none",
+      "support_count": 3,
+      "level_scope": [
+        1
+      ],
+      "schema_kind": "constraint",
+      "paired_effect_classes": []
+    }
+  }
+]

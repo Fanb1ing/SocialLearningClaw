@@ -1,0 +1,252 @@
+{
+  "format_version": 1,
+  "benchmark": "intphys2",
+  "scene_id": "debug:3",
+  "split_aliases": [],
+  "condition": "permanence",
+  "game": "HotAirBallonTwoDist",
+  "camera": "Fixed",
+  "difficulty": "Easy",
+  "metadata_source": {
+    "path": "data/intphys2/Debug/metadata.csv",
+    "sha256": "2831c3e9ce34cb0944dcf2de34bd89f8e7cf456528af7cc229815c85221d2d5b"
+  },
+  "metadata_aliases": [],
+  "clips": [
+    {
+      "type": "1_Possible",
+      "gold_label": 1,
+      "video_path": "data/intphys2/Debug/Videos/dd9073071891fe351cb635ca3c76d9db4d9e044b010740a6e7979301c85836e6.mp4",
+      "video_sha256": "f1c26691c8e93e508e42fdc6ced0207146095fbeccc6b340a041544e0b77e380",
+      "fps": 60.0,
+      "frame_count": 636,
+      "duration_seconds": 10.6,
+      "resolution": [
+        512,
+        512
+      ],
+      "sampled_frames": [
+        {
+          "frame_index": 0,
+          "time_seconds": 0.0,
+          "decoded_bgr_sha256": "8d7a9edff7c7d9c944501bc9570182efc4320f44904a7feaebb7cf5d8a9a0064"
+        },
+        {
+          "frame_index": 60,
+          "time_seconds": 1.0,
+          "decoded_bgr_sha256": "146500426f7b3de65a50c484ab75b773dd38cdd1ae4273aebcf8c2a898f98bc8"
+        },
+        {
+          "frame_index": 270,
+          "time_seconds": 4.5,
+          "decoded_bgr_sha256": "26e517d9004e77be50ac2b70c9e4145f35cd99014436fbcdbcff4ff6bffca802"
+        },
+        {
+          "frame_index": 450,
+          "time_seconds": 7.5,
+          "decoded_bgr_sha256": "765a23d64ed9122a0ddcb0e1113a119a72366f0f63dd0a67a546f52701095bb1"
+        },
+        {
+          "frame_index": 510,
+          "time_seconds": 8.5,
+          "decoded_bgr_sha256": "2a32414f32a023c1a36fd08cab0f169f2aa201d8f73bea826c4ccf76baf61933"
+        },
+        {
+          "frame_index": 600,
+          "time_seconds": 10.0,
+          "decoded_bgr_sha256": "5f1880178d0aec733f47f1848548645ca2ad0a76b23f420106fa9595db1fd997"
+        }
+      ]
+    },
+    {
+      "type": "1_Impossible",
+      "gold_label": 0,
+      "video_path": "data/intphys2/Debug/Videos/ad1b00bba783c23d3cb424ba03f001e90bd570ed731573b1111c74ec7de07986.mp4",
+      "video_sha256": "e488e182b858f4ac5776ce454a399c6d03f39cc34cbb14bcfe20bb5164a5c86e",
+      "fps": 60.0,
+      "frame_count": 636,
+      "duration_seconds": 10.6,
+      "resolution": [
+        512,
+        512
+      ],
+      "sampled_frames": [
+        {
+          "frame_index": 0,
+          "time_seconds": 0.0,
+          "decoded_bgr_sha256": "a4b5e52a935f5127aa521ce8b02016182c1be2cc4a353ce11de14e6182991109"
+        },
+        {
+          "frame_index": 60,
+          "time_seconds": 1.0,
+          "decoded_bgr_sha256": "d9950ed16b5e7ab97133e136ecd94ab755075196dbfa5de1e4ed2f9730341be9"
+        },
+        {
+          "frame_index": 270,
+          "time_seconds": 4.5,
+          "decoded_bgr_sha256": "73a1236f61ce272dfaba647244678a021a2def6c9ab88267360f588a27773477"
+        },
+        {
+          "frame_index": 450,
+          "time_seconds": 7.5,
+          "decoded_bgr_sha256": "f5f824f1a3f6326fe480cf45607ac9cc27047d4145a7471bde240ae7aae59355"
+        },
+        {
+          "frame_index": 510,
+          "time_seconds": 8.5,
+          "decoded_bgr_sha256": "f5f040325fcdfdb035a92037cbfd28b385bda4480d4a0220104ea4293fc4ae36"
+        },
+        {
+          "frame_index": 600,
+          "time_seconds": 10.0,
+          "decoded_bgr_sha256": "2461c38758ba07dbab4fce2e35747c91646d910c81ad2e3c21fbddb2b558aeea"
+        }
+      ]
+    },
+    {
+      "type": "2_Possible",
+      "gold_label": 1,
+      "video_path": "data/intphys2/Debug/Videos/f77abb8ece2a4eeb2de52cc9683b35fad62f490d736c22f8ad43db6227b3265a.mp4",
+      "video_sha256": "6c84bff72681641478f4a18a7ace6458f34661865d4e2a17642908077d61ffce",
+      "fps": 60.0,
+      "frame_count": 636,
+      "duration_seconds": 10.6,
+      "resolution": [
+        512,
+        512
+      ],
+      "sampled_frames": [
+        {
+          "frame_index": 0,
+          "time_seconds": 0.0,
+          "decoded_bgr_sha256": "447f945e48874d67ed0518aae709174e183345b12dc514986a335ec76879625b"
+        },
+        {
+          "frame_index": 60,
+          "time_seconds": 1.0,
+          "decoded_bgr_sha256": "5ba88ff8514315e850acc066f77c7f4b56835a0aafbdc1a3e5ba59aef3e5e535"
+        },
+        {
+          "frame_index": 270,
+          "time_seconds": 4.5,
+          "decoded_bgr_sha256": "f576ad6ca3d465b1f52562f252d759a905533dfb2e08b2cdd8078386989fbab6"
+        },
+        {
+          "frame_index": 450,
+          "time_seconds": 7.5,
+          "decoded_bgr_sha256": "bd2156057c767bfb469c0150a602503bda2a5b24b7fd99041ac07dea48cad949"
+        },
+        {
+          "frame_index": 510,
+          "time_seconds": 8.5,
+          "decoded_bgr_sha256": "b3066ac0e684d6860d0ffb35e5a8b4274877649bf98eb9ac7d29d51db9f67032"
+        },
+        {
+          "frame_index": 600,
+          "time_seconds": 10.0,
+          "decoded_bgr_sha256": "2a055f5a68e6e921db159af982e63fb715090023ba8f1603f24305bab94d1bbd"
+        }
+      ]
+    },
+    {
+      "type": "2_Impossible",
+      "gold_label": 0,
+      "video_path": "data/intphys2/Debug/Videos/bb7175cc67c260b89495ac1bad756638270c427c079305315e4a4dc7dcbd42ea.mp4",
+      "video_sha256": "b94712921fd10cf8afe73e81c006247074cdcd0b675caf9e9bd8cf595387d691",
+      "fps": 60.0,
+      "frame_count": 636,
+      "duration_seconds": 10.6,
+      "resolution": [
+        512,
+        512
+      ],
+      "sampled_frames": [
+        {
+          "frame_index": 0,
+          "time_seconds": 0.0,
+          "decoded_bgr_sha256": "7dccf7bd9a7d0b8ce95297d891adbd28ba511e04dbab29062aab154d13f20b84"
+        },
+        {
+          "frame_index": 60,
+          "time_seconds": 1.0,
+          "decoded_bgr_sha256": "e1b6d874173129279a0c8ffd28595a90682323b578d05753e148e0aeecacc8e8"
+        },
+        {
+          "frame_index": 270,
+          "time_seconds": 4.5,
+          "decoded_bgr_sha256": "a91b8215f5c7747a6b69d2f8412fd31483a8c1bde7506814ce88fe2fd5ba78b4"
+        },
+        {
+          "frame_index": 450,
+          "time_seconds": 7.5,
+          "decoded_bgr_sha256": "5e9942d38ef8f96aeff3961302a8cad48d104877fe138396bee5109dfcf64ee7"
+        },
+        {
+          "frame_index": 510,
+          "time_seconds": 8.5,
+          "decoded_bgr_sha256": "dde1c1171b3e2294b7ab4622ab093a14c17e5c53619fe282e9ce98c810b93507"
+        },
+        {
+          "frame_index": 600,
+          "time_seconds": 10.0,
+          "decoded_bgr_sha256": "5f14f97626cde30a0cb17922d5efd6a4fa434d03be5aa9b04ea3538c92df743a"
+        }
+      ]
+    }
+  ],
+  "pair_assessments": [
+    {
+      "evidence_id": "intphys2:debug:3:pair1",
+      "pair": 1,
+      "possible_clip": "1_Possible",
+      "impossible_clip": "1_Impossible",
+      "focus_frames": [
+        0,
+        60,
+        450,
+        510,
+        600
+      ],
+      "possible_observation": "黄色球在遮挡前可见，热气球转回后同一黄色球再次可见。",
+      "impossible_observation": "黄色球在遮挡前可见，但热气球转回后球不再出现。",
+      "condition_consistency": "matched",
+      "semantic_status": "provisional_review_pending"
+    },
+    {
+      "evidence_id": "intphys2:debug:3:pair2",
+      "pair": 2,
+      "possible_clip": "2_Possible",
+      "impossible_clip": "2_Impossible",
+      "focus_frames": [
+        0,
+        60,
+        450,
+        510,
+        600
+      ],
+      "possible_observation": "遮挡前后均未观察到黄色球，没有新增目标物体。",
+      "impossible_observation": "遮挡前未观察到黄色球，遮挡结束后篮中出现黄色球，且没有可见进入路径。",
+      "condition_consistency": "matched",
+      "semantic_status": "provisional_review_pending"
+    }
+  ],
+  "contact_sheet": {
+    "path": "contact_sheet.jpg",
+    "sha256": "85cca664cc103aa44c6b866c30e6e00f8f591a44467974e02e9c076ef2e41f6e",
+    "columns": [
+      0,
+      60,
+      270,
+      450,
+      510,
+      600
+    ],
+    "rows": [
+      "1_Possible",
+      "1_Impossible",
+      "2_Possible",
+      "2_Impossible"
+    ]
+  },
+  "review": "pending"
+}

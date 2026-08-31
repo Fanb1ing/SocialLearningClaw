@@ -1,0 +1,404 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:ar25-0c556536:L2:composite:f11e225d592e",
+      "format_version": 1,
+      "title": "实物与递归镜像共同构成有效图形",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0c556536",
+      "game_id": "ar25-0c556536",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "observation_semantics",
+      "trigger": "关卡含可移动实物、镜面和目标标记。",
+      "action_sequence": [],
+      "expectation": "实物像素会沿相交镜轴递归反射；目标判定使用实物与全部有效镜像的并集。",
+      "constraints": [
+        "镜像递归深度受实现上限约束。"
+      ],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "verification": {
+        "static": "passed",
+        "runtime": "not_required",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ar25-0c556536:L2:move:285527377c31",
+      "format_version": 1,
+      "title": "ACTION1–4 移动当前选中实物",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0c556536",
+      "game_id": "ar25-0c556536",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "当前选中对象在对应方向仍位于边界内。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "选中实物向上、下、左、右移动一个单位，镜像随新位置重算；越界输入不移动。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ar25-0c556536:L2:reflect:e5f54f8412d6",
+      "format_version": 1,
+      "title": "镜面按自身轴向反射图形",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0c556536",
+      "game_id": "ar25-0c556536",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "实物位于可影响它的水平或垂直镜面一侧。",
+      "action_sequence": [],
+      "expectation": "镜像出现在到镜轴等距的另一侧；只支持单轴的对象不会继续产生另一轴镜像。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ar25-0c556536:L2:auto_rotate:3380758b2b7a",
+      "format_version": 1,
+      "title": "跨越镜面相对距离会自动旋转实物",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0c556536",
+      "game_id": "ar25-0c556536",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "一次移动改变实物相对带标记镜面的距离关系。",
+      "action_sequence": [],
+      "expectation": "实物自动旋转 90°并重新计算镜像，以保持镜面关系。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ar25-0c556536:L2:select:48617bfbd2d5",
+      "format_version": 1,
+      "title": "ACTION6 点击或 ACTION5 循环切换活动对象",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0c556536",
+      "game_id": "ar25-0c556536",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "存在多个可控实物或可点击镜像。",
+      "action_sequence": [
+        {
+          "action": "ACTION5|ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "点击命中的实物/镜像所对应实物成为活动对象；ACTION5 按固定次序选择下一对象。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ar25-0c556536:L2:undo:fab14628c517",
+      "format_version": 1,
+      "title": "ACTION7 恢复上一移动快照",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0c556536",
+      "game_id": "ar25-0c556536",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "至少发生过一次可记录移动。",
+      "action_sequence": [
+        {
+          "action": "ACTION7",
+          "arguments": {}
+        }
+      ],
+      "expectation": "恢复移动前的实物位置与朝向，并重算镜像。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ar25-0c556536:L2:goal:025e41099719",
+      "format_version": 1,
+      "title": "全部目标标记被组合图形覆盖时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0c556536",
+      "game_id": "ar25-0c556536",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "移动或恢复后重新检查目标。",
+      "action_sequence": [],
+      "expectation": "每一个目标标记位置都落在实物或其有效镜像像素上时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ar25-0c556536:L2:budget:f2134b796aec",
+      "format_version": 1,
+      "title": "有效操作耗尽预算时失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "0c556536",
+      "game_id": "ar25-0c556536",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "动作预算降为零且目标未满足。",
+      "action_sequence": [],
+      "expectation": "游戏进入 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ar25/0c556536/ar25.py",
+          "sha256": "b965d2faaa4a4d9119c20eb51af0fb2b657fb52fb9884919863a48f2230c4272",
+          "symbol": "Ar25 reflection, movement, selection, undo and goal logic",
+          "lines": [
+            1262,
+            1847
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

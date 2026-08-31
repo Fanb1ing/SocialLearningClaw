@@ -1,0 +1,99 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "case_id": "all_levels_and_actions_smoke",
+      "schema_ids": [
+        "arc_agi3:ka59-38d34dbb:L2:select:2a10e842156e",
+        "arc_agi3:ka59-38d34dbb:L2:move:364a3e0ae7d0",
+        "arc_agi3:ka59-38d34dbb:L2:push:c0204bb8aa20",
+        "arc_agi3:ka59-38d34dbb:L2:enemy:356da40a98c5",
+        "arc_agi3:ka59-38d34dbb:L2:charge:606683222710",
+        "arc_agi3:ka59-38d34dbb:L2:explosion:8bd697ee1614",
+        "arc_agi3:ka59-38d34dbb:L2:goal:f83ded35ef07",
+        "arc_agi3:ka59-38d34dbb:L2:budget:3d12761834d7"
+      ],
+      "passed": true,
+      "observed": {
+        "levels": [
+          {
+            "level": 1,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 2,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 3,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 4,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 5,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 6,
+            "shape": [
+              64,
+              64
+            ]
+          },
+          {
+            "level": 7,
+            "shape": [
+              64,
+              64
+            ]
+          }
+        ],
+        "advertised_actions": [
+          {
+            "action": 1,
+            "frames": 1,
+            "state": "GameState.NOT_FINISHED"
+          },
+          {
+            "action": 2,
+            "frames": 1,
+            "state": "GameState.NOT_FINISHED"
+          },
+          {
+            "action": 3,
+            "frames": 1,
+            "state": "GameState.NOT_FINISHED"
+          },
+          {
+            "action": 4,
+            "frames": 1,
+            "state": "GameState.NOT_FINISHED"
+          },
+          {
+            "action": 6,
+            "frames": 1,
+            "state": "GameState.NOT_FINISHED"
+          }
+        ]
+      }
+    }
+  ]
+}

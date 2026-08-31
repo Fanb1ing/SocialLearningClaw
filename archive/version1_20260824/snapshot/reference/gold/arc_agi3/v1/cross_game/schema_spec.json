@@ -1,0 +1,16 @@
+{
+  "format_version": 1,
+  "description": "Cross-game extension of Gold Schema v1",
+  "required_extensions": [
+    "game_scope",
+    "member_schema_ids",
+    "member_review_status",
+    "derivation_status"
+  ],
+  "allowed_abstraction_levels": [
+    0,
+    1
+  ],
+  "minimum_level_1_games": 3,
+  "release_rule": "No provisional node is a formally accepted Gold Schema."
+}

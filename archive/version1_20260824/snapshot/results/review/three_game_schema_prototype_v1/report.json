@@ -1,0 +1,24 @@
+{
+  "format_version": 1,
+  "algorithm": "transition_bucket_v1",
+  "corpora": [
+    "/data5/fanbingbing/SocialLearningClaw/data/trajectory_corpora/arc_agi3/cd82_v1",
+    "/data5/fanbingbing/SocialLearningClaw/data/trajectory_corpora/arc_agi3/sk48_v1",
+    "/data5/fanbingbing/SocialLearningClaw/data/trajectory_corpora/arc_agi3/tu93_v1"
+  ],
+  "projection": {
+    "episode_count": 144,
+    "transition_memory_count": 2068,
+    "window_memory_count": 333,
+    "episode_memory_count": 144
+  },
+  "memory_count": 2545,
+  "schema_count": 40,
+  "schema_counts_by_game": {
+    "cd82-fb555c5d": 17,
+    "sk48-d8078629": 11,
+    "tu93-0768757b": 12
+  },
+  "network_calls": 0,
+  "gold_schema_reads": 0
+}

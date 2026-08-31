@@ -1,0 +1,33 @@
+{
+  "metric": "Binary Classification Accuracy (%) \u2014 paper Table 2",
+  "our_results": {
+    "claude-opus-4.8": 70.0,
+    "gpt-4o": 60.0
+  },
+  "claude_47_result": {
+    "model": "claude-opus-4.7",
+    "overall_accuracy": 65.0,
+    "note": "All solidity condition, Fixed camera only, 20 videos"
+  },
+  "paper_scores": {
+    "gpt-4o": {
+      "permanence": 59.2,
+      "immutability": 59.1,
+      "continuity": 56.1,
+      "solidity": 56.0,
+      "avg": 57.6
+    },
+    "gemini-2.5-flash": {
+      "permanence": 61.6,
+      "immutability": 61.8,
+      "continuity": 55.0,
+      "solidity": 56.1,
+      "avg": 58.6
+    },
+    "human": {
+      "avg": 96.4
+    }
+  },
+  "chance": 50.0,
+  "dataset_note": "Debug split, Fixed camera only, 20 locally downloaded videos (solidity condition)"
+}

@@ -1,0 +1,310 @@
+{
+  "aime_2024_sg": {
+    "accuracy": 80.0,
+    "n_correct": 8,
+    "n_total": 10,
+    "records": [
+      {
+        "id": 60,
+        "gold": "204",
+        "predicted": "204",
+        "correct": true,
+        "output_snippet": "Let me denote the original speed as $v$ km/h and the fixed stop time as $t$ hours.\n\nThe driving distance is 9 km. The total route time = driving time + stop time.\n\n**First scenario:**\n$$\\frac{9}{v} + t = 4$$\n\n**Second scenario:** (speed is $v+2$)\n$$\\frac{9}{v+2} + t = 2.4$$ \n\n(2 hours 24 minutes = 2"
+      },
+      {
+        "id": 61,
+        "gold": "113",
+        "predicted": "113",
+        "correct": true,
+        "output_snippet": "<think>\nWe have triangle inscribed in circle. Points B (Butterfly), R (Rose Fountain), Z (Zen Arch) on circle.\nBR = 5, RZ = 9, BZ = 10.\n\nCamera P is intersection of tangent lines at R and Z. Line from B through P intersects circle again at point D. Find BD.\n\nThis is a classic problem. The line from "
+      },
+      {
+        "id": 62,
+        "gold": "371",
+        "predicted": "365",
+        "correct": false,
+        "output_snippet": "I need to find the probability that there exists a rotation where every blue stall lands on a position that originally had red.\n\n**Setup:** We have 8 positions in a ring, each red or blue (50% each). Let B = set of blue positions. We need a rotation k (by k positions) such that every blue position, "
+      },
+      {
+        "id": 63,
+        "gold": "385",
+        "predicted": "40",
+        "correct": false,
+        "output_snippet": "I need to find resonance points where walking distance matches the processed sound/light output.\n\n## Setting Up the Functions\n\n**Sound Spiral (Visitor 1):** Sine wave completes 2 cycles per lap. Using x = laps, the wave is sin(2·2πx)... but let me use the standard form where x represents position. T"
+      },
+      {
+        "id": 64,
+        "gold": "110",
+        "predicted": "110",
+        "correct": true,
+        "output_snippet": "This is a famous problem (USAMO/IMO 2008-style).\n\nWe need the smallest prime $p$ such that $p^2 \\mid n^4+1$ for some $n$, then find the smallest such $n$.\n\n**Finding the prime:**\n\nFor $p \\mid n^4+1$, we need $n^4 \\equiv -1 \\pmod p$, so $n^8 \\equiv 1$, meaning the order of $n$ is 8, requiring $8 \\mid"
+      },
+      {
+        "id": 65,
+        "gold": "104",
+        "predicted": "104",
+        "correct": true,
+        "output_snippet": "I need to find the inradius of an isosceles tetrahedron (all opposite edges equal).\n\n## Setting Up the Tetrahedron\n\nThis is an isosceles (orthocentric) tetrahedron with opposite edges equal:\n- AB = CD = √41\n- AC = BD = √80\n- BC = AD = √89\n\nAn isosceles tetrahedron can be embedded in a rectangular bo"
+      },
+      {
+        "id": 66,
+        "gold": "721",
+        "predicted": "721",
+        "correct": true,
+        "output_snippet": "I need to find the smallest sphere that can enclose any box with surface area 54 and volume 23.\n\n**Setting up the problem**\n\nFor a rectangular box with dimensions $x, y, z$:\n- Surface area: $2(xy + yz + zx) = 54$, so $xy + yz + zx = 27$\n- Volume: $xyz = 23$\n\nThe smallest enclosing sphere of a box ha"
+      },
+      {
+        "id": 67,
+        "gold": "025",
+        "predicted": "25",
+        "correct": true,
+        "output_snippet": "Let me denote Lin's calibration constant as $x$ and power output as $y$.\n\n**Lin's furnace:** logarithm with base equal to calibration constant ($x$) of power output ($y$) raised to the calibration constant ($x$):\n$$\\log_x(y^x) = 10$$\n\n**Mateo's furnace:** logarithm with base equal to power output ($"
+      },
+      {
+        "id": 68,
+        "gold": "809",
+        "predicted": "809",
+        "correct": true,
+        "output_snippet": "Players remove 1 or 4 sections. The player who takes the last section wins. Jamie wins = second player wins.\n\nThis is a Nim-like game. Find losing positions (P-positions) for the player to move.\n\nn=0: previous player won, so position 0 is a loss for player to move (no move). P-position.\nn=1: take 1 "
+      },
+      {
+        "id": 69,
+        "gold": "116",
+        "predicted": "116",
+        "correct": true,
+        "output_snippet": "Total ways for quality team to pick 4 from 10: C(10,4)=210.\n\nJen's 4 are fixed. Let k = number of overlap with team's selection.\n\nP(exactly k matches) = C(4,k)*C(6,4-k)/210.\n\n- k=2: C(4,2)*C(6,2)=6*15=90\n- k=3: C(4,3)*C(6,1)=4*6=24\n- k=4: C(4,4)*C(6,0)=1\n\nRecognition (at least 2): 90+24+1=115\nSpecia"
+      }
+    ]
+  },
+  "aime_2024_cs": {
+    "accuracy": 60.0,
+    "n_correct": 6,
+    "n_total": 10,
+    "records": [
+      {
+        "id": 60,
+        "gold": "204",
+        "predicted": "204",
+        "correct": true,
+        "output_snippet": "I need to extract the parameters from the riddles.\n\n## Step 1: Find the standard mission time (hours)\n\n\"Smallest count of distinct items whose arrangements are evenly divisible by eight\" — find smallest n where n! is divisible by 8.\n\n- 1! = 1, 2! = 2, 3! = 6, 4! = 24 (divisible by 8 ✓)\n\nSo standard "
+      },
+      {
+        "id": 61,
+        "gold": "113",
+        "predicted": "113",
+        "correct": true,
+        "output_snippet": "<think>\nLet me parse the distances.\n\nChrysalis to Blooming Serenity Hub: number of human senses = 5.\nBlooming Serenity to Tranquil Zen Gardens: players on baseball field = 9.\nChrysalis to Tranquil Zen: fingers and thumbs on both hands = 10.\n\nSo triangle with vertices on a circle (the pool). Let's ca"
+      },
+      {
+        "id": 62,
+        "gold": "371",
+        "predicted": "367",
+        "correct": false,
+        "output_snippet": "I need to find the probability that a rotation of an 8-arm octopus's lights maps every blue light to a position originally occupied by a red light.\n\n## Setting Up the Problem\n\nWe have 8 positions arranged in a circle, each colored red (R) or blue (B) with probability 1/2 each, independently. Total o"
+      },
+      {
+        "id": 63,
+        "gold": "385",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": "<think>\nLet me parse this carefully.\n\nSound Spiral: sinusoidal wave completing two full cycles per lap. Position on circular walkway is an angle θ (the visitor's position). So core signal: sin(2θ).\n\nLight Grid: cosinusoidal wave completing three full cycles per lap: cos(3φ).\n\nBoth signals undergo Pr"
+      },
+      {
+        "id": 64,
+        "gold": "110",
+        "predicted": "18",
+        "correct": false,
+        "output_snippet": "I need to find the relationship: f(n) = a·n^k + c (power of spins plus constant).\n\n**Setting up the relationship:**\n- f(1) = a·1^k + c = a + c = 2\n- f(2) = a·2^k + c = 17\n\nLet me try k=2: f(n) = a·n² + c\n- a + c = 2\n- 4a + c = 17\n- 3a = 15, so a = 5, c = -3\n\nSo f(n) = 5n² - 3.\n\nLet me verify: f(1) ="
+      },
+      {
+        "id": 65,
+        "gold": "104",
+        "predicted": "104",
+        "correct": true,
+        "output_snippet": "<think>\nThe three baselines:\n- First: √(16+25) = √41\n- Second: √(16+64) = √80\n- Third: √(25+64) = √89\n\nEdges:\n- AB = CD = √41\n- AC = BD = √80\n- BC = AD = √89\n\nThis is an isosceles tetrahedron (opposite edges equal). We need the inscribed sphere radius.\n\nFor an isosceles tetrahedron with opposite edg"
+      },
+      {
+        "id": 66,
+        "gold": "721",
+        "predicted": "9",
+        "correct": false,
+        "output_snippet": "Volume = smallest prime > 19 = 23, so xyz = 23.\n\nSum of products of pairs = smallest perfect cube > 20 = 27, so xy+yz+zx = 27.\n\nThe sphere enclosing the box has diameter equal to the space diagonal, so radius = (1/2)√(x²+y²+z²).\n\nR² = (x²+y²+z²)/4.\n\nWe need x²+y²+z². But this depends on x+y+z which "
+      },
+      {
+        "id": 67,
+        "gold": "025",
+        "predicted": "25",
+        "correct": true,
+        "output_snippet": "I need to find the exponents first.\n\n**Finding Lin's exponent:** 11^x = 25937424601\n\nLet me check: 11^10 = 25937424601. Yes! So Lin's exponent is 10.\n\n**Finding Mateo's exponent:** 12^y = 61917364224\n\nLet me check: 12^10 = 61917364224. Yes! So Mateo's exponent is 10.\n\n**Setting up equations:**\n\nLet "
+      },
+      {
+        "id": 68,
+        "gold": "809",
+        "predicted": "809",
+        "correct": true,
+        "output_snippet": "I need to find for how many values of n (1 to 2024) the second player (Jamie) can guarantee winning.\n\n**Setting up the game:** Players alternate, taking either 1 or 4 sections. The player who takes the last section wins. Alex goes first; I need positions where the second player (Jamie) wins.\n\n**Anal"
+      },
+      {
+        "id": 69,
+        "gold": "116",
+        "predicted": "116",
+        "correct": true,
+        "output_snippet": "Let me find the pool size and selection count.\n\n**Pool size:** unique single-digit prime numbers (2,3,5,7) = 4; single-digit composite numbers (4,6,8,9) = 4; value one = 1; value zero = 1. Total = 4+4+1+1 = 10.\n\n**Numbers chosen:** fundamental forces of nature = 4.\n\nSo Jen picks 4 numbers from 10, a"
+      }
+    ]
+  },
+  "aime_2025_sg": {
+    "accuracy": 70.0,
+    "n_correct": 7,
+    "n_total": 10,
+    "records": [
+      {
+        "id": 0,
+        "gold": "70",
+        "predicted": "70",
+        "correct": true,
+        "output_snippet": "I need to find bases $b > 9$ where $17_b$ divides $97_b$.\n\n## Setting Up\n\nIn base $b$:\n- Component X: $17_b = 1 \\cdot b + 7 = b + 7$\n- Component Y: $97_b = 9 \\cdot b + 7 = 9b + 7$\n\nI need $(b+7) \\mid (9b+7)$.\n\n## Finding the Condition\n\nI'll use the division relationship. Consider $9b + 7$ in terms o"
+      },
+      {
+        "id": 1,
+        "gold": "588",
+        "predicted": "588",
+        "correct": true,
+        "output_snippet": "<think>\nLet me set up coordinates. Triangle with vertex A (Alpha).\n\nFirst boundary (from A): Delta D, Echo E, Bravo B.\n- A to D = 4\n- D to E = 16\n- E to B = 8\nSo along boundary 1: AD=4, AE=20, AB=28.\n\nSecond boundary (from A): Foxtrot F, Golf G, Charlie C.\n- A to F = 13\n- F to G = 52\n- G to C = 26\nS"
+      },
+      {
+        "id": 2,
+        "gold": "16",
+        "predicted": "16",
+        "correct": true,
+        "output_snippet": "I need to assign 9 engineers to three projects (S, H, N) with S > H > N ≥ 1.\n\n**Step 1: Find valid group size distributions.**\n\nI need positive integers S > H > N with S + H + N = 9.\n\nLet me list all (S, H, N) with S > H > N ≥ 1:\n\n- N=1: H + S = 8, H > 1, S > H\n  - H=2, S=6 ✓\n  - H=3, S=5 ✓\n  - H=4,"
+      },
+      {
+        "id": 3,
+        "gold": "117",
+        "predicted": "117",
+        "correct": true,
+        "output_snippet": "I need to find integer solutions $(x,y)$ with $-100 \\le x,y \\le 100$ to:\n$$12x^2 - xy - 6y^2 = 0$$\n\n**Factor the quadratic.** Treat as quadratic in terms of $x$ and $y$. Let me factor:\n$$12x^2 - xy - 6y^2 = 0$$\n\nLooking for factorization $(ax + by)(cx + dy)$ where $ac = 12$, $bd = -6$, $ad + bc = -1"
+      },
+      {
+        "id": 4,
+        "gold": "279",
+        "predicted": "279",
+        "correct": true,
+        "output_snippet": "I need to find permutations of digits 1-8 that form numbers divisible by 22.\n\n## Setting Up the Problem\n\nI need 8-digit numbers using digits 1-8 exactly once, divisible by 22 = 2 × 11.\n\n**Divisibility by 2:** The last digit must be even (2, 4, 6, or 8).\n\n**Divisibility by 11:** The alternating sum o"
+      },
+      {
+        "id": 5,
+        "gold": "504",
+        "predicted": "504",
+        "correct": true,
+        "output_snippet": "I need to find a trapezoid (two parallel walls, equal slanted sides) with an inscribed circle of radius 3, area 72.\n\n## Setting Up\n\nThe greenhouse is an **isosceles trapezoid** (two parallel walls, symmetric equal slanted sides) with an inscribed circle.\n\n**Inscribed circle radius = 3**, so the heig"
+      },
+      {
+        "id": 6,
+        "gold": "821",
+        "predicted": "16",
+        "correct": false,
+        "output_snippet": "I need to find the probability that the last module on the assembly line contains component G.\n\n## Setting Up the Problem\n\nWe have 12 components A-L (ordered by size). They're paired into 6 modules. Each module is labeled by its larger component. The modules are ordered by their larger component, so"
+      },
+      {
+        "id": 7,
+        "gold": "77",
+        "predicted": "78",
+        "correct": false,
+        "output_snippet": "<think>\nLet me parse this carefully.\n\nCentral Park at (25, 20) - using (avenue, street) coordinates. Tower is 5 miles from Central Park.\n\nSo tower lies on circle: (x-25)² + (y-20)² = 25.\n\nSchool on 4th Street at avenue k: position (k, 4).\nLibrary on 3rd Avenue at avenue... \"at the same unknown avenu"
+      },
+      {
+        "id": 8,
+        "gold": "62",
+        "predicted": "359",
+        "correct": false,
+        "output_snippet": "I need to find where the parabola y = x² - 4 intersects its own image after rotating 60° counterclockwise.\n\n## Setting Up\n\nThe original curve: y = x² - 4.\n\nWhen we rotate the curve 60° CCW, a point on the original curve, when rotated, gives the new curve. The intersection points of the original and "
+      },
+      {
+        "id": 9,
+        "gold": "81",
+        "predicted": "81",
+        "correct": true,
+        "output_snippet": "<think>\nThis is essentially the Sudoku first-three-rows / three blocks problem. The number of ways to fill the top three rows of a Sudoku grid (3 bands... actually 3 blocks) is known.\n\nLet me think. We have 3 rows (assembly lines), each of 9 stations, total 27. Each row contains all 9 types. Each of"
+      }
+    ]
+  },
+  "aime_2025_cs": {
+    "accuracy": 70.0,
+    "n_correct": 7,
+    "n_total": 10,
+    "records": [
+      {
+        "id": 0,
+        "gold": "70",
+        "predicted": "70",
+        "correct": true,
+        "output_snippet": "<think>\nLet me understand. The gear completes one full turn every N seconds (N = gear setting, integer). The gear spins no faster than 6 rotations per minute, meaning at most 6 rotations per 60 seconds, so at least 10 seconds per rotation. So N ≥ 10.\n\nThe logger is a base-N counter (each display res"
+      },
+      {
+        "id": 1,
+        "gold": "588",
+        "predicted": "588",
+        "correct": true,
+        "output_snippet": "<think>\nLet me set up coordinates. We have two straight paths (lines) starting from Base Camp Alpha (A).\n\nPath 1: A → D (Delta) → E (Echo) → B (Bravo), all on one line.\n- A to D: 4\n- D to E: 16\n- E to B: 8\n\nPath 2: A → F (Foxtrot) → G (Golf) → C (Charlie), all on another line.\n- A to F: 13\n- F to G:"
+      },
+      {
+        "id": 2,
+        "gold": "16",
+        "predicted": "16",
+        "correct": true,
+        "output_snippet": "<think>\nWe need to find the number of valid assignments. Let me parse this carefully.\n\nThree processes get whole time slots. Total time allocated is fixed. Allocations form strictly decreasing positive sequence: a > b > c > 0, with a+b+c = N (fixed total).\n\nBut what is N? \"the total amount of time a"
+      },
+      {
+        "id": 3,
+        "gold": "117",
+        "predicted": "117",
+        "correct": true,
+        "output_snippet": "I need to find integer pairs (t, d) with t, d ∈ [-100, 100] satisfying the equilibrium condition.\n\n## Setting Up the Equation\n\n- Reactive energy: 12t² (grows with square of delay, 12 units per hour²)\n- Lateral stress: 6d² (6 units per meter²)\n- Interaction effect: t·d (one unit per product)\n\nThe sys"
+      },
+      {
+        "id": 4,
+        "gold": "279",
+        "predicted": "279",
+        "correct": true,
+        "output_snippet": "<think>\nWe need 8-digit numbers from 10000000 to 99999999.\n\nConditions:\n- No digit 0 or 9 (digits from 1-8)\n- All digits distinct\n- Divisible by 22 (signal every 22 ticks, starting from 0, so multiples of 22)\n\n8-digit numbers with all distinct digits from {1,2,3,4,5,6,7,8}: that's exactly a permutat"
+      },
+      {
+        "id": 5,
+        "gold": "504",
+        "predicted": "576",
+        "correct": false,
+        "output_snippet": "<think>\nEach light source at 2f produces image at 2f on other side (same size, inverted). So each object-image pair: distance from source to image = 2f + 2f = 4f.\n\nThe four people: two visitors with sources (at 2f from their lens), two visitors with screens (at 2f on other side). They form a quadril"
+      },
+      {
+        "id": 6,
+        "gold": "821",
+        "predicted": "949",
+        "correct": false,
+        "output_snippet": "I need to find the probability that the last box (in sorted order) contains the heaviest parcel.\n\n**Setup:** 12 parcels with distinct weights 1 (lightest) to 12 (heaviest). They're paired into 6 boxes. Each box has a \"top\" (lighter) and \"bottom\" (heavier) parcel. Boxes are sorted by top weight, ties"
+      },
+      {
+        "id": 7,
+        "gold": "77",
+        "predicted": "77",
+        "correct": true,
+        "output_snippet": "<think>\nLet me set up coordinates. Southwest corner is origin (0,0). \"Right\" is +x, \"above\" is +y.\n\nMain receiver R = (25, 20).\n\nBeacon must be exactly 5 units from R: so beacon lies on circle centered (25,20) radius 5.\n\nBeacon equidistant from sensors A and B: lies on perpendicular bisector of AB.\n"
+      },
+      {
+        "id": 8,
+        "gold": "62",
+        "predicted": null,
+        "correct": false,
+        "output_snippet": "<think>\nLet me set up coordinates with starting point at origin.\n\nBall launched horizontally with speed v = √(g/2).\nPosition: x = vt, y = -½gt².\n\nSo x = √(g/2) t, y = -½gt².\n\nFrom x: t = x/√(g/2), t² = x²/(g/2) = 2x²/g.\ny = -½g · 2x²/g = -x².\n\nSo the path is y = -x² (for x ≥ 0).\n\nNow transformations"
+      },
+      {
+        "id": 9,
+        "gold": "81",
+        "predicted": "81",
+        "correct": true,
+        "output_snippet": "<think>\nThis is the Sudoku-like counting problem. Let me parse it carefully.\n\nWe have nine distinct squads, each with three individuals. Total 27 people. Arranged in 9-row by 3-column formation = 27 cells.\n\nRules:\n- No two from same squad in same column.\n- Each of three consecutive 3x3 blocks contai"
+      }
+    ]
+  }
+}

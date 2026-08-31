@@ -1,0 +1,391 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:ka59-38d34dbb:L2:select:2a10e842156e",
+      "format_version": 1,
+      "title": "ACTION6 点击可控矩形切换活动房间",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "38d34dbb",
+      "game_id": "ka59-38d34dbb",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "点击命中可控矩形。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "被点击矩形显示为活动对象；对象位置不变。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ka59-38d34dbb:L2:move:364a3e0ae7d0",
+      "format_version": 1,
+      "title": "ACTION1–4 移动活动房间",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "38d34dbb",
+      "game_id": "ka59-38d34dbb",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "目标方向没有固定墙体。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "活动矩形向上、下、左、右移动一个固定单位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ka59-38d34dbb:L2:push:c0204bb8aa20",
+      "format_version": 1,
+      "title": "房间移动会递归推动接触的可动物体",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "38d34dbb",
+      "game_id": "ka59-38d34dbb",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "活动房间边缘接触一个或多个可动物体。",
+      "action_sequence": [],
+      "expectation": "接触物沿同方向级联移动；任一对象被硬墙阻挡时推动停止并进入阻挡反馈。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ka59-38d34dbb:L2:enemy:356da40a98c5",
+      "format_version": 1,
+      "title": "敌人每个已完成操作向目标角色追近",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "38d34dbb",
+      "game_id": "ka59-38d34dbb",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "一次移动或选择完成且敌人仍存在。",
+      "action_sequence": [],
+      "expectation": "敌人最多连续六个像素步沿较大坐标差方向逼近；重合时 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ka59-38d34dbb:L2:charge:606683222710",
+      "format_version": 1,
+      "title": "条形爆炸物逐行充能后触发爆炸",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "38d34dbb",
+      "game_id": "ka59-38d34dbb",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "移动结算后存在未充满的条形爆炸物。",
+      "action_sequence": [],
+      "expectation": "每次结算填充一行；完全填满后进入多帧爆炸。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ka59-38d34dbb:L2:explosion:8bd697ee1614",
+      "format_version": 1,
+      "title": "爆炸沿朝向推动范围内对象",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "38d34dbb",
+      "game_id": "ka59-38d34dbb",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "爆炸物充满并展开爆炸区域。",
+      "action_sequence": [],
+      "expectation": "被爆炸范围命中的可动物体沿爆炸朝向递归移动，爆炸结束后爆炸物失效。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ka59-38d34dbb:L2:goal:f83ded35ef07",
+      "format_version": 1,
+      "title": "两类目标对象分别进入对应容器时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "38d34dbb",
+      "game_id": "ka59-38d34dbb",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "移动/爆炸结算完成。",
+      "action_sequence": [],
+      "expectation": "第一类对象全部与可控矩形容器重合，第二类对象全部与固定目标容器重合时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:ka59-38d34dbb:L2:budget:3d12761834d7",
+      "format_version": 1,
+      "title": "操作步数耗尽时失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "38d34dbb",
+      "game_id": "ka59-38d34dbb",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "剩余步数为零且目标未满足。",
+      "action_sequence": [],
+      "expectation": "游戏进入 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/ka59/38d34dbb/ka59.py",
+          "sha256": "3e8341f4c317ceb9992ca54e8ad453ee4e8a04547b27a907f4a560a9a30d857e",
+          "symbol": "Ka59 room movement, pushing, explosions, enemies and goal",
+          "lines": [
+            41122,
+            41463
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

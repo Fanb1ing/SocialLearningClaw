@@ -1,0 +1,48 @@
+{
+  "format_version": 1,
+  "created_at": "2026-07-24T09:31:19.759363+00:00",
+  "git_commit": "da322277463ab64f737f6c726990533d1b672b48",
+  "config": {
+    "benchmark": "contextmath",
+    "method": "icl",
+    "model": "anthropic/claude-opus-4.8",
+    "split": "aime_2025_cs",
+    "seed": 0,
+    "temperature": 0.0,
+    "base_url": "https://openrouter.ai/api/v1",
+    "output_root": "outputs/smoke_retest_20260724",
+    "feedback": "binary",
+    "budget": {
+      "max_samples": 10,
+      "max_attempts": 1,
+      "max_steps": 200,
+      "max_tokens_per_call": 8192
+    },
+    "extra": {
+      "num_demos": 3,
+      "demonstration_fingerprint": "9574d8b1e7e6880a29d8b4faab8e5a35e9a7271d4cb2c35c393ba7a39d43e3ac",
+      "reserved_demo_ids": [],
+      "embed_model": "",
+      "seconds_per_frame": null,
+      "max_frames": null
+    }
+  },
+  "sample_ids": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "demonstration_ids": [
+    "1",
+    "7",
+    "9"
+  ],
+  "dataset_fingerprint": "08bc9e9469241de5aa9c098fd4d28848f00ffa06124becb3f1cf7d7a83db5dba"
+}

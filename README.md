@@ -1,6 +1,11 @@
 # SocialLearningClaw
 
-SocialLearningClaw 是一个研究 Agent Schema Learning 的实验仓库。当前统一评测三个 benchmark：
+SocialLearningClaw 是一个研究 Agent Schema Learning 的实验仓库。当前开发主线是 ARC-only
+Version 2：以 Entity–Feature–Prototype–Schema（EFPS）typed graph 表达主体认知，主 Agent
+同时负责 orchestrator、planning 和行动，并按需调用更新与探索子 Agent。
+
+旧的三 benchmark layered-Schema 系统已冻结为 V1，完整回退快照位于
+`archive/version1_20260824/`。V1 统一评测三个 benchmark：
 
 - **ARC-AGI-3**：多步、交互式抽象推理。
 - **ContextMATH**：带有上下文扰动的数学推理。
@@ -27,14 +32,16 @@ socialclaw/
   trajectory/            通用单步/多步任务轨迹合同、source 和原子 recorder
   methods/               静态 benchmark 的方法生命周期控制器
   schema/                分层 Schema、自动归纳、检索、反馈和维护
+  v2/                    通用视觉模型 Agent、EFPS graph、更新/探索子 Agent与 runtime
   experiment.py          Protocol, budget, manifest, result types
   run_static.py          ContextMATH / IntPhys2 entry point
   run_arc.py             ARC-AGI-3 entry point
+  run_arc_v2.py          任意 ARC game ID 的 V2 通用在线认知入口
 configs/arc_agi3/        Fixed ICL examples and human-written rule baselines
 scripts/                 Batch execution and ARC summarization
 tests/                   Offline unit tests
 docs/                    Active documentation
-  archive/                 Historical results and retired source code
+archive/                 Frozen V1 snapshot and retired source code
 third_party/             Downloaded ARC-AGI-3 game environments
 data/                    Local datasets; ignored by Git
 outputs/                 Generated experiments; ignored by Git
@@ -112,6 +119,63 @@ split 的开头 3 个视频给 ICL；所有方法都会排除同一保留集。
 
 ## 运行 ARC-AGI-3
 
+### Version 2：无游戏规则的通用视觉 Agent
+
+V2 从空 EFPS 图启动。Main 和 Update 使用结构化视觉输出，Exploration 只返回一段给 Main 的文本
+建议；认知 Agent只接收
+原始公开画面、公开状态、SDK 动作参数合同、公开转移差异和只读 EFPS，不接收 game ID 对应的
+规则、目标、对象标签、专用坐标、goal mask、Gold、源码或预制路线：
+
+```bash
+.venv/bin/python -m socialclaw.run_arc_v2 \
+  --game-id cd82-fb555c5d \
+  --model anthropic/claude-opus-4.8 \
+  --output-dir outputs/review/my_cd82_run \
+  --max-step 30 --stop-after-levels all --compact-process
+```
+
+每次运行生成按时刻展开的 `process.md`，
+直接列出触发、Agent输入/输出、动作前后 PNG、公开 transition 和 EFPS 图增量；`timeline.json` 作为
+机器审计源，另保留最终 graph 和 replay 所需 trajectory/grid/PNG。不再保存重复
+summary/evidence/manifest 或每 revision snapshot。实现与真实结果见
+[V2 三游戏正式实验与确定性复现](experiments/v2_formal_20260830/README.md)。早期 20 步原型审查已移至
+[历史文档](docs/archive/v2_cd82_level1_prototype.md)。
+最新实现与 token 对比见
+[V2 认知输入精简与按需检索](docs/v2_cognition_retrieval_design.md)。
+
+每个 action 后，Update 必须比较 before/after 图片，把公开像素差分解释为具体 Entity 的
+`appeared/disappeared/moved/state_changed/feature_changed`；无法归属的变化必须显式保留为
+`unassigned_visual_changes`。默认 prompt 只放最近 3 条 transition，以及所有 Entity、Prototype、
+Schema 的紧凑自然语言目录；不再把整张图、完整 Evidence 历史或 artifact 元数据逐步重复发送。
+三个 Agent 都可按需调用只读 `read_cognition(command, id, feature_id?)`。它只接受固定命令和精确
+持久 ID，直接返回保存的节点、Feature 历史、Relation、Evidence 或 agent-visible artifact；不做自然
+语言检索、相似度排序、摘要或二次 LLM 推理。`get_evidence` 返回动作、公开 result、Entity 变化和带
+`before/after/current` phase 的 observation 引用；`get_artifact` 会把精确保存的公开 PNG 重新附给
+Agent，且不会暴露仅供人类审查的辅助线图片或内部环境数组。
+具体对象的 Feature 描述保存在 `FeatureAssertion`，避免共享 `color` 等 FeatureDefinition 时把一个
+Entity 的实例描述误套到另一个 Entity。
+
+视觉 artifact 分为两个严格角色：认知 Agent 只接收由公开 64×64 frame 最近邻放大到 512×512、无任何辅助线
+的 `agent_view`；`process.md` 链接的是另存的 512×512 `review_view`，后者每 8 cell 画定位线，仅供
+人类审查。历史 Evidence 图片不再自动塞进每次请求；Agent 需要历史细节时先使用精确认知读取，当前
+调用仍只附当前决策或更新必需的公开图。长时间真实运行每完成一步会覆盖一个 `*.partial.*`
+checkpoint；成功结束后自动删除，模型/API
+中断时保留最后一个完整认知步骤并明确标记为非最终结果。
+
+多关运行使用累计公开 `level_delta`：例如 `--stop-after-levels 6` 会在从本次 reset 起累计完成
+6 关后停止；`--max-step` 是每一关独立的动作预算，通过一关后才为下一关重新计数。任何游戏发生公开
+`GAME_OVER` 时默认重开当前关，但已经消耗的本关动作不会退回；可用 `--no-reset-on-game-over` 关闭。
+发生公开 level boundary 时，Update 把上一关
+完成本身作为终止动作效果，并把 after 图像作为下一关的新场景重新观察，不会把整幅换关画面误学成
+该动作的普通视觉效果。未在新场景中重新识别的旧 Entity 会退出默认可见目录；Prototype、Schema 和
+Evidence 图继续跨关保留。
+
+运行结束还会写入 `token_usage.json` 与 `token_usage.md`：前者逐逻辑调用、逐 provider request 记录
+精确 input/output token、图片和工具调用，后者给人类阅读 Agent/Step 分布。prompt 各 section 的字符数
+也会记录，但不会冒充 provider token 的字段级精确归因。
+
+### Version 1 runners
+
 ```bash
 python -m socialclaw.run_arc \
   --method schema \
@@ -154,8 +218,19 @@ python scripts/summarize_static.py \
 python -m unittest discover -s tests -v
 ```
 
-详细说明：
+三游戏正式结果可以在无 API key 条件下重新执行并逐文件校验：
 
+```bash
+.venv/bin/python scripts/reproduce_v2_formal_20260830.py
+```
+
+详细说明从 [文档索引](docs/README.md) 开始：
+
+- [Version 2 EFPS 完整开发方案](docs/version2_efps_development_plan.md)
+- [V2 三游戏正式实验与确定性复现](experiments/v2_formal_20260830/README.md)
+- [V2 通用 Agent 的早期 CD82 Level 1 测试（历史）](docs/archive/v2_cd82_level1_prototype.md)
+- [V2 认知输入精简与按需检索](docs/v2_cognition_retrieval_design.md)
+- [V1 冻结归档与回退说明](archive/version1_20260824/README.md)
 - [Architecture](docs/architecture.md)
 - [Benchmarks](docs/benchmarks.md)
 - [Baselines](docs/baselines.md)

@@ -1,0 +1,232 @@
+{
+  "format_version": 1,
+  "created_at": "2026-07-24T09:33:49.534926+00:00",
+  "metrics": {
+    "accuracy": 0.7,
+    "first_attempt_accuracy": 0.7,
+    "correct": 7,
+    "total": 10
+  },
+  "samples": [
+    {
+      "sample_id": "0",
+      "correct": true,
+      "prediction": "70",
+      "attempts": [
+        {
+          "attempt": 1,
+          "prediction": "70",
+          "correct": true,
+          "response": "I need to find bases $b > 9$ where $17_b$ divides $97_b$.\n\nIn base $b$: $17_b = b + 7$ and $97_b = 9b + 7$.\n\nI need $(b+7) \\mid (9b+7)$.\n\nCompute: $9b + 7 = 9(b+7) - 63 + 7 = 9(b+7) - 56$.\n\nSo $(b+7) \\mid 56$.\n\nSince $b > 9$, we have $b + 7 > 16$. Also digits require $b > 9$ (since digit 9 appears).\n\nDivisors of 56 greater than 16: $28, 56$.\n\n- $b + 7 = 28 \\Rightarrow b = 21$\n- $b + 7 = 56 \\Rightarrow b = 49$\n\nSum: $21 + 49 = 70$.\n\n\\boxed{70}",
+          "usage": {
+            "input_tokens": 1449,
+            "output_tokens": 278,
+            "total_tokens": 1727
+          }
+        }
+      ],
+      "metadata": {
+        "split": "aime_2025_sg",
+        "ori_question": "Find the sum of all integer bases $b>9$ for which $17_{b}$ is a divisor of $97_{b}$."
+      }
+    },
+    {
+      "sample_id": "1",
+      "correct": true,
+      "prediction": "588",
+      "attempts": [
+        {
+          "attempt": 1,
+          "prediction": "588",
+          "correct": true,
+          "response": "<think>\nLet me set up coordinates. We have triangle with vertex Alpha (A).\n\nAlong first boundary from A: Delta (D), Echo (E), Bravo (B).\n- A to D = 4\n- D to E = 16\n- E to B = 8\n\nSo distances from A: \n- AD = 4\n- AE = 4+16 = 20\n- AB = 4+16+8 = 28\n\nAlong second boundary from A: Foxtrot (F), Golf (G), Charlie (C).\n- A to F = 13\n- F to G = 52\n- G to C = 26\n\nDistances from A:\n- AF = 13\n- AG = 13+52 = 65\n- AC = 13+52+26 = 91\n\nLet's set up A at origin, first boundary along one direction (unit vector u), second boundary along direction v.\n\nPoints:\n- D = 4u\n- E = 20u\n- B = 28u\n- F = 13v\n- G = 65v\n- C = 91v\n\nMike (M) mirrors Delta across Foxtrot: M = 2F - D = 2(13v) - 4u = 26v - 4u\n\nNovember (N) mirrors Golf across Echo: N = 2E - G = 2(20u) - 65v = 40u - 65v\n\nQuadrilateral DEGF has area 288. Let's compute. Actually the region D, E, G, F. Points: D=4u, E=20u, G=65v, F=13v.\n\nLet me denote the cross product u×v = k (area factor). Let S = |u × v|, area scaling.\n\nActually let's just use coordinates. Let u = (1,0), v = (cos θ, sin θ). Let's keep symbolic with cross product.\n\nFor two vectors a u + b v type points... let me just compute area of polygon using the shoelace with cross products.\n\nLet me define the \"signed area\" function. For points P_i = x_i u + y_i v, where P = x u + y v, the cross product P_i × P_j = (x_i u + y_i v) × (x_j u + y_j v) = (x_i y_j - y_i x_j)(u × v).\n\nLet w = u × v (scalar, the z-component). Area of polygon = (1/2)|Σ (P_i × P_{i+1})| = (1/2)|w| |Σ (x_i y_{i+1} - y_i x_{i+1})|.\n\nQuadrilateral D, E, G, F in order:\n- D: x=4, y=0\n- E: x=20, y=0\n- G: x=0, y=65\n- F: x=0, y=13\n\nShoelace sum Σ(x_i y_{i+1} - y_i x_{i+1}):\nD→E: 4*0 - 0*20 = 0\nE→G: 20*65 - 0*0 = 1300\nG→F: 0*13 - 65*0 = 0\nF→D: 0*0 - 13*4 = -52\nSum = 1300 - 52 = 1248\n\nArea = (1/2)|w| * 1248 = 624 |w| = 288.\nSo |w| = 288/624 = 0.4615... = 6/13? 288/624 = 0.4615, 6/13=0.4615. Yes |w| = 6/13.\n\nWait let me check: 624 * 6/13 = 3744/13 = 288. Yes! So |w| = 6/13.\n\nNow the polygon A, F, N, B, C, E, M.\n\nPoints:\n- A: (0,0)\n- F: (0,13)\n- N: 40u - 65v → (40, -65)\n- B: 28u → (28, 0)\n- C: 91v → (0, 91)\n- E: 20u → (20, 0)\n- M: -4u + 26v → (-4, 26)\n\nShoelace sum Σ(x_i y_{i+1} - y_i x_{i+1}):\n\nA→F: 0*13 - 0*0 = 0\nF→N: 0*(-65) - 13*40 = -520\nN→B: 40*0 - (-65)*28 = 1820\nB→C: 28*91 - 0*0 = 2548\nC→E: 0*0 - 91*20 = -1820\nE→M: 20*26 - 0*(-4) = 520\nM→A: (-4)*0 - 26*0 = 0\n\nSum = 0 -520 + 1820 + 2548 - 1820 + 520 + 0 = 2548\n\nArea = (1/2)|w| * |2548| = (1/2)(6/13)(2548) = (3/13)(2548) = 7644/13 = 588.\n\nLet me verify 2548/13 = 196. 196*3 = 588. Yes.\n\nSo area = 588.\n</think>\n\n**Setting up coordinates:**\n\nPlace Alpha at origin with the first boundary along direction u and second along v.\n\nPositions (from cumulative distances):\n- D = 4u, E = 20u, B = 28u\n- F = 13v, G = 65v, C = 91v\n- M = 2F − D = −4u + 26v\n- N = 2E − G = 40u − 65v\n\n**Finding the area scale:**\n\nWriting points as (x, y) coordinates in (u, v), with w = u × v:\n\nQuadrilateral D(4,0), E(20,0), G(0,65), F(0,13):\n\nShoelace sum = 0 + 1300 + 0 − 52 = 1248\n\nArea = ½|w|(1248) = 624|w| = 288 → **|w| = 6/13**\n\n**Computing target polygon** A, F, N, B, C, E, M:\n\n- A(0,0), F(0,13), N(40,−65), B(28,0), C(0,91), E(20,0), M(−4,26)\n\nShoelace terms:\n- A→F: 0\n- F→N: −520\n- N→B: 1820\n- B→C: 2548\n- C→E: −1820\n- E→M: 520\n- M→A: 0\n\nSum = 2548\n\nArea = ½ · (6/13) · 2548 = (3/13)(2548) = 588\n\n\\boxed{588}",
+          "usage": {
+            "input_tokens": 1704,
+            "output_tokens": 1944,
+            "total_tokens": 3648
+          }
+        }
+      ],
+      "metadata": {
+        "split": "aime_2025_sg",
+        "ori_question": "On $\\triangle ABC$ points $A,D,E$, and $B$ lie that order on side $\\overline{AB}$ with $AD=4, DE=16$, and $EB=8$. Points $A,F,G$, and $C$ lie in that order on side $\\overline{AC}$ with $AF=13, FG=52$, and $GC=26$. Let $M$ be the reflection of $D$ through $F$, and let $N$ be the reflection of $G$ through $E$. Quadrilateral $DEGF$ has area 288. Find the area of heptagon $AFNBCEM$."
+      }
+    },
+    {
+      "sample_id": "2",
+      "correct": true,
+      "prediction": "16",
+      "attempts": [
+        {
+          "attempt": 1,
+          "prediction": "16",
+          "correct": true,
+          "response": "I need to count assignments of 9 distinct engineers into three labeled groups (Software S, Hardware H, Networking N) where S > H > N ≥ 1.\n\n**Step 1: Find valid group size triples (s, h, n) with s > h > n ≥ 1 and s+h+n = 9.**\n\nLet me list all triples with distinct positive integers summing to 9, with s > h > n:\n\n- (6,2,1): sum 9 ✓\n- (5,3,1): sum 9 ✓\n- (4,3,2): sum 9 ✓\n- (6,2,1) done\n- (7,... ) 7+... need two distinct less than 7 summing to 2: (7,?,?) 7+1+1 no distinct. \n- (5,3,1) ✓\n- (4,3,2) ✓\n- (6,2,1) ✓\n\nLet me be systematic. Distinct positive integers summing to 9:\n- {1,2,6}, {1,3,5}, {2,3,4}, {1,2,6}, {1,4,... } 1+4+4 no, {2,3,4} yes.\n\nSo triples (assigned as s>h>n):\n- (6,2,1)\n- (5,3,1)\n- (4,3,2)\n\n**Step 2: Count assignments for each triple.**\n\nSince groups are labeled by role and sizes are fixed, the number of ways to assign engineers is the multinomial coefficient 9!/(s! h! n!).\n\n- (6,2,1): 9!/(6!·2!·1!) = 362880/(720·2·1) = 362880/1440 = 252\n- (5,3,1): 9!/(5!·3!·1!) = 362880/(120·6·1) = 362880/720 = 504\n- (4,3,2): 9!/(4!·3!·2!) = 362880/(24·6·2) = 362880/288 = 1260\n\n**Step 3: Total.**\n\n252 + 504 + 1260 = 2016\n\n**Step 4: Remainder mod 1000.**\n\n2016 mod 1000 = 16\n\n\\boxed{16}",
+          "usage": {
+            "input_tokens": 1462,
+            "output_tokens": 674,
+            "total_tokens": 2136
+          }
+        }
+      ],
+      "metadata": {
+        "split": "aime_2025_sg",
+        "ori_question": "The 9 members of a baseball team went to an ice cream parlor after their game. Each player had a singlescoop cone of chocolate, vanilla, or strawberry ice cream. At least one player chose each flavor, and the number of players who chose chocolate was greater than the number of players who chose vanilla, which was greater than the number of players who chose strawberry. Let $N$ be the number of different assignments of flavors to players that meet these conditions. Find the remainder when $N$ is divided by 1000."
+      }
+    },
+    {
+      "sample_id": "3",
+      "correct": true,
+      "prediction": "117",
+      "attempts": [
+        {
+          "attempt": 1,
+          "prediction": "117",
+          "correct": true,
+          "response": "I need to find integer solutions (x, y) with both in [-100, 100] to:\n12x² - xy - 6y² = 0\n\n**Factor the quadratic.**\n\nTreat as quadratic. Let me factor 12x² - xy - 6y².\n\nI look for factorization: (ax + by)(cx + dy) where ac = 12, bd = -6, ad + bc = -1.\n\nTry (3x + 2y)(4x - 3y) = 12x² - 9xy + 8xy - 6y² = 12x² - xy - 6y². ✓\n\nSo the equation factors as:\n(3x + 2y)(4x - 3y) = 0\n\n**Case 1: 3x + 2y = 0**\n\nSo 3x = -2y, meaning x = -2y/3. Need y divisible by 3: y = 3t, x = -2t.\n\nConstraints: |x| ≤ 100 → |2t| ≤ 100 → |t| ≤ 50\n|y| ≤ 100 → |3t| ≤ 100 → |t| ≤ 33\n\nSo |t| ≤ 33, giving t from -33 to 33: that's 67 values.\n\n**Case 2: 4x - 3y = 0**\n\nSo 4x = 3y, x = 3s, y = 4s.\n\nConstraints: |x| ≤ 100 → |3s| ≤ 100 → |s| ≤ 33\n|y| ≤ 100 → |4s| ≤ 100 → |s| ≤ 25\n\nSo |s| ≤ 25, giving s from -25 to 25: that's 51 values.\n\n**Overlap:** Both cases include (0,0) when t=0 and s=0.\n\nTotal = 67 + 51 - 1 = 117\n\n\\boxed{117}",
+          "usage": {
+            "input_tokens": 1538,
+            "output_tokens": 566,
+            "total_tokens": 2104
+          }
+        }
+      ],
+      "metadata": {
+        "split": "aime_2025_sg",
+        "ori_question": "Find the number of ordered pairs $(x,y)$, where both $x$ and $y$ are integers between $-100$ and $100$, inclusive, such that $12x^{2}-xy-6y^{2}=0$."
+      }
+    },
+    {
+      "sample_id": "4",
+      "correct": true,
+      "prediction": "279",
+      "attempts": [
+        {
+          "attempt": 1,
+          "prediction": "279",
+          "correct": true,
+          "response": "I need to find permutations of digits 1-8 that form numbers divisible by 22.\n\nDivisibility by 22 means divisible by both 2 and 11.\n\n**Divisible by 2:** The last digit must be even (2, 4, 6, or 8).\n\n**Divisible by 11:** The alternating sum of digits must be divisible by 11.\n\nThe digits 1-8 sum to 36. Let me define positions 1-8. For divisibility by 11, the difference between the sum of digits in odd positions and even positions must be divisible by 11.\n\nLet S_odd = sum of digits in positions 1,3,5,7 and S_even = sum in positions 2,4,6,8.\n\nS_odd + S_even = 36, and S_odd - S_even must be divisible by 11.\n\nLet D = S_odd - S_even. Then S_odd = (36+D)/2, so D must be even. D divisible by 11 and even: D ∈ {0, ±22, ±44,...}. \n\nSince each group has 4 digits from 1-8, S_odd ranges: min = 1+2+3+4=10, max = 5+6+7+8=26. So D = S_odd - S_even = 2·S_odd - 36 ranges from 2(10)-36 = -16 to 2(26)-36 = 16.\n\nSo D ∈ {-16,...,16}, divisible by 11 and even → only D = 0.\n\nD = 0 means S_odd = S_even = 18.\n\n**Count partitions:** I need to split {1,...,8} into two sets of 4 digits each summing to 18 (odd positions and even positions).\n\nFind 4-element subsets summing to 18. Total subsets of size 4 summing to 18:\n\nLet me enumerate 4-subsets of {1..8} with sum 18:\n- 8,7,2,1 = 18 ✓\n- 8,7,3,... need 0, no; 8,6,3,1=18 ✓\n- 8,6,4,... =18→ need 0 no; 8,5,4,1=18 ✓\n- 8,5,3,2=18 ✓\n- 8,4,... 8,7,2,1 done; 8,6,3,1 done; 8,5,4,1; 8,5,3,2; 8,6,4,0 no\n- 8,4,... need three summing to 10 with digits<8: 4,... let's be systematic.\n\nSubsets containing 8 (need 3 others summing to 10 from {1-7}):\n- {7,2,1}=10 ✓ → {8,7,2,1}\n- {6,3,1}=10 ✓ → {8,6,3,1}\n- {5,4,1}=10 ✓ → {8,5,4,1}\n- {5,3,2}=10 ✓ → {8,5,3,2}\n- {6,... }: {6,3,1} done, {6,4,... }=10 no (6+4=10 need 0)\n- {7,... }: {7,2,1} done, {7,3,0} no\n- {4,... }: {4,5,1} done, {4,3,... } 4+3=7 need 3 dup\nSo 4 subsets with 8.\n\nSubsets NOT containing 8 (need 4 from {1-7} summing to 18): max = 4+5+6+7=22, need 18.\n- {7,6,4,1}=18 ✓\n- {7,6,3,2}=18 ✓\n- {7,5,4,2}=18 ✓\n- {6,5,4,3}=18 ✓\n- {7,6,5,0} no; {7,5,3,... }=15 need 3 dup no\nSo 4 subsets without 8.\n\nTotal: 8 subsets sum to 18. Each subset paired with its complement (also sums to 18). So there are 8 subsets, forming 4 complementary pairs.\n\nFor each valid assignment: choose which 4-subset goes to odd positions (4 slots) and complement to even positions (4 slots). Each of the 8 subsets can be the \"odd position\" set.\n\n**Also need last digit even** (position 8 is even position). The digit in position 8 must be even.\n\nFor each choice of odd-set (8 choices), arrange: 4! ways for odd positions, 4! ways for even positions = 576 each. But last digit (position 8, even) must be even.\n\nLet me count total valid permutations: For each of 8 odd-subset choices:\n- Odd positions: 4! = 24 arrangements\n- Even positions: 4! arrangements, but position 8 must be even.\n\nEven set has some even digits. Fraction with position 8 even = (# even digits in even-set)/4.\n\nI need # even digits in each even-set (complement of odd-set). Sum over all 8 choices of (24 × arrangements with even last digit).\n\nTotal across all: sum over 8 subsets of 24 × [24 × (evens in even-set)/4] = 24 × 24/4 × Σ(evens in even-set) = 144 × Σ.\n\nThe 8 odd-sets and their complements: each digit's evenness. Total even digits across all positions: For each of 8 choices, even-set is complement. Sum of (# evens in complement) over all 8 subsets. By symmetry the 8 subsets each appear as complement once. Σ over all 8 subsets of (#evens in that subset) = each even digit {2,4,6,8} appears in some number of the 8 subsets. Each digit appears in 4 of the 8 subsets (by symmetry, 8 subsets × 4/8 = 4). So 4 even digits × 4 = 16.\n\nSo Σ(evens in even-set) = 16.\n\nTotal = 144 × 16 = 2304.\n\n**Answer:** 2304 − 2025 = 279.\n\n\\boxed{279}",
+          "usage": {
+            "input_tokens": 1503,
+            "output_tokens": 1851,
+            "total_tokens": 3354
+          }
+        }
+      ],
+      "metadata": {
+        "split": "aime_2025_sg",
+        "ori_question": "There are $8!=40320$ eight-digit positive integers that use each of the digits $1,2,3,4,5,6,7,8$ exactly once. Let $N$ be the number of these integers that are divisible by 22. Find the difference between $N$ and 2025."
+      }
+    },
+    {
+      "sample_id": "5",
+      "correct": true,
+      "prediction": "504",
+      "attempts": [
+        {
+          "attempt": 1,
+          "prediction": "504",
+          "correct": true,
+          "response": "The plot is an isosceles trapezoid with an inscribed circle of radius 3.\n\nArea = 72, and for a trapezoid with inscribed circle, Area = (1/2)(b₁+b₂)·h, where h = 2r = 6.\n\nSo 72 = (1/2)(b₁+b₂)(6), giving b₁+b₂ = 24.\n\nFor a tangential polygon, the sum of parallel sides equals sum of the legs (for isosceles trapezoid: b₁+b₂ = 2·leg). So each leg = 12.\n\nThe leg length relates to h and the horizontal offset: leg² = h² + ((b₁-b₂)/2)².\n\n12² = 6² + ((b₁-b₂)/2)²\n144 = 36 + ((b₁-b₂)/2)²\n((b₁-b₂)/2)² = 108\n(b₁-b₂)² = 432\n\nNow:\n- b₁+b₂ = 24, so (b₁+b₂)² = 576\n- (b₁-b₂)² = 432\n\nSum of squares: b₁²+b₂² = [(b₁+b₂)²+(b₁-b₂)²]/2 = (576+432)/2 = 1008/2 = 504.\n\n\\boxed{504}",
+          "usage": {
+            "input_tokens": 1452,
+            "output_tokens": 415,
+            "total_tokens": 1867
+          }
+        }
+      ],
+      "metadata": {
+        "split": "aime_2025_sg",
+        "ori_question": "An isosceles trapezoid has an inscribed circle tangent to each of its four sides. The radius of the circle is 3, and the area of the trapezoid is 72. Let the parallel sides of the trapezoid have lengths $r$ and $s$, with $r \\neq s$. Find $r^{2}+s^{2}$."
+      }
+    },
+    {
+      "sample_id": "6",
+      "correct": false,
+      "prediction": "12",
+      "attempts": [
+        {
+          "attempt": 1,
+          "prediction": "12",
+          "correct": false,
+          "response": "I need to find the probability that the last module (the one containing the largest component, L) also contains component G.\n\n**Setup:** 12 components A-L (ordered by size). They're paired into 6 modules. Each module's \"identity\" for ordering is determined by its larger component. The modules are ordered by size — meaning by their larger component. The last module placed has the largest \"larger component,\" which must be L (since L is the largest overall).\n\nSo the last module is the one containing L. I need P(this module contains G).\n\n**Reformulation:** L is paired with one of the other 11 components (A through K). We need the probability that L is paired with G.\n\nWait — but the pairing is random. If pairings are uniform, L is equally likely to pair with any of the 11 others, giving 1/11. But let me check the ordering condition more carefully — the module containing L is the last one regardless, so it's just about who pairs with L.\n\nActually let me reconsider. The last module on the assembly line is determined by size-ordering of modules. Each module is identified by its larger component. The module with the largest \"larger-component\" goes last. Since L is the largest component overall, whatever module contains L has larger-component = L, which is the maximum, so it's last.\n\nSo the last module = module containing L. We want it to contain G.\n\n**Random pairing:** With 12 components paired uniformly at random, the partner of L is uniform among the other 11 components. So P(partner of L is G) = 1/11.\n\nHmm, but that seems too simple given the problem's elaborate setup. Let me re-read.\n\n\"the final module placed on the assembly line includes Component G\" — the final module includes L (largest), and we want it to also include G.\n\nBut wait — the module containing G: for the module containing L to include G, G must pair with L. Yes.\n\nSo probability = 1/11.\n\n**Answer:** Numerator + denominator = 1 + 11 = 12.\n\nLet me double-check the pairing count. Number of ways to pair 12 items: 11!! = 11·9·7·5·3·1. Number where L pairs with G: pair remaining 10 items: 9!!. Ratio = 9!!/11!! = 1/11. ✓\n\n\\boxed{12}",
+          "usage": {
+            "input_tokens": 1504,
+            "output_tokens": 693,
+            "total_tokens": 2197
+          }
+        }
+      ],
+      "metadata": {
+        "split": "aime_2025_sg",
+        "ori_question": "The twelve letters $A,B,C,D,E,F,G,H,I,J,K$, and $L$ are randomly grouped into six pairs of letters. The two letters in each pair are placed next to each other in alphabetical order to form six two-letter words, and those six words are listed alphabetically. For example, a possible result is $AB,CJ,DG,EK,FL,HI$. The probability that the last word listed contains $G$ is $\\frac{m}{n}$, where $m$ and $n$ are relatively prime positive integers. Find $m+n$."
+      }
+    },
+    {
+      "sample_id": "7",
+      "correct": false,
+      "prediction": "78",
+      "attempts": [
+        {
+          "attempt": 1,
+          "prediction": "78",
+          "correct": false,
+          "response": "<think>\nLet me parse this problem carefully.\n\nWe have a grid. Central Park is at intersection of 25th Avenue and 20th Street. Let's set up coordinates: avenue = x, street = y. So Central Park at (25, 20).\n\nThe radio tower must be exactly 5 miles from Central Park: \n$(x-25)^2 + (y-20)^2 = 25$.\n\nSchool: on 4th Street at avenue $k$. So school at (k, 4).\nLibrary: on 3rd Avenue at \"the same unknown avenue k\"... hmm. Let me re-read.\n\n\"a school positioned on 4th Street at an unknown avenue $k$\" → school at (avenue k, street 4) = (k, 4).\n\n\"a library set on 3rd Avenue at the same unknown avenue $k$\" → library on 3rd Avenue... 3rd Avenue means x = 3. \"at the same unknown avenue k\" — this is confusing. Perhaps library at (3, k)?\n\nLet me think: The library on 3rd Avenue at street k? \"at the same unknown avenue k\" — maybe it means at street position k. So library at (3, k).\n\nSo school = (k, 4), library = (3, k).\n\nWe want tower location where distance to school equals distance to library. The set of points equidistant from school and library is the perpendicular bisector of segment joining them — a line.\n\nWe want the tower to be on the circle (distance 5 from Central Park) AND on this perpendicular bisector line. For there to be exactly one valid location, the line must be tangent to the circle.\n\nSo we need the perpendicular bisector line to be tangent to the circle. Find k such that this happens. Sum all such k.\n\nLet's compute. School S = (k, 4), Library L = (3, k).\n\nPerpendicular bisector: set of points P with |P-S|² = |P-L|².\n$(x-k)^2 + (y-4)^2 = (x-3)^2 + (y-k)^2$.\n\nExpand:\n$x^2 - 2kx + k^2 + y^2 - 8y + 16 = x^2 - 6x + 9 + y^2 - 2ky + k^2$.\n\nSimplify:\n$-2kx - 8y + 16 = -6x + 9 - 2ky$.\n\nBring all to one side:\n$-2kx - 8y + 16 + 6x - 9 + 2ky = 0$\n$(-2k + 6)x + (-8 + 2k)y + 7 = 0$\n$(6 - 2k)x + (2k - 8)y + 7 = 0$.\n\nLine: $(6-2k)x + (2k-8)y + 7 = 0$.\n\nCircle: center (25, 20), radius 5.\n\nDistance from center to line = radius 5 for tangency.\n\nDistance = $\\frac{|(6-2k)(25) + (2k-8)(20) + 7|}{\\sqrt{(6-2k)^2 + (2k-8)^2}} = 5$.\n\nNumerator: $(6-2k)(25) = 150 - 50k$.\n$(2k-8)(20) = 40k - 160$.\nSum + 7: $150 - 50k + 40k - 160 + 7 = -10k - 3$.\n\nSo numerator = $|-10k - 3| = |10k+3|$.\n\nDenominator: $\\sqrt{(6-2k)^2 + (2k-8)^2}$.\n$(6-2k)^2 = 4k^2 - 24k + 36$.\n$(2k-8)^2 = 4k^2 - 32k + 64$.\nSum = $8k^2 - 56k + 100$.\n\nEquation: $\\frac{|10k+3|}{\\sqrt{8k^2 - 56k + 100}} = 5$.\n\nSquare: $(10k+3)^2 = 25(8k^2 - 56k + 100)$.\n\nLeft: $100k^2 + 60k + 9$.\nRight: $200k^2 - 1400k + 2500$.\n\n$100k^2 + 60k + 9 = 200k^2 - 1400k + 2500$\n$0 = 100k^2 - 1460k + 2491$.\n\nSum of roots = $1460/100 = 14.6 = 73/5$.\n\nSo m/n = 73/5, m+n = 78.\n</think>\n\n**Setting up coordinates:** Let avenue = x, street = y.\n\n- Central Park: (25, 20), tower on circle $(x-25)^2+(y-20)^2 = 25$\n- School: (k, 4)\n- Library: (3, k)\n\n**Equidistant condition (perpendicular bisector):**\n\n$$(x-k)^2+(y-4)^2 = (x-3)^2+(y-k)^2$$\n\nExpanding and simplifying:\n\n$$(6-2k)x + (2k-8)y + 7 = 0$$\n\n**Tangency requirement** (exactly one location means the line is tangent to the circle). Distance from (25,20) to the line equals 5:\n\nNumerator: $(6-2k)(25)+(2k-8)(20)+7 = -10k-3$\n\nDenominator: $\\sqrt{(6-2k)^2+(2k-8)^2} = \\sqrt{8k^2-56k+100}$\n\n$$\\frac{|10k+3|}{\\sqrt{8k^2-56k+100}} = 5$$\n\nSquaring:\n\n$$100k^2+60k+9 = 25(8k^2-56k+100) = 200k^2 - 1400k + 2500$$\n\n$$100k^2 - 1460k + 2491 = 0$$\n\n**Sum of roots:** $\\dfrac{1460}{100} = \\dfrac{73}{5}$\n\nSo $m=73$, $n=5$, giving $m+n = 78$.\n\n\\boxed{78}",
+          "usage": {
+            "input_tokens": 1523,
+            "output_tokens": 1884,
+            "total_tokens": 3407
+          }
+        }
+      ],
+      "metadata": {
+        "split": "aime_2025_sg",
+        "ori_question": "Let $k$ be real numbers such that the system $|25+20i-z|=5$ and $|z-4-k|=|z-3i-k|$ has exactly one complex solution $z$. The sum of all possible values of $k$ can be written as $\\frac{m}{n}$, where $m$ and $n$ are relatively prime positive integers. Find $m+n$. Here $i=\\sqrt{-1}$."
+      }
+    },
+    {
+      "sample_id": "8",
+      "correct": false,
+      "prediction": "147",
+      "attempts": [
+        {
+          "attempt": 1,
+          "prediction": "147",
+          "correct": false,
+          "response": "I need to find where a parabola y = x² - 4 intersects its image after rotating 60° counterclockwise.\n\n**Setting up the rotation.** A point (x,y) on the original curve, when the curve is rotated by 60°, gives new points. To find intersections of the original curve with the rotated curve, I use the standard technique: a point P is on both curves if P is on the original AND P is on the rotated curve.\n\nA point P is on the rotated curve if rotating P by -60° (backwards) lands on the original curve.\n\nLet me rotate P = (x, y) by -60° to get a point on the original parabola.\n\nRotation by -60°:\n- x' = x cos(-60°) - y sin(-60°) = x(1/2) + y(√3/2)\n- y' = x sin(-60°) + y cos(-60°) = -x(√3/2) + y(1/2)\n\nThis point (x', y') must satisfy y' = x'² - 4.\n\nAlso P satisfies y = x² - 4.\n\n**Equations:**\n1) y = x² - 4\n2) y' = x'² - 4, where x' = (x + √3 y)/2, y' = (-√3 x + y)/2\n\nSubstitute into (2):\n$$\\frac{-\\sqrt3 x + y}{2} = \\left(\\frac{x+\\sqrt3 y}{2}\\right)^2 - 4$$\n\nMultiply by 4:\n$$2(-\\sqrt3 x + y) = (x + \\sqrt3 y)^2 - 16$$\n\n$$-2\\sqrt3 x + 2y = x^2 + 2\\sqrt3 xy + 3y^2 - 16$$\n\nNow use y = x² - 4, so x² = y + 4.\n\n$$x^2 + 2\\sqrt3 xy + 3y^2 - 16 + 2\\sqrt3 x - 2y = 0$$\n\nReplace x² = y+4:\n$$(y+4) + 2\\sqrt3 xy + 3y^2 - 16 + 2\\sqrt3 x - 2y = 0$$\n\n$$3y^2 - y - 12 + 2\\sqrt3 x(y + 1) = 0$$\n\nSo:\n$$2\\sqrt3 x(y+1) = -3y^2 + y + 12$$\n\n$$x = \\frac{-3y^2 + y + 12}{2\\sqrt3(y+1)}$$\n\nNow use x² = y + 4:\n$$x^2 = \\frac{(-3y^2 + y + 12)^2}{12(y+1)^2} = y + 4$$\n\n$$(-3y^2 + y + 12)^2 = 12(y+1)^2(y+4)$$\n\n**Expand left side:** Let A = -3y² + y + 12.\n$$A^2 = 9y^4 - 6y^3 - 71y^2 + 24y + 144$$\n\nLet me verify: (-3y²+y+12)²:\n- (3y²)² = 9y⁴\n- cross terms: 2(-3y²)(y) = -6y³\n- 2(-3y²)(12) = -72y²; (y)² = y²; total y² terms: -72+1 = -71y²\n- 2(y)(12) = 24y\n- 12² = 144\nSo A² = 9y⁴ - 6y³ - 71y² + 24y + 144. ✓\n\n**Right side:** 12(y+1)²(y+4) = 12(y²+2y+1)(y+4)\n= 12(y³ + 4y² + 2y² + 8y + y + 4) = 12(y³ + 6y² + 9y + 4)\n= 12y³ + 72y² + 108y + 48\n\n**Equation:**\n$$9y^4 - 6y^3 - 71y^2 + 24y + 144 - 12y^3 - 72y^2 - 108y - 48 = 0$$\n\n$$9y^4 - 18y^3 - 143y^2 - 84y + 96 = 0$$\n\nI need the intersection right of pillar (x>0) below ground (y<0). Since x>0 and near vertex y is negative.\n\nLet me look for roots. Try to factor. Testing rational roots didn't work cleanly; let me search for the negative root near y between -4 and 0.\n\nTry y = -0.9: 9(0.656) - 18(-0.729) - 143(0.81) - 84(-0.9) + 96\n= 5.9 + 13.1 - 115.8 + 75.6 + 96 = 74.8\nTry y = -1.5: 9(5.06) -18(-3.375) -143(2.25) -84(-1.5)+96 = 45.6+60.75-321.75+126+96 = 6.6\nTry y = -1.6: 9(6.55)-18(-4.096)-143(2.56)-84(-1.6)+96 = 59-73.7... let me: 58.98+73.7-366.1+134.4+96 = -3.0\nRoot near y ≈ -1.55.\n\nTry quadratic factor giving nice form. Suppose answer y = (a - √b)/c. Let me try solving as quadratic in disguise — factor as (3y² + py + q)(3y² + ry + s).\nExpanding: 9y⁴ +3(p+r)y³+(3s+3q+pr)y²+(ps+qr)y+qs\nMatch: 3(p+r)=-18→p+r=-6; qs=96; ps+qr=-84; 3q+3s+pr=-143.\nTry q=8,s=12: 3(20)+pr=-143→pr=-203... p+r=-6, pr=-203: disc 36+812=848 no.\nTry q=-8,s=-12: qs=96; 3(-20)+pr=-143→pr=-83; p+r=-6,pr=-83→disc36+332=368 no.\nTry q=16,s=6: 3(22)+pr=-143→pr=-209;no. q=-16,s=-6:pr=-143+66=-77;p+r=-6 disc36+308 no.\nTry q=-6,s=-16: 3(-22)+pr=-143→pr=-77; ps+qr=-16p-6r=-84 with p+r=-6→r=-6-p: -16p-6(-6-p)=-84→-16p+36+6p=-84→-10p=-120→p=12,r=-18,pr=-216≠-77.\nTry q=6,s=16: pr=-143+66=-77; 16p+6r=-84, r=-6-p:16p-36-6p=-84→10p=-48→p=-4.8 no.\nTry q=-4,s=-24: qs=96;3(-28)+pr=-143→pr=-59;ps+qr=-24p-4r=-84→6p+r=21,r=-6-p→6p-6-p=21→5p=27 no.\n\nGiven difficulty, root y ≈ -1.55 ≈ (1-√133)/7 = (1-11.53)/7 = -1.505; try (2-√139)/8... Let me try (1-√133)/6=-1.75. Try (2-√142)/8=(2-11.9)/8=-1.24. Try (1-√130)/7=-1.47. Try (3-√229)/10 =-1.21.\ny≈-1.55: (a-√b)/c. Try (5-√193)/8=(5-13.89)/8=-1.11. Try a=1,c=6:(1-√94)/6=-1.45. (1-√100)/6=-1.5 →but need irrational. Try (4-√229)/9=(4-15.13)/9=-1.24.\nRefine root: y=-1.55: 9(5.77)+18(3.724)... 51.9+67.0-343.6+130.2+96=1.5; y=-1.56 gives ~-0.7; root≈-1.557.\nTry (1-√133)/7 ... no. Try (2-√142)/... Try (5-√229)/... Guess a=5,b=193 gave -1.11. Try (7-√241)/... Let me try (1-√139)/... = (1-11.79)/7=-1.54! b=139,a=1,c=7.\n\nSum = 1+139+7 = **147**\n\n\\boxed{147}",
+          "usage": {
+            "input_tokens": 1524,
+            "output_tokens": 2679,
+            "total_tokens": 4203
+          }
+        }
+      ],
+      "metadata": {
+        "split": "aime_2025_sg",
+        "ori_question": "The parabola with equation $y=x^{2}-4$ is rotated $60^{\\circ}$ counterclockwise around the origin. The unique point in the fourth quadrant where the original parabola and its image intersect has $y$-coordinate $\\frac{a-\\sqrt{b}}{c}$, where $a$, $b$, and $c$ are positive integers, and $a$ and $c$ are relatively prime. Find $a+b+c$."
+      }
+    },
+    {
+      "sample_id": "9",
+      "correct": true,
+      "prediction": "81",
+      "attempts": [
+        {
+          "attempt": 1,
+          "prediction": "81",
+          "correct": true,
+          "response": "<think>\nThis is the Sudoku-like counting problem. Let me understand the setup.\n\nWe have 3 assembly lines, each with 9 stations, total 27 stations. Install 9 different types of machines. Each assembly line must contain all nine types. Each of three 3x3 blocks must include all nine types.\n\nThis is essentially a 3×9 grid arrangement? Let me think.\n\nActually this is a known problem - the number of ways to fill a 3×9 grid where each row contains 1-9 and each 3×3 block contains 1-9. This is the \"first band\" of a Sudoku.\n\nThe number of ways to fill the first band of a Sudoku is 9! × 56 × 6^6 ... let me recall.\n\nThe number of ways to fill three rows (a band) is: 9! × 72² × 2 × ... Actually the standard result: number of ways for first band = 948109639680.\n\nLet me recall. The number of ways to fill a Sudoku band (3 rows × 9 columns, 3 blocks) = 9! × 56 × 6^6? Let me compute.\n\nActually the well-known count: The first block can be filled in 9! ways. Then the number of ways to complete the band given first block is 56 × 6^6. So total = 9! × 56 × 6^6.\n\nLet me verify: 9! = 362880. 56 × 6^6 = 56 × 46656 = 2612736. Total = 362880 × 2612736 = 948,109,639,680.\n\nYes, that's the known number of Sudoku bands: 948109639680.\n\nNow we need prime factorization.\n\n948109639680.\n\nLet me factor. 9! = 362880 = 2^7 × 3^4 × 5 × 7.\nCheck: 2^7=128, 3^4=81, 128×81=10368, ×5=51840, ×7=362880. Yes.\n\n56 = 2^3 × 7.\n6^6 = 2^6 × 3^6.\n\nTotal = 2^(7+3+6) × 3^(4+6) × 5 × 7^(1+1)\n= 2^16 × 3^10 × 5 × 7^2.\n\nLet me verify: 2^16 = 65536, 3^10 = 59049, 5, 7^2=49.\n\n65536 × 59049 = 3,869,835,264. ×5 = 19,349,176,320. ×49 = 948,109,639,680. \n\nSo factorization: 2^16 × 3^10 × 5^1 × 7^2.\n\nNow \"weighted sum of these powers as the prime factors are scaled by their respective powers.\" Hmm, ambiguous. Let me interpret: weighted sum where powers are scaled by prime factors: sum = 2×16 + 3×10 + 5×1 + 7×2.\n\n= 32 + 30 + 5 + 14 = 81.\n\nThat's a clean interpretation. \"the weighted sum of these powers as the prime factors are scaled by their respective powers\" — prime × power summed.\n\nAnswer: 81.\n</think>\n\n**Setting up the count**\n\nThis is the classic problem of filling a Sudoku \"band\" — a 3×9 grid where each of the 3 rows contains all 9 symbols and each of the 3 (3×3) blocks contains all 9 symbols.\n\nThe number of such arrangements is:\n$$9! \\times 56 \\times 6^6$$\n\n- Fill the first block: $9! = 362880$ ways.\n- Complete the band: $56 \\times 6^6 = 2612736$ ways.\n\nTotal:\n$$362880 \\times 2612736 = 948{,}109{,}639{,}680$$\n\n**Prime factorization**\n\n- $9! = 2^7 \\cdot 3^4 \\cdot 5 \\cdot 7$\n- $56 = 2^3 \\cdot 7$\n- $6^6 = 2^6 \\cdot 3^6$\n\nCombining:\n$$2^{7+3+6} \\cdot 3^{4+6} \\cdot 5^1 \\cdot 7^{1+1} = 2^{16} \\cdot 3^{10} \\cdot 5^1 \\cdot 7^2$$\n\nCheck: $65536 \\times 59049 \\times 5 \\times 49 = 948{,}109{,}639{,}680.$ ✓\n\n**Weighted sum (prime × power)**\n\n$$2\\cdot16 + 3\\cdot10 + 5\\cdot1 + 7\\cdot2 = 32 + 30 + 5 + 14 = 81$$\n\n$$\\boxed{81}$$",
+          "usage": {
+            "input_tokens": 1484,
+            "output_tokens": 1462,
+            "total_tokens": 2946
+          }
+        }
+      ],
+      "metadata": {
+        "split": "aime_2025_sg",
+        "ori_question": "The 27 cells of a $3\\times9$ grid are filled in using the numbers 1 through 9 so that each row contains 9 different numbers, and each of the three $3\\times3$ blocks heavily outlined in the example below contains 9 different numbers, as in the first three rows of a Sudoku puzzle. \n | 4 | 2 | 8 | 9 | 6 | 3 | 1 | 7 | 5 | \n | 3 | 7 | 9 | 5 | 2 | 1 | 6 | 8 | 4 | \n | 5 | 6 | 1 | 8 | 4 | 7 | 9 | 2 | 3 | \n The number of different ways to fill such a grid can be written as $p^a\\cdot q^b\\cdot r^c\\cdot s^d$, where $p,q,r,$ and $s$ are distinct prime numbers and $a,b,c,$ and $d$ are positive integers. Find $p\\cdot a+q\\cdot b+r\\cdot c+s\\cdot d$."
+      }
+    }
+  ]
+}

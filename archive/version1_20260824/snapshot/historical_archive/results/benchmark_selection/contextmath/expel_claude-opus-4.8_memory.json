@@ -1,0 +1,254 @@
+{
+  "experiences": [
+    {
+      "task": "A delivery truck follows a daily route that covers a total of 9 kilometers. Initially, the truck travels at an average speed, and the route takes 4 hours, which includes a specified time for loading, ",
+      "trajectory": "Let me denote the speed as v km/h and the fixed stop time as t hours.\n\nThe driving time = 9/v, so total time = 9/v + t.\n\n**Setting up equations:**\n\nFirst scenario: 9/v + t = 4\n\nSecond scenario: 9/(v+2) + t = 2.4 (2 hours 24 min = 2.4 hours)\n\n**Subtracting:**\n9/v - 9/(v+2) = 4 - 2.4 = 1.6\n\n9[(v+2 - v",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 204."
+    },
+    {
+      "task": "At the heart of a large botanical garden lies a perfectly circular walking path known as Harmony Loop. Three popular landmarks are located along this path: the Butterfly Pavilion, the Rose Fountain, a",
+      "trajectory": "<think>\nThis is a classic problem. Triangle with sides, tangent lines from external point P to circle at points R (Rose Fountain) and Z (Zen Arch). B is Butterfly Pavilion. Line from B through P meets circle again at point.\n\nLet me set up. The triangle ABC inscribed in circle. Let me use standard la",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 113."
+    },
+    {
+      "task": "At the center of a large amusement park, there's a circular plaza surrounded by eight identical food stalls arranged evenly in a ring. Each stall has a rotating sign on top that lights up in either re",
+      "trajectory": "This is a classic problem (AIME 2006-ish). Let me work through it.\n\nWe have 8 positions in a circle, each colored red or blue with probability 1/2. We want the probability that there exists a rotation such that all blue positions map to positions that were originally red.\n\nThis means: after rotating",
+      "outcome": "failure",
+      "lesson": "Failed — predicted '305' (wrong). Review the approach."
+    },
+    {
+      "task": "In a futuristic science park, two interactive installations—The Sound Spiral and The Light Grid—are designed to respond to continuous visitor movement in mathematically precise ways.\n\n- The Sound Spir",
+      "trajectory": "<think>\nLet me parse this problem carefully.\n\n**Sound Spiral:** sine wave completing two cycles per lap. Let x be laps. The wave is sin(2·2πx)? Wait, \"completes two full cycles for every full lap\" — so sin(2·(2πx))... but let's use a normalized variable. Let me define based on position.\n\nActually th",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 385."
+    },
+    {
+      "task": "In a quiet coastal town, a team of engineers is designing a rotating sculpture for the town square. The sculpture is powered by a hidden motor that turns a central rod. For aesthetic reasons, the desi",
+      "trajectory": "This is the well-known problem: find the smallest prime p such that p² divides n⁴+1 for some n, then find the smallest such n.\n\nThe smallest prime p for which p² | n⁴+1 is p = 13... let me verify.\n\nWe need p ≡ 1 (mod 8) typically for n⁴ ≡ -1 to have solutions mod p.\n\nPrimes where -1 is a fourth powe",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 110."
+    },
+    {
+      "task": "In the heart of a mountainous region, four remote weather stations—named Aspen, Birch, Cedar, and Driftwood—are perched on rugged peaks. These stations form a unique 3D configuration used by a researc",
+      "trajectory": "This is an isosceles tetrahedron (opposite edges equal). The inscribed sphere radius is what we need.\n\n**Setup:** Opposite edges equal:\n- AB = CD = √41\n- AC = BD = √80\n- BC = AD = √89\n\nAn isosceles tetrahedron can be embedded in a rectangular box with edge lengths p, q, r where the face diagonals ar",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 104."
+    },
+    {
+      "task": "A logistics company is designing a new line of shipping containers. Each container must be built with a total outer surface area of exactly 54 square meters to meet material cost constraints. At the s",
+      "trajectory": "I need to find the smallest sphere that encloses any rectangular box with surface area 54 and volume 23.\n\n**Setup:** For a box with dimensions $x, y, z$:\n- Surface area: $2(xy + yz + zx) = 54$, so $xy+yz+zx = 27$\n- Volume: $xyz = 23$\n\nThe smallest enclosing sphere of a box has diameter equal to the ",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 721."
+    },
+    {
+      "task": "At a high-tech manufacturing facility, two engineers, Lin and Mateo, are calibrating two different types of precision-controlled furnaces used for advanced material synthesis. Each furnace has a uniqu",
+      "trajectory": "Let me define variables. Let the calibration constant be $b$ and power output be $x$.\n\n**Lin's furnace:** feedback = log base $b$ of (power output raised to calibration constant) = $\\log_b(x^b) = 10$.\n\nSo $b \\log_b x = 10$.\n\n**Mateo's furnace:** feedback = log base $x$ of (calibration constant raise",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 25."
+    },
+    {
+      "task": "In a construction project planning game, two engineers, Alex and Jamie, are in charge of tiling a large floor. The floor is divided into different sections, each consisting of the same number of tiles",
+      "trajectory": "This is a combinatorial game theory problem. Players take turns removing 1 or 4 sections. The player who tiles the last section wins. Jamie wins if the starting position is a losing position for the player to move (Alex moves first).\n\nLet me find positions where the player to move loses (P-positions",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 809."
+    },
+    {
+      "task": "Jen is an engineer at a manufacturing plant. She selects 4 distinct components from a batch of 10 to monitor as part of a tracking experiment. Later, an independent quality team randomly selects 4 com",
+      "trajectory": "Total ways for team to pick 4 from 10: C(10,4)=210.\n\nJen has 4 specific components. Let k = number of overlap between team's pick and Jen's 4.\n\nWays to get exactly k matches: C(4,k)·C(6,4-k).\n\n- k=2: C(4,2)·C(6,2)=6·15=90\n- k=3: C(4,3)·C(6,1)=4·6=24\n- k=4: C(4,4)·C(6,0)=1\n\nRecognition (at least 2): ",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 116."
+    },
+    {
+      "task": "A delivery drone follows a fixed route daily. Each morning, it performs a fixed-duration diagnostic and warm-up sequence before flight. Logs show that under its standard speed, the total mission (flig",
+      "trajectory": "Let me work through each piece.\n\n**Standard mission time:** \"smallest count of distinct items whose arrangements are evenly divisible by eight.\"\n\nWe need smallest n such that n! is divisible by 8. \n- 3! = 6 (no), 4! = 24 = 8·3 (yes). So n = 4 hours = 240 minutes.\n\n**Expedited mission time:** \"larges",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 204."
+    },
+    {
+      "task": "The Eden Ring botanical complex features a grand Circular Reflecting Pool at its heart. Three landmarks sit on its rim: the Chrysalis Conservatory, the Blooming Serenity Hub, and the Tranquil Zen Gard",
+      "trajectory": "I need to identify the distances first.\n\n**Identifying the distances:**\n- Chrysalis (C) to Blooming (B): number of human senses = 5\n- Blooming (B) to Tranquil (T): players on baseball field = 9\n- Chrysalis (C) to Tranquil (T): fingers and thumbs on both hands = 10\n\nSo triangle CBT has sides: CB = 5,",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 113."
+    },
+    {
+      "task": "At the heart of the cutting-edge amusement park plaza stands the Octopus Lumina. This towering facility features a number of light towers matching the count of an octopus's arms. Every night, the park",
+      "trajectory": "I need to find the probability that an octagon (8 arms) coloring of red/blue can be rotated so every blue position lands on an originally red position.\n\n**Setting up the problem:** We have 8 positions in a circle, each colored red (R) or blue (B) with equal probability. We want the probability that ",
+      "outcome": "failure",
+      "lesson": "Failed — predicted '305' (wrong). Review the approach."
+    },
+    {
+      "task": "At a cutting-edge science park, two interactive installations—the Sound Spiral and the Light Grid—respond to visitor movement. The Sound Spiral tracks a visitor's continuous position on a circular wal",
+      "trajectory": "<think>\nLet me parse this problem carefully.\n\nWe have two signals:\n- Sound Spiral: sinusoidal wave completing two cycles per lap: signal as function of position. Let position be x (angle parameter). The core signal is sin(2x)? Actually \"two full cycles per lap\" means sin(2θ).\n- Light Grid: cosinusoi",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 385."
+    },
+    {
+      "task": "Engineers in a coastal town are designing a kinetic sculpture. Its central rod's rotations drive the sculpture's movement, following a specific non-linear relationship: a power of the rod's spins plus",
+      "trajectory": "<think>\nThe relationship: f(n) = a·n^k + c.\n\nf(1) = a·1 + c = a + c = 2\nf(2) = a·2^k + c = 17\n\nNeed to determine k. Common: k power. Let's try. With f(1)=2, f(2)=17.\n\nIf form is a·n^k + c. Two equations, three unknowns. Maybe a=1? Then 1 + c = 2 → c=1. Then 2^k + 1 = 17 → 2^k = 16 → k=4. So f(n) = n",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 110."
+    },
+    {
+      "task": "In a remote mountainous region, four strategically positioned weather stations—Aspen, Birch, Cedar, and Driftwood—form a unique 3D configuration for atmospheric research. The distances between these s",
+      "trajectory": "I need to find the inscribed sphere radius of a tetrahedron with specific edge lengths.\n\n## Setting Up Edge Lengths\n\nThe three baselines:\n- Baseline 1: √(4² + 5²) = √41\n- Baseline 2: √(4² + 8²) = √80\n- Baseline 3: √(5² + 8²) = √89\n\nEdge assignments:\n- AB = CD = √41\n- AC = BD = √80\n- BC = AD = √89\n\nT",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 104."
+    },
+    {
+      "task": "A manufacturing company designs customizable rectangular shipping boxes. Each box adheres to strict internal and external geometric properties: its internal volume precisely matches the smallest prime",
+      "trajectory": "Let dimensions be a, b, c.\n\nVolume: smallest prime > 19 = 23, so abc = 23.\n\nSum of products of each pair: smallest perfect cube > 20 = 27, so ab+bc+ca = 27.\n\nThe sphere enclosing the box has diameter = space diagonal, so radius = (1/2)√(a²+b²+c²).\n\nR² = (a²+b²+c²)/4.\n\nWe need a²+b²+c² = (a+b+c)² - 2",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 721."
+    },
+    {
+      "task": "At an innovative materials lab, specialists Lin and Mateo calibrate advanced spectrometers for analyzing new compounds. Their instruments determine measurements from a material's reflectivity and the ",
+      "trajectory": "Let me find the exponents first.\n\n**Lin's exponent:** 11^x = 25937424601\n- 11^10 = 25937424601 (since 11^2=121, 11^5=161051, 11^10=161051²=25937424601). So exponent = 10.\n\n**Mateo's exponent:** 12^y = 61917364224\n- 12^10 = 61917364224. Check: 12^5 = 248832, 12^10 = 248832² = 61917364224. So exponent",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 25."
+    },
+    {
+      "task": "In a high-stakes construction project, lead engineers Alex and Jamie are managing the final phase of tiling a vast architectural plaza. The entire project consists of a total workload measured in sect",
+      "trajectory": "This is a combinatorial game theory problem. Let me extract the relevant information.\n\n**Game setup:**\n- Players alternate turns, Alex first.\n- Each turn, a player removes either 1 section or 4 sections (4 = number of sides on a square).\n- The player who tiles the **last section** wins.\n- We want to",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 809."
+    },
+    {
+      "task": "Jen enters a specialized weekly lottery. She makes her selection from a pool of numbers equivalent to the count of unique single-digit prime numbers, composite numbers, the value one, and the value ze",
+      "trajectory": "I need to find the pool size and how many numbers Jen picks.\n\n**Pool size:** Single-digit primes: 2,3,5,7 (4 numbers). Single-digit composites: 4,6,8,9 (4 numbers). Plus the value one (1) and value zero (0). \n\nTotal: 4 + 4 + 1 + 1 = 10 numbers.\n\n**Numbers Jen marks:** Number of fundamental forces of",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 116."
+    },
+    {
+      "task": "Imagine working in an engineering facility where machines operate in various modes corresponding to different numbered settings. Each machine can adjust two specific components, X and Y, in these mode",
+      "trajectory": "I need to find bases $b > 9$ where the number \"17\" in base $b$ divides the number \"97\" in base $b$.\n\n**Setting up:**\n- Component X = \"17\" in base $b$ = $1 \\cdot b + 7 = b + 7$\n- Component Y = \"97\" in base $b$ = $9 \\cdot b + 7 = 9b + 7$\n\nI need $(b+7) \\mid (9b+7)$.\n\n**Finding divisibility condition:*",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 70."
+    },
+    {
+      "task": "An engineering team is working on a large, triangular plot of land designated for development. They have placed survey markers along two of the boundary lines to partition it and make precise measurem",
+      "trajectory": "I'll set up coordinates and work through this systematically.\n\n## Setting Up Distances\n\n**First boundary (from Alpha):**\n- Alpha to Delta: 4\n- Alpha to Echo: 4 + 16 = 20\n- Alpha to Bravo: 20 + 8 = 28\n\n**Second boundary (from Alpha):**\n- Alpha to Foxtrot: 13\n- Alpha to Golf: 13 + 52 = 65\n- Alpha to C",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 588."
+    },
+    {
+      "task": "A project team consists of 9 engineers who just completed a major development cycle. To allocate resources for the next quarter, the engineers are separated into three project types: Software Developm",
+      "trajectory": "We need partitions of 9 engineers into three labeled groups (S, H, N) with sizes s > h > n ≥ 1, and s+h+n = 9.\n\nFirst find size triples with s > h > n ≥ 1 and sum 9.\n\nEnumerate:\n- n=1: h+s=8, h<s, h>1 → h=2,s=6; h=3,s=5; (h=4,s=4 no). So (6,2,1),(5,3,1)\n- n=2: h+s=7, h>2,h<s → h=3,s=4. (4,3,2)\n- n=1",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 16."
+    },
+    {
+      "task": "An event planner is organizing a large outdoor festival in a park set up using a coordinate grid system that extends from point $-100$ to $100$ in both the horizontal and vertical directions. The park",
+      "trajectory": "We need integer solutions (x,y) with -100 ≤ x,y ≤ 100 to:\n12x² - xy - 6y² = 0.\n\nFactor: 12x² - xy - 6y² = (3x + 2y)(4x - 3y).\n\nCheck: (3x+2y)(4x-3y) = 12x² -9xy +8xy -6y² = 12x² - xy - 6y². ✓\n\nSo either 3x + 2y = 0 or 4x - 3y = 0.\n\n**Case 1: 3x + 2y = 0** → y = -3x/2. Need x even. x = 2t, y = -3t.\nC",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 117."
+    },
+    {
+      "task": "In a large manufacturing plant, the production process for assembling a specific model consists of a sequence where exactly eight unique components must be arranged in every completed assembly line. E",
+      "trajectory": "I need to count permutations of digits 1-8 that form numbers divisible by 22.\n\nDivisible by 22 means divisible by both 2 and 11.\n\n**Divisibility by 2:** Last digit must be even (2, 4, 6, or 8).\n\n**Divisibility by 11:** The alternating sum (odd positions minus even positions) must be divisible by 11.",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 279."
+    },
+    {
+      "task": "Imagine you are designing a greenhouse plot. The plot has two parallel walls, and the sloped glass panels connecting them have the same length, maintaining symmetrical balance. Within this plot, there",
+      "trajectory": "This describes an isosceles trapezoid with an inscribed circle of radius 3, area 72.\n\n**Setup:**\n- Inscribed circle radius r = 3, so height h = 2r = 6.\n- Area = (1/2)(a + b)(h) = 72\n- (1/2)(a + b)(6) = 72 → (a + b)·3 = 72 → a + b = 24\n\n**Tangential quadrilateral property:** For a circle inscribed in",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 504."
+    },
+    {
+      "task": "Imagine a factory that needs to assemble a series of machines. Each machine requires exactly six modules, and each module is constructed using two distinct components. There are twelve components in t",
+      "trajectory": "This is a classic problem. We have 12 components labeled A-L (1-12), randomly paired into 6 pairs. Each pair's \"value\" for ordering is determined by its larger element. The last module on the line is the pair with the largest \"larger element.\"\n\nThe last module is the pair containing component L (12)",
+      "outcome": "failure",
+      "lesson": "Failed — predicted '12' (wrong). Review the approach."
+    },
+    {
+      "task": "In a city organized as a grid, there is a requirement to build a new radio tower such that it is precisely 5 miles from Central Park, which sits at the crossing of 25th Avenue and 20th Street. There a",
+      "trajectory": "<think>\nLet me parse this carefully. The city is a grid. Central Park at (25, 20) where avenue is x-coordinate, street is y-coordinate.\n\nThe tower must be exactly 5 miles from Central Park: so it lies on a circle of radius 5 centered at (25, 20).\n\nSchool: on 4th Street at avenue k → (k, 4).\nLibrary:",
+      "outcome": "failure",
+      "lesson": "Failed — predicted '78' (wrong). Review the approach."
+    },
+    {
+      "task": "A roller coaster track follows a specific curved design, where the height of the track above ground is given by squaring the horizontal distance from the central support pillar and subtracting 4 feet.",
+      "trajectory": "I need to find the intersection of the parabola y = x² - 4 with its image after rotation by 60° counterclockwise.\n\nThis is a known type problem. The original parabola is y = x² - 4.\n\n**Setting up rotation:** When we rotate the curve by 60° CCW, a point (x,y) on the original maps to a new location. T",
+      "outcome": "failure",
+      "lesson": "Failed — predicted '65' (wrong). Review the approach."
+    },
+    {
+      "task": "In a factory layout optimization scenario, imagine a factory floor divided into three assembly lines, each comprising nine machine stations, making a total of twenty-seven stations. Your task is to in",
+      "trajectory": "<think>\nLet me parse this. Three assembly lines, each with nine stations, total 27. Install nine different types of machines. Each assembly line (row) must contain all nine types. Each of three 3x3 blocks must include all nine types.\n\nThis is essentially a 3×9 grid... Actually this is the structure ",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 81."
+    },
+    {
+      "task": "In a timing lab, researchers use adjustable gears to control different experiment chambers. Each gear rotates at a constant speed, where the second that the gear completes exactly one full turn is a t",
+      "trajectory": "<think>\nLet me parse this. The gear setting is the number of seconds per full turn, an integer. Gears spin no faster than 6 rotations per minute, so seconds per rotation ≥ 60/6 = 10. So setting ≥ 10.\n\nThe logger is a number in base b, where b = the gear setting (number of seconds per full turn). Wai",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 70."
+    },
+    {
+      "task": "An exploration team is mapping out a region for an expedition. They've placed reference points to navigate two connected straight paths of the terrain. Beginning at Base Camp Alpha, the team moved to ",
+      "trajectory": "<think>\nLet me parse this problem. We have two paths from Base Camp Alpha (A).\n\nPath 1: A → Delta (D) → Echo (E) → Bravo (B)\n- A to D: 4\n- D to E: 16\n- E to B: 8\n\nPath 2: A → Foxtrot (F) → Golf (G) → Charlie (C)\n- A to F: 13\n- F to G: 52\n- G to C: 26\n\nThese are two straight paths (straight lines). T",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 588."
+    },
+    {
+      "task": "Three independent processes must be scheduled to run across a shared system. Each process will occupy some whole time slots, and the total amount of time allocated to all three processes is fixed. For",
+      "trajectory": "<think>\nLet me parse this problem. It's the classic AIME 2010 problem? Let me recall.\n\nActually this is AIME 2010 I Problem... \"Maya lists all the positive divisors...\" no.\n\nLet me think. The example: 4 slots to first, 3 to second, 2 to third. Total fixed.\n\nActually this looks like AIME 2017 II Prob",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 16."
+    },
+    {
+      "task": "Engineers are studying the behavior of a prototype bridge under test conditions involving delayed activation and spatial offsets. Each trial is conducted by initiating a signal with a specific delay (",
+      "trajectory": "Let me set up the equation. Let t = time delay, x = lateral distance.\n\nReactive energy: 12t²\nLateral stress: 6x²\nInteraction: tx (one unit per product)\n\nBalance: reactive energy = lateral stress + interaction\n\nSo: 12t² = 6x² + tx\n\nWe need integer solutions with t, x ∈ [-100, 100].\n\nRearrange: 12t² -",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 117."
+    },
+    {
+      "task": "In a system of three concurrent programs, one program acts as a timer, incrementing by one every unit of time from zero. A second program counts these ticks and sends out a signal every time the timer",
+      "trajectory": "I need to count 8-digit numbers (from 10000000 to 99999999) that:\n1. Contain no digit 0 or 9\n2. Have all distinct digits\n3. Are divisible by 22\n\n**Setting up constraints:**\n\nDigits allowed: {1,2,3,4,5,6,7,8} — exactly 8 digits available, and I need an 8-digit number with all distinct digits.\n\nSo the",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 279."
+    },
+    {
+      "task": "In a science museum, several convex lenses are mounted along a straight rail. Each lens has a different focal length, clearly labeled. Two visitors stand on the same side of two different lenses, each",
+      "trajectory": "I need to work through the optics setup first.\n\n## Setting Up the Optics\n\nFor a convex lens, when an object is placed at **2f** (twice the focal length), the image forms at **2f** on the other side, and the image is:\n- Real, inverted\n- Same size as object\n\nThis matches the problem: \"clear, inverted,",
+      "outcome": "failure",
+      "lesson": "Failed — predicted '576' (wrong). Review the approach."
+    },
+    {
+      "task": "A delivery hub processes twelve parcels of distinct weights, from lightest to heaviest. For packaging efficiency, the parcels are grouped into six sealed boxes, each containing exactly two parcels. Wh",
+      "trajectory": "I need to find the probability that the box appearing last in sorted order contains the heaviest parcel (parcel 12).\n\n**Setup:** 12 distinct parcels, paired into 6 boxes. Each box has a \"top\" (lighter) and \"bottom\" (heavier). Boxes are sorted by top weight first, then bottom weight. Since all weight",
+      "outcome": "failure",
+      "lesson": "Failed — predicted '949' (wrong). Review the approach."
+    },
+    {
+      "task": "Imagine a vast, flat testing area, perfectly level. From your perspective standing at the southwest corner, a main receiver is located 25 units directly to your right and 20 units directly above you. ",
+      "trajectory": "I'll set up coordinates with the southwest corner at origin.\n\n**Setting up positions:**\n- Main receiver R: 25 right, 20 up → R = (25, 20)\n- Beacon must be exactly 5 units from R: lies on circle centered (25,20), radius 5.\n- Sensor A: on horizontal line (y=0). Position: 4 + t units right → A = (4 + t",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 77."
+    },
+    {
+      "task": "In a physics classroom, a teacher sets up a demonstration. From a precise starting point, a small, heavy ball is launched directly forward with a horizontal speed of $\\sqrt{g/2}$ units per second, whe",
+      "trajectory": "<think>\nLet me work through this carefully.\n\n**Setting up the projectile path.**\n\nBall launched horizontally with speed $v = \\sqrt{g/2}$ from origin.\n\nPosition at time $t$:\n- $x = v t = \\sqrt{g/2}\\, t$\n- $y = -\\frac{1}{2} g t^2$ (falling downward)\n\nEliminate $t$: $t = x/v$, so\n$y = -\\frac{1}{2} g \\f",
+      "outcome": "failure",
+      "lesson": "Failed — predicted None (wrong). Review the approach."
+    },
+    {
+      "task": "Imagine a grand parade formation involving nine distinct squads, each with three individuals. The parade director arranges all participants into a 9-row by 3-column formation. Two strict rules ensure ",
+      "trajectory": "<think>\nThis is the famous Sudoku-like problem. Let me parse it carefully.\n\nWe have nine distinct squads, each with three individuals. Total 27 individuals arranged in 9-row × 3-column formation = 27 cells. Good.\n\nRules:\n- No two individuals from the same squad in the same column.\n- Each of the thre",
+      "outcome": "success",
+      "lesson": "Solved correctly. Final answer: 81."
+    }
+  ],
+  "insights": [
+    "Here are generalizable rules extracted from these experiences:",
+    "1. Recognize that \"real-world\" framings (factories, parades, timing labs, delivery hubs) are usually disguised abstract math problems—strip away the narrative and identify the underlying combinatorics, geometry, or number theory structure first.",
+    "2. When the same answer recurs across differently-worded tasks (e.g., 70, 588, 16, 117, 279, 81), treat structurally identical problems consistently; map a new problem to a previously solved template before computing.",
+    "3. For geometry problems involving distance from a fixed point (radio tower 5 miles from a center, receiver coordinates), carefully count lattice points or intersections and double-check boundary inclusion—these were a repeated failure source (tasks 8, 18).",
+    "4. In counting/partition problems (pairing parcels into boxes, grouping engineers into project types), verify whether order matters and whether groups are distinguishable, since misclassifying these distinctions caused failures (tasks 7, 17).",
+    "5. For pairing problems with distinct items into fixed-size groups (e.g., 12 parcels into 6 boxes of 2), apply the correct multinomial/double-counting correction rather than a naive product, which led to wrong answers like '949' and '12'.",
+    "6. For physics-motion problems (projectiles, roller coaster height as a quadratic), set up the governing equation explicitly and solve fully—partial or incomplete reasoning produced 'None' and wrong values (tasks 9, 19).",
+    "7. With optics or rate problems (lenses, gears"
+  ]
+}

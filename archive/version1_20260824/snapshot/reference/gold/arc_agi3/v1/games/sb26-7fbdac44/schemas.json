@@ -1,0 +1,354 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:sb26-7fbdac44:L2:frames:8c67b20aaa0e",
+      "format_version": 1,
+      "title": "外框表示有序序列，特殊节点引用另一外框",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "7fbdac44",
+      "game_id": "sb26-7fbdac44",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "observation_semantics",
+      "trigger": "关卡含多个有编号长度的框和叶节点。",
+      "action_sequence": [],
+      "expectation": "框内项目从左到右求值；引用节点按自身颜色/标识进入对应子框，形成递归序列。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+          "sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3",
+          "symbol": "Sb26 editing, recursive evaluation, undo and energy",
+          "lines": [
+            712,
+            1146
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "verification": {
+        "static": "passed",
+        "runtime": "not_required",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sb26-7fbdac44:L2:select_swap:489a84845789",
+      "format_version": 1,
+      "title": "ACTION6 先选节点，再点击节点或空位完成交换/移动",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "7fbdac44",
+      "game_id": "sb26-7fbdac44",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "点击可编辑叶节点。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "首次点击选中；再次点击另一节点交换位置，点击合法空位把选中节点移入该位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+          "sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3",
+          "symbol": "Sb26 editing, recursive evaluation, undo and energy",
+          "lines": [
+            712,
+            1146
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sb26-7fbdac44:L2:protected:2e85637c328e",
+      "format_version": 1,
+      "title": "输出区与上方参考节点不可直接编辑",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "7fbdac44",
+      "game_id": "sb26-7fbdac44",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "点击不带 sys_click 的参考/输出节点。",
+      "action_sequence": [],
+      "expectation": "不会进入选中或交换流程。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+          "sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3",
+          "symbol": "Sb26 editing, recursive evaluation, undo and energy",
+          "lines": [
+            712,
+            1146
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sb26-7fbdac44:L2:evaluate:3e7bc086080f",
+      "format_version": 1,
+      "title": "ACTION5 从入口框递归展开序列",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "7fbdac44",
+      "game_id": "sb26-7fbdac44",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "当前布局可被解析。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "求值器按框内顺序前进；遇到引用时进入子框，子框结束后返回父框下一项。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+          "sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3",
+          "symbol": "Sb26 editing, recursive evaluation, undo and energy",
+          "lines": [
+            712,
+            1146
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sb26-7fbdac44:L2:match:9e4e3fb6351e",
+      "format_version": 1,
+      "title": "展开叶颜色必须逐项匹配输出槽",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "7fbdac44",
+      "game_id": "sb26-7fbdac44",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "求值器产生下一个叶值。",
+      "action_sequence": [],
+      "expectation": "叶颜色等于当前输出槽颜色则继续；不相等或出现非法递归则本次求值失败。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+          "sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3",
+          "symbol": "Sb26 editing, recursive evaluation, undo and energy",
+          "lines": [
+            712,
+            1146
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sb26-7fbdac44:L2:goal:67d7f7a37f3a",
+      "format_version": 1,
+      "title": "递归展开完整且恰好匹配全部输出时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "7fbdac44",
+      "game_id": "sb26-7fbdac44",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "ACTION5 求值到根序列末尾。",
+      "action_sequence": [],
+      "expectation": "所有输出槽均被按序匹配且没有多余值时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+          "sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3",
+          "symbol": "Sb26 editing, recursive evaluation, undo and energy",
+          "lines": [
+            712,
+            1146
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:sb26-7fbdac44:L2:undo_energy:333bf4fb79b9",
+      "format_version": 1,
+      "title": "ACTION7 撤销编辑；编辑和求值消耗能量",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "7fbdac44",
+      "game_id": "sb26-7fbdac44",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "存在上一编辑快照或能量继续减少。",
+      "action_sequence": [
+        {
+          "action": "ACTION7",
+          "arguments": {}
+        }
+      ],
+      "expectation": "撤销恢复上一布局；能量降到零且未完成时 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/sb26/7fbdac44/sb26.py",
+          "sha256": "dbb4877853a8d30f84e28d26f4a3d6ad7d2d1018602e82ccb5a62284043984f3",
+          "symbol": "Sb26 editing, recursive evaluation, undo and energy",
+          "lines": [
+            712,
+            1146
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

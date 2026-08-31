@@ -1,0 +1,347 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:re86-8af5384d:L2:active:aa40ad94e693",
+      "format_version": 1,
+      "title": "带中心标记的轮廓是当前活动图形",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "8af5384d",
+      "game_id": "re86-8af5384d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "observation_semantics",
+      "trigger": "棋盘上存在多个可移动轮廓。",
+      "action_sequence": [],
+      "expectation": "只有活动轮廓响应方向输入；活动标记随选择更新。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/re86/8af5384d/re86.py",
+          "sha256": "cf3c1520e17f0b70e7a3cea0e680601a591befce306b4dd1926c735a7d3b65e8",
+          "symbol": "Re86 active shape, deformation, composite target and goal",
+          "lines": [
+            1864,
+            2158
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "verification": {
+        "static": "passed",
+        "runtime": "not_required",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:re86-8af5384d:L2:move:2287b7bdfa84",
+      "format_version": 1,
+      "title": "ACTION1–4 移动活动轮廓",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "8af5384d",
+      "game_id": "re86-8af5384d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "活动轮廓存在。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "轮廓向上、下、左、右移动固定像素距离。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/re86/8af5384d/re86.py",
+          "sha256": "cf3c1520e17f0b70e7a3cea0e680601a591befce306b4dd1926c735a7d3b65e8",
+          "symbol": "Re86 active shape, deformation, composite target and goal",
+          "lines": [
+            1864,
+            2158
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:re86-8af5384d:L2:cycle:5a6411b77f0c",
+      "format_version": 1,
+      "title": "ACTION5 循环选择下一个轮廓",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "8af5384d",
+      "game_id": "re86-8af5384d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "存在多个轮廓。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "当前标记清除，下一个轮廓获得活动标记。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/re86/8af5384d/re86.py",
+          "sha256": "cf3c1520e17f0b70e7a3cea0e680601a591befce306b4dd1926c735a7d3b65e8",
+          "symbol": "Re86 active shape, deformation, composite target and goal",
+          "lines": [
+            1864,
+            2158
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:re86-8af5384d:L2:deform:c3ff08fe8f24",
+      "format_version": 1,
+      "title": "轮廓撞到特定边界会改变尺寸或内部标记",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "8af5384d",
+      "game_id": "re86-8af5384d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "方向移动使轮廓接触变形轴/墙。",
+      "action_sequence": [],
+      "expectation": "矩形轮廓按接触方向增减宽高；其他轮廓移动其中心结构，随后重新计算活动标记。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/re86/8af5384d/re86.py",
+          "sha256": "cf3c1520e17f0b70e7a3cea0e680601a591befce306b4dd1926c735a7d3b65e8",
+          "symbol": "Re86 active shape, deformation, composite target and goal",
+          "lines": [
+            1864,
+            2158
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:re86-8af5384d:L2:composite:cdfa4eab5b4a",
+      "format_version": 1,
+      "title": "目标比较使用全部轮廓像素的叠加",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "8af5384d",
+      "game_id": "re86-8af5384d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "observation_semantics",
+      "trigger": "多个轮廓占据目标区域。",
+      "action_sequence": [],
+      "expectation": "全部可见非透明像素合成为一个候选图案，不要求单个轮廓独立匹配。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/re86/8af5384d/re86.py",
+          "sha256": "cf3c1520e17f0b70e7a3cea0e680601a591befce306b4dd1926c735a7d3b65e8",
+          "symbol": "Re86 active shape, deformation, composite target and goal",
+          "lines": [
+            1864,
+            2158
+          ]
+        }
+      ],
+      "runtime_evidence": [],
+      "verification": {
+        "static": "passed",
+        "runtime": "not_required",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:re86-8af5384d:L2:wildcard:c29445ed41c2",
+      "format_version": 1,
+      "title": "目标颜色 4 是通配符，透明像素不比较",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "8af5384d",
+      "game_id": "re86-8af5384d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "比较候选图案与目标模板。",
+      "action_sequence": [],
+      "expectation": "颜色 4 接受任意候选颜色；目标透明位置不施加约束，其余位置必须相等。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/re86/8af5384d/re86.py",
+          "sha256": "cf3c1520e17f0b70e7a3cea0e680601a591befce306b4dd1926c735a7d3b65e8",
+          "symbol": "Re86 active shape, deformation, composite target and goal",
+          "lines": [
+            1864,
+            2158
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:re86-8af5384d:L2:goal:03c8b33965ca",
+      "format_version": 1,
+      "title": "合成图案满足全部目标像素时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "8af5384d",
+      "game_id": "re86-8af5384d",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "移动或变形结算后。",
+      "action_sequence": [],
+      "expectation": "所有非透明、非通配目标像素与合成图案一致时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/re86/8af5384d/re86.py",
+          "sha256": "cf3c1520e17f0b70e7a3cea0e680601a591befce306b4dd1926c735a7d3b65e8",
+          "symbol": "Re86 active shape, deformation, composite target and goal",
+          "lines": [
+            1864,
+            2158
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

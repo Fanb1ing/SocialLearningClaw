@@ -1,0 +1,25 @@
+# Local environments and secrets
+.env
+.venv/
+
+# Python build/cache artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Downloaded datasets and generated experiment artifacts
+data/
+outputs/
+runs/
+runs_*/
+
+# Tool-local state
+.claude/
+.agents/
+.codex/
+auto-pipeline-ab/

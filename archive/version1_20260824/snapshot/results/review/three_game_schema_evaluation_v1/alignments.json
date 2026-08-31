@@ -1,0 +1,1769 @@
+[
+  {
+    "learned_id": "schema_2a6094bef8821d43",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:edge_detail_paint:89373eafbcbf",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION6']",
+      "concept_overlap=['tool']",
+      "level_jaccard=0.500",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 0.3,
+      "concept": 0.2,
+      "level_scope": 0.5
+    }
+  },
+  {
+    "learned_id": "schema_572e7f992f8b92c1",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:edge_detail_paint:89373eafbcbf",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION6']",
+      "concept_overlap=['canvas', 'tool']",
+      "level_jaccard=0.500",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.5,
+      "level_scope": 0.5
+    }
+  },
+  {
+    "learned_id": "schema_2a6094bef8821d43",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "terminal_bridge",
+      "concept_overlap=['level_completion', 'tool']",
+      "level_jaccard=0.333",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 0.8,
+      "role": 0.7,
+      "kind": 1.0,
+      "concept": 0.4,
+      "level_scope": 0.333333
+    }
+  },
+  {
+    "learned_id": "schema_837b50a591a4474c",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['level_completion']",
+      "level_jaccard=0.500",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.2,
+      "level_scope": 0.5
+    }
+  },
+  {
+    "learned_id": "schema_efbba1756ef42ddf",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=1.000",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 0.2,
+      "concept": 0.2,
+      "level_scope": 1.0
+    }
+  },
+  {
+    "learned_id": "schema_f2e5ea9ad0329764",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66",
+    "score": 0.638333,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=0.167",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 0.2,
+      "concept": 0.2,
+      "level_scope": 0.166667
+    }
+  },
+  {
+    "learned_id": "schema_e97920d436bef880",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:goal_match:33a0287b7d66",
+    "score": 0.598333,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=[]",
+      "level_jaccard=0.167",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 0.2,
+      "concept": 0.0,
+      "level_scope": 0.166667
+    }
+  },
+  {
+    "learned_id": "schema_62bceffdbd313dc7",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:move_action1:2b08e67c10f7",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['blocked']",
+      "level_jaccard=0.333",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.333333
+    }
+  },
+  {
+    "learned_id": "schema_c77166c7f3489523",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:move_action1:2b08e67c10f7",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['tool']",
+      "level_jaccard=1.000",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.5,
+      "level_scope": 1.0
+    }
+  },
+  {
+    "learned_id": "schema_1df22471d23a8ca8",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:move_action2:7fed96dbc083",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['tool']",
+      "level_jaccard=0.833",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.5,
+      "level_scope": 0.833333
+    }
+  },
+  {
+    "learned_id": "schema_c2e64137fed78869",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:move_action2:7fed96dbc083",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['blocked']",
+      "level_jaccard=0.167",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.166667
+    }
+  },
+  {
+    "learned_id": "schema_93c1bed42b41c9be",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:move_action3:7917915ab38f",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['tool']",
+      "level_jaccard=0.833",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.5,
+      "level_scope": 0.833333
+    }
+  },
+  {
+    "learned_id": "schema_efd08fa09a5ea8aa",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:move_action3:7917915ab38f",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['blocked']",
+      "level_jaccard=0.167",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.166667
+    }
+  },
+  {
+    "learned_id": "schema_1946d5011d04ff62",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:move_action4:ea07347fab10",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['blocked']",
+      "level_jaccard=0.167",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.166667
+    }
+  },
+  {
+    "learned_id": "schema_db604ade83a050e9",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:move_action4:ea07347fab10",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['tool']",
+      "level_jaccard=0.667",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.5,
+      "level_scope": 0.666667
+    }
+  },
+  {
+    "learned_id": "schema_efbba1756ef42ddf",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_bottom_half:cd8a02f2dea0",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=1.000",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 1.0
+    }
+  },
+  {
+    "learned_id": "schema_f2e5ea9ad0329764",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_bottom_half:cd8a02f2dea0",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=0.167",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.166667
+    }
+  },
+  {
+    "learned_id": "schema_efbba1756ef42ddf",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_bottom_left_triangle:bd9c6896bda3",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=1.000",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 1.0
+    }
+  },
+  {
+    "learned_id": "schema_f2e5ea9ad0329764",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_bottom_left_triangle:bd9c6896bda3",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=0.167",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.166667
+    }
+  },
+  {
+    "learned_id": "schema_efbba1756ef42ddf",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_bottom_right_triangle:fe5879fe14f4",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=1.000",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 1.0
+    }
+  },
+  {
+    "learned_id": "schema_f2e5ea9ad0329764",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_bottom_right_triangle:fe5879fe14f4",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=0.167",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.166667
+    }
+  },
+  {
+    "learned_id": "schema_efbba1756ef42ddf",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_left_half:249279c8fe66",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=1.000",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 1.0
+    }
+  },
+  {
+    "learned_id": "schema_f2e5ea9ad0329764",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_left_half:249279c8fe66",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=0.167",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.166667
+    }
+  },
+  {
+    "learned_id": "schema_efbba1756ef42ddf",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_right_half:b3b1ce70645c",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=1.000",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 1.0
+    }
+  },
+  {
+    "learned_id": "schema_f2e5ea9ad0329764",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_right_half:b3b1ce70645c",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=0.167",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.166667
+    }
+  },
+  {
+    "learned_id": "schema_efbba1756ef42ddf",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_top_half:269f73d00959",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=1.000",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 1.0
+    }
+  },
+  {
+    "learned_id": "schema_f2e5ea9ad0329764",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_top_half:269f73d00959",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=0.167",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.166667
+    }
+  },
+  {
+    "learned_id": "schema_efbba1756ef42ddf",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_top_left_triangle:30cc456b6034",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=1.000",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 1.0
+    }
+  },
+  {
+    "learned_id": "schema_f2e5ea9ad0329764",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_top_left_triangle:30cc456b6034",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=0.167",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.166667
+    }
+  },
+  {
+    "learned_id": "schema_efbba1756ef42ddf",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_top_right_triangle:70fb4a807d5f",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=1.000",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 1.0
+    }
+  },
+  {
+    "learned_id": "schema_f2e5ea9ad0329764",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:paint_top_right_triangle:70fb4a807d5f",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION5']",
+      "concept_overlap=['canvas']",
+      "level_jaccard=0.167",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.166667
+    }
+  },
+  {
+    "learned_id": "schema_d789b71b06955e5e",
+    "gold_id": "arc_agi3:cd82-fb555c5d:L2:palette_select:5238b6b05cf7",
+    "score": 0.64,
+    "relation": "partial",
+    "reasons": [
+      "action_overlap=['ACTION6']",
+      "concept_overlap=['palette', 'tool']",
+      "level_jaccard=1.000",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.666667,
+      "level_scope": 1.0
+    }
+  },
+  {
+    "learned_id": "schema_21dbf0ccf13e2b02",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:direction_controls:841d9c2467c8",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_603d97cde08c4886",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:direction_controls:841d9c2467c8",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_75eb5dc129f20ee1",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:direction_controls:841d9c2467c8",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_7ad9f610492af4dc",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:direction_controls:841d9c2467c8",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_7fbc6ca00cbd0d80",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:direction_controls:841d9c2467c8",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_a7041b49e06aecdb",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:direction_controls:841d9c2467c8",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_cb340dc3a80c8c15",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:direction_controls:841d9c2467c8",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_ef7bbbece5a1e2af",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:direction_controls:841d9c2467c8",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_21dbf0ccf13e2b02",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:extend_chain:28d1acb0abd2",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_603d97cde08c4886",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:extend_chain:28d1acb0abd2",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_75eb5dc129f20ee1",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:extend_chain:28d1acb0abd2",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_7ad9f610492af4dc",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:extend_chain:28d1acb0abd2",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_7fbc6ca00cbd0d80",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:extend_chain:28d1acb0abd2",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_a7041b49e06aecdb",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:extend_chain:28d1acb0abd2",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_cb340dc3a80c8c15",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:extend_chain:28d1acb0abd2",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_ef7bbbece5a1e2af",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:extend_chain:28d1acb0abd2",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_ce582f72e782bc1e",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:goal_sequences_match:9f6a5e9399fb",
+    "score": 0.64,
+    "relation": "partial",
+    "reasons": [
+      "terminal_bridge",
+      "concept_overlap=['level_completion']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 0.8,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_21dbf0ccf13e2b02",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.142857,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_603d97cde08c4886",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.142857,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_75eb5dc129f20ee1",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.142857,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_7ad9f610492af4dc",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.142857,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_7fbc6ca00cbd0d80",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.142857,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_94673492311db4b2",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['blocked']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.125,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_a2bd111dd226629c",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['blocked']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.125,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_a7041b49e06aecdb",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.142857,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_cb340dc3a80c8c15",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.142857,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_ef7bbbece5a1e2af",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:push_objects:eceac76b9d3d",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.142857,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_21dbf0ccf13e2b02",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:retract_chain:ecbe9a6fc8bf",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_603d97cde08c4886",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:retract_chain:ecbe9a6fc8bf",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_75eb5dc129f20ee1",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:retract_chain:ecbe9a6fc8bf",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_7ad9f610492af4dc",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:retract_chain:ecbe9a6fc8bf",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_7fbc6ca00cbd0d80",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:retract_chain:ecbe9a6fc8bf",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_a7041b49e06aecdb",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:retract_chain:ecbe9a6fc8bf",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_cb340dc3a80c8c15",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:retract_chain:ecbe9a6fc8bf",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_ef7bbbece5a1e2af",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:retract_chain:ecbe9a6fc8bf",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_21dbf0ccf13e2b02",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:translate_chain:bfc4d96bf7c6",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_603d97cde08c4886",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:translate_chain:bfc4d96bf7c6",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_75eb5dc129f20ee1",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:translate_chain:bfc4d96bf7c6",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_7ad9f610492af4dc",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:translate_chain:bfc4d96bf7c6",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_7fbc6ca00cbd0d80",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:translate_chain:bfc4d96bf7c6",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.375",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.375
+    }
+  },
+  {
+    "learned_id": "schema_a7041b49e06aecdb",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:translate_chain:bfc4d96bf7c6",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.250",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.25
+    }
+  },
+  {
+    "learned_id": "schema_cb340dc3a80c8c15",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:translate_chain:bfc4d96bf7c6",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_ef7bbbece5a1e2af",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:translate_chain:bfc4d96bf7c6",
+    "score": 0.64,
+    "relation": "learned_broader",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_40ee28e841b663f1",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:undo_move:9482c4b0402a",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION7']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.2,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_d11fa810af660395",
+    "gold_id": "arc_agi3:sk48-d8078629:L2:undo_move:9482c4b0402a",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION7']",
+      "concept_overlap=['chain']",
+      "level_jaccard=0.125",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.2,
+      "level_scope": 0.125
+    }
+  },
+  {
+    "learned_id": "schema_0d82313932a8a8c1",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['maze_path']",
+      "level_jaccard=0.556",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.555556
+    }
+  },
+  {
+    "learned_id": "schema_11eb88501044fcc4",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['maze_path']",
+      "level_jaccard=0.222",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.222222
+    }
+  },
+  {
+    "learned_id": "schema_2ed25eca4af625b0",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['maze_path']",
+      "level_jaccard=0.444",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.444444
+    }
+  },
+  {
+    "learned_id": "schema_42e584ec617ee395",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['maze_path']",
+      "level_jaccard=0.556",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.555556
+    }
+  },
+  {
+    "learned_id": "schema_517497c8fcaebb09",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['blocked']",
+      "level_jaccard=0.111",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.2,
+      "level_scope": 0.111111
+    }
+  },
+  {
+    "learned_id": "schema_5c9b38711061d286",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['maze_path']",
+      "level_jaccard=0.667",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.666667
+    }
+  },
+  {
+    "learned_id": "schema_6dcc16d2f7cd3683",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION3']",
+      "concept_overlap=['blocked']",
+      "level_jaccard=0.111",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.2,
+      "level_scope": 0.111111
+    }
+  },
+  {
+    "learned_id": "schema_7d612d0312dc1eca",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['maze_path']",
+      "level_jaccard=0.667",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.666667
+    }
+  },
+  {
+    "learned_id": "schema_8bdfec80da682b19",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION1']",
+      "concept_overlap=['blocked']",
+      "level_jaccard=0.111",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.2,
+      "level_scope": 0.111111
+    }
+  },
+  {
+    "learned_id": "schema_dd0b00d744748ba2",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION4']",
+      "concept_overlap=['blocked']",
+      "level_jaccard=0.111",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.2,
+      "level_scope": 0.111111
+    }
+  },
+  {
+    "learned_id": "schema_e3aa70c836072e86",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['maze_path']",
+      "level_jaccard=0.333",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.333333
+    }
+  },
+  {
+    "learned_id": "schema_f64297596b7cafb1",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:directional_move:1e132e02d768",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "action_overlap=['ACTION2']",
+      "concept_overlap=['maze_path']",
+      "level_jaccard=0.667",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 1.0,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.25,
+      "level_scope": 0.666667
+    }
+  },
+  {
+    "learned_id": "schema_019981078531b7e4",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "terminal_bridge",
+      "concept_overlap=['level_completion']",
+      "level_jaccard=0.444",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 0.8,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.444444
+    }
+  },
+  {
+    "learned_id": "schema_7c076dbef726fe91",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "terminal_bridge",
+      "concept_overlap=['level_completion']",
+      "level_jaccard=0.222",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 0.8,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.222222
+    }
+  },
+  {
+    "learned_id": "schema_cf8202349db17bd1",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "terminal_bridge",
+      "concept_overlap=['level_completion']",
+      "level_jaccard=0.111",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 0.8,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.111111
+    }
+  },
+  {
+    "learned_id": "schema_e2ceb592c28a3b6c",
+    "gold_id": "arc_agi3:tu93-0768757b:L2:reach_exit:b8bd320c1f75",
+    "score": 0.64,
+    "relation": "learned_narrower",
+    "reasons": [
+      "terminal_bridge",
+      "concept_overlap=['level_completion']",
+      "level_jaccard=0.111",
+      "generic_transition_summary_caps_equivalence"
+    ],
+    "component_scores": {
+      "action": 0.8,
+      "role": 1.0,
+      "kind": 1.0,
+      "concept": 0.333333,
+      "level_scope": 0.111111
+    }
+  }
+]

@@ -1,0 +1,363 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:wa30-ee6fef47:L2:move:77e1e438bd3b",
+      "format_version": 1,
+      "title": "ACTION1–4 四向移动主载具",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ee6fef47",
+      "game_id": "wa30-ee6fef47",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "目标位置不越界且不与障碍重叠。",
+      "action_sequence": [
+        {
+          "action": "ACTION1|ACTION2|ACTION3|ACTION4",
+          "arguments": {}
+        }
+      ],
+      "expectation": "主载具向上、下、左、右移动；障碍或禁区阻止位移。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:wa30-ee6fef47:L2:pickup:aaf5494a47eb",
+      "format_version": 1,
+      "title": "ACTION5 拾取相邻未绑定对象",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ee6fef47",
+      "game_id": "wa30-ee6fef47",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "主载具未携带对象且相邻位置有可搬绿色对象。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "该对象绑定到载具并移动到携带锚点。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:wa30-ee6fef47:L2:drop:d58c3a08da6d",
+      "format_version": 1,
+      "title": "ACTION5 放下当前携带对象",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ee6fef47",
+      "game_id": "wa30-ee6fef47",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "主载具已绑定一个对象且放置位置合法。",
+      "action_sequence": [
+        {
+          "action": "ACTION5",
+          "arguments": {}
+        }
+      ],
+      "expectation": "解除绑定，对象留在当前携带锚点位置。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:wa30-ee6fef47:L2:coupled:2bc9ae88117b",
+      "format_version": 1,
+      "title": "载具移动会同步移动其绑定对象",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ee6fef47",
+      "game_id": "wa30-ee6fef47",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "主载具或自主载具携带对象。",
+      "action_sequence": [],
+      "expectation": "载具和对象保持固定相对位置作为一个组合移动；组合碰撞会阻止该步。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:wa30-ee6fef47:L2:autonomous:0ff32d642ec4",
+      "format_version": 1,
+      "title": "自主载具每回合寻路到未分配对象再送往目标",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ee6fef47",
+      "game_id": "wa30-ee6fef47",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "玩家完成一次方向或交互操作。",
+      "action_sequence": [],
+      "expectation": "空载自主载具选择未分配对象，载物后选择对应目标区，并沿可通行最短路移动一步。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:wa30-ee6fef47:L2:typed_targets:c91c98f7b486",
+      "format_version": 1,
+      "title": "不同自主载具类型使用各自目标集合",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ee6fef47",
+      "game_id": "wa30-ee6fef47",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "载具为某一运输类型。",
+      "action_sequence": [],
+      "expectation": "它只把对象送到该类型允许的目标区；其他目标区不算完成。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:wa30-ee6fef47:L2:goal:49e7bac4a683",
+      "format_version": 1,
+      "title": "全部绿色对象在规定目标区且不再被携带时过关",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "ee6fef47",
+      "game_id": "wa30-ee6fef47",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "玩家与自主载具移动结算后。",
+      "action_sequence": [],
+      "expectation": "每个对象都位于其目标集合中的某一区域，且所有绑定关系已解除时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/wa30/ee6fef47/wa30.py",
+          "sha256": "0c8b63caee2d092d6c0750fd74e417de682d09973b549046394dadf0437b1477",
+          "symbol": "Wa30 movement, carrying, autonomous routing and goal",
+          "lines": [
+            874,
+            1254
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}

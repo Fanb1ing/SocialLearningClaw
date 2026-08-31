@@ -1,0 +1,426 @@
+[
+  {
+    "schema_id": "arc_agi3:cd82-fb555c5d:L2:reference_pattern:2a9c1d74b4f9",
+    "source": "gold",
+    "game_id": "cd82-fb555c5d",
+    "kind": "observation_semantics",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "actions": [],
+    "roles": [],
+    "concepts": [
+      "blocked",
+      "canvas",
+      "goal"
+    ],
+    "effect_class": "",
+    "trigger": "每个 level 的初始画面左上方出现一个独立的 10×10 彩色图案。",
+    "expectation": "该图案保持不变，并作为中央偏下 10×10 画布的目标参考。",
+    "text": "左上 10×10 图案是当前关卡的目标图案 每个 level 的初始画面左上方出现一个独立的 10×10 彩色图案。 该图案保持不变，并作为中央偏下 10×10 画布的目标参考。",
+    "evidence_ids": [],
+    "metadata": {
+      "title": "左上 10×10 图案是当前关卡的目标图案"
+    }
+  },
+  {
+    "schema_id": "arc_agi3:cd82-fb555c5d:L2:paint_canvas:5c0767d53a96",
+    "source": "gold",
+    "game_id": "cd82-fb555c5d",
+    "kind": "observation_semantics",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "actions": [
+      "ACTION5"
+    ],
+    "roles": [],
+    "concepts": [
+      "canvas",
+      "goal",
+      "tool"
+    ],
+    "effect_class": "",
+    "trigger": "画面中央偏下存在初始颜色全为 0 的 10×10 方块。",
+    "expectation": "ACTION5 和后四关的边缘点击工具只修改这块画布；目标图案本身不被修改。",
+    "text": "中央偏下的黑色 10×10 方块是可绘制画布 画面中央偏下存在初始颜色全为 0 的 10×10 方块。 ACTION5 和后四关的边缘点击工具只修改这块画布；目标图案本身不被修改。",
+    "evidence_ids": [],
+    "metadata": {
+      "title": "中央偏下的黑色 10×10 方块是可绘制画布"
+    }
+  },
+  {
+    "schema_id": "arc_agi3:cd82-fb555c5d:L2:action_budget_loss:c397ee61796b",
+    "source": "gold",
+    "game_id": "cd82-fb555c5d",
+    "kind": "hazard",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "actions": [],
+    "roles": [],
+    "concepts": [
+      "game_over"
+    ],
+    "effect_class": "",
+    "trigger": "当前累计 action_count 达到 100。",
+    "expectation": "环境调用 lose()，状态变为 GAME_OVER。",
+    "text": "达到 100 次 action 时游戏失败 当前累计 action_count 达到 100。 环境调用 lose()，状态变为 GAME_OVER。",
+    "evidence_ids": [],
+    "metadata": {
+      "title": "达到 100 次 action 时游戏失败"
+    }
+  },
+  {
+    "schema_id": "arc_agi3:sk48-d8078629:L2:reference_sequences:fb15e407fc94",
+    "source": "gold",
+    "game_id": "sk48-d8078629",
+    "kind": "observation_semantics",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "actions": [],
+    "roles": [],
+    "concepts": [
+      "chain",
+      "direction",
+      "goal"
+    ],
+    "effect_class": "",
+    "trigger": "一条场内链头与底部场外链头具有相同颜色。",
+    "expectation": "两者组成目标对；场外链条从第二节开始覆盖的彩色方块，按链方向给出场内链条最终需要覆盖的有序颜色序列。没有同色场外链的链条不参与目标比较。",
+    "text": "场外同色链条给出各目标链条需要覆盖的颜色序列 一条场内链头与底部场外链头具有相同颜色。 两者组成目标对；场外链条从第二节开始覆盖的彩色方块，按链方向给出场内链条最终需要覆盖的有序颜色序列。没有同色场外链的链条不参与目标比较。",
+    "evidence_ids": [],
+    "metadata": {
+      "title": "场外同色链条给出各目标链条需要覆盖的颜色序列"
+    }
+  },
+  {
+    "schema_id": "arc_agi3:sk48-d8078629:L2:select_chain:871966b91bae",
+    "source": "gold",
+    "game_id": "sk48-d8078629",
+    "kind": "action_effect",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "actions": [
+      "ACTION6"
+    ],
+    "roles": [
+      "chain_head"
+    ],
+    "concepts": [
+      "budget",
+      "chain",
+      "select"
+    ],
+    "effect_class": "",
+    "trigger": "ACTION6 点击另一条带可点击外框的场内链头，或它的同色场外参考链头。",
+    "expectation": "该链条成为当前活动链条；场上位置和剩余移动预算不变。",
+    "text": "ACTION6 点击可控链头可切换当前活动链条 ACTION6 点击另一条带可点击外框的场内链头，或它的同色场外参考链头。 该链条成为当前活动链条；场上位置和剩余移动预算不变。",
+    "evidence_ids": [],
+    "metadata": {
+      "title": "ACTION6 点击可控链头可切换当前活动链条"
+    }
+  },
+  {
+    "schema_id": "arc_agi3:sk48-d8078629:L2:movement_budget:396f53ed58b2",
+    "source": "gold",
+    "game_id": "sk48-d8078629",
+    "kind": "hazard",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "actions": [
+      "ACTION1",
+      "ACTION2",
+      "ACTION3",
+      "ACTION4"
+    ],
+    "roles": [],
+    "concepts": [
+      "budget",
+      "chain",
+      "direction",
+      "game_over",
+      "goal",
+      "undo"
+    ],
+    "effect_class": "",
+    "trigger": "执行 ACTION1–4，包括未产生位移的受阻输入。",
+    "expectation": "每次方向输入消耗 1 点预算；预算降到 0 且尚未满足目标时 GAME_OVER。",
+    "text": "方向输入消耗有限移动预算，耗尽时失败 执行 ACTION1–4，包括未产生位移的受阻输入。 每次方向输入消耗 1 点预算；预算降到 0 且尚未满足目标时 GAME_OVER。 ACTION6 切换链条和 ACTION7 撤销不消耗该预算。",
+    "evidence_ids": [],
+    "metadata": {
+      "title": "方向输入消耗有限移动预算，耗尽时失败"
+    }
+  },
+  {
+    "schema_id": "arc_agi3:tu93-0768757b:L2:board_roles:c484ab94df14",
+    "source": "gold",
+    "game_id": "tu93-0768757b",
+    "kind": "observation_semantics",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "actions": [],
+    "roles": [],
+    "concepts": [
+      "direction",
+      "goal",
+      "maze_path"
+    ],
+    "effect_class": "",
+    "trigger": "关卡显示蓝色连通通路、一个带方向的角色和黄色方块。",
+    "expectation": "带方向角色是受控对象；蓝色连接处定义可走边；黄色方块是出口。",
+    "text": "箭头角色需沿蓝色通路到达黄色出口 关卡显示蓝色连通通路、一个带方向的角色和黄色方块。 带方向角色是受控对象；蓝色连接处定义可走边；黄色方块是出口。",
+    "evidence_ids": [],
+    "metadata": {
+      "title": "箭头角色需沿蓝色通路到达黄色出口"
+    }
+  },
+  {
+    "schema_id": "arc_agi3:tu93-0768757b:L2:orange_chaser:e788d7d629b0",
+    "source": "gold",
+    "game_id": "tu93-0768757b",
+    "kind": "hazard",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "actions": [],
+    "roles": [],
+    "concepts": [
+      "enemy"
+    ],
+    "effect_class": "",
+    "trigger": "橙色单位的朝向正对同一行或列、相距一个网格单位的角色。",
+    "expectation": "该单位变为激活状态，并沿当前朝向移动一个网格单位。",
+    "text": "橙色单位正对一格外角色时激活并直线追击 橙色单位的朝向正对同一行或列、相距一个网格单位的角色。 该单位变为激活状态，并沿当前朝向移动一个网格单位。",
+    "evidence_ids": [],
+    "metadata": {
+      "title": "橙色单位正对一格外角色时激活并直线追击"
+    }
+  },
+  {
+    "schema_id": "arc_agi3:tu93-0768757b:L2:cyan_patrol:3a347f143336",
+    "source": "gold",
+    "game_id": "tu93-0768757b",
+    "kind": "hazard",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "actions": [],
+    "roles": [],
+    "concepts": [
+      "blocked",
+      "enemy",
+      "maze_path"
+    ],
+    "effect_class": "",
+    "trigger": "玩家完成一次有效移动后。",
+    "expectation": "青色单位沿当前朝向移动一格；到达前方无通路的端点时旋转 180°。",
+    "text": "青色单位每回合沿通路前进，前方无路时反向 玩家完成一次有效移动后。 青色单位沿当前朝向移动一格；到达前方无通路的端点时旋转 180°。",
+    "evidence_ids": [],
+    "metadata": {
+      "title": "青色单位每回合沿通路前进，前方无路时反向"
+    }
+  },
+  {
+    "schema_id": "arc_agi3:tu93-0768757b:L2:magenta_delayed_follower:fc4b79b0c965",
+    "source": "gold",
+    "game_id": "tu93-0768757b",
+    "kind": "hazard",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "actions": [],
+    "roles": [],
+    "concepts": [
+      "direction",
+      "enemy"
+    ],
+    "effect_class": "",
+    "trigger": "品红单位正对同一行或列、相距两个网格单位的角色。",
+    "expectation": "该单位激活并开始移动；随后按角色方向输入的顺序行动，但先保留两次原朝向，因此角色的新方向在两个行动周期后才影响它。",
+    "text": "品红单位正对两格外角色时激活，并以两步延迟模仿转向 品红单位正对同一行或列、相距两个网格单位的角色。 该单位激活并开始移动；随后按角色方向输入的顺序行动，但先保留两次原朝向，因此角色的新方向在两个行动周期后才影响它。",
+    "evidence_ids": [],
+    "metadata": {
+      "title": "品红单位正对两格外角色时激活，并以两步延迟模仿转向"
+    }
+  },
+  {
+    "schema_id": "arc_agi3:tu93-0768757b:L2:player_collision_attack:e55171a60a50",
+    "source": "gold",
+    "game_id": "tu93-0768757b",
+    "kind": "action_effect",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "actions": [
+      "ACTION1",
+      "ACTION2",
+      "ACTION3",
+      "ACTION4"
+    ],
+    "roles": [],
+    "concepts": [
+      "collision",
+      "enemy"
+    ],
+    "effect_class": "",
+    "trigger": "角色作为移动方到达网格中心，且该格存在橙色、青色或品红单位。",
+    "expectation": "被占据单位经历两个受击形态后从棋盘移除，角色保留。",
+    "text": "角色主动移入敌对单位所在格会逐阶段将其清除 角色作为移动方到达网格中心，且该格存在橙色、青色或品红单位。 被占据单位经历两个受击形态后从棋盘移除，角色保留。",
+    "evidence_ids": [],
+    "metadata": {
+      "title": "角色主动移入敌对单位所在格会逐阶段将其清除"
+    }
+  },
+  {
+    "schema_id": "arc_agi3:tu93-0768757b:L2:enemy_collision_attack:49d77f90d47f",
+    "source": "gold",
+    "game_id": "tu93-0768757b",
+    "kind": "hazard",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "actions": [],
+    "roles": [],
+    "concepts": [
+      "collision",
+      "enemy",
+      "game_over"
+    ],
+    "effect_class": "",
+    "trigger": "已激活敌对单位作为移动方到达角色所在网格中心。",
+    "expectation": "角色经历两个受击形态后被移除；棋盘上没有角色时 GAME_OVER。",
+    "text": "敌对单位主动移入角色所在格会逐阶段清除角色 已激活敌对单位作为移动方到达角色所在网格中心。 角色经历两个受击形态后被移除；棋盘上没有角色时 GAME_OVER。",
+    "evidence_ids": [],
+    "metadata": {
+      "title": "敌对单位主动移入角色所在格会逐阶段清除角色"
+    }
+  },
+  {
+    "schema_id": "arc_agi3:tu93-0768757b:L2:step_budget:cd3c6932e339",
+    "source": "gold",
+    "game_id": "tu93-0768757b",
+    "kind": "hazard",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "actions": [
+      "ACTION1",
+      "ACTION2",
+      "ACTION3",
+      "ACTION4"
+    ],
+    "roles": [],
+    "concepts": [
+      "budget",
+      "direction",
+      "game_over",
+      "level_completion",
+      "maze_path"
+    ],
+    "effect_class": "",
+    "trigger": "输入 ACTION1–4，无论该方向是否存在通路。",
+    "expectation": "剩余步数减少 1；降到 0 且尚未过关时 GAME_OVER。",
+    "text": "每次方向尝试消耗一步，步数耗尽时失败 输入 ACTION1–4，无论该方向是否存在通路。 剩余步数减少 1；降到 0 且尚未过关时 GAME_OVER。",
+    "evidence_ids": [],
+    "metadata": {
+      "title": "每次方向尝试消耗一步，步数耗尽时失败"
+    }
+  }
+]

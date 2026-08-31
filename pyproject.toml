@@ -27,6 +27,7 @@ dependencies = [
 [project.scripts]
 sc-run-static = "socialclaw.run_static:main"
 sc-run-arc = "socialclaw.run_arc:main"
+sc-run-arc-v2 = "socialclaw.run_arc_v2:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

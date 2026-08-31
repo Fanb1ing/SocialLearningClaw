@@ -1,0 +1,16 @@
+{
+  "format_version": 1,
+  "learned_schema_path": "/data5/fanbingbing/SocialLearningClaw/outputs/review/three_game_schema_phase_d_v1/schema.json",
+  "learned_schema_sha256": "235a8510e7b9f726c1017a73a0e24023623cb1dd6b2189d786afbdd0cfa1ec7b",
+  "memory_path": "/data5/fanbingbing/SocialLearningClaw/outputs/review/three_game_schema_prototype_v1/memory.json",
+  "memory_sha256": "962f5e18c8c95424a9720b60bf2f6a60f3719d9acc880fc4c8804a7e445f8546",
+  "gold_root": "/data5/fanbingbing/SocialLearningClaw/gold/arc_agi3/v1",
+  "gold_games": {
+    "cd82-fb555c5d": "accepted_and_revised",
+    "sk48-d8078629": "accepted",
+    "tu93-0768757b": "accepted"
+  },
+  "judge": "structured_arc_proxy_v1",
+  "network_calls": 0,
+  "writes_to_learned_state": 0
+}

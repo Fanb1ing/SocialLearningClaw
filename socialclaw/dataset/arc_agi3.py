@@ -141,7 +141,11 @@ class ARCAGI3EnvWrapper:
         return "\n".join(lines)
 
     @staticmethod
-    def grid_to_image(grid: np.ndarray, cell_size: int = 8, grid_step: int = 8) -> "Image.Image":
+    def grid_to_image(
+        grid: np.ndarray,
+        cell_size: int = 8,
+        grid_step: int | None = 8,
+    ) -> "Image.Image":
         """Render a grid as a colour image for visual LLM input.
 
         Each cell is cell_size x cell_size pixels. Sparse gridlines are drawn
@@ -162,15 +166,17 @@ class ARCAGI3EnvWrapper:
                     for dx in range(cell_size):
                         pixels[col * cell_size + dx, row * cell_size + dy] = colour
 
-        # Draw sparse gridlines every grid_step cells
-        draw = ImageDraw.Draw(img)
-        line_color = (80, 80, 80)
-        for col in range(0, w + 1, grid_step):
-            x_px = min(col * cell_size, img_w - 1)
-            draw.line([(x_px, 0), (x_px, img_h - 1)], fill=line_color, width=1)
-        for row in range(0, h + 1, grid_step):
-            y_px = min(row * cell_size, img_h - 1)
-            draw.line([(0, y_px), (img_w - 1, y_px)], fill=line_color, width=1)
+        # Gridlines are an optional human-review overlay, never part of the
+        # underlying public ARC frame.
+        if grid_step is not None and grid_step > 0:
+            draw = ImageDraw.Draw(img)
+            line_color = (80, 80, 80)
+            for col in range(0, w + 1, grid_step):
+                x_px = min(col * cell_size, img_w - 1)
+                draw.line([(x_px, 0), (x_px, img_h - 1)], fill=line_color, width=1)
+            for row in range(0, h + 1, grid_step):
+                y_px = min(row * cell_size, img_h - 1)
+                draw.line([(0, y_px), (img_w - 1, y_px)], fill=line_color, width=1)
         return img
 
     @staticmethod

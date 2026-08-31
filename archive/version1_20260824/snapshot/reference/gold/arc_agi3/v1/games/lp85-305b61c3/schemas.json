@@ -1,0 +1,250 @@
+{
+  "format_version": 1,
+  "schemas": [
+    {
+      "schema_id": "arc_agi3:lp85-305b61c3:L2:buttons:33465491c1f3",
+      "format_version": 1,
+      "title": "ACTION6 点击按钮选择关联组与方向",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "305b61c3",
+      "game_id": "lp85-305b61c3",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "action_effect",
+      "trigger": "点击一个带组标识和左右标识的按钮。",
+      "action_sequence": [
+        {
+          "action": "ACTION6",
+          "arguments": {}
+        }
+      ],
+      "expectation": "该按钮关联的全部部件按其方向执行一次关卡定义的位移。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/lp85/305b61c3/lp85.py",
+          "sha256": "7d10baec7dd29d07e574bd47ee1ec7912542a72632077a5446798221f41c4ae9",
+          "symbol": "Lp85 button-linked movement and typed goals",
+          "lines": [
+            21339,
+            21451
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:lp85-305b61c3:L2:linked:3f450519bf04",
+      "format_version": 1,
+      "title": "同组部件作为一个联动集合移动",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "305b61c3",
+      "game_id": "lp85-305b61c3",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "state_transition",
+      "trigger": "按钮命中多个同组部件。",
+      "action_sequence": [],
+      "expectation": "集合中每个部件执行相同规则；未关联部件保持原位。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/lp85/305b61c3/lp85.py",
+          "sha256": "7d10baec7dd29d07e574bd47ee1ec7912542a72632077a5446798221f41c4ae9",
+          "symbol": "Lp85 button-linked movement and typed goals",
+          "lines": [
+            21339,
+            21451
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:lp85-305b61c3:L2:collision:f51289a91db8",
+      "format_version": 1,
+      "title": "非法联动位移不穿过边界或固定结构",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "305b61c3",
+      "game_id": "lp85-305b61c3",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "constraint",
+      "trigger": "计算后的任一部件位置越界或命中阻挡。",
+      "action_sequence": [],
+      "expectation": "该次非法移动不产生穿透。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/lp85/305b61c3/lp85.py",
+          "sha256": "7d10baec7dd29d07e574bd47ee1ec7912542a72632077a5446798221f41c4ae9",
+          "symbol": "Lp85 button-linked movement and typed goals",
+          "lines": [
+            21339,
+            21451
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:lp85-305b61c3:L2:goal:2aa8e978edec",
+      "format_version": 1,
+      "title": "两类部件必须分别占据匹配目标",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "305b61c3",
+      "game_id": "lp85-305b61c3",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "goal",
+      "trigger": "一次有效按钮操作完成。",
+      "action_sequence": [],
+      "expectation": "所有第一类部件位于普通目标，且所有第二类部件位于另一类目标时进入下一关。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/lp85/305b61c3/lp85.py",
+          "sha256": "7d10baec7dd29d07e574bd47ee1ec7912542a72632077a5446798221f41c4ae9",
+          "symbol": "Lp85 button-linked movement and typed goals",
+          "lines": [
+            21339,
+            21451
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    },
+    {
+      "schema_id": "arc_agi3:lp85-305b61c3:L2:budget:4d01ca73ab36",
+      "format_version": 1,
+      "title": "有效按钮点击耗尽步数时失败",
+      "benchmark": "arc_agi3",
+      "benchmark_version": "305b61c3",
+      "game_id": "lp85-305b61c3",
+      "level_scope": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "abstraction_level": 2,
+      "kind": "hazard",
+      "trigger": "剩余步数为零且目标未满足。",
+      "action_sequence": [],
+      "expectation": "游戏进入 GAME_OVER。",
+      "constraints": [],
+      "exceptions": [],
+      "relations": {
+        "parents": [],
+        "requires": []
+      },
+      "source_evidence": [
+        {
+          "path": "third_party/arc_agi3_games/lp85/305b61c3/lp85.py",
+          "sha256": "7d10baec7dd29d07e574bd47ee1ec7912542a72632077a5446798221f41c4ae9",
+          "symbol": "Lp85 button-linked movement and typed goals",
+          "lines": [
+            21339,
+            21451
+          ]
+        }
+      ],
+      "runtime_evidence": [
+        "all_levels_and_actions_smoke"
+      ],
+      "verification": {
+        "static": "passed",
+        "runtime": "passed",
+        "review": "pending"
+      }
+    }
+  ]
+}
