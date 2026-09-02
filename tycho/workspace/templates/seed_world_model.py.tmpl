@@ -1,0 +1,97 @@
+"""world_model.py — your editable model of this game as a deterministic Moore machine. Refine when
+verify.py diverges. Prose reasoning (hypotheses for state representation, transition function and
+terminal outcomes) goes in notes/world_model.md. Grids are numpy int16, colors 0-15. You own the State below —
+add, rename, or drop fields to fit the game (wmlib.clone() and the planner's hashing are generic).
+Subgoal definitions and heuristics are optional but can aid planning. render(state) may use UNKNOWN=-1
+only for cells the modeled state cannot legitimately claim yet; verifier reports coverage separately.
+"""
+from dataclasses import dataclass
+
+import numpy as np
+import wmlib
+
+UNKNOWN = wmlib.UNKNOWN
+
+# transition() below clones before mutating, so planners can call it directly instead of making a
+# redundant outer deep copy. Remove or set False only if transition() is changed to mutate its input.
+TRANSITION_RETURNS_NEW_STATE = True
+
+
+@dataclass
+class State:
+    """Add the fields this game needs (e.g. avatar_xy, steps_left, palette, parts). `grid` is a default
+    for games that mostly move/recolor cells; for a richer model keep a compact state here and build
+    the grid in render(). A move/life counter rendered to pixels is real state, so hold its value in a
+    field and paint it in render(). Use UNKNOWN only for genuinely unobserved/uninferable cells, such
+    as unseen viewport terrain; keep coverage high and do not use UNKNOWN for ordinary mistakes."""
+    grid: np.ndarray
+
+
+def init_state(grid0: np.ndarray, level: int) -> State:
+    """s0 — the state at the level's first frame. Read what you can from grid0; set fields not visible
+    in one frame to their start value and update them in transition() as you learn them."""
+    return State(grid=grid0.copy())
+
+
+def transition(state: State, action: dict) -> State:
+    """The next state after `action`, a dict {"action","row","col"} (row/col = the ACTION6 click cell,
+    else None) — read action["action"]. Copy, mutate, return."""
+    s = wmlib.clone(state)
+    # e.g. if action["action"] == "ACTION1": <move something in s>
+    return s
+
+
+def render(state: State) -> np.ndarray:
+    """The grid `state` shows — verify scores render(simulated state) against the observed frame.
+    Return state.grid if you keep the board directly; otherwise build the HxW int16 grid from your
+    fields (e.g. wmlib.composite(state.parts, H, W), or paint an avatar/counter). Return colors 0-15
+    for cells you claim. Return UNKNOWN (-1) only for cells not determined by the modeled state or
+    observations yet; those cells are ignored for accepted accuracy but reduce prediction_coverage."""
+    return state.grid
+
+
+def observation_variants(state: State) -> list:
+    """Optional verifier-only display tolerance.
+
+    Keep render() canonical. If a small HUD/counter display has uncertain pixel quantization
+    (e.g. a rounded move bar could be one pixel longer/shorter) you may return up to 5 alternate
+    full grids accepted as observations for the same state. Usual pattern: base = render(state).copy(),
+    then tweak only the uncertain HUD cells in a few copies. If render() contains UNKNOWN=-1 cells,
+    every variant must preserve that same UNKNOWN mask exactly. Do not use this for uncertain
+    dynamics, object locations, goals, or newly unobserved viewport cells; planners ignore these variants.
+    """
+    return []
+
+
+def outcome(state: State) -> str:
+    """Return exactly one of: "ongoing", "level_complete", "game_over".
+
+    "level_complete" corresponds to an ARC levels_completed increase. "game_over" corresponds
+    only to API GameState.GAME_OVER evidence. Reset-like NOT_FINISHED transitions stay "ongoing".
+    """
+    return "ongoing"
+
+
+def actions(state: State) -> list:
+    """Candidate actions the planner expands from `state`. Keyboard games: the pre-filled list. CLICK
+    games (ACTION6): the space is 4096 cells, so return a focused set of salient clicks (object
+    centres, reachable targets, switch cells) to allow efficient planning, not the whole grid.
+    Return [{"action","row","col"}, ...]."""
+    return {ACTIONS_LINE}
+
+
+def subgoals(state: State) -> list:
+    """Optional: ordered target callables decomposing the level (e.g. plan to a key, a switch,
+    then level completion). Default: the final level-complete outcome."""
+    return [lambda s: outcome(s) == "level_complete"]
+
+
+def heuristic(state: State) -> float:
+    """Optional: estimated moves-to-goal for A* (0 = uninformed). A good heuristic (e.g. avatar-to-
+    target distance) makes search tractable."""
+    return 0
+
+
+# Optional for pixel-heavy models: define planner_key(state) returning only the semantic fields that
+# determine future transitions and outcomes. Omit immutable terrain/render caches, but never omit
+# hidden state that can change what happens next. The default planner safely hashes the full State.

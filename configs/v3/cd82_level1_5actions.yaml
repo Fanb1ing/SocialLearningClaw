@@ -1,0 +1,33 @@
+# Small paid V3 integration trial. The action/level caps are CLI-level harness
+# limits and are also recorded in run_spec.json; this file bounds inference.
+model:
+  http_timeout: 180
+  retry_budget_s: 120
+
+reasoning:
+  effort: high
+  max_tokens: 12000
+  max_llm_calls: 20
+  max_tool_steps: 10
+  max_inference_cost_per_game: 10
+
+runtime:
+  sandbox_runtime: bwrap
+  per_game_wallclock_budget_seconds: 1200
+
+vision:
+  vision: true
+  text_grid: full
+  animation_summary: false
+
+context:
+  prompt_caching: true
+  history: tail_evict
+  grid_keep: 3
+  image_keep: 3
+  image_cap: 4
+  reasoning_keep: 3
+
+orchestration:
+  mode: orchestrator
+  builder_max_steps: 8

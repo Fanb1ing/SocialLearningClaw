@@ -1,0 +1,52 @@
+{#- ACTOR per-turn user message (was _frame_message in agent.py). The verbosity/vision conditionals
+    are now visible here. Context:
+      header              : "=== Level L, turn N (state=…; available actions=[…]) ==="
+      turn_in_level, level
+      frame_boundary      : game_start, level_start, attempt_restart, or None
+      ld                  : "level_<L>"
+      grid_text           : the inlined grid (when show_grid)
+      show_grid, show_diff, vision
+      diff                : the diff text (empty on turn 0)
+      no_op               : last action changed nothing
+      last_action         : for the no-op message
+      plan_hint           : guarded next action from a canonically validated plan, or None
+      turn3               : f"{turn_in_level:03d}" (the zero-padded turn, for file paths)
+    Whitespace is exact-matched to the old string concat (header + "\n" + intro + grid + change +
+    "\n(Also saved …)") — the equivalence test pins it. `~` is Jinja string concat. -#}
+{{ header }}
+{% if turn_in_level == 0 %}
+{% if frame_boundary == 'level_start' %}
+{% if wm_variant == 'none' %}
+A new, likely harder level begins now — a fresh grid. Your conversation was cleared at the boundary; carry-forward is on disk. If notes/level_{{ level - 1 }}_insights.md exists, read it before acting.
+{% else %}
+A new, likely harder level begins now — a fresh grid. Your conversation was cleared at the boundary; carry-forward is on disk. If notes/level_{{ level - 1 }}_insights.md exists, read it. If you have derived a reliable world model for the game, then use it before acting. You can also check the new init frame and whether init_state() still holds.
+{% endif %}
+{% elif frame_boundary == 'attempt_restart' %}
+This is the fresh playable frame for the restarted attempt of level {{ level }}.
+{% elif frame_boundary == 'game_start' %}
+This is the start of the game — the initial frame of level 0.
+{% else %}
+This is the current playable frame for level {{ level }}.
+{% endif %}
+Files for this level land under {{ ld }}/ as you play.
+{% endif %}
+{% if show_grid %}
+Current grid (rows top→bottom; each cell is one space-separated color 0-f):
+{{ grid_text }}
+{% else %}
+The full grid is not inlined here (your set_verbosity choice). Read it from {{ ld }}/turn_{{ turn3 }}.txt, query it with run_python (grid / wmlib.current_grid()){% if vision %}, or use the attached image for layout{% endif %}.
+{% endif %}
+{% if no_op %}
+
+Your last action ({{ last_action }}) produced no visible cell changes; the current grid is identical to the previous frame. This does not prove the action had no effect, because hidden counters/state can still change. Use this as evidence before repeating the same action or target.
+{% elif diff and show_diff %}
+
+Changes since your last action (within this level):
+{{ diff }}
+{% endif %}
+{% if plan_hint %}
+
+{{ plan_hint }}
+{% endif %}
+
+(Also saved at {{ ld }}/turn_{{ turn3 }}.txt{% if vision %} and .png{% endif %}.)

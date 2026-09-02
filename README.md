@@ -1,8 +1,9 @@
 # SocialLearningClaw
 
 SocialLearningClaw 是一个研究 Agent Schema Learning 的实验仓库。当前开发主线是 ARC-only
-Version 2：以 Entity–Feature–Prototype–Schema（EFPS）typed graph 加全局 Insight/Rule 表达主体认知，主 Agent
-同时负责 orchestrator、planning 和行动，并按需调用更新与探索子 Agent。
+Version 3：以 Tycho 的可执行世界模型、验证器和 planner 为执行基座，把 EFPS 收敛为同一
+`world_model.py` 的 Evidence-grounded executable audit view。Version 2 的 EFPS graph 与
+Main/Exploration/Update 实现被冻结保留，用于历史审计和后续 matched comparison。
 
 旧的三 benchmark layered-Schema 系统已冻结为 V1，完整回退快照位于
 `archive/version1_20260824/`。V1 统一评测三个 benchmark：
@@ -33,10 +34,15 @@ socialclaw/
   methods/               静态 benchmark 的方法生命周期控制器
   schema/                分层 Schema、自动归纳、检索、反馈和维护
   v2/                    通用视觉模型 Agent、EFPS graph、更新/探索子 Agent与 runtime
+  v3/                    Tycho workspace 扩展、typed Evidence 与 executable EFPS runtime
   experiment.py          Protocol, budget, manifest, result types
   run_static.py          ContextMATH / IntPhys2 entry point
   run_arc.py             ARC-AGI-3 entry point
   run_arc_v2.py          任意 ARC game ID 的 V2 通用在线认知入口
+  run_arc_v3.py          有严格运行时合同的 Tycho+EFPS V3 入口
+tycho/                   固定版本的 Tycho 执行/验证/planning 基座
+third_party/tycho/       Tycho 许可证、来源、上游测试与 patch inventory
+configs/v3/              V3 parity 与 bounded orchestrator 配置
 configs/arc_agi3/        Fixed ICL examples and human-written rule baselines
 scripts/                 Batch execution and ARC summarization
 tests/                   Offline unit tests
@@ -67,7 +73,8 @@ outputs/                 Generated experiments; ignored by Git
 
 ## 安装
 
-要求 Python 3.12+（当前 `arc-agi>=0.9.8` 的上游要求）。
+要求 Python 3.12+。V3 为可复现实验固定 `arc-agi==0.9.9`、`arcengine==0.9.3`
+及 Tycho 的其他关键依赖版本。
 
 ```bash
 python -m venv .venv
@@ -118,6 +125,50 @@ split 的开头 3 个视频给 ICL；所有方法都会排除同一保留集。
 会拒绝缺少 manifest 或视频不完整的 `main_300`。
 
 ## 运行 ARC-AGI-3
+
+### Version 3：Tycho executable world model + EFPS
+
+先检查正式运行环境；任何版本不一致都会在接触环境或模型前退出：
+
+```bash
+.venv/bin/python -m socialclaw.run_arc_v3 --check-runtime
+```
+
+V3 默认选择 `tycho_efps` approach 和 `orchestrator` mode。它兼容 V2 使用的
+`--model`、`--base-url`、`--api-key` 参数；也可直接使用 Tycho 的
+`LLM_BACKEND/LLM_MODEL/LLM_BASE_URL/LLM_API_KEY`。使用 OpenRouter 时，现有
+`OPENROUTER_API_KEY` 会被映射到 Tycho transport，密钥不会写入 manifest：
+
+```bash
+.venv/bin/python -m socialclaw.run_arc_v3 \
+  --model anthropic/claude-opus-4.8 \
+  --games cd82 \
+  --out-dir outputs/v3/cd82_level1_5actions \
+  --config configs/v3/cd82_level1_5actions.yaml \
+  --operation-mode offline --max-workers 1 \
+  --max-actions-per-level 5 --stop-after-levels 1
+```
+
+`offline` 要求对应 ARC environment 已缓存。两个实验限制会传给 worker、写入
+`run_spec.json` 和 manifest，并参与 resume fingerprint。若 Docker daemon 不可访问，Linux
+环境会在实时策略检查通过后回退到 Bubblewrap；模型生成的代码只能写当前游戏 workspace，
+看不到 provider 密钥、仓库其余文件或网络。
+
+2026-09-01 已完成一次 Opus 4.8 provider transport smoke 和 CD82 Level 1 / 5-action
+集成试验：transport 正常；CD82 未过关并因 `requested_action_limit` 精确停在 5 个动作。
+这是管线 smoke，不是 EFPS 有效性结论；Phase 3 prompt/policy 尚未完成。
+
+每个游戏 workspace 除 Tycho 的 `world_model.py/wmlib.py/verify.py/plan.py` 外，还包含：
+
+- `notes/evidence_index.json`：decision、level initialization、animation、completion、fatal、reset 的稳定 Evidence ID；
+- `efps_runtime.py`：`EntityInstance`、`@prototype`、`@schema_rule` 与 executable rule attribution；
+- `efps_audit.py`：Evidence closure、冲突 triple、handler linkage 和 world-model hash 审计；
+- `notes/efps_manifest.json`：由当前可执行模型生成的只读认知视图。
+
+修改 `world_model.py` 后，Tycho 原有 dynamics/outcome/planner feedback 和 EFPS audit 会一起自动返回。
+新协作者先阅读 [V3 架构与协作指南](docs/v3_architecture_and_collaboration.md)；
+实现边界与未完成工作见 [V3 实现状态](docs/v3_implementation_status.md) 和
+[完整开发方案](docs/version3_tycho_efps_development_plan.md)。
 
 ### Version 2：无游戏规则的通用视觉 Agent
 
@@ -225,6 +276,8 @@ Schema/Insight 合同会使其输入哈希校验主动失败，避免把旧模�
 
 详细说明从 [文档索引](docs/README.md) 开始：
 
+- [Version 3 Tycho + EFPS 开发方案](docs/version3_tycho_efps_development_plan.md)
+- [Version 3 实现状态](docs/v3_implementation_status.md)
 - [Version 2 EFPS 完整开发方案](docs/version2_efps_development_plan.md)
 - [旧 Schema 合同下的 V2 三游戏实验](experiments/v2_formal_20260830/README.md)
 - [V2 通用 Agent 的早期 CD82 Level 1 测试（历史）](docs/archive/v2_cd82_level1_prototype.md)

@@ -1212,3 +1212,103 @@ role-based responses cannot be presented as results of the new implementation;
 a new online experiment/frozen bundle is required later. No game experiment was
 run for this task. Verification: compileall, all 102 repository tests, focused
 triple/Insight/migration/Main-decision tests, and `git diff --check` passed.
+
+## 2026-08-31 — Tycho-based V3 EFPS development plan
+
+Reviewed the current contract-3 V2 implementation, its frozen three-game Level
+1 results, the Tycho paper, and official Tycho source at commit
+`f68912a764372ead0a610db2e1c011d41ce5197e`. Chose a fork-first, pinned-upstream
+V3 architecture: Tycho remains the execution, verification, and planning core;
+its executable `world_model.py` is the sole dynamics source of truth; EFPS is
+an evidence-grounded executable view over that model for entity-to-prototype
+classification and `Prototype + Action -> Output` rules. Default control uses
+Tycho's actor-orchestrated builder instead of V2's mandatory three-agent call on
+every step. V2 stays frozen and import-independent for comparison.
+
+Added `docs/version3_tycho_efps_development_plan.md` and linked it from both
+documentation indexes. The plan defines migration boundaries, target modules,
+phased implementation, separate dynamics/outcome/plan gates, EFPS integrity
+metrics, and a no-paid-call first development slice. Verification covered the
+current source and upstream source/documentation, pinned revision, document
+links, and whitespace/diff checks. No unit tests or live model/API experiments
+were run because this task changed documentation only. Follow-up: implement
+Phase 0 upstream pin/parity, then the provider-compatible V3 runner and EFPS
+runtime before changing prompts or starting paid game trials.
+
+## 2026-08-31 — V3 Phase 0–2 executable foundation
+
+Imported the official Tycho package and 51-file parity suite at commit
+`f68912a764372ead0a610db2e1c011d41ce5197e`, retaining Apache-2.0 attribution,
+the public release manifest, and an explicit four-item narrow patch inventory.
+The root package preserves Tycho execution, typed workspace history, verifier,
+outcome checks, planners, guarded resume, viewer, and actor-orchestrated builder.
+`sc-run-arc-v3` defaults to `tycho_efps`/orchestrator, maps useful V2
+OpenAI-compatible settings, uses the existing pinned ARC game directory, hashes
+local game semantics into the immutable run spec, and rejects any formal run
+outside Python >=3.12 with Tycho's exact critical dependency versions.
+
+Added `socialclaw.v3` stable typed Evidence indexing, an EFPS-aware Tycho
+workspace/executor, and a standard-library-only runtime copied into each game
+sandbox. Executable Prototype matchers and `Prototype + Action -> Output`
+handlers require durable Evidence closure, reject duplicate/conflicting triples,
+report actual handler attribution, and export a manifest bound to the current
+`world_model.py` hash. Every substantive model edit now receives Tycho's normal
+dynamics/outcome/planner feedback followed by EFPS audit feedback. Simulated
+states never enter the harness-authored Evidence index. V2 source was unchanged.
+
+Added bounded V3 configs, implementation/run documentation, 13 V3 tests, and
+upstream-manifest snapshot verification. Verification: Tycho parity 162 passed / 2
+skipped; final full repository suite 277 passed / 2 skipped; compileall, config
+parsing, runtime-contract diagnostics, and diff checks passed. No model, ARC
+online, or paid API call was made. The existing `.venv` is Python 3.11 with
+`arc-agi==0.9.8`, so exact Python 3.12 installation/package smoke remains before
+any credentialed run. Follow-up: complete that environment gate, then implement
+Phase 3 Actor/Builder EFPS prompting and run a separately approved bounded
+transport/CD82 Level 1 smoke.
+
+## 2026-09-02 — V3 runtime unblock and first bounded CD82 smoke
+
+Replaced the default environment with Python 3.12.14 and the pinned V3 runtime
+(`arc-agi==0.9.9`, `arcengine==0.9.3`, Jinja/Numpy/Pillow/PyYAML pins), then
+installed the full project dependency set with CPU-only PyTorch so V2 remains
+importable. Preserved the former Python 3.11 environment at
+`.venv-py311-backup-20260901/`. `pip check` and the V3 runtime contract pass.
+
+Added audited `--max-actions-per-level` and `--stop-after-levels` limits. They
+propagate to workers, stop with distinct reasons, and participate in immutable
+run identity. Because this host's Docker socket is inaccessible, added a
+Bubblewrap backend whose live doctor verified no outside filesystem access, no
+network, cleared secrets, read-only root, writable game workspace, zero effective
+capabilities, and no-new-privileges.
+
+The one-call OpenRouter Opus 4.8 text/image/tool smoke passed. The offline CD82
+Level 1 trial at `outputs/v3/cd82_level1_5actions_opus48_20260901/` committed
+exactly five actions (`ACTION1, ACTION2, ACTION6(31,28), ACTION3, ACTION3`),
+completed no level, stopped as `requested_action_limit`, used 10 model calls,
+and recorded an estimated $0.89337 inference cost. Audit found that the final
+budget-exhausting nonterminal outcome was absent from EFPS evidence; fixed the
+opt-in final-observation callback and added a regression test without rewriting
+the completed raw artifact. The actor never invoked the builder in this five-step
+run (`builder_invocations=0`), left the seeded world model unchanged, and produced
+no EFPS manifest, confirming that Phase 3 prompt integration is still required.
+Verification: 282 passed, 2 skipped; full dependency
+check, sandbox doctor, runtime contract, and `git diff --check` passed. Follow-up:
+implement Phase 3 Actor/Builder EFPS prompting before any matched performance
+comparison; this smoke does not establish an EFPS improvement.
+
+## 2026-09-02 — V3 architecture and collaborator onboarding
+
+Added `docs/v3_architecture_and_collaboration.md` as the GitHub onboarding entry
+for V3. It documents Tycho as the control/execution/planning owner, EFPS as an
+Evidence-grounded executable view inside the same `world_model.py`, the V2-to-V3
+concept mapping, per-action lifecycle, code ownership boundaries, upstream patch
+policy, current Phase 3 gap, and suggested parallel workstreams. Updated the root
+and documentation indexes plus the previously stale development-plan status.
+
+The pre-push audit found and removed a `tycho/` ignore rule that would have omitted
+both the vendored runtime and `third_party/tycho` provenance/tests from GitHub.
+Secret-pattern review matched only documented placeholder examples; no generated
+outputs or environments are eligible for commit. Verification: all 18 V3 tests,
+`git diff --check`, and local-link validation across 26 Markdown files passed.
+No commit or remote push was performed. Follow-up: implement and test Phase 3
+Builder/Actor EFPS prompting before describing EFPS as active game cognition.

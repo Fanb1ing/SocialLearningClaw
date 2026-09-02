@@ -1,0 +1,20 @@
+{#- Boundary consolidation prompt — fires on LEVEL_COMPLETE before the conversation is reset for
+    the next level. Context: level, actor_writes_wm. -#}
+You just COMPLETED level {{ level }}. This is a post-level consolidation step before the next level begins. Do not take an action.
+
+Use the terminal evidence from the completed level:
+- pre-win playable frame: level_{{ level }}/turn_*.txt (the last turn file in that directory)
+- observed winning terminal: level_{{ level }}/terminal.txt and level_{{ level }}/terminal.json
+- winning action: in level_{{ level }}/terminal.json or level_{{ level }}/solved.json
+
+Compare the pre-win frame, the winning action, and the observed terminal frame. Distill what this says about the goal, mechanics, rendered state, strategy, and likely next-level variation.
+
+Always write a concise carry-forward summary to notes/level_{{ level }}_insights.md.
+{% if actor_writes_wm %}
+Also update notes/world_model.md with any model-relevant insight. If the terminal evidence changes your executable model, update world_model.py and use the verifier feedback to check the goal/render bridge.
+{% elif wm_variant|default("") == "none" %}
+Keep the summary self-contained for future direct reasoning.
+{% else %}
+Also update notes/world_model.md with any model-relevant insight for the world-model builder. world_model.py is builder-owned in this mode.
+{% endif %}
+Then reply 'done'.

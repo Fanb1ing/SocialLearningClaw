@@ -1,7 +1,17 @@
 # Documentation Index
 
-文档按“当前 V2 主线、冻结 V1 参考、历史材料”分组。运行命令以本页链接到的当前文档为准；
+文档按“V3 规划、当前 V2 实现、冻结 V1 参考、历史材料”分组。运行命令以本页链接到的当前文档为准；
 旧结果文档只用于追溯，不代表当前 CLI 或预算语义。
+
+## Version 3 主线（基础层已实现，完成首个 bounded smoke）
+
+- [V3 架构与协作指南](v3_architecture_and_collaboration.md)：Tycho 与 EFPS 的职责边界、
+  运行时数据流、当前融合程度、目录所有权和提交前检查；新协作者从这里开始。
+- [Tycho 世界模型基座 + EFPS 开发方案](version3_tycho_efps_development_plan.md)：
+  以 pinned Tycho executable world model/orchestrator 为基座，把 Prototype membership 和
+  `Prototype -> Action -> Output` 收敛成同一程序的 Evidence-grounded 可执行视图。
+- [V3 实现状态](v3_implementation_status.md)：Phase 0–2 已落地的源码、Python 3.12 与
+  Bubblewrap 运行时、首个 CD82 5-action smoke，以及 Phase 3–5 未完成工作。
 
 ## 当前 V2 主线
 

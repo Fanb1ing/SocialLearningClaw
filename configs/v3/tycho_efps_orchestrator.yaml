@@ -1,0 +1,27 @@
+# Bounded development configuration for the V3 `tycho_efps` approach.
+# Provider/model credentials remain environment configuration and are never
+# stored here. Increase budgets only in a separately reviewed experiment config.
+reasoning:
+  effort: high
+  max_tokens: 12000
+  max_llm_calls: 40
+  max_tool_steps: 20
+  max_inference_cost_per_game: 10
+
+vision:
+  vision: true
+  text_grid: full
+  animation_summary: true
+  animation_summary_max_per_level: 3
+  animation_evidence_keep_per_level: 25
+
+context:
+  prompt_caching: true
+  history: tail_evict
+  grid_keep: 3
+  image_keep: 3
+  image_cap: 4
+  reasoning_keep: 3
+
+orchestration:
+  mode: orchestrator

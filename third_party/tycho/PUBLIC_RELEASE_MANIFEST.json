@@ -1,0 +1,460 @@
+{
+  "files": {
+    ".env.example": {
+      "sha256": "a363ca24d6626bcd8ea98b5da45878bcb4c991ca7b847be3ccf1924197aa5e50"
+    },
+    ".github/workflows/tests.yml": {
+      "sha256": "352e19bc5b1a3c22024f146d2a6280c9a6823a73fa5bff7dc2b37735135f0e08"
+    },
+    ".gitignore": {
+      "sha256": "12012ac157adc2f6d6513efb2a42353f7217121b72fe01c50d34db07b87c83e0"
+    },
+    "CITATION.cff": {
+      "sha256": "e9dc26a8fd536a7a627ae959e28e410cf6ab660a2407a39dde96648ab4f73caa"
+    },
+    "CONTRIBUTING.md": {
+      "sha256": "6490e5937c204ca1789a910d3a6e6929c07b3014b535bedb65c4871231791abf"
+    },
+    "LICENSE": {
+      "sha256": "b4ad3ca25da70e93f6e81d6d7e4ab7930e027cabb8db6c990764b64fdf26e939"
+    },
+    "Makefile": {
+      "sha256": "67518212031cb57d5f6daf4fad5be3b22b04e0641c81fa33b509ee993c335ae2"
+    },
+    "README.md": {
+      "sha256": "ae574118ad6358b5b2f952be2539a61bae2ca68acab6d11044fa6d236d6aff58"
+    },
+    "artifacts/appendix_metrics.json": {
+      "sha256": "10c1571179eae8bce2ca4bcb787c03e291d8e66840396bcde1bb84999da7c2df"
+    },
+    "artifacts/community_scorecard_human_comparison.csv": {
+      "sha256": "cc88e7b9f46b55276dda9442d73a6c15f1ded8ce94ac95e1bc4a707e69e95c16"
+    },
+    "artifacts/community_scorecard_human_comparison.json": {
+      "sha256": "30e4f82159e9a1833c87191f362017e1608dc964190fb6fecfe982d2e03a0df8"
+    },
+    "artifacts/evaluation_integrity.json": {
+      "sha256": "566c2fea038ccc60df0b2a967e39da4128e57337090dddd819ed07953a0c617d"
+    },
+    "artifacts/figure_data.json": {
+      "sha256": "507946809f7ea4d4d66090fddf843d22ed2db3ff01bfaec83055b1ab90a6f398"
+    },
+    "artifacts/scorecards/gpt56_sol_orchestrator_max.json": {
+      "sha256": "b2b9b3b8d9e96899ffb0d35fcc7bf2ff896e0d3e72f03f3110df8f1d590bf495"
+    },
+    "artifacts/scorecards/opus48_no_world_model.json": {
+      "sha256": "2e85a53e28fc927fe8855fe29674b8d59e263d5eb8c3e264763e5ca8d52650fa"
+    },
+    "artifacts/scorecards/opus48_orchestrator.json": {
+      "sha256": "033bb3ce7723d953044d0cc3c52bd43adc89ffdc93c17849416f85e40919db37"
+    },
+    "artifacts/scorecards/opus48_single.json": {
+      "sha256": "69325659694a3e5b2b0f94b595e3f97557847ed108edc8d73d9a4a766cc1d0a3"
+    },
+    "artifacts/scorecards/opus48_trigger.json": {
+      "sha256": "3043fd0616858705506d98ee078e8d91719048bccb1a11e6fdd20ba445ac0d08"
+    },
+    "artifacts/scorecards/opus5_orchestrator.json": {
+      "sha256": "46ee26aafbba4c705fb533c2a2e9fa8b16ba8c1bd4c104e8ba7b8069097b40d4"
+    },
+    "configs/paper/gpt56_sol_orchestrator_max.yaml": {
+      "sha256": "595940c5b3cc6c130c89a155723d463ab7e96fd952bb4ebe24fc4931c23788d4"
+    },
+    "configs/paper/opus48_no_world_model.yaml": {
+      "sha256": "dbabecb10832ef76db2ec9a4cee66afd6d1cce6c56a89718283abd7df899a47b"
+    },
+    "configs/paper/opus48_orchestrator.yaml": {
+      "sha256": "fa3aa8a3f154fec46102212b415a1a392569e8ee5aadebfcbff6fccc6e73463c"
+    },
+    "configs/paper/opus48_single.yaml": {
+      "sha256": "9035b806f2518619877918830267ba1376d7015d3f0ef1c69a072254aeb977dc"
+    },
+    "configs/paper/opus48_trigger.yaml": {
+      "sha256": "a647f6fdf4af31e1da74a6d88ac48ad5f01a215de64cd34b859cdc8c338d1b27"
+    },
+    "configs/paper/opus5_orchestrator.yaml": {
+      "sha256": "c7ea4ccd9cf785b8c7a1159c03e13fd248ab9b49ea20ea2ddccae45384b12cd4"
+    },
+    "configs/smoke/minimal.yaml": {
+      "sha256": "865e6bd4b3964c655b57a4745c7903d9622238fc7f85b8262a2493ab2208ea03"
+    },
+    "docs/ARCHITECTURE.md": {
+      "sha256": "72f9ac9f0f2e31ce259c9f8c414c3af17c5b40c8750b9b040a26b5d3e8255985"
+    },
+    "docs/PAPER_RESULTS.md": {
+      "sha256": "dda3269a1c887fb0d1c360245f8b1effdd53eb8bdaaba2b33dc258c6104d78c9"
+    },
+    "docs/REPRODUCING.md": {
+      "sha256": "941a4857aba8bb9765eb895097c086676393ceab9239c797e29ef4ba55604c9e"
+    },
+    "pyproject.toml": {
+      "sha256": "a8ead8589c1c4d2e9e76f466fbad5592143bfc0e50463ad3b6d317b5d47a9734"
+    },
+    "scripts/smoke_provider.py": {
+      "sha256": "8921799eb87eec24cf8d86d13036ac06e74736b6423791cf957c1220308b122d"
+    },
+    "scripts/validate_public.py": {
+      "sha256": "0d83f37fa293cc70ac70059bc4755cb99662890b966dc2600ab390c7b75336a0"
+    },
+    "scripts/validate_wheel.py": {
+      "sha256": "16aa69e7cc6ae242e68c7a926b9a81485a08b1fb4b629ded7d675154a12fac3e"
+    },
+    "tests/agent/__init__.py": {
+      "sha256": "d44dbba233c50b11d5d21f325a072cb4990cb54b22bdb0e249ec89edd7061e72"
+    },
+    "tests/agent/test_animation_summary.py": {
+      "sha256": "aa1921fac2e627d4590d37a796fa1c5911a2b24b50d6617deb6dc18764bc4549"
+    },
+    "tests/agent/test_diff_verbosity.py": {
+      "sha256": "02eb8bc0efe3afcd189ad3736835e7d45c71a7f8a5c1d5d5702b5db4453f3ebb"
+    },
+    "tests/agent/test_dynamic_action_schema.py": {
+      "sha256": "ba385fb7237c780f6c7895e5e75c7f5d3269c262d57f171a626196a0acd025e3"
+    },
+    "tests/agent/test_inference_budget.py": {
+      "sha256": "0365f1de0617f6a51c6ef6cfde093a8fed3d1077eacdd96c646faecaaa65712c"
+    },
+    "tests/agent/test_level_boundary.py": {
+      "sha256": "84c8cb296fa456c2a458ae4e11fd5acdf4b012fbf672b0f1306169beb8dce96b"
+    },
+    "tests/agent/test_perception_image_delivery.py": {
+      "sha256": "2e19377859b144ca0dbaa1164beeaa0f446171db5e1afaecbc720cd967875882"
+    },
+    "tests/agent/test_reset_guard.py": {
+      "sha256": "908e9cc1a247de00ebaec2fe190d9bef6491daed0660726d4f0cab8568ed1bdf"
+    },
+    "tests/agent/test_resume_actor_state.py": {
+      "sha256": "0f176cfdd9743a150610b624d4e94071d28cd851f3f6f199be5d4b12868256d7"
+    },
+    "tests/agent/test_same_batch_deferral.py": {
+      "sha256": "e129a92828cfe277f39fef9c08847a9084fc4302a7beaad9c9932620b7ab9673"
+    },
+    "tests/agent/test_wm_signal.py": {
+      "sha256": "5e96ae4b622e297cb890a159c9c70c5cd8c445e0fd879b91869c38432c1decec"
+    },
+    "tests/harness/__init__.py": {
+      "sha256": "9096a7ac1953e09a89c1ff90a6da30ead2462b7066b2c21ea20744287eba7f01"
+    },
+    "tests/harness/test_action_availability.py": {
+      "sha256": "c97f98dace42684314767434efa62e8550a6bc446a61c5531e2975f7aab3db34"
+    },
+    "tests/harness/test_animation_evidence.py": {
+      "sha256": "9e0d38517164a6f3d208c8f008a5e47b7ecfe475f73d3cfc0294dfb5be9b978f"
+    },
+    "tests/harness/test_arcade_config.py": {
+      "sha256": "5e90fac257663eb8be6f17e2c114dfedbbcae538bcca5ccce9f51a99dbde3190"
+    },
+    "tests/harness/test_diagnostics.py": {
+      "sha256": "8472cb034ad1d5d0fa26e7be62395aec1c312336f93063eae55e3b2fd31fad98"
+    },
+    "tests/harness/test_partial_run_actions.py": {
+      "sha256": "ef5c7698f5a28f5f7c7b5d485fb984102fe1ef073c3e8c4d3b0ddd553e4d1858"
+    },
+    "tests/harness/test_planner_follow_diagnostics.py": {
+      "sha256": "383c1873f4f623e724099fea4de2d83a809b2cf4886fba5f65cb2685b0dfcfb1"
+    },
+    "tests/harness/test_record_slim.py": {
+      "sha256": "c23de672db686421a59a29177add9fec840e7fdff860bf0576095ac04073b4e1"
+    },
+    "tests/harness/test_recorded_config.py": {
+      "sha256": "41a3a0e77921d86798a9884ada12a776d3deb84473e9d55212d7129b4f7c4a1b"
+    },
+    "tests/harness/test_reset_policy.py": {
+      "sha256": "98cb20f51aa1f76ada4914b16606a0f01c67e6bc560ca6cf2adbea6e1cd1c12e"
+    },
+    "tests/harness/test_resume_checkpoint.py": {
+      "sha256": "a67a736e304122edcabaa0963ceec4e99c5860cd1b0b6abc46c6716c50303298"
+    },
+    "tests/harness/test_resume_reasoning_attribution.py": {
+      "sha256": "950d05d4b68c6936561e2b065ed79ea4648bda2a8d3bc2990a7684b049fcc268"
+    },
+    "tests/harness/test_run_status.py": {
+      "sha256": "d91395ecd2063dd24a7df354902181328f4aee3baf2b2fca02248ca42902bfce"
+    },
+    "tests/harness/test_submission_replay.py": {
+      "sha256": "e45ef1c57f58ca442e6fa16a84be25bcb2998bb9daa8194d1569875b75299fca"
+    },
+    "tests/harness/test_terminal_frame_selection.py": {
+      "sha256": "8836e1ddd35e5b0df51da118f8966c96cbc217cd34b9b4b1e0b66e1150a3c744"
+    },
+    "tests/prompts/__init__.py": {
+      "sha256": "4e8380b8e48b7939f21e49fc5db4652d024f7aa170952b486fb59f7195a96913"
+    },
+    "tests/prompts/test_actor_prompt_contracts.py": {
+      "sha256": "1de12f66322c6a493dfdf8a4935e6f9a63dcc085767098d7e37bb3ad4b90576d"
+    },
+    "tests/serving/test_pricing.py": {
+      "sha256": "2c3f8bb99b9b9778956615d1f0817f841a55e751e55362c815614f8e457231be"
+    },
+    "tests/serving/test_public_backends.py": {
+      "sha256": "fffeeba4acde432d3dc30560b1aa55a087a9002a8b3b1e53c58e5c4474908dea"
+    },
+    "tests/viewer/__init__.py": {
+      "sha256": "e4f4bcf070a45ed89361fa215f55c4495f215371bcae4e6b42c63f653c9ba7ff"
+    },
+    "tests/viewer/test_level_boundary_terminal_panel.py": {
+      "sha256": "6ddd080b2e72ea938319b902d252f8dd54ac7750d8beb02428668c6f5fc148a0"
+    },
+    "tests/viewer/test_live_server_contracts.py": {
+      "sha256": "881e3760ad30a7f9d9510b3b1506d0ac9e04f41aae0bb6ee3946e4c523e5fa90"
+    },
+    "tests/viewer/test_viewer_template_contracts.py": {
+      "sha256": "03d646b2b5180978d7985111efd975acc9e30ae519dbb38e8a0b8fcfb4dfd116"
+    },
+    "tests/viewer/test_wm_predict_serialization.py": {
+      "sha256": "14b311f3dc3f3c5f73ca335aec1d828214fa8d67741d16a44843257b48197319"
+    },
+    "tests/workspace/__init__.py": {
+      "sha256": "9059e0420fbb0e802d5d0e06d455686e88bf4b84b5afb9776b84808b45b7a509"
+    },
+    "tests/workspace/test_agent_tool_feedback.py": {
+      "sha256": "26f2400bf04fa9aedb8776b5b9d28faa5c91b7c804a0c336c99c870874b0a7ec"
+    },
+    "tests/workspace/test_animation_events.py": {
+      "sha256": "a7d5bf99dbad3335e70642f13f41ab3a8385272377d0a95868f7e2aab62bce9f"
+    },
+    "tests/workspace/test_death_events.py": {
+      "sha256": "4d5ad2fc973b6cbfc96b901fcb447886fb4d5b4200ec9de513b930cbdf8181b9"
+    },
+    "tests/workspace/test_initial_render_verification.py": {
+      "sha256": "26eff4c63727a958e67455a954c1fd4e9779a67526b955196de2e87fef5c68c6"
+    },
+    "tests/workspace/test_no_world_model_workspace.py": {
+      "sha256": "4b2ffbdfb17b690d8f3dbf369b20da9542f8ded2b9cda5be399ea57be5f912f1"
+    },
+    "tests/workspace/test_observation_variants.py": {
+      "sha256": "9b82a6bfb087b20d4dd48d06a037f97c14f58f56c0432c9a003bd0d9f064f8dc"
+    },
+    "tests/workspace/test_run_python_cli_rewrite.py": {
+      "sha256": "5401c57a1e461614cdd546edd73f08ad5b0bdf6fab17ce96198e8d8c8c508c9b"
+    },
+    "tests/workspace/test_sandbox_runtime.py": {
+      "sha256": "9949e99f57b8d2aad3751a411343039a7e12700179218d7a56397072fd7955f2"
+    },
+    "tests/workspace/test_unknown_render.py": {
+      "sha256": "15db7e45c847124580a508120cfc3f60a56f1133d68d93a72c7e9dc2aa8585dc"
+    },
+    "tests/workspace/test_validated_plan_artifact.py": {
+      "sha256": "a5f8481781d730d41f05a3be2ed40fd5d469d33a2329d8e235075479ff5e479b"
+    },
+    "tests/workspace/test_wm_feedback_planner_scope.py": {
+      "sha256": "bddab325091346fec6cee531fd244bf2d49d2d5e5a6826d4470af1ea5d07e746"
+    },
+    "tests/workspace/test_wmlib_planning.py": {
+      "sha256": "a906e37188f061ef0bcfcf097cc6332b0aec81afec3d7ccc40abeb02527d432d"
+    },
+    "tests/workspace/test_wmlib_segmentation.py": {
+      "sha256": "a1384650c4d43bfe9543eb4bcfe92a4ef0e75901e2ba2915f80ec79640dc1183"
+    },
+    "tests/workspace/test_workspace_paths.py": {
+      "sha256": "b8afd7ade6225fce7d669038222b2bdbead8f5011913c4ebe2805b520a1613f2"
+    },
+    "tests/workspace/test_workspace_versioning.py": {
+      "sha256": "a9d2bd79a1a3d1592cf4b6fb7a940c10cfb46dac3d7883188ed61448fec39f96"
+    },
+    "tycho/__init__.py": {
+      "sha256": "dfc0bf1dbb11fa1b00ccb8fa425a75a204b484d12263ff603b30916e730c0180"
+    },
+    "tycho/agent/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tycho/agent/agent.py": {
+      "sha256": "38472ec280187305db3fd2325fb1197c28ac31b3e22c13d169b4aaa86daaf7dc"
+    },
+    "tycho/agent/builder.py": {
+      "sha256": "af955c06472f70a15a46bba0b5ffc122009079815c699227f8b08011743113a6"
+    },
+    "tycho/agent/colors.py": {
+      "sha256": "d266c132404d72174eaa20ce018dd7939e33d92f480b797f7ca31ba7d85ed4a2"
+    },
+    "tycho/agent/context_config.py": {
+      "sha256": "817dd78e5f2fa15f2f931cd8ec616a93d76e6e2ea4016a947c9092839648e720"
+    },
+    "tycho/agent/dispatcher.py": {
+      "sha256": "c238f28b684d9cdc44a4294c0c0d37e1a82d3c048f6016e47f324ca1c65374d1"
+    },
+    "tycho/agent/events.py": {
+      "sha256": "0ce670f694fc2fe66de3b10da612a3215462e21dd32886c8a76697d19507f622"
+    },
+    "tycho/agent/modes.py": {
+      "sha256": "8ec171ff259e5733d2bb38f1d0dc15ca6dbc264183866bf62da5f77be45e7d95"
+    },
+    "tycho/agent/vision.py": {
+      "sha256": "046c8d6886841f0bf9c4ca027d5341a83576c517fbd9bb176af773766f5d92a5"
+    },
+    "tycho/agent/wm_signal.py": {
+      "sha256": "698c18ca3a9e90a9494a7b0d5ccfcecfb326519550a484fca3a107010178afcc"
+    },
+    "tycho/config/__init__.py": {
+      "sha256": "e67683ac21cd50963251e818399ce7c00600a4b66159011e0c3498fd3c8f6055"
+    },
+    "tycho/config/run_config.py": {
+      "sha256": "fc4469c03a39ff09178d50f31cd58f1e87468d8ad3c3de5fecadb7109dedbd32"
+    },
+    "tycho/config/settings.py": {
+      "sha256": "563d05b5dafd94bc7c1429f2a8efe1864ce851fa9570e08db697dc1c21e1a5a2"
+    },
+    "tycho/harness/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tycho/harness/actions.py": {
+      "sha256": "40f2eec701a7b4d32ff1e81af045d9afe4d45a17790b56ed0b8a75b0e81c93dc"
+    },
+    "tycho/harness/agent.py": {
+      "sha256": "232b20393480160016fca1ef95c4829b1b1781f58d00f8ec4dac78cfe8f04ed2"
+    },
+    "tycho/harness/animation_evidence.py": {
+      "sha256": "59ae67f91ae7ec7d3e2190986c1ececdfc414cb5b8588e77a5438d76e6c93189"
+    },
+    "tycho/harness/diagnostics.py": {
+      "sha256": "53c16aee7b47718e3576ffaafad7059d9b73b4241bf08ad44d812384822334d5"
+    },
+    "tycho/harness/harness.py": {
+      "sha256": "dcf3f7e33694876345c4e265bcae57d046e07f6fb21100fcdefe646c0192ed1e"
+    },
+    "tycho/harness/inference_budget.py": {
+      "sha256": "fc06e25311144b0883eea98a8c5603a136e1dcda7d5fa7a7b6c260de62e4e078"
+    },
+    "tycho/harness/model_replay.py": {
+      "sha256": "0d81337e3718ded5ef93f1fb1d9ba1a25c2e57fbaedbec83b44bde4f10f36a41"
+    },
+    "tycho/harness/planner_follow_diagnostics.py": {
+      "sha256": "2da680aa30f9c21d8d01c3388fa2416db22cdb395eb128fb2facfb331e74c8c1"
+    },
+    "tycho/harness/record_slim.py": {
+      "sha256": "8f71253b72c0fc2a4d6b6ca9ad90e489c684dc9f356fafccac015c1abe94b8d5"
+    },
+    "tycho/harness/resume.py": {
+      "sha256": "e686e9a2ed62cf9154cb5ce5e17129532115cb53c80d775017469da54235383a"
+    },
+    "tycho/harness/run.py": {
+      "sha256": "d8d743b9bfb2fac0a0ba342869370ba6bc1554b50c9ac0453f731df9fbc2d34d"
+    },
+    "tycho/harness/run_hooks.py": {
+      "sha256": "659aac45f7df6b1cb019919f5dd3e73dbf85625dd28ec6b9c7a28b99a0dbe124"
+    },
+    "tycho/harness/run_parallel.py": {
+      "sha256": "e56d4c13b5a31e17e1b347e1d846d52e7d02b35ab449461065445912cda7cac9"
+    },
+    "tycho/harness/run_progress.py": {
+      "sha256": "1d1f7da506f715e8edba4499f4ffc45651e1c614278b47a2926682eae58ba37c"
+    },
+    "tycho/harness/run_spec.py": {
+      "sha256": "bce172608246cad5ac7c7785c195978fb821bc461786eb4418e08f0a6a506b79"
+    },
+    "tycho/harness/run_status.py": {
+      "sha256": "7b11fe8815206d1b76726e637282073873651d3d32ba20216d6d0f29edd22148"
+    },
+    "tycho/harness/scoring.py": {
+      "sha256": "82f1b754ef368cee011babc5acaaee2433f1a3103e66f9881d9e74d6ec16cb14"
+    },
+    "tycho/harness/submission_replay.py": {
+      "sha256": "aa816343ed8ad49dc217a688733ff2384591e84223d897cc7f70f75e79cbfff9"
+    },
+    "tycho/prompts/__init__.py": {
+      "sha256": "ab2d7c33aef5c0325d602bf63d0ca91567adfd227581be903e099533d450baa1"
+    },
+    "tycho/prompts/actor.system.j2": {
+      "sha256": "4d4483bf0b1ff1ce6008466a6d9cf213794e893d6f9977d2a27e049818b4970f"
+    },
+    "tycho/prompts/actor.user.j2": {
+      "sha256": "0ac11d91f447eb7409a398c5ef72f3dbeb17175dd7f2e1eddaab5483d6e996ef"
+    },
+    "tycho/prompts/builder.system.j2": {
+      "sha256": "50f0d1599fd657bceaefacce4c3f792befe37bd3287bbfa59bb6d4fcf6cf3e11"
+    },
+    "tycho/prompts/builder.user.j2": {
+      "sha256": "d45e0c33b368bcb27beb956b77ab9e3b195cdd484852d4911a04e0018a01dcb4"
+    },
+    "tycho/prompts/partials/meta_reflect.j2": {
+      "sha256": "b7a5fcacfa3ffb7e354d2180b74034b07bb05dc6e3c1862ab1edf4814668aece"
+    },
+    "tycho/prompts/partials/meta_reflect_builder.j2": {
+      "sha256": "9b9fa508d2c2c79e01a1ffffe13d3ce36a42aea474471e54939deb627571f403"
+    },
+    "tycho/prompts/partials/wm_none.j2": {
+      "sha256": "69bc10ec787be18d17360a69ad01a5738e4d915f55aa0a5bfdcbaa8e810e8f2d"
+    },
+    "tycho/prompts/partials/wm_orch.j2": {
+      "sha256": "8f3bb47fa81957224e7d25a9720237b8b1e681820f51d8861ac8a3a39e1a9656"
+    },
+    "tycho/prompts/partials/wm_single.j2": {
+      "sha256": "e8c8e6ee16a3af1b9921aae4c191128220bd789cf44b3a4f443f5a382e9857d2"
+    },
+    "tycho/prompts/partials/wm_trigger.j2": {
+      "sha256": "a75c665466284735daa786f3be3bbb6984cb3529475a2f7886ca937d2cdb2c90"
+    },
+    "tycho/prompts/render.py": {
+      "sha256": "2400a49be40380b87a8b686d6047e70ace296391b026dd9b38a93c830ad654e7"
+    },
+    "tycho/prompts/scribe.user.j2": {
+      "sha256": "d11d990c0a3a1a435ea5fdd48d044655491b82be82401bcd0c2aa37ca202e44f"
+    },
+    "tycho/serving/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tycho/serving/llm_client.py": {
+      "sha256": "c23c49f7736e6721fc14d6009f7f0a427d221ba5157118b897326ca8bd708030"
+    },
+    "tycho/serving/pricing.py": {
+      "sha256": "77017eab3d5cae8ed76c935bb35d3d0d910c37c2fec47d3e2a2020e4dbdeeef0"
+    },
+    "tycho/serving/public_backends.py": {
+      "sha256": "08b7e4565c49c6ddfd36880d5670c02caecd1f65c5798109088401a1d258eb0e"
+    },
+    "tycho/viewer/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tycho/viewer/serve.py": {
+      "sha256": "34d71b9c1cd29aa1b30194673f44a465b420eb404221b1147787770944f04fa9"
+    },
+    "tycho/viewer/viz.py": {
+      "sha256": "3f9be1189a8bcce014da9620499a8a9eccb4d1b3b7a14232e2bb1bc0805dc00d"
+    },
+    "tycho/viewer/wm_predict.py": {
+      "sha256": "67cb960363c5c60a9cb06e41a2fea2e1840d669edf7e45e47b06c8d00d24dd07"
+    },
+    "tycho/workspace/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tycho/workspace/agent_tools.py": {
+      "sha256": "08949ca81174280b9bb1fcbe45f3c85c8dc9f54f4cdd8d693262a9e25487ed40"
+    },
+    "tycho/workspace/container/Containerfile": {
+      "sha256": "291722f5229642c9342402f05f44426a2706bbf5462634eec648adb3ebcad9a4"
+    },
+    "tycho/workspace/optional_channels.py": {
+      "sha256": "70f60afc5c43fc38f951a8e0aba454a30e5d0eff04e63d59a7a4942564df98e6"
+    },
+    "tycho/workspace/sandbox.py": {
+      "sha256": "766c8e2fca38751c561c08ea8136d6e79d75df87b1e2d1ce0333f92643f43e89"
+    },
+    "tycho/workspace/templates/seed_plan.py.tmpl": {
+      "sha256": "9dd21236656a3ca2c4b050c4b795400dcec805736d0d6b1f7e97250b011fb26c"
+    },
+    "tycho/workspace/templates/seed_verify.py.tmpl": {
+      "sha256": "2be029caae341d0c6fcb3d656baf8a7a08208f0440555bed78acf2a754f27dd8"
+    },
+    "tycho/workspace/templates/seed_world_model.py.tmpl": {
+      "sha256": "d383f8efae32e0428e6401a97615e10f43f13c70d13d422d95a7fd6a5403236c"
+    },
+    "tycho/workspace/templates/wm_feedback_probe.py.tmpl": {
+      "sha256": "478cee5e02260ea8d5e702671248b7e2885a8a38ed1e3f014bfd1e994bcc0e0d"
+    },
+    "tycho/workspace/version_store.py": {
+      "sha256": "448c0806f7c1e30767a64a2aa05ed61b700e8c6bf0c687068c66dc9177831180"
+    },
+    "tycho/workspace/wm_templates.py": {
+      "sha256": "a8e7d217ec4672bc56b71e272acefbc6b2d1261018d163ee927f1f35f26e6420"
+    },
+    "tycho/workspace/wmlib_template.py": {
+      "sha256": "d73db57154a8fc113fcb492d5966f7e96f2b2991489a139a72691394ac7cf8bd"
+    },
+    "tycho/workspace/workspace.py": {
+      "sha256": "90a6a9d9060613c211708c2a99148acdb6754658e776d65556be670c43d796d3"
+    }
+  },
+  "generated_at": "2026-07-29T17:29:45.473646+00:00",
+  "schema": "tycho.release_manifest",
+  "schema_version": 1
+}

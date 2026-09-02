@@ -1,0 +1,5 @@
+{#- BUILDER kickoff (the user message that opens a build pass). Co-located with builder.system.j2 so
+    the two halves of the builder's prompt live together. Context: level, hint (actor's reason, may be
+    empty), available_actions, report_file. Matches the old f-string in builder.build(). -#}
+You were invoked at level {{ level }}{% if available_actions %}. Current legal actions for the actor are: {{ available_actions | join(', ') }}{% endif %}. {{ hint }}
+First read notes/actor_beliefs.md (the actor's current hypotheses — a starting point, not ground truth; verify before encoding), notes/world_model.md (your scratchpad from earlier invocations), and notes/animation_evidence.md if it exists (auxiliary summaries of transient animations). Then inspect the observed transitions, build/refine world_model.py, update notes/world_model.md with what you learned this pass, write your report to {{ report_file }}, and reply 'done'.

@@ -1,7 +1,8 @@
 # Local environments and secrets
 .env
 .venv/
-
+.venv-*/
+.venv-v3-new/
 # Python build/cache artifacts
 __pycache__/
 *.py[cod]

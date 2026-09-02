@@ -1,0 +1,716 @@
+import sys, os, glob, time
+sys.dont_write_bytecode = True
+# The agent re-edits world_model.py within sub-second gaps; CPython validates a cached .pyc by source
+# mtime truncated to whole seconds, so a stale .pyc from a prior edit in the same second is wrongly
+# treated as valid. Delete cached bytecode before import so we always compile the file on disk now.
+for _pyc in glob.glob("__pycache__/world_model*.pyc") + glob.glob("__pycache__/wmlib*.pyc"):
+    try: os.remove(_pyc)
+    except OSError: pass
+try:
+    import wmlib, world_model
+except Exception as e:
+    print(f"world_model.py does not load: {type(e).__name__}: {e}"); sys.exit(0)
+
+
+def _fmt(x):
+    return "n/a" if x is None else f"{x:.2f}"
+
+
+def _uses_unknown(d):
+    return bool(d.get("unknown_used")) or (
+        d.get("prediction_coverage") is not None and d.get("prediction_coverage") < 0.999
+    )
+
+
+def _coverage_status_value(cov):
+    if cov is None:
+        return "unobserved"
+    if cov <= 0:
+        return "vacuous"
+    if cov >= 0.999999:
+        return "complete"
+    return "partial"
+
+
+def _coverage_status(d, key="prediction_coverage", status_key=None):
+    return d.get(status_key or f"{key}_status") or _coverage_status_value(d.get(key))
+
+
+def _coverage_desc(cov, status):
+    if status == "complete":
+        return f"{_fmt(cov)} complete: render() claimed every cell"
+    if status == "partial":
+        return f"{_fmt(cov)} partial: render() used UNKNOWN=-1 for unclaimed cells"
+    if status == "vacuous":
+        return f"{_fmt(cov)} vacuous: render() claimed no cells; this is not reliable evidence"
+    return f"{_fmt(cov)} unobserved"
+
+
+def _compact_action(a):
+    if not a:
+        return "none"
+    act = a.get("action", "?")
+    if act == "ACTION6" and a.get("row") is not None and a.get("col") is not None:
+        return f"ACTION6(row={a.get('row')},col={a.get('col')})"
+    return act
+
+
+def _print_subgoal_diagnostics(diag):
+    if not diag:
+        return
+    status = diag.get("status") or "unknown"
+    count = diag.get("subgoal_count")
+    labels = diag.get("subgoal_labels") or []
+    leg_lengths = diag.get("leg_lengths") or []
+    print(f"  SUBGOAL_STATUS: {status}")
+    if count is not None:
+        print(f"  SUBGOAL_COUNT: {count}")
+    if labels:
+        label_text = ", ".join(str(x) for x in labels[:8])
+        print(f"  SUBGOAL_LABELS: {label_text}{' ...' if len(labels) > 8 else ''}")
+    if leg_lengths:
+        print(f"  SUBGOAL_LEG_LENGTHS: {', '.join(str(x) for x in leg_lengths)}")
+    if status == "failed_at_subgoal":
+        failed_ord = diag.get("failed_ordinal")
+        failed_count = diag.get("subgoal_count")
+        failed_label = diag.get("failed_label")
+        print(f"  SUBGOAL_FAILED_INDEX: {failed_ord}/{failed_count}")
+        if failed_label:
+            print(f"  SUBGOAL_FAILED_LABEL: {failed_label}")
+        print(f"  SUBGOAL_COMPLETED_PREFIX_LEN: {diag.get('completed_prefix_len', 0)}")
+        print(f"  SUBGOAL_FAILED_REASON: {diag.get('failed_reason', 'unknown')}")
+        if diag.get("failed_errors"):
+            print("  SUBGOAL_FAILED_ERRORS:")
+            for err in diag.get("failed_errors", [])[:5]:
+                print(f"    {err}")
+        if diag.get("failed_expanded_nodes") is not None:
+            print(f"  SUBGOAL_FAILED_EXPANDED_NODES: {diag.get('failed_expanded_nodes')}")
+            print(f"  SUBGOAL_FAILED_FRONTIER_REMAINING: {diag.get('failed_frontier_remaining')}")
+
+
+def _misfire_desc(kind):
+    return {
+        "false-level-complete": "decision-state false positive: outcome() says level_complete before the level ended",
+        "missed-level-complete": "post-winning-action missed terminal: outcome() did not say level_complete",
+        "false-game-over": "decision-state false positive: outcome() says game_over before API GAME_OVER",
+        "missed-game-over": "post-fatal-action missed terminal: outcome() did not say game_over",
+        "terminal-render": "terminal render mismatch: post-winning state does not render like observed terminal",
+    }.get(kind, kind)
+
+
+def _level_stats(v, lvl):
+    if lvl is None:
+        return None
+    per = v.get("per_level") or {}
+    return per.get(lvl) or per.get(str(lvl))
+
+
+def _level_errors(errs, lvl):
+    if lvl is None:
+        return []
+    prefix = f"level {lvl}"
+    return [e for e in errs if str(e).startswith(prefix)]
+
+
+def _dynamics_status(stats, errors=()):
+    if errors:
+        return "error"
+    if not stats or not stats.get("n_changing"):
+        return "unobserved"
+    coverage_status = _coverage_status(stats)
+    sim = stats.get("simulation_accuracy")
+    if coverage_status == "vacuous":
+        return "fail_vacuous"
+    if sim is not None and sim >= 0.999 and coverage_status == "partial":
+        return "pass_partial"
+    if sim is not None and sim >= 0.999:
+        return "pass"
+    return "fail"
+
+
+def _initial_render_status(stats):
+    if not stats or stats.get("initial_render_ok") is None:
+        return "unobserved"
+    if stats.get("initial_render_error"):
+        return "error"
+    coverage_status = stats.get("initial_render_coverage_status", "unobserved")
+    if coverage_status == "vacuous":
+        return "fail_vacuous"
+    if not stats.get("initial_render_ok"):
+        return "fail"
+    if stats.get("initial_render_variant_used"):
+        return "pass_with_variant"
+    if stats.get("initial_render_unknown_used"):
+        return "pass_partial"
+    return "pass"
+
+
+def _outcome_level_status(stats):
+    if not stats:
+        return "unobserved"
+    if not stats.get("outcome_observable"):
+        lc_false = stats.get("level_complete_on_nonterminal") or 0
+        go_false = stats.get("game_over_on_nonterminal") or 0
+        if lc_false or go_false or stats.get("outcome_errors"):
+            return "fail"
+        return "unobserved"
+    return "pass" if stats.get("outcome_ok") else "fail"
+
+
+def _terminal_render_level_status(stats):
+    if not stats or stats.get("terminal_render_ok") is None:
+        return "unobserved"
+    coverage_status = _coverage_status(
+        stats, key="terminal_render_prediction_coverage", status_key="terminal_render_coverage_status")
+    if coverage_status == "vacuous":
+        return "fail_vacuous"
+    if stats.get("terminal_render_ok") is False:
+        return "fail"
+    if stats.get("terminal_render_variant_used"):
+        return "pass_with_variant"
+    if stats.get("terminal_render_unknown_used"):
+        return "pass_with_unknown"
+    return "pass_partial" if coverage_status == "partial" else "pass"
+
+
+def _first_divergence_label(fd):
+    if not fd:
+        return None
+    return f"L{fd['level']} turn {fd['turn']} action {fd['action']} — {fd['diff']}"
+
+
+_PLAN_METHOD = os.environ.get("TYCHO_AUTO_PLAN_METHOD", "astar")
+_PLAN_MAX_NODES = int(os.environ.get("TYCHO_AUTO_PLAN_MAX_NODES", "5000"))
+_PLAN_TIMEOUT_S = float(os.environ.get("TYCHO_AUTO_PLAN_TIMEOUT_S", "3.0"))
+
+
+def _planner_probe():
+    """Bounded planner probe for auto-feedback.
+
+    This is intentionally separate from verification: a timeout/no-plan here never changes the
+    verifier metrics above. It exists to save the agent a follow-up tool call when the model is already
+    good enough to try planning.
+    """
+    # This is control-flow cancellation, not a model failure. BaseException deliberately bypasses
+    # the planner's broad `except Exception` diagnostics around actions()/transition().
+    class PlannerTimeout(BaseException):
+        pass
+
+    started = time.monotonic()
+    old_handler = None
+    used_signal = False
+    try:
+        import signal
+
+        def _timeout(_signum, _frame):
+            raise PlannerTimeout()
+
+        old_handler = signal.signal(signal.SIGALRM, _timeout)
+        signal.setitimer(signal.ITIMER_REAL, _PLAN_TIMEOUT_S)
+        used_signal = True
+    except Exception:
+        used_signal = False
+    try:
+        start = wmlib.current_state(world_model)
+        if start is None:
+            return {"status": "no_current_state", "elapsed_s": time.monotonic() - started}
+        target = lambda s: wmlib.is_level_complete(world_model, s)
+        action_count = None
+        action_error = None
+        try:
+            action_count = len(list(world_model.actions(start)))
+        except Exception as e:
+            action_error = f"{type(e).__name__}: {e}"
+        heuristic = getattr(world_model, "heuristic", None)
+        subgoal_diag = None
+        plan_diag = None
+        if _PLAN_METHOD == "subgoals":
+            subgoals = world_model.subgoals(start) if hasattr(world_model, "subgoals") else [target]
+            subgoal_diag = wmlib.plan_subgoals_with_diagnostics(
+                world_model, start, subgoals, heuristic=heuristic, max_nodes=_PLAN_MAX_NODES
+            )
+            plan = subgoal_diag.get("plan") if subgoal_diag.get("status") == "found" else None
+            plan_status = "found" if plan is not None else "no_plan_within_budget"
+            if subgoal_diag.get("status") == "failed_at_subgoal":
+                plan_status = subgoal_diag.get("failed_reason") or "no_plan_within_budget"
+        elif _PLAN_METHOD == "bfs":
+            plan_diag = wmlib.plan_bfs_with_diagnostics(
+                world_model, start, target, max_nodes=_PLAN_MAX_NODES
+            )
+            plan = plan_diag.get("plan") if plan_diag.get("status") == "found" else None
+            plan_status = plan_diag.get("status", "no_plan_within_budget")
+        else:
+            plan_diag = wmlib.plan_astar_with_diagnostics(
+                world_model, start, target, heuristic=heuristic, max_nodes=_PLAN_MAX_NODES
+            )
+            plan = plan_diag.get("plan") if plan_diag.get("status") == "found" else None
+            plan_status = plan_diag.get("status", "no_plan_within_budget")
+        return {"status": plan_status,
+                "plan": plan, "action_count": action_count, "action_error": action_error,
+                "planner_diagnostics": plan_diag,
+                "subgoal_diagnostics": subgoal_diag,
+                "elapsed_s": time.monotonic() - started}
+    except PlannerTimeout:
+        return {"status": "timeout", "elapsed_s": time.monotonic() - started}
+    except Exception as e:
+        import traceback
+        return {"status": "error", "error": f"{type(e).__name__}: {e}",
+                "traceback_tail": "".join(traceback.format_exception(type(e), e, e.__traceback__, limit=4)).strip(),
+                "elapsed_s": time.monotonic() - started}
+    finally:
+        if used_signal:
+            try:
+                import signal
+                signal.setitimer(signal.ITIMER_REAL, 0.0)
+                if old_handler is not None:
+                    signal.signal(signal.SIGALRM, old_handler)
+            except Exception:
+                pass
+
+
+try:
+    print("[auto-feedback] ran verifier checks equivalent to: python verify.py")
+    print(f"[auto-feedback] planner probe configured as: inline wmlib planner method={_PLAN_METHOD} "
+          f"(max_nodes={_PLAN_MAX_NODES}, wall_timeout_s={_PLAN_TIMEOUT_S:.1f}); "
+          "planner status is advisory and separate from verification.")
+    # Dynamics — simulate the model from s0 (init_state then thread transition()) and score how well it
+    # reproduces the observed transitions. A correct, fully-identified model reaches 1.00 by simulation.
+    v = wmlib.verify(world_model)
+    outcome_ok = None
+    outcome_status = "unobserved"
+    terminal_render_status = "unobserved"
+    current_outcome_status = "unobserved"
+    current_terminal_render_status = "unobserved"
+    current_outcome_stats = None
+    errs = v.get("errors") or []
+    n = v.get("n_changing", 0)
+    sim = v.get("simulation_accuracy")   # None when no graded transitions (defined for goal/plan blocks below)
+    dynamics_coverage_status = _coverage_status(v)
+    current_key = wmlib.current_frame_key()
+    current_level = current_key[0] if current_key is not None else None
+    current_stats = _level_stats(v, current_level)
+    current_initial_render_status = _initial_render_status(current_stats)
+    initial_render_status = (
+        "unobserved" if v.get("initial_render_ok") is None
+        else "error" if v.get("initial_render_errors")
+        else "fail_vacuous" if v.get("initial_render_coverage_status") == "vacuous"
+        else "pass" if v.get("initial_render_ok")
+        else "fail"
+    )
+    initial_render_display_status = (
+        "fail_prior_level"
+        if initial_render_status in ("error", "fail", "fail_vacuous")
+        and current_initial_render_status in ("pass", "pass_partial", "pass_with_variant")
+        else initial_render_status
+    )
+    current_dynamics_status = _dynamics_status(current_stats, _level_errors(errs, current_level))
+    all_dynamics_status = _dynamics_status({
+        "n_changing": n,
+        "simulation_accuracy": sim,
+        "prediction_coverage": v.get("prediction_coverage"),
+        "prediction_coverage_status": v.get("prediction_coverage_status"),
+    }, errs)
+    fd = v.get("first_divergence")
+    all_dynamics_display_status = (
+        "fail_prior_level"
+        if all_dynamics_status in ("error", "fail", "fail_vacuous")
+        and current_dynamics_status in ("pass", "pass_partial")
+        and fd and fd.get("level") != current_level
+        else all_dynamics_status
+    )
+    print("INITIAL_RENDER_METRICS:")
+    print(f"  accepted_level_start_accuracy = {_fmt(v.get('initial_render_accuracy'))} "
+          "<- render(init_state(observed_start, level)) match rate; checked independently of transition()")
+    print(f"  strict_level_start_accuracy = {_fmt(v.get('initial_render_strict_accuracy'))} "
+          "<- canonical render() exact full-grid match rate")
+    print(f"  level_starts_checked = {v.get('n_initial_render', 0)}")
+    if v.get("initial_render_unknown_used"):
+        print(f"  prediction_coverage = {_coverage_desc(v.get('initial_render_prediction_coverage'), v.get('initial_render_coverage_status'))}")
+        print(f"  known_cell_accuracy = {_fmt(v.get('initial_render_known_cell_accuracy'))}")
+    if v.get("initial_render_variant_used"):
+        print(f"  observation_variants_accepted = {v.get('initial_render_variant_used')} level start(s)")
+    if current_level is not None and current_stats:
+        print(f"  current_level = L{current_level}; status={current_initial_render_status}; "
+              f"coverage={current_stats.get('initial_render_coverage_status', 'unobserved')}")
+        if current_stats.get("initial_render_first_mismatch"):
+            print(f"  current_level_first_mismatch: {current_stats.get('initial_render_first_mismatch')}")
+    for e in (v.get("initial_render_errors") or [])[:3]:
+        print(f"  initial render error: {e}")
+    if errs:
+        print(f"⚠ your model raised {len(errs)} error(s) during verify (fix these first — they make "
+              "accuracy read as 0/None):")
+        for e in errs[:5]:
+            print(f"    {e}")
+    if not n:
+        # No graded transitions to validate transition() against — BUT outcome() may still be
+        # falsifiable: a level solved in one action has a recorded winning action (solved.json) and a
+        # true terminal, so we fall through to the outcome check instead of exiting.
+        print(f"DYNAMICS_METRICS: no graded transitions observed yet ({v.get('n_total', 0)} "
+              "transitions, all no-op) — can't validate transition() until an action changes the grid.")
+        if v.get("archived_attempts"):
+            print(f"  archived_reset_evidence_not_replay_scored = "
+                  f"{v.get('archived_attempts', 0)} attempt(s), "
+                  f"{v.get('archived_transitions', 0)} transition(s), "
+                  f"{v.get('archived_observed_changed', 0)} observed-changing")
+    else:
+        print("DYNAMICS_METRICS:")
+        if v.get("variant_used") or _uses_unknown(v):
+            print(f"  accepted_transition_accuracy (simulation_accuracy) = {_fmt(sim)} "
+                  "<- graded transition match rate after bounded observation_variants and UNKNOWN masking")
+            print(f"  strict_transition_accuracy = {_fmt(v.get('strict_simulation_accuracy'))} "
+                  "<- canonical render() exact full-grid match rate with no variants/UNKNOWN masking")
+        else:
+            print(f"  exact_transition_accuracy (simulation_accuracy) = {_fmt(sim)} "
+                  "<- exact full-grid match rate over graded observed transitions; drive to 1.00")
+        if v.get("variant_used"):
+            print(f"  observation_variants_accepted = {v.get('variant_used')} transition(s) "
+                  f"(limit {v.get('variant_limit')})")
+        if _uses_unknown(v):
+            print(f"  prediction_coverage = {_coverage_desc(v.get('prediction_coverage'), dynamics_coverage_status)}")
+            print(f"  known_cell_accuracy = {_fmt(v.get('known_cell_accuracy'))} "
+                  "<- per-cell agreement over claimed cells")
+            print(f"  unknown_used = {v.get('unknown_used', 0)} transition(s); "
+                  f"unknown_cell_rate = {_fmt(v.get('unknown_cell_rate'))}")
+        print(f"  transition_replay = matched {v.get('n_matched', 0)} / evaluated {n} / "
+              f"observed {v.get('n_total', 0)} current-attempt transitions")
+        if v.get("n_joint_noop"):
+            print(f"  jointly_unchanged_noops_omitted = {v.get('n_joint_noop', 0)}; "
+                  f"false_changes_on_observed_noops = {v.get('n_false_change_on_noop', 0)}")
+        if v.get("archived_attempts"):
+            print(f"  archived_reset_evidence_not_replay_scored = "
+                  f"{v.get('archived_attempts', 0)} attempt(s), "
+                  f"{v.get('archived_transitions', 0)} transition(s), "
+                  f"{v.get('archived_observed_changed', 0)} observed-changing")
+        cell = v.get("cell_accuracy")
+        if cell is not None:
+            print(f"  cell_accuracy_diagnostic = {_fmt(cell)} "
+                  "<- strict full-grid per-cell agreement; UNKNOWN counts as non-matching")
+        pl = {k: lv.get("simulation_accuracy") for k, lv in (v.get("per_level") or {}).items()}
+        if pl:
+            label = "per_level_accepted_transition_accuracy" if (v.get("variant_used") or _uses_unknown(v)) else "per_level_exact_transition_accuracy"
+            print(f"  {label}: " + ", ".join(f"L{k}={_fmt(val)}" for k, val in sorted(pl.items())))
+        if current_level is not None:
+            if current_stats:
+                cur_sim = current_stats.get("simulation_accuracy")
+                print(f"  current_level = L{current_level}; accuracy={_fmt(cur_sim)}; "
+                      f"matched={current_stats.get('n_matched', 0)}/"
+                      f"evaluated={current_stats.get('n_changing', 0)}/"
+                      f"observed={current_stats.get('n_total', 0)}")
+                if _uses_unknown(current_stats):
+                    cur_cov_status = _coverage_status(current_stats)
+                    print(f"  current_level_coverage = "
+                          f"{_coverage_desc(current_stats.get('prediction_coverage'), cur_cov_status)}")
+                cfd = current_stats.get("first_divergence")
+                if cfd and current_dynamics_status in ("error", "fail", "fail_vacuous"):
+                    print(f"  current_level_first_divergence: {_first_divergence_label(cfd)}")
+            else:
+                print(f"  current_level = L{current_level}; no observed transitions yet")
+        if fd and all_dynamics_display_status == "fail_prior_level":
+            print(f"  prior_level_first_divergence: {_first_divergence_label(fd)}")
+            print("    -> current level dynamics pass, so planner advice below may still be useful; "
+                  "repair the prior-level mismatch when it becomes relevant.")
+        elif fd and all_dynamics_status in ("error", "fail", "fail_vacuous"):
+            print(f"  first divergence: {_first_divergence_label(fd)}")
+            print("    -> fix init_state/transition here: encode the hidden state this transition reveals "
+                  "(a counter, a learned palette edge, a mover's phase), or correct the rule.")
+    for e in (v.get("variant_errors") or [])[:3]:
+        print(f"  observation_variants issue: {e}")
+
+    # Outcome — necessary-not-sufficient: a perfect transition() with a wrong terminal status scores poorly.
+    # Runs even with zero graded transitions (a one-action solved level is still falsifiable).
+    try:
+        gv = wmlib.verify_outcome(world_model)
+        if not gv.get("outcome_observable"):
+            lc_false = gv.get("level_complete_on_nonterminal") or 0
+            go_false = gv.get("game_over_on_nonterminal") or 0
+            if lc_false or go_false or gv.get("outcome_errors"):
+                outcome_ok = False
+                outcome_status = "fail"
+                print("OUTCOME_METRICS: ⚠ no terminal evidence observed yet, but outcome() already "
+                      "misfires or raises on observed decision frames.")
+            else:
+                print("OUTCOME_METRICS: no level_complete or GAME_OVER terminal observed yet — "
+                      "transition dynamics may verify before the goal/hazard rule is known. Can't "
+                      "verify terminal statuses until a level ends or GAME_OVER occurs; keep "
+                      "objective/hazard hypotheses open in notes/world_model.md.")
+        elif gv.get("outcome_ok"):
+            outcome_ok = True
+            outcome_status = "pass"
+            print("OUTCOME_METRICS: outcome() verified on observed terminal evidence "
+                  f"({gv['n_level_complete_terminal']} level_complete, "
+                  f"{gv['n_game_over_terminal']} game_over), never on non-terminals.")
+        else:
+            outcome_ok = False
+            outcome_status = "fail"
+            diag = []
+            if (gv.get("level_complete_on_terminal") or 0) < 1 and gv.get("level_complete_observable"):
+                diag.append("misses observed level_complete terminal(s)")
+            if (gv.get("level_complete_on_nonterminal") or 0) > 0:
+                diag.append("returns level_complete before a level ended")
+            if (gv.get("game_over_on_death") or 0) < 1 and gv.get("game_over_observable"):
+                diag.append("misses observed API GAME_OVER terminal(s)")
+            if (gv.get("game_over_on_nonterminal") or 0) > 0:
+                diag.append("returns game_over on ordinary decision frame(s)")
+            if gv.get("outcome_errors"):
+                diag.append("outcome() raised errors")
+            print("OUTCOME_METRICS: ⚠ outcome() status wrong: "
+                  f"post-winning-action level_complete={_fmt(gv.get('level_complete_on_terminal'))} (want 1.00 when observed), "
+                  f"decision-state false level_complete={_fmt(gv.get('level_complete_on_nonterminal'))} (want 0.00), "
+                  f"post-fatal-action game_over={_fmt(gv.get('game_over_on_death'))} (want 1.00 when observed), "
+                  f"decision-state false game_over={_fmt(gv.get('game_over_on_nonterminal'))} (want 0.00). "
+                  + "; ".join(diag) + ".")
+            for kind, lvl, t in gv.get("misfires", [])[:5]:
+                print(f"    {_misfire_desc(kind)}: L{lvl} turn {t}")
+        for e in (gv.get("outcome_errors") or [])[:3]:
+            print(f"OUTCOME_METRICS: {e}")
+        # Render bridge: the modeled terminal (transition(s_pre, winning_action)) must also look like
+        # the observed winning frame (the goal-reached frame the engine returned, recorded as a
+        # terminal event). render_exact<1.0 = your win is modeled but doesn't reproduce the real
+        # winning pixels — reconcile transition()/render() at the winning action.
+        tre = gv.get("terminal_render_exact")
+        terminal_coverage_status = _coverage_status(
+            gv, key="terminal_render_prediction_coverage", status_key="terminal_render_coverage_status")
+        if gv.get("terminal_render_variant_used") or gv.get("terminal_render_unknown_used"):
+            terminal_render_status = (
+                "fail_vacuous" if terminal_coverage_status == "vacuous" else
+                ("pass_with_variant" if gv.get("terminal_render_variant_used") else "pass_with_unknown")
+            )
+            bits = []
+            if gv.get("terminal_render_variant_used"):
+                bits.append(f"observation_variants on {gv.get('terminal_render_variant_used')} terminal(s)")
+            if gv.get("terminal_render_unknown_used"):
+                bits.append(f"UNKNOWN cells on {gv.get('terminal_render_unknown_used')} terminal(s)")
+            print(f"OUTCOME_METRICS: terminal render accepted with {' and '.join(bits)}; "
+                  f"strict_exact={_fmt(gv.get('terminal_render_strict_exact'))}, "
+                  f"coverage={_coverage_desc(gv.get('terminal_render_prediction_coverage'), terminal_coverage_status)}, "
+                  f"known_cell={_fmt(gv.get('terminal_render_known_cell'))}, "
+                  f"canonical_cell={_fmt(gv.get('terminal_render_cell'))}.")
+        if tre is not None and (tre < 1.0 or terminal_coverage_status == "vacuous"):
+            terminal_render_status = "fail"
+            print(f"OUTCOME_METRICS: terminal render exact={_fmt(tre)} (want 1.00), "
+                  f"coverage={_coverage_desc(gv.get('terminal_render_prediction_coverage'), terminal_coverage_status)}, "
+                  f"cell={_fmt(gv.get('terminal_render_cell'))} — modeled terminal != observed winning frame.")
+        elif tre is not None and terminal_render_status == "unobserved":
+            terminal_render_status = "pass_partial" if terminal_coverage_status == "partial" else "pass"
+        for e in (gv.get("variant_errors") or [])[:3]:
+            print(f"OUTCOME_METRICS: observation_variants issue: {e}")
+        current_outcome_stats = _level_stats(gv, current_level)
+        current_outcome_status = _outcome_level_status(current_outcome_stats)
+        current_terminal_render_status = _terminal_render_level_status(current_outcome_stats)
+        if current_level is not None and current_outcome_stats:
+            cur_lc = current_outcome_stats.get("level_complete_on_terminal")
+            cur_go = current_outcome_stats.get("game_over_on_death")
+            print(f"OUTCOME_METRICS: current_level = L{current_level}; "
+                  f"outcome_status={current_outcome_status}; "
+                  f"terminal_render_status={current_terminal_render_status}; "
+                  f"level_complete_terminal={_fmt(cur_lc)}; game_over_terminal={_fmt(cur_go)}")
+    except Exception as e:
+        outcome_status = "error"
+        terminal_render_status = "error"
+        current_outcome_status = "error"
+        current_terminal_render_status = "error"
+        print(f"  (outcome check skipped: {type(e).__name__}: {e})")
+
+    try:
+        deaths = wmlib.death_events()
+        if deaths:
+            print(f"  GAME_OVER evidence: {len(deaths)} fatal action(s) observed outside normal transitions")
+            for ev in deaths[-3:]:
+                rc = "" if ev.get("row") is None else f" at ({ev.get('row')},{ev.get('col')})"
+                print(f"    L{ev.get('level')} turn {ev.get('turn')} {ev.get('action')}{rc} -> GAME_OVER; "
+                      "model/planner should avoid equivalent fatal edges")
+    except Exception as e:
+        print(f"  (GAME_OVER evidence check skipped: {type(e).__name__}: {e})")
+
+    try:
+        print(wmlib.format_game_over_action_report(wmlib.game_over_action_report(world_model)))
+    except Exception as e:
+        print(f"MODEL_GAME_OVER_ACTIONS: check skipped ({type(e).__name__}: {e})")
+
+    if current_initial_render_status in ("error", "fail", "fail_vacuous"):
+        focus_kind = "repair"
+        focus_label = "current_level_initial_render"
+        focus_reason = ("render(init_state(observed_start, level)) does not reproduce the current level's "
+                        "initial observation, so transition and planner state start from the wrong representation")
+    elif current_dynamics_status in ("error", "fail", "fail_vacuous"):
+        focus_kind = "repair"
+        focus_label = "current_level_dynamics"
+        focus_reason = ("transition/init_state/render mismatch or vacuous UNKNOWN render on the current "
+                        "level before planner evidence is reliable")
+    elif current_outcome_status in ("error", "fail"):
+        focus_kind = "repair"
+        focus_label = "current_level_outcome"
+        focus_reason = "outcome() disagrees with current-level terminal or nonterminal evidence"
+    elif current_terminal_render_status in ("error", "fail", "fail_vacuous"):
+        focus_kind = "repair"
+        focus_label = "current_level_terminal_render"
+        focus_reason = ("outcome() may say level_complete on the current level, but modeled terminal "
+                        "does not render like the observed terminal frame")
+    elif all_dynamics_status == "unobserved":
+        focus_kind = "next"
+        focus_label = "explore_for_dynamics_evidence"
+        focus_reason = "no graded transition has been observed yet"
+    elif current_dynamics_status == "unobserved":
+        focus_kind = "next"
+        focus_label = "explore_current_level"
+        focus_reason = "current level has no graded transition evidence yet; older-level mismatch remains visible"
+    elif all_dynamics_status in ("error", "fail", "fail_vacuous"):
+        focus_kind = "next"
+        focus_label = "plan_or_act_on_current_level"
+        focus_reason = "current-level dynamics pass; older-level mismatch remains visible for later repair"
+    elif outcome_status in ("error", "fail") or terminal_render_status in ("error", "fail", "fail_vacuous"):
+        focus_kind = "next"
+        focus_label = "plan_or_act_on_current_level"
+        focus_reason = ("current-level checks are not falsified; older-level outcome/terminal-render "
+                        "mismatch remains visible for later repair")
+    else:
+        focus_kind = "next"
+        focus_label = "plan_or_act"
+        focus_reason = "verified channels are pass or not yet falsifiable"
+    print("VERIFIER_TRIAGE:")
+    print(f"  CURRENT_LEVEL_INITIAL_RENDER_STATUS: {current_initial_render_status}")
+    print(f"  ALL_LEVELS_INITIAL_RENDER_STATUS: {initial_render_display_status}")
+    print(f"  CURRENT_LEVEL_DYNAMICS_STATUS: {current_dynamics_status}")
+    print(f"  ALL_LEVELS_DYNAMICS_STATUS: {all_dynamics_display_status}")
+    print(f"  CURRENT_LEVEL_OUTCOME_STATUS: {current_outcome_status}")
+    print(f"  CURRENT_LEVEL_TERMINAL_RENDER_STATUS: {current_terminal_render_status}")
+    print(f"  OUTCOME_STATUS: {outcome_status}")
+    print(f"  TERMINAL_RENDER_STATUS: {terminal_render_status}")
+    if focus_kind == "repair":
+        print(f"  REPAIR_FOCUS: {focus_label}")
+    else:
+        print(f"  NEXT_STEP_FOCUS: {focus_label}")
+    print(f"  FOCUS_REASON: {focus_reason}")
+
+    current_initial_allows_planning = current_initial_render_status in (
+        "pass", "pass_partial", "pass_with_variant")
+    current_level_ready = current_dynamics_status in ("pass", "pass_partial")
+    history_ready = current_dynamics_status == "unobserved" and all_dynamics_status in ("pass", "pass_partial")
+    current_outcome_allows_planning = current_outcome_status not in ("error", "fail")
+    current_terminal_allows_planning = current_terminal_render_status not in ("error", "fail", "fail_vacuous")
+    prior_outcome_warning = (
+        current_outcome_allows_planning
+        and (outcome_status in ("error", "fail")
+             or terminal_render_status in ("error", "fail", "fail_vacuous"))
+    )
+    planner_ready = (
+        (current_level_ready or history_ready)
+        and current_initial_allows_planning
+        and current_outcome_allows_planning
+        and current_terminal_allows_planning
+    )
+    if planner_ready:
+        pr = _planner_probe()
+        elapsed = pr.get("elapsed_s", 0.0)
+        print("PLANNER_PROBE:")
+        print(f"  PLANNER_METHOD: {_PLAN_METHOD}")
+        print(f"  PLANNER_MAX_NODES: {_PLAN_MAX_NODES}")
+        print(f"  PLANNER_WALL_TIMEOUT_S: {_PLAN_TIMEOUT_S:.1f}")
+        print(f"  PLANNER_ASSUMPTIONS: current_level_dynamics_status={current_dynamics_status}, "
+              f"current_level_initial_render_status={current_initial_render_status}, "
+              f"current_level_outcome_status={current_outcome_status}, "
+              f"current_level_terminal_render_status={current_terminal_render_status}, "
+              f"all_levels_dynamics_status={all_dynamics_display_status}, "
+              f"all_levels_outcome_status={outcome_status}, "
+              f"all_levels_terminal_render_status={terminal_render_status}")
+        if current_outcome_status == "unobserved":
+            print("  OUTCOME_CONFIDENCE: unobserved — dynamics verification does not by itself confirm the goal or hazard rule.")
+        if prior_outcome_warning:
+            print("  PRIOR_LEVEL_WARNINGS: older-level outcome/terminal-render mismatch exists; "
+                  "planner advice below is current-level-only advisory.")
+        print(f"  command_run = inline wmlib planner method={_PLAN_METHOD} "
+              f"(max_nodes={_PLAN_MAX_NODES}, wall_timeout_s={_PLAN_TIMEOUT_S:.1f})")
+        print(f"  comparable_manual_check = TYCHO_PLAN_MAX_NODES={_PLAN_MAX_NODES} python plan.py {_PLAN_METHOD}")
+        if pr.get("action_count") is not None:
+            print(f"  initial_action_count = {pr['action_count']}")
+        if pr.get("action_error"):
+            print(f"  initial_action_count_error = {pr['action_error']}")
+        diag = pr.get("planner_diagnostics") or {}
+        if diag.get("expanded_nodes") is not None:
+            print(f"  PLANNER_EXPANDED_NODES: {diag.get('expanded_nodes')}")
+            print(f"  PLANNER_FRONTIER_REMAINING: {diag.get('frontier_remaining')}")
+            print(f"  PLANNER_SEEN_STATES: {diag.get('seen_states')}")
+        if diag.get("errors"):
+            print("  PLANNER_MODEL_ERRORS:")
+            for err in diag.get("errors", [])[:5]:
+                print(f"    {err}")
+        _print_subgoal_diagnostics(pr.get("subgoal_diagnostics"))
+        status = pr.get("status")
+        if status == "found":
+            plan = pr.get("plan") or []
+            if not plan:
+                print(f"  PLANNER_STATUS: already_at_level_complete")
+                print(f"  status = already_at_level_complete according to outcome() (elapsed_s={elapsed:.2f})")
+            else:
+                acts = ", ".join(_compact_action(p) for p in plan[:8])
+                first = plan[0]
+                print("  PLANNER_STATUS: plan_found")
+                print(f"  PLANNER_PLAN_LEN: {len(plan)}")
+                print(f"  PLANNER_FIRST_ACTION: {_compact_action(first)}")
+                if first.get("row") is not None:
+                    print(f"  PLANNER_FIRST_ACTION_ROW: {first.get('row')}")
+                    print(f"  PLANNER_FIRST_ACTION_COL: {first.get('col')}")
+                print(f"  status = plan_found (elapsed_s={elapsed:.2f}, length={len(plan)})")
+                print(f"  first_actions = {acts}{' ...' if len(plan) > 8 else ''}")
+                print("  recommendation = candidate first action; commit it only if still legal in the current frame, then re-observe and re-plan")
+        elif status == "no_plan_within_budget":
+            print("  PLANNER_STATUS: no_plan_within_budget")
+            print(f"  status = no_plan_within_budget (elapsed_s={elapsed:.2f})")
+            print("  interpretation = verifier metrics above are still valid; this can mean wrong outcome(), "
+                  "incomplete actions(), unseen or unencoded target/route/off-screen state, game_over current "
+                  "state, insufficient budget, or planner/heuristic weakness")
+        elif status == "no_plan_exhausted":
+            print("  PLANNER_STATUS: no_plan_exhausted")
+            print(f"  status = no_plan_exhausted (elapsed_s={elapsed:.2f})")
+            print("  interpretation = under the current verified model/action set, reachable states were exhausted "
+                  "without level_complete; if the target/route/off-screen state is not fully grounded, explore or "
+                  "encode that evidence before treating this as impossibility. If the model/action set is trusted, "
+                  "consider RESET/backtracking or revise outcome()/actions() if this contradicts game evidence")
+        elif status == "actions_error":
+            print("  PLANNER_STATUS: actions_error")
+            print(f"  status = actions_error (elapsed_s={elapsed:.2f})")
+            print("  interpretation = actions(state) must return full dicts "
+                  "{\"action\":..., \"row\":..., \"col\":...}; fix actions() before trusting planner output")
+        elif status == "timeout":
+            print("  PLANNER_STATUS: planner_timeout")
+            print(f"  status = planner_timeout (elapsed_s={elapsed:.2f})")
+            print("  interpretation = verifier metrics above are still valid; planner search or model code was too slow")
+        elif status == "no_current_state":
+            print("  PLANNER_STATUS: no_current_state")
+            print(f"  status = no_current_state (elapsed_s={elapsed:.2f})")
+        else:
+            print("  PLANNER_STATUS: planner_error")
+            print(f"  status = planner_error (elapsed_s={elapsed:.2f})")
+            print(f"  error = {pr.get('error')}")
+            if pr.get("traceback_tail"):
+                print("  traceback_tail:")
+                for line in str(pr.get("traceback_tail")).splitlines()[-12:]:
+                    print(f"    {line}")
+    elif not current_initial_allows_planning:
+        print("PLANNER_PROBE:")
+        print("  PLANNER_STATUS: not_run_current_level_initial_render_failed")
+        print("  -> render(init_state()) is wrong or vacuous on the current level: repair the initial state representation before planning.")
+    elif (current_level_ready or sim is not None and sim >= 0.999) and not current_outcome_allows_planning:
+        print("PLANNER_PROBE:")
+        print("  PLANNER_STATUS: not_run_current_level_outcome_failed")
+        print("  -> current-level dynamics verify, but outcome() is known wrong on current-level evidence: "
+              "fix outcome() before planning or committing planner actions.")
+    elif (current_level_ready or sim is not None and sim >= 0.999) and not current_terminal_allows_planning:
+        print("PLANNER_PROBE:")
+        print("  PLANNER_STATUS: not_run_current_level_terminal_render_failed")
+        print("  -> current-level outcome may say level_complete, but modeled terminal render is wrong or vacuous.")
+    elif current_dynamics_status == "fail_vacuous" or all_dynamics_status == "fail_vacuous":
+        print("PLANNER_PROBE:")
+        print("  PLANNER_STATUS: not_run_vacuous_prediction")
+        print("  -> render() claimed no cells with non-UNKNOWN values; this is not enough evidence for planner advice.")
+    elif current_dynamics_status in ("error", "fail"):
+        print("PLANNER_PROBE:")
+        print("  PLANNER_STATUS: not_run_current_level_dynamics_failed")
+        print("  -> current-level dynamics are wrong: fix the current-level first divergence above, then re-verify.")
+    elif all_dynamics_status in ("error", "fail"):
+        print("PLANNER_PROBE:")
+        print("  PLANNER_STATUS: not_run_dynamics_failed")
+        print("  -> all-level simulation_accuracy < 1.00 and current level is not independently verified: fix the first divergence above (encode the missing hidden "
+              "state, or correct the transition rule), then re-verify.")
+except Exception as e:
+    print(f"verify crashed: {type(e).__name__}: {e}")

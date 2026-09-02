@@ -1,0 +1,24 @@
+# Credentialed smoke configuration for the unmodified `tycho` approach.
+# Run only after `sc-run-arc-v3 --check-runtime` succeeds. This file does not
+# provide model names, endpoints, keys, games, or output paths.
+reasoning:
+  effort: low
+  max_tokens: 2048
+  max_llm_calls: 2
+  max_tool_steps: 2
+  max_inference_cost_per_game: 0.50
+
+vision:
+  vision: true
+  text_grid: full
+  animation_summary: false
+
+context:
+  prompt_caching: false
+  history: tail_evict
+  grid_keep: 2
+  image_keep: 2
+  image_cap: 2
+
+orchestration:
+  mode: no_world_model
