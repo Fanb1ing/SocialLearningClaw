@@ -1312,3 +1312,11 @@ outputs or environments are eligible for commit. Verification: all 18 V3 tests,
 `git diff --check`, and local-link validation across 26 Markdown files passed.
 No commit or remote push was performed. Follow-up: implement and test Phase 3
 Builder/Actor EFPS prompting before describing EFPS as active game cognition.
+
+## 2026-09-02 — Unpushed commit diagnosis
+
+Confirmed that local `main` is one commit ahead of `origin/main` at `a29f675`
+(`base tycho`). The configured HTTPS remote, GitHub connectivity, credentials,
+and fast-forward eligibility are all valid: `git push --dry-run origin main`
+reported that `1c7284f..a29f675` would update `main`. No actual push was made.
+Follow-up: push `main` when the remote update is explicitly desired.
